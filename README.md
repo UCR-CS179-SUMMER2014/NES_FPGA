@@ -31,11 +31,25 @@ Randy Truong - Hardware
 Kevin Mitton - APU interface, hardware
 
 ###2. Summary
+We decided to set up the emulator as follows:
 
-###3. CPU
+- Backed-up games will be loaded up through an SD card onto the FPGA's RAM.
+- Video will be output through VGA format
+- Controllers will be set up on GPIO, as well as audio.
+- The entire software interface will be on the FPGA itself, written in Verilog through Quartus II/ModelSim.
 
-###4. PPU
+###3. CPU - The Ricoh 2A03 Processor
 
-###5. APU
+N/A
 
-###6. Hardware
+###4. PPU - The Picture Processing Unit
+
+N/A
+
+###5. APU - The Pseudo-Audio Processing Unit
+
+N/A
+
+###6. Hardware - VGA, Controller, Sound, and SD Card interfacing
+
+N/A
