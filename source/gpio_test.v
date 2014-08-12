@@ -10,7 +10,7 @@
 //=======================================================
 
 
-module GPIO_TEST(
+module gpio_test(
 
 	//////////// CLOCK //////////
 	CLOCK_50, 	// BANK 4
@@ -50,11 +50,10 @@ inout 		    [35:0]		GPIO;
 //////////// Fan Control //////////
 inout 		          		FAN_CTRL;
 
-
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
-wire [15:0]  buttons;        // Holds the buttons to be pressed
+wire [7:0]  buttons;        // Holds the buttons to be pressed
 
 
 //=======================================================
@@ -64,9 +63,16 @@ wire [15:0]  buttons;        // Holds the buttons to be pressed
 	//////////// FAN Control //////////
 assign FAN_CTRL = 1'bz; // turn on FAN
 assign LEDR     = buttons;
-
-snes_controller player1( GPIO[1],   // Latch
-								 GPIO[0],   // Data
+/*
+snes_controller player1( GPIO[0],   // Latch
+								 GPIO[4],   // Data
+								 GPIO[2],   // Pulse
+								 CLOCK_50,  // CLOCK
+								 buttons    // snes buttons
+								);
+*/								
+ nes_controller player2( GPIO[0],   // Latch
+								 GPIO[4],   // Data
 								 GPIO[2],   // Pulse
 								 CLOCK_50,  // CLOCK
 								 buttons    // snes buttons
