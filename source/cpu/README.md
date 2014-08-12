@@ -1,6 +1,7 @@
 #List of 6502 Instructions
 
 
+```
 $00	BRK	Implied	- - - - - - - 
 
 $01	ORA ($NN,X)	Indexed Indirect	- Z- - - - N
@@ -302,3 +303,4 @@ $f9	SBC $NNNN,Y	Absolute,Y	CZ- - - VN
 $fd	SBC $NNNN,X	Absolute,X	CZ- - - VN
 
 $fe	INC $NNNN,X	Absolute,X	- Z- - - - N
+```
