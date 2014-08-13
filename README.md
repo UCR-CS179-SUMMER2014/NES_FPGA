@@ -66,8 +66,8 @@ Instruction decoding and execution.
   - These registers hold the data and information such as the Game Sprites, Background and Color palettes.
   
   Color Palettes
-    - The NES has two color Palettes which they both have 16 entries (16-bytes reserved for SPrites and 16-bytes             reserved for Bacground. However, Mirror occurs every four bytee. 
-      - Because of this the total number of bytes available for Sprites is 13-Bytes and 12-Bytes for Backgrounds.
+    - The NES has two color Palettes which they both have 16 entries (16-bytes reserved for SPrites and 16-bytes reserved for Bacground. However, Mirror occurs every four bytee. 
+    - Because of this the total number of bytes available for Sprites is 13-Bytes and 12-Bytes for Backgrounds.
  
   Tile Sets(Pattern Tables) 
     - Pattern Tables hold 8x8 Pixles we is what is going to be output to the screen. 
