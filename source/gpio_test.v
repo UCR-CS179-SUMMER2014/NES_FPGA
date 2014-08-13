@@ -1,7 +1,7 @@
 /*
 	Module:       GPIO_TEST
-	Description:  Tests snes_controller module
-	Author:       Sergio M
+	Description:  Tests snes_controller and nes_controller modules
+	Author:       Sergio M, Randy T, Omar T, Hector D, Kevin M
 	Date:         8/11/14
 */
 
@@ -19,6 +19,7 @@ module gpio_test(
 
 	//////////// LED (High Active) //////////
 	LEDR,
+	LEDG,
 
 	//////////// GPIO, GPIO connect to GPIO Default //////////
 	GPIO,
@@ -43,6 +44,7 @@ input 		          		CLOCK3_50;
 
 //////////// LED (High Active) //////////
 output		    [17:0]		LEDR;
+output			 [7:0]		LEDG;
 
 //////////// GPIO, GPIO connect to GPIO Default //////////
 inout 		    [35:0]		GPIO;
@@ -53,8 +55,8 @@ inout 		          		FAN_CTRL;
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
-wire [7:0]  buttons;        // Holds the buttons to be pressed
-
+wire [12:0] SNES_buttons;      // Holds the buttons for SNES Controller
+wire [7:0]  NES_buttons;       // Holds the buttons for NES Controller
 
 //=======================================================
 //  Structural coding
@@ -62,20 +64,23 @@ wire [7:0]  buttons;        // Holds the buttons to be pressed
 
 	//////////// FAN Control //////////
 assign FAN_CTRL = 1'bz; // turn on FAN
-assign LEDR     = buttons;
-/*
-snes_controller player1( GPIO[0],   // Latch
-								 GPIO[4],   // Data
-								 GPIO[2],   // Pulse
-								 CLOCK_50,  // CLOCK
-								 buttons    // snes buttons
+assign LEDR     = SNES_buttons;
+assign LEDG 	 = NES_buttons;
+
+//SNES controller outputs to the LEDR
+snes_controller player1( GPIO[31],   	// Latch
+								 GPIO[35],   	// Data
+								 GPIO[33],   	// Pulse
+								 CLOCK_50,  	// CLOCK
+								 SNES_buttons  // snes buttons
 								);
-*/								
- nes_controller player2( GPIO[0],   // Latch
-								 GPIO[4],   // Data
-								 GPIO[2],   // Pulse
-								 CLOCK_50,  // CLOCK
-								 buttons    // snes buttons
+								
+//NES controller outputs to the LEDG
+ nes_controller player2( GPIO[0],   	// Latch
+								 GPIO[4],   	// Data
+								 GPIO[2],   	// Pulse
+								 CLOCK_50,  	// CLOCK
+								 NES_buttons   // nes buttons
 								);
 
 endmodule
