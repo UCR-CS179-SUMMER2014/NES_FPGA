@@ -40,10 +40,11 @@ Kevin Mitton - APU interface, hardware
 ###2. Summary
 We decided to set up the emulator as follows:
 
-- Backed-up games will be loaded up through an SD card onto the FPGA's RAM.
-- Video will be output through VGA format
+- Backed-up games will be loaded up through an SD card onto the FPGA's SDRAM.
+- Video will be output through VGA format.
 - Controllers will be set up on GPIO, as well as audio.
-- The entire software interface will be on the FPGA itself, written in Verilog through Quartus II/ModelSim.
+- We will utilize Altera software and IP cores, such as the Nios II soft processor core, to allow for simpler interfacing. Verilog will be used for the HDL, and C programs will be run off of Flash for the Nios II software.
+
 
 ###3. CPU - The Ricoh 2A03 Processor
 
@@ -54,9 +55,26 @@ The Ricoh 2A03 Processor consists of:
 - psedu-APU
 - Controller support
 
+###NMOS 6502 Microprocessor
+
+The 6502 features the following:
+* 3 General purpose registers:
+        - Accumulator (A)
+        - Index (X and Y)
+* 3 Special Purpose registers:
+        - Program Counter (16-bits wide)
+        - Stack Pointer (SP,) starting at 0x100 in memory
+        - Status Register (P,) which contains flags for instructions
+* 16-bit address bus
+* 8-bit data bus (read/write)
+
+The 6502's main task in the NES is to execute instructions stored on the PRG ROM bank, located at 0x800 in the memory map of the 2A03. Memory mapped registers allow the PPU to work in conjunction with the CPU (parellely) by accessing shared I/O registers.
+
 
 #####Current development status:
 Instruction decoding and execution.
+
+** To be updated **
 
 ###4. PPU - The Picture Processing Unit
 
@@ -110,10 +128,15 @@ Instruction decoding and execution.
       
       **More Detailed document with Diagrams of the PPU will be release soon**
 
-###5. APU - The Pseudo-Audio Processing Unit
+###5. APU - The Pseudo-Audio Proceissing Unit
 
-N/A
+** To be updated **
 
 ###6. Hardware - VGA, Controller, Sound, and SD Card interfacing
 
-N/A
+####Controller Interfacing
+
+Utilizing the GPIO pins on the DE2i-150, we created a Verilog module for accessing button inputs from either an original NES controller, or SNES as well. Button input will be sent to corresponding I/O registers (e.g $4017.)
+
+
+** To be updated **
