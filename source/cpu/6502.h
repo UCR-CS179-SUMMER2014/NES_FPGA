@@ -9,13 +9,31 @@
 typedef unsigned char byte;
 typedef unsigned short word;
 
+// Memory Map Offsets
+#define PRG     0x8000    // Length: 0x8000
+#define SRAM    0x6000    // Length: 0x2000
+#define EROM    0x4020    // Length: 0x1180
+#define STACK   0x0100    // Length: 0x0100
+
+#define RESL     0xFFFC
+#define RESH     0xFFFD
+
 // Structs
 typedef struct
 {
   // Special Purpose Registers
-  byte S;	// Stack Pointer
-  byte P;	// Status Register
   word PC;	// Program Counter [16-bits]
+  byte S;	// Stack Pointer
+  struct
+  {
+    byte C;
+    byte Z;
+    byte I;
+    byte D; // Not required. BCD disabled in RP2A03
+    byte B;
+    byte V;
+    byte N;
+  } P;       	// Status Register
 
   
   // General Purpose Registers
@@ -33,22 +51,27 @@ typedef struct
 } NMOS6502; 
 
 
-// Functions
-
 
 /* Function:    load_rom
    Description: Takes in ROM file as input, stripping unnecessary
                 headers and splitting PRG/CHR rom memory. */
 void load_rom(char* file, byte** prg_array, byte** chr_array, byte* prg_size, byte* chr_size);
 
+/* Function:    mmap_init
+   Description: Initializes CPU memory map with PRG_ROM
+*/
+void mmap_init(byte** prg_array);
+
 /* Function:    execute_instruction
    Description: Takes in opcode and executes instruction. 
                 Opcode is taken in from CPU struct. */
-void execute_instruction();
+void cpu_exec();
 
 /* CPU Setup/Debug Functions */
-void cpu_init();
-void cpu_status();
+inline void cpu_init();
+inline byte cpu_read(word addr);
+inline byte cpu_write(word addr, byte data);
+inline void cpu_status();
 				/* Absolute OPCODES */
 				/* Accumulator OPCODES */
 				/* Immediate OPCODES */
@@ -62,6 +85,13 @@ void cpu_status();
 				/* Zero Page OPCODES */
 
 
+
+/*byte ilen[0xFF] = {
+  1,2,0,0,0,2,2,0,1,2,1,0,0,3,3,0,
+  
+
+
+  }*/
 
 
 #endif   // 6502_H

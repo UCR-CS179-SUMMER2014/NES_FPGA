@@ -5,29 +5,202 @@
 // Declare CPU struct, which contains all required registers
 NMOS6502* CPU;
 
+int main()
+{
+  // Declare appropriate arrays and variables
+  char* file_name = "../../roms/nestest.nes";
+  byte* PRG_ROM = NULL;	// Supports 1 PRG Bank currently
+  byte* CHR_ROM = NULL; // Supports 1 CHR Bank currently
+  byte prg_size = 0, chr_size = 0;
+
+  // Load NES rom from file
+  load_rom(file_name, &PRG_ROM, &CHR_ROM, &prg_size, &chr_size);
+
+  // Set up CPU struct
+  cpu_init();
+  
+  // Set up CPU Memory Map
+  mmap_init(&PRG_ROM);
+
+  /*// Display contents of PRG_ROM
+  #ifdef DEBUG
+  cpu_status();
+  int i = 0;
+  int c = 0;
+  for(i = 0; i < 0x4000; ++i)
+  {
+    printf("%x ", CPU->MEM[i+PRG+0x4000]);
+    if(c >= 50)
+    {
+      printf("\n");
+      c = 0;
+    }
+    else
+      ++c;
+  }
+  #endif*/
+  
+  // Initially, set PC to contents of RESET vector
+  CPU->PC = CPU->MEM[ RESL ] | (CPU->MEM[ RESH ] << 8);
+  CPU->IR = CPU->MEM[ CPU->PC ];
+  cpu_status(); // Debug CPU
+
+  char* en = (char*) malloc(sizeof(char)*2);
+  // Execute CPU instructions
+  while(1)
+  {
+    // Check for interrupts
+    // n/a
+
+    // Load next instruction
+    CPU->IR = CPU->MEM[ CPU->PC ];
+
+    // Execute instruction
+    cpu_exec();
+    cpu_status(); // Debug CPU
+
+    // Wait until enter is pressed to step-through
+    fgets(en, 2, stdin);
+  }
+
+
+  // Free up allocated memory in heap
+  free( PRG_ROM );
+  free( CHR_ROM );
+  free( CPU );
+  return 0;
+}
+
+
 
 /* 
    Function: decode_instruction( byte )
    Description: Reads in byte to decode into corresponding 
 	  	instruction with addressing mode.
 */
-void execute_instruction()
+void cpu_exec()
 {
+  // Declare variables
+  byte temp;
+  word temp_addr;
+  byte operand;
+
+  // Execute OPCODE. Note: BCD-related actions are ignored.
   switch(CPU->IR)
   {
-    // ADC
-    case 0x6D:
-    case 0x7D:
-    case 0x79:
-    case 0x69:
-    case 0x71:
-    case 0x61:
-    case 0x65:
-    case 0x75:
-      printf("ADC!\n");
+    // ###################### ADC ######################
+    case 0x6D: // ABS
+      // ADDR MODE
+      temp_addr = (CPU->MEM[ CPU->PC++ ]) | (CPU->MEM[ CPU->PC++ ] << 8);  // Grab lower and upper byte
+      operand = CPU->MEM[ temp_addr ];
+
+      // CORE ADC
+      temp = CPU->A + operand + CPU->P.C; 
+      CPU->P.V = ((CPU->A & 0x80) != (temp & 0x80)) ? 1 : 0;
+      CPU->P.N = (CPU->A & 0x80);
+      CPU->P.Z = (temp == 0) ? 1 : 0;
+      CPU->A = temp & 0xFF;
+      printf("ADC_IMM!\n");
       break;
-		
-    // AND
+
+    case 0x7D: // ABSX
+      // ADDR MODE
+      temp_addr = (CPU->MEM[ CPU->PC++ ]) | (CPU->MEM[ CPU->PC++ ] << 8);  // Grab lower and upper byte
+      operand = CPU->MEM[ (temp_addr + CPU->X) & 0xFFFF ]; // Wrap occurs if base + X > 0xFFFF
+
+      // CORE ADC
+      temp = CPU->A + operand + CPU->P.C; 
+      CPU->P.V = ((CPU->A & 0x80) != (temp & 0x80)) ? 1 : 0;
+      CPU->P.N = (CPU->A & 0x80);
+      CPU->P.Z = (temp == 0) ? 1 : 0;
+      CPU->A = temp & 0xFF;
+      printf("ADC_IMM!\n");
+      break;
+      
+    case 0x79: // ABSY
+      // ADDR MODE
+      temp_addr = (CPU->MEM[ CPU->PC++ ]) | (CPU->MEM[ CPU->PC++ ] << 8);  // Grab lower and upper byte
+      operand = CPU->MEM[ (temp_addr + CPU->Y) & 0xFFFF ];
+      
+      // CORE ADC
+      temp = CPU->A + operand + CPU->P.C; 
+      CPU->P.V = ((CPU->A & 0x80) != (temp & 0x80)) ? 1 : 0;
+      CPU->P.N = (CPU->A & 0x80);
+      CPU->P.Z = (temp == 0) ? 1 : 0;
+      CPU->A = temp & 0xFF;
+      printf("ADC_ABSY!\n");
+      break;
+
+    case 0x69: // IMM
+      // ADDR MODE
+      operand = CPU->MEM[CPU->PC++]; // operand = #$MEM[PC]
+      temp = CPU->A + operand + CPU->P.C; 
+
+      // CORE ADC
+      CPU->P.V = ((CPU->A & 0x80) != (temp & 0x80)) ? 1 : 0;
+      CPU->P.N = (CPU->A & 0x80);
+      CPU->P.Z = (temp == 0) ? 1 : 0;
+      CPU->A = temp & 0xFF;
+      printf("ADC_IMM!\n");
+      break;
+
+    case 0x71: // INDY
+      // ADDR MODE
+      temp_addr = (CPU->MEM[ CPU->PC++ ]);  // Fetch low byte from ZP
+      temp_addr = (temp_addr | (CPU->MEM[ (temp_addr+1) & 0xFF ] << 8)); // Fetch high byte from ZP+1. Wrap occurs if offset is > $FF
+      operand = CPU->MEM[ (temp_addr + CPU->Y) & 0xFFFF];  // Fetch contents of ($ZP)+Y
+
+      // CORE ADC
+      temp = CPU->A + operand + CPU->P.C; 
+      CPU->P.V = ((CPU->A & 0x80) != (temp & 0x80)) ? 1 : 0;
+      CPU->P.N = (CPU->A & 0x80);
+      CPU->P.Z = (temp == 0) ? 1 : 0;
+      CPU->A = temp & 0xFF;
+      printf("ADC_INDY!\n");
+      break;
+
+    case 0x61: // XIND
+      // ADDR MODE
+      temp_addr = (CPU->MEM[ CPU->PC++ ] + CPU->X);  // Fetch low byte from ZP+X
+      temp_addr = (temp_addr | (CPU->MEM[ (temp_addr+1) & 0xFF ] << 8)); // Fetch high byte from ZP+1+X
+      operand = CPU->MEM[ temp_addr & 0xFFFF ];  
+
+      // CORE ADC
+      temp = CPU->A + operand + CPU->P.C; 
+      CPU->P.V = ((CPU->A & 0x80) != (temp & 0x80)) ? 1 : 0;
+      CPU->P.N = (CPU->A & 0x80);
+      CPU->P.Z = (temp == 0) ? 1 : 0;
+      CPU->A = temp & 0xFF;
+      printf("ADC_XIND!\n");
+      break;
+
+    case 0x65: // ZP
+      // ADDR MODE
+      operand = CPU->MEM[ (CPU->MEM[CPU->PC++]) ]; // operand = $(MEM[PC])
+
+      // CORE ADC
+      temp = CPU->A + operand + CPU->P.C; 
+      CPU->P.V = ((CPU->A & 0x80) != (temp & 0x80)) ? 1 : 0;
+      CPU->P.N = (CPU->A & 0x80);
+      CPU->P.Z = (temp == 0) ? 1 : 0;
+      CPU->A = temp & 0xFF;
+      printf("ADC_ZP!\n");
+      break;
+
+    case 0x75: // ZPX
+      // ADDR MODE
+      operand = CPU->MEM[ ((CPU->MEM[CPU->PC++]) + CPU->X) & 0xFF]; // operand = $(MEM[PC])
+
+      // CORE ADC
+      temp = CPU->A + operand + CPU->P.C; 
+      CPU->P.V = ((CPU->A & 0x80) != (temp & 0x80)) ? 1 : 0;
+      CPU->P.N = (CPU->A & 0x80);
+      CPU->P.Z = (temp == 0) ? 1 : 0;
+      CPU->A = temp & 0xFF;
+      printf("ADC_ZP!\n");
+      break;
+
+    // ###################### AND ##########################
     case 0x2D:
     case 0x3D: 
     case 0x39:
@@ -466,13 +639,71 @@ void load_rom(char* file, byte** prg_array, byte** chr_array, byte* prg_size, by
   return;
 }
 
+/* CPU Memory Map:
+   
+   $FFFF-$8000:
+     PRG_ROM
+
+   $6000-$7FFF:
+     SRAM
+   
+   $4020-$5FFF:
+     Expansion ROM
+
+   $4000-$401F:
+     I/O Registers
+
+   $2008-$3FFF:
+     Mirrors ($2000-$2007)
+   
+   $2000-$2007:
+     I/O Registers
+
+   $0800-$1FFF:
+     Mirrors ($000-$07FF)
+
+   $0200-$07FF:
+     RAM
+
+   $0100-$01FF:
+     Stack
+
+   $0000-$00FF:
+     Zero Page
+ */
+void mmap_init(byte** prg_array)
+{  
+  int i = 0;
+
+  // Initialize Zero Page - SRAM ($0000-$07FF)
+  for(i = 0; i < 0x8000; ++i)
+    CPU->MEM[i] = 0x00;
+
+  // Fill PRG_ROM lower bank
+  for(i = 0; i < 0x4000; ++i)
+    CPU->MEM[i+PRG] = (*prg_array)[i];
+
+  // Fill PRG_ROM upper bank
+  // NOTE: for now, we're assuming PRG_ROM is only one bank,
+  //       so we simply copy the contents of first onto second.
+  for(i = 0; i < 0x4000; ++i)
+    CPU->MEM[i+PRG+0x4000] = (*prg_array)[i];
+  
+  return;
+}
 
 inline void cpu_init()
 {
   CPU = (NMOS6502*) malloc(sizeof(NMOS6502));
 
   CPU->S = 0xFF;
-  CPU->P = 0x00;
+  CPU->P.N = 0x00;
+  CPU->P.V = 0x00;  
+  CPU->P.I = 0x00;
+  CPU->P.D = 0x00;  
+  CPU->P.C = 0x00;
+  CPU->P.B = 0x00;  
+  CPU->P.Z = 0x00;
   CPU->PC = 0xFFFC;     // Start at RESET vector
 
   CPU->A = 0x00;
@@ -496,69 +727,4 @@ inline void cpu_status()
 	 CPU->A, CPU->X, CPU->Y, CPU->P, CPU->S, CPU->PC, CPU->IR);
 
   return;
-}
-
-int main()
-{
-  // Declare appropriate arrays and variables
-  char* file_name = "../../roms/nestest.nes";
-  byte* PRG_ROM = NULL;	// Supports 1 PRG Bank currently
-  byte* CHR_ROM = NULL; // Supports 1 CHR Bank currently
-  byte prg_size = 0, chr_size = 0;
-
-  // Load NES rom from file
-  load_rom(file_name, &PRG_ROM, &CHR_ROM, &prg_size, &chr_size);
-
-
-  // Display contents of PRG and CHR ROM
-  #ifdef DEBUG
-  {
-    int i = 0;
-    int x = 0;
-    printf("############# PRG ROM #############\n");
-    for(i = 0; i < 16384; ++i)
-    {
-      printf("%x ", PRG_ROM[i]);
-      if(x >= 50)
-      {
-	printf("\n");
-	x = 0;
-      }
-      else
-	++x;
-    }
-    /*printf("\n\n\n\n\n############# CHR ROM #############\n");
-    for(i = 0; i < 8192; ++i)
-    {
-      printf("%x ", CHR_ROM[i]);
-      if(x >= 50)
-      {
-	printf("\n");
-	x = 0;
-      }
-      else
-	++x;
-    }
-
-    printf("\n");*/
-  }
-  #endif
-
-  // Set up CPU struct
-  cpu_init();
-
-
-  #ifdef DEBUG
-  cpu_status();
-  #endif
-
-  // Execute CPU instructions
-
-
-
-  // Free up allocated memory in heap
-  free( PRG_ROM );
-  free( CHR_ROM );
-  free( CPU );
-  return 0;
 }
