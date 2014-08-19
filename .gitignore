@@ -1,0 +1,6 @@
+# CPU Files
+source/cpu/nes_cpu
+source/cpu/*~
+source/cpu/#*
+
+
