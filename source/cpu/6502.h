@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include <malloc.h>
 
-// Data types
+/* Data types */
 typedef unsigned char byte;
 typedef unsigned short word;
 
-// Memory Map Offsets
+/* Memory Map Offsets */
 #define PRG     0x8000    // Length: 0x8000
 #define SRAM    0x6000    // Length: 0x2000
 #define EROM    0x4020    // Length: 0x1180
@@ -18,7 +18,7 @@ typedef unsigned short word;
 #define RESL     0xFFFC
 #define RESH     0xFFFD
 
-// Structs
+/* Structs */
 typedef struct
 {
   // Special Purpose Registers
@@ -58,8 +58,7 @@ typedef struct
 void load_rom(char* file, byte** prg_array, byte** chr_array, byte* prg_size, byte* chr_size);
 
 /* Function:    mmap_init
-   Description: Initializes CPU memory map with PRG_ROM
-*/
+   Description: Initializes CPU memory map with PRG_ROM */
 void mmap_init(byte** prg_array);
 
 /* Function:    execute_instruction
@@ -67,31 +66,40 @@ void mmap_init(byte** prg_array);
                 Opcode is taken in from CPU struct. */
 void cpu_exec();
 
+
+
 /* CPU Setup/Debug Functions */
 inline void cpu_init();
 inline byte cpu_read(word addr);
 inline byte cpu_write(word addr, byte data);
 inline void cpu_status();
-				/* Absolute OPCODES */
-				/* Accumulator OPCODES */
-				/* Immediate OPCODES */
-				/* Implied OPCODES */
-				/* Indexed Absolute OPCODES */
-				/* Indexed Indirect OPCODES */
-				/* Indexed Zero Page OPCODES */
-				/* Indirect Indexed OPCODES */
-				/* Indirect OPCODES */
-				/* Relative OPCODES */
-				/* Zero Page OPCODES */
 
 
 
-/*byte ilen[0xFF] = {
-  1,2,0,0,0,2,2,0,1,2,1,0,0,3,3,0,
-  
+/* Instruction functions separated by Adressing Mode and Uniqueness */
+byte ABS();
+byte ABSX();
+byte ABSY();
+byte XIND();
+byte INDY();
+byte IMM();
+byte ZP();
+byte ZPX();
+
+// Not Implemented: (Used directly in cases)
+//ACC
+//IMP
+//IND
+//REL
+//ZPY
 
 
-  }*/
-
+void ADC(byte operand);
+void AND(byte operand);
+void ASL(byte* operand);	
+void CMP( byte operand );	
+void CPX( byte operand );	
+void CPY( byte operand );
+void DEC( byte* operand );
 
 #endif   // 6502_H

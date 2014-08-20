@@ -89,128 +89,13 @@ void cpu_exec()
   // Execute OPCODE. Note: BCD-related actions are ignored.
   switch(CPU->IR)
   {
- /*  
-	ABS
-      word temp_addr = (CPU->MEM[ CPU->PC++ ]) | (CPU->MEM[ CPU->PC++ ] << 8);  // Grab lower and upper byte
-	  return CPU->MEM[ temp_addr ];
-
-	ABSX
-      word temp_addr = (CPU->MEM[ CPU->PC++ ]) | (CPU->MEM[ CPU->PC++ ] << 8);  // Grab lower and upper byte
-      return CPU->MEM[ (temp_addr + CPU->X) & 0xFFFF ]; // Wrap occurs if base + X > 0xFFFF
-
-	ABSY
-	  word temp_addr = (CPU->MEM[ CPU->PC++ ]) | (CPU->MEM[ CPU->PC++ ] << 8);  // Grab lower and upper byte
-      return CPU->MEM[ (temp_addr + CPU->Y) & 0xFFFF ];
-
-	
-	ACC
-	
-	XIND
-      word temp_addr = (CPU->MEM[ CPU->PC++ ] + CPU->X);  // Fetch low byte from ZP+X
-      temp_addr = (temp_addr | (CPU->MEM[ (temp_addr+1) & 0xFF ] << 8)); // Fetch high byte from ZP+1+X
-      return CPU->MEM[ temp_addr & 0xFFFF ];  
-
-	INDY
-      word temp_addr = (CPU->MEM[ CPU->PC++ ]);  // Fetch low byte from ZP
-      temp_addr = (temp_addr | (CPU->MEM[ (temp_addr+1) & 0xFF ] << 8)); // Fetch high byte from ZP+1. Wrap occurs if offset is > $FF
-      return CPU->MEM[ (temp_addr + CPU->Y) & 0xFFFF];  // Fetch contents of ($ZP)+Y
-
-	IMM	
-      return CPU->MEM[CPU->PC++]; // operand = #$MEM[PC]
-
-	IMP
-	
-	IND
-	
-	REL
-	
-	
-	ZP
-      return CPU->MEM[ (CPU->MEM[CPU->PC++]) ]; // operand = $(MEM[PC])
-
-	ZPX
-	  return CPU->MEM[ ((CPU->MEM[CPU->PC++]) + CPU->X) & 0xFF]; // operand = $(MEM[PC])
-	
-	ZPY
-
-*/
-
-
-/*
-	void ADC(byte operand)
-	{
-	  byte temp = CPU->A + operand + CPU->P.C; 
-	  CPU->P.V = ((CPU->A & 0x80) != (temp & 0x80)) ? 1 : 0;
-	  CPU->P.N = (CPU->A & 0x80);
-	  CPU->P.Z = (temp == 0) ? 1 : 0;
-	  CPU->A = temp & 0xFF;
-	  printf("ADC!\n");
-	  return;
-	}	
-	void AND(byte operand)
-	{
-  	  CPU->A = A & operand;
-	  CPU->P.N = (CPU->A & 0x80);
-	  CPU->P.Z = (CPU->A == 0) ? 1 : 0;
-	  printf("AND!\n");
-		return;
-	}
-	void ASL(byte* operand)
-	{
-		CPU->P.C = (*operand) & 0x80;
-		(*operand) = ((*operand) << 1) & 0xFE;
-		CPU->P.N = (*operand) & 0x80;
-		CPU->P.Z = ((*operand) == 0) ? 1 : 0;
-		printf("ASL!\n");
-		return;
-	}
-	
-	void CMP( byte operand )
-	{
-		byte temp = CPU->A - operand;
-		CPU->P.N = temp & 0x80;
-		CPU->P.C = (A >= operand) ? 1 : 0;
-		CPU->P.Z = (temp == 0) ? 1 : 0;
-		printf("CMP!\n");
-		break;
-	}
-	
-	void CPX( byte operand )
-	{
-		byte temp = CPU->X - operand;
-		CPU->P.N = temp & 0x80;
-		CPU->P.C = (X >= operand) ? 1 : 0;
-		CPU->P.Z = (temp == 0) ? 1 : 0;
-		printf("CPX!\n");
-		break;
-	}
-	
-	void CPY( byte operand )
-	{
-		byte temp = CPU->Y - operand;
-		CPU->P.N = temp & 0x80;
-		CPU->P.C = (Y >= operand) ? 1 : 0;
-		CPU->P.Z = (temp == 0) ? 1 : 0;
-		printf("CPY!\n");
-		break;
-	}
-	
-	
-	void DEC( byte* operand )
-	{
-		(*operand) = ((*operand)-1) & 0xFF;
-		CPU->P.N = (*operand) & 0x80;
-		CPU->P.Z = ((*operand) == 0) ? 1 : 0;
-	}
-	
-*/
     // ###################### ADC #########################
   case 0x6D: // ABS
-    operand = ABS(); ADC(operand); break;
+      operand = ABS(); ADC(operand); break;
   case 0x7D: // ABSX
-    operand = ABSX(); ADC( operand ); break;     
+      operand = ABSX(); ADC( operand ); break;     
   case 0x79: // ABSY
-    operand = ABSY(); ADC(operand); break;
+      operand = ABSY(); ADC(operand); break;
   case 0x69: // IMM
     operand = IMM(); ADC(operand); break;
   case 0x71: // INDY
@@ -451,21 +336,21 @@ void cpu_exec()
   case 0x4D: // ABS
     CPU->A = CPU->A ^ ABS(); printf("EOR!\n"); break;
   case 0x5D: // ABSX
-    CPU->A = CPU->A ^ ABS(); printf("EOR!\n"); break;    
+    CPU->A = CPU->A ^ ABSX(); printf("EOR!\n"); break;    
   case 0x59: // ABSY
-    CPU->A = CPU->A ^ ABS(); printf("EOR!\n"); break;
+    CPU->A = CPU->A ^ ABSY(); printf("EOR!\n"); break;
   case 0x49: // IMM
-    CPU->A = CPU->A ^ ABS(); printf("EOR!\n"); break;
+    CPU->A = CPU->A ^ IMM(); printf("EOR!\n"); break;
   case 0x51: // INDY
-    CPU->A = CPU->A ^ ABS(); printf("EOR!\n"); break;
+    CPU->A = CPU->A ^ INDY(); printf("EOR!\n"); break;
   case 0x41: // XIND
-    CPU->A = CPU->A ^ ABS(); printf("EOR!\n"); break;
+    CPU->A = CPU->A ^ XIND(); printf("EOR!\n"); break;
   case 0x45: // ZP
-    CPU->A = CPU->A ^ ABS(); printf("EOR!\n"); break;
+    CPU->A = CPU->A ^ ZP(); printf("EOR!\n"); break;
   case 0x55: // ZPX
-    CPU->A = CPU->A ^ ABS(); printf("EOR!\n"); break;
-
-    // INC
+    CPU->A = CPU->A ^ ZPX(); printf("EOR!\n"); break;
+    
+    // ######################## INC #######################
   case 0xEE:
   case 0xFE:
   case 0xE6:
@@ -755,38 +640,6 @@ void load_rom(char* file, byte** prg_array, byte** chr_array, byte* prg_size, by
   return;
 }
 
-/* CPU Memory Map:
-   
-   $FFFF-$8000:
-     PRG_ROM
-
-   $6000-$7FFF:
-     SRAM
-   
-   $4020-$5FFF:
-     Expansion ROM
-
-   $4000-$401F:
-     I/O Registers
-
-   $2008-$3FFF:
-     Mirrors ($2000-$2007)
-   
-   $2000-$2007:
-     I/O Registers
-
-   $0800-$1FFF:
-     Mirrors ($000-$07FF)
-
-   $0200-$07FF:
-     RAM
-
-   $0100-$01FF:
-     Stack
-
-   $0000-$00FF:
-     Zero Page
- */
 void mmap_init(byte** prg_array)
 {  
   int i = 0;
@@ -842,5 +695,129 @@ inline void cpu_status()
   printf("\nA: %x X: %x Y: %x P: %x SP: %x PC: %x IR: %x\n",
 	 CPU->A, CPU->X, CPU->Y, CPU->P, CPU->S, CPU->PC, CPU->IR);
 
+  return;
+}
+
+
+
+
+/* Addressing Mode and Instruction Functions */
+byte ABS()
+{
+  word temp_addr = (CPU->MEM[ CPU->PC++ ]) | (CPU->MEM[ CPU->PC++ ] << 8);  // Grab lower and upper byte
+  return CPU->MEM[ temp_addr ];
+}
+
+byte ABSX()
+{
+  word temp_addr = (CPU->MEM[ CPU->PC++ ]) | (CPU->MEM[ CPU->PC++ ] << 8);  // Grab lower and upper byte
+  return CPU->MEM[ (temp_addr + CPU->X) & 0xFFFF ]; // Wrap occurs if base + X > 0xFFFF
+}
+
+byte ABSY()
+{
+  word temp_addr = (CPU->MEM[ CPU->PC++ ]) | (CPU->MEM[ CPU->PC++ ] << 8);  // Grab lower and upper byte
+  return CPU->MEM[ (temp_addr + CPU->Y) & 0xFFFF ];
+}
+
+
+byte XIND()
+{
+  word temp_addr = (CPU->MEM[ CPU->PC++ ] + CPU->X);  // Fetch low byte from ZP+X
+  temp_addr = (temp_addr | (CPU->MEM[ (temp_addr+1) & 0xFF ] << 8)); // Fetch high byte from ZP+1+X
+  return CPU->MEM[ temp_addr & 0xFFFF ];  
+}
+
+byte INDY()
+{
+  word temp_addr = (CPU->MEM[ CPU->PC++ ]);  // Fetch low byte from ZP
+  temp_addr = (temp_addr | (CPU->MEM[ (temp_addr+1) & 0xFF ] << 8)); // Fetch high byte from ZP+1. Wrap occurs if offset is > $FF
+  return CPU->MEM[ (temp_addr + CPU->Y) & 0xFFFF];  // Fetch contents of ($ZP)+Y
+}
+
+
+byte IMM()
+{
+  return CPU->MEM[CPU->PC++]; // operand = #$MEM[PC]
+}
+
+byte ZP()
+{
+  return CPU->MEM[ (CPU->MEM[CPU->PC++]) ]; // operand = $(MEM[PC])
+}
+
+byte ZPX()
+{
+  return CPU->MEM[ ((CPU->MEM[CPU->PC++]) + CPU->X) & 0xFF]; // operand = $(MEM[PC])
+}
+
+
+
+void ADC(byte operand)
+{
+  byte temp = CPU->A + operand + CPU->P.C; 
+  CPU->P.V = ((CPU->A & 0x80) != (temp & 0x80)) ? 1 : 0;
+  CPU->P.N = (CPU->A & 0x80);
+  CPU->P.Z = (temp == 0) ? 1 : 0;
+  CPU->A = temp & 0xFF;
+  printf("ADC!\n");
+  return;
+}
+
+void AND(byte operand)
+{
+  CPU->A = CPU->A & operand;
+  CPU->P.N = (CPU->A & 0x80);
+  CPU->P.Z = (CPU->A == 0) ? 1 : 0;
+  printf("AND!\n");
+  return;
+}
+
+void ASL(byte* operand)
+{
+  CPU->P.C = (*operand) & 0x80;
+  (*operand) = ((*operand) << 1) & 0xFE;
+  CPU->P.N = (*operand) & 0x80;
+  CPU->P.Z = ((*operand) == 0) ? 1 : 0;
+  printf("ASL!\n");
+  return;
+}
+
+void CMP( byte operand )
+{
+  byte temp = CPU->A - operand;
+  CPU->P.N = temp & 0x80;
+  CPU->P.C = (CPU->A >= operand) ? 1 : 0;
+  CPU->P.Z = (temp == 0) ? 1 : 0;
+  printf("CMP!\n");
+  return;
+}
+
+void CPX( byte operand )
+{
+  byte temp = CPU->X - operand;
+  CPU->P.N = temp & 0x80;
+  CPU->P.C = (CPU->X >= operand) ? 1 : 0;
+  CPU->P.Z = (temp == 0) ? 1 : 0;
+  printf("CPX!\n");
+  return;
+}
+
+void CPY( byte operand )
+{
+  byte temp = CPU->Y - operand;
+  CPU->P.N = temp & 0x80;
+  CPU->P.C = (CPU->Y >= operand) ? 1 : 0;
+  CPU->P.Z = (temp == 0) ? 1 : 0;
+  printf("CPY!\n");
+  return;
+}
+
+
+void DEC( byte* operand )
+{
+  (*operand) = ((*operand)-1) & 0xFF;
+  CPU->P.N = (*operand) & 0x80;
+  CPU->P.Z = ((*operand) == 0) ? 1 : 0;
   return;
 }
