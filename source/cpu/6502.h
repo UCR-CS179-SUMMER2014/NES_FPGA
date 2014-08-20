@@ -94,12 +94,21 @@ byte ZPX();
 //ZPY
 
 
-void ADC(byte operand);
-void AND(byte operand);
-void ASL(byte* operand);	
-void CMP( byte operand );	
-void CPX( byte operand );	
-void CPY( byte operand );
+void ADC( byte operand  );
+void AND( byte operand  );
+void ASL( byte* operand );	
+void CMP( byte operand  );	
+void CPX( byte operand  );	
+void CPY( byte operand  );
 void DEC( byte* operand );
+void INC( byte* operand );
+void LDA( byte operand  );
+void LDX( byte operand  );
+void LDY( byte operand  );
+void LSR( byte operand  );
+void ORA( byte operand  );
+void ROL( byte* operand );
+void ROR( byte* operand );
+void SBC( byte operand  );
 
 #endif   // 6502_H
