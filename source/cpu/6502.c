@@ -378,9 +378,9 @@ void cpu_exec()
 
     // ############################## JMP #####################
   case 0x4C: // ABS
-    CPU->PC = CPU->MEM[ CPU->MEM[PC++] | (CPU->MEM[PC++] << 8) ]; printf("JMP!\n"); break;
+    CPU->PC = CPU->MEM[ CPU->MEM[CPU->PC++] | (CPU->MEM[CPU->PC++] << 8) ]; printf("JMP!\n"); break;
   case 0x6C: // IND
-    temp = CPU->MEM[ PC++ ];
+    temp = CPU->MEM[ CPU->PC++ ];
     CPU->PC = CPU->MEM[ temp | ((temp+1) << 8) ]; printf("JMP!\n"); break;
 
     // ############################## JSR #####################
@@ -390,7 +390,7 @@ void cpu_exec()
     --CPU->S;
     CPU->S = (temp_addr & 0xFF);
     --CPU->S;
-    CPU->PC = CPU->MEM[ PC++ ] | (CPU->MEM[ PC++] << 8);
+    CPU->PC = CPU->MEM[ CPU->PC++ ] | (CPU->MEM[ CPU->PC++] << 8);
     printf("JSR!\n");
     break;
 
@@ -402,7 +402,7 @@ void cpu_exec()
   case 0xB9: // ABSY
     operand = ABSY(); LDA( operand ); break; 
   case 0xA9: // IMM
-    LDA ( CPU->MEM[PC++] ); break;
+    LDA ( CPU->MEM[ CPU->PC++] ); break;
   case 0xB1: // INDY
     operand = INDY(); LDA( operand ); break;
   case 0xA1: // XIND
@@ -418,11 +418,11 @@ void cpu_exec()
   case 0xBE: // ABSY
     operand = ABS(); LDX( operand ); break;
   case 0xA2: // IMM
-    LDX( CPU->MEM[ PC++ ] ); break;
+    LDX( CPU->MEM[ CPU->PC++ ] ); break;
   case 0xA6: // ZP
     operand = ZP(); LDX( operand ); break;
   case 0xB6: // ZPY
-    operand = CPU->MEM[ (CPU->MEM[ PC++ ] + CPU->Y) & 0xFF ]; LDX( operand ); break;
+    operand = CPU->MEM[ (CPU->MEM[ CPU->PC++ ] + CPU->Y) & 0xFF ]; LDX( operand ); break;
 
     // ########################## LDY ######################
   case 0xAC: // ABS
@@ -430,7 +430,7 @@ void cpu_exec()
   case 0xBC: // ABSX
     operand = ABSX(); LDY( operand ); break;
   case 0xA0: // IMM
-    LDY( CPU->MEM[PC++] ); break;
+    LDY( CPU->MEM[ CPU->PC++] ); break;
   case 0xA4: // ZP
     operand = ZP(); LDY( operand ); break;
   case 0xB4: // ZPX
@@ -438,15 +438,16 @@ void cpu_exec()
 
     // ####################### LSR #########################
   case 0x4E: // ABS
-    LSR( &CPU->MEM[  (CPU->MEM[PC++] | (CPU->MEM[PC++] << 8)) ]); break;
+    LSR( &CPU->MEM[  (CPU->MEM[ CPU->PC++ ] | (CPU->MEM[ CPU->PC++ ] << 8)) ]); break;
   case 0x5E: // ABSX
-    LSR( &CPU->MEM[  ((CPU->MEM[PC++] | (CPU->MEM[PC++] << 8)) + CPU->X ) & 0xFFFF  ] ); break;
+    LSR( &CPU->MEM[  ((CPU->MEM[ CPU->PC++ ] | (CPU->MEM[ CPU->PC++ ] << 8)) + CPU->X ) & 0xFFFF  ] ); 
+    break;
   case 0x4A: // ACC
     LSR( &CPU->A ); break;
   case 0x46: // ZP
-    LSR( &CPU->MEM[ CPU->MEM[PC++ ]] ); break;
+    LSR( &CPU->MEM[ CPU->MEM[ CPU->PC++ ] ] ); break;
   case 0x56: // ZPX
-    LSR( &CPU->MEM[ (CPU->MEM[PC++ ] + CPU->X) & 0xFF ] ); break;
+    LSR( &CPU->MEM[ (CPU->MEM[ CPU->PC++ ] + CPU->X) & 0xFF ] ); break;
 
     // ######################### NOP #######################
   case 0xEA:
@@ -461,7 +462,7 @@ void cpu_exec()
   case 0x19: // ABSY
     operand = ABSY(); ORA( operand ); break;
   case 0x09: // IMM
-   ORA( CPU->MEM[ PC++ ] ); break;
+   ORA( CPU->MEM[ CPU->PC++ ] ); break;
   case 0x11: // INDY
     operand = INDY(); ORA( operand ); break;
   case 0x01: // XIND
@@ -491,7 +492,7 @@ void cpu_exec()
     ++CPU->S;
     CPU->A = CPU->MEM[ STACK + CPU->S ];
     CPU->P.N = CPU->A & 0x80;
-    CPu->P.Z = (CPU->A == 0) ? 1 : 0;
+    CPU->P.Z = (CPU->A == 0) ? 1 : 0;
     printf("PLA!\n");
     break;
 
@@ -516,9 +517,9 @@ void cpu_exec()
   case 0x2A: // ACC
     ROL( &CPU->A ); break;
   case 0x26: // ZP
-    ROL( &CPU->MEM[ CPU->MEM[PC++] ] ); break;
+    ROL( &CPU->MEM[ CPU->MEM[ CPU->PC++ ] ] ); break;
   case 0x36: // ZPX
-    ROL( &CPU->MEM[ (CPU->MEM[PC++] + CPU->X) & 0xFF ] ); break;
+    ROL( &CPU->MEM[ (CPU->MEM[ CPU->PC++ ] + CPU->X) & 0xFF ] ); break;
 
     // ########################## ROR ########################
   case 0x6E: // ABS
@@ -528,9 +529,9 @@ void cpu_exec()
   case 0x6A: // ACC
     ROR( &CPU->A ); break;
   case 0x66: // ZP
-    ROR( &CPU->MEM[ CPU->MEM[PC++] ] ); break;
+    ROR( &CPU->MEM[ CPU->MEM[ CPU->PC++ ] ] ); break;
   case 0x76: // ZPX
-    ROR( &CPU->MEM[ (CPU->MEM[PC++] + CPU->X) & 0xFF ] ); break;
+    ROR( &CPU->MEM[ (CPU->MEM[ CPU->PC++ ] + CPU->X) & 0xFF ] ); break;
 
 
     // ######################## RTI ##########################
@@ -813,8 +814,9 @@ inline void cpu_init()
 
 inline void cpu_status()
 {
-  printf("\nA: %x X: %x Y: %x P: %x SP: %x PC: %x IR: %x\n",
-	 CPU->A, CPU->X, CPU->Y, CPU->P, CPU->S, CPU->PC, CPU->IR);
+  printf("\nA: %x X: %x Y: %x P: %x %x %x %x %x %x %x SP: %x PC: %x IR: %x\n",
+	 CPU->A, CPU->X, CPU->Y, CPU->P.N, CPU->P.V, CPU->P.I, CPU->P.D, CPU->P.C, 
+	 CPU->P.B, CPU->P.Z, CPU->S, CPU->PC, CPU->IR);
 
   return;
 }

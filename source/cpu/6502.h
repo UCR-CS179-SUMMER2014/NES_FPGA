@@ -105,7 +105,7 @@ void INC( byte* operand );
 void LDA( byte operand  );
 void LDX( byte operand  );
 void LDY( byte operand  );
-void LSR( byte operand  );
+void LSR( byte* operand );
 void ORA( byte operand  );
 void ROL( byte* operand );
 void ROR( byte* operand );
