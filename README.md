@@ -28,9 +28,9 @@ The team is currently split up into the following tasks:
 
 Sergio Morales - CPU
 
-Hector Dominguez - PPU, Reading from SD Card to RAM
+Hector Dominguez - PPU, SD Card Interface
 
-Omar Torres - SD Card interface, hardware
+Omar Torres - hardware
 
 Randy Truong - Hardware
 
