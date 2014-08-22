@@ -203,15 +203,19 @@ void cpu_exec()
     
     // ######################### BRK ######################
   case 0x00: // IMP
-    //++CPU->PC;
+    /* Simulate Interrupt ReQuest (IRQ) 
+       Note: Do we increment PC at first? */
+    ++CPU->PC; // Shouldn't matter since we're replacing PC with Interrupt Vector anyways 
     CPU->MEM[ STACK + CPU->S ] = CPU->PC & 0xFF;
     --CPU->S;
     CPU->MEM[ STACK + CPU->S ] = (CPU->PC >> 8) & 0xFF;
     --CPU->S;
-    CPU->MEM[ STACK + CPU->S ] = (CPU->P.N << 7) | (CPU->P.V << 6) | (0x01 << 4) |
-      (CPU->P.D << 3) | (CPU->P.I << 2) | (CPU->P.Z << 1) | (CPU->P.C & 0x01);
+    CPU->MEM[ STACK + CPU->S ] = ((CPU->P.N << 7) & 0x80) | ((CPU->P.V << 6) & 0x40) | 
+      ((0x01 << 5)) | ((0x01 << 4) & 0x10) | ((CPU->P.D << 3) & 0x08) | 
+      ((CPU->P.I << 2) & 0x04) | ((CPU->P.Z << 1) & 0x02) | ((CPU->P.C) & 0x01);
     --CPU->S;
     CPU->PC = (CPU->MEM[0xFFFE]) | (CPU->MEM[0xFFFF] << 8);
+    printf("Breaking into reset vector: %x ", CPU->PC);
     printf("BRK!\n");
     break;
 			
@@ -556,18 +560,21 @@ void cpu_exec()
 
     // ######################## RTI ##########################
   case 0x40:
-    --CPU->S;
+    ++CPU->S;
     operand = CPU->MEM[ STACK + CPU->S ];
+    printf("Pushing flag %x ", operand);
     CPU->P.N = (operand >> 7) & 0x01; 
     CPU->P.V = (operand >> 6) & 0x01;
     CPU->P.B = (operand >> 4) & 0x01;
     CPU->P.I = (operand >> 2) & 0x01;
     CPU->P.Z = (operand >> 1) & 0x01;
     CPU->P.C = (operand) & 0x01;
-    --CPU->S;
+    ++CPU->S;
     CPU->PC = (CPU->MEM[ STACK + CPU->S] );
-    --CPU->S;
+    
+    ++CPU->S;
     CPU->PC = CPU->PC | (CPU->MEM[ STACK + CPU->S ] << 8);
+    printf("Pushed %x to PC! ", CPU->PC);
     printf("RTI!\n");
     break;
 	
