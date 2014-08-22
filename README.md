@@ -72,10 +72,15 @@ The 6502's main task in the NES is to execute instructions stored on the PRG ROM
 
 
 #####Current development status:
-Instruction decoding and execution.
 
-** To be updated **
+Finished:
+        - PRG/CHR rom splitting and memory allocation.
+        - Instruction Fetching, Decoding, and execution.
 
+To do:
+        - Finish memory mapping set up for PPU and I/O.
+        - Interrupt handling.
+        
 ###4. PPU - The Picture Processing Unit
 
          **Short Summary of PPU Research - FUll Research Document will be release soon**
