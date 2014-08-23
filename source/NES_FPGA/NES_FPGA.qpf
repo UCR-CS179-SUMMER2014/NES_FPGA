@@ -1,0 +1,6 @@
+DATE = "17:11:21 August 23, 2014"
+QUARTUS_VERSION = "12.0"
+
+# Revisions
+
+PROJECT_REVISION = "NES_FPGA"

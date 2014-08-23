@@ -1,0 +1,18 @@
+Analysis & Synthesis Status : Successful - Sat Aug 23 19:14:05 2014
+Quartus II 32-bit Version : 12.1 Build 177 11/07/2012 SJ Web Edition
+Revision Name : NES_FPGA
+Top-level Entity Name : NES_FPGA
+Family : Cyclone IV GX
+Total logic elements : 3,946
+    Total combinational functions : 3,227
+    Dedicated logic registers : 2,140
+Total registers : 2140
+Total pins : 250
+Total virtual pins : 0
+Total memory bits : 48,128
+Embedded Multiplier 9-bit elements : 0
+Total GXB Receiver Channel PCS : 0
+Total GXB Receiver Channel PMA : 0
+Total GXB Transmitter Channel PCS : 0
+Total GXB Transmitter Channel PMA : 0
+Total PLLs : 2

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <systemtable filter="Default">
+  <columns>
+   <opcodeName visible="0" />
+   <connections preferredWidth="47" />
+   <irq preferredWidth="34" />
+   <export visible="0" />
+   <description preferredWidth="280" />
+   <name preferredWidth="148" />
+  </columns>
+ </systemtable>
+ <clocktable>
+  <columns>
+   <clockname preferredWidth="243" />
+   <clocksource preferredWidth="243" />
+   <frequency preferredWidth="227" />
+  </columns>
+ </clocktable>
+ <window width="1382" height="744" x="-8" y="-8" />
+ <library
+   expandedCategories="Library/Peripherals,Library,Library/Verification/Debug &amp; Performance,Library/Verification,Library/Peripherals/Debug and Performance,Project" />
+</preferences>

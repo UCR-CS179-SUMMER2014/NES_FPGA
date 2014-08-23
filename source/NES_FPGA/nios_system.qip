@@ -1,0 +1,32 @@
+# clk_0
+# cpu_0
+set_global_assignment -name SDC_FILE [file join $::quartus(qip_path) "cpu_0.sdc"]
+set_global_assignment -name SOURCE_FILE [file join $::quartus(qip_path) "cpu_0.ocp"]
+# onchip_memory2_0
+# output1
+# input1
+# jtag_uart_0
+# sdram_0
+# clocks
+set_global_assignment -name TCL_FILE [file join $::quartus(ip_rootpath) "University_Program/altera_up_avalon_clocks/altera_up_avalon_clocks_hw.tcl"]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "clocks.v"]
+# Altera_UP_SD_Card_Avalon_Interface_0
+set_global_assignment -name TCL_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/Altera_UP_SD_Card_Avalon_Interface_hw.tcl"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Card_Avalon_Interface.vhd"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Card_48_bit_Command_Generator.vhd"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Card_Buffer.vhd"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Card_Clock.vhd"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Card_Control_FSM.vhd"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Card_Interface.vhd"]
+set_global_assignment -name QIP_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Card_Memory_Block.qip"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Card_Response_Receiver.vhd"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_CRC16_Generator.vhd"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_CRC7_Generator.vhd"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(ip_rootpath) "University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Signal_Trigger.vhd"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) "Altera_UP_SD_Card_Avalon_Interface_0.vhd"]
+# sysid
+# null
+set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID "3859F975A9990000014803D2BF38"
+set_global_assignment -entity "nios_system" -name IP_TOOL_NAME "sopc"
+set_global_assignment -entity "nios_system" -name IP_TOOL_VERSION "12.1"
+set_global_assignment -entity "nios_system" -name IP_TOOL_ENV "sopc"

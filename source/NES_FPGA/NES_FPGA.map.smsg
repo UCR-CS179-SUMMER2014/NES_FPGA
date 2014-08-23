@@ -1,0 +1,11 @@
+Info (10281): Verilog HDL Declaration information at snes_controller.v(30): object "BUTTONS" differs only in case from object "buttons" in the same scope
+Info (10281): Verilog HDL Declaration information at snes_controller.v(28): object "LATCH" differs only in case from object "latch" in the same scope
+Info (10281): Verilog HDL Declaration information at snes_controller.v(29): object "PULSE" differs only in case from object "pulse" in the same scope
+Warning (10037): Verilog HDL or VHDL warning at cpu_0.v(1559): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at cpu_0.v(1561): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at cpu_0.v(1717): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at cpu_0.v(2636): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at sdram_0.v(316): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at sdram_0.v(326): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at sdram_0.v(336): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at sdram_0.v(680): conditional expression evaluates to a constant

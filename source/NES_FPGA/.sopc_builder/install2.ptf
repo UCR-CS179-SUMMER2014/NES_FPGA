@@ -1,0 +1,4037 @@
+PACKAGE install2 
+{
+   # This file informs the Nios II IDE of non-legacy component paths.
+   # Generated 2014.08.23.19:03:36
+   COMPONENT Altera_UP_Flash_Memory_IP_Core_Avalon_Interface 
+   {
+      VERSION 1.0 
+      {
+         local = "C:/altera/ip/University_Program/Memory/altera_up_flash_memory";
+      }
+   }
+   COMPONENT Altera_UP_SD_Card_Avalon_Interface 
+   {
+      VERSION 1.0 
+      {
+         local = "C:/altera/ip/University_Program/Memory/altera_up_sd_card_avalon_interface";
+      }
+   }
+   COMPONENT alt_e100_adapter_rx 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/rtl_src/adapter/rx";
+      }
+   }
+   COMPONENT alt_e100_adapter_tx 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/rtl_src/adapter/tx";
+      }
+   }
+   COMPONENT alt_e100_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/wrappers/alt_e100_bridge";
+      }
+   }
+   COMPONENT alt_e100_mac 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/wrappers/alt_e100_mac";
+      }
+   }
+   COMPONENT alt_e100_phy 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/wrappers/alt_e100_phy";
+      }
+   }
+   COMPONENT alt_e100_phy_caui4 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/wrappers/alt_e100_phy_caui4";
+      }
+   }
+   COMPONENT alt_e100_phy_pcs 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/wrappers/alt_e100_phy_pcs";
+      }
+   }
+   COMPONENT alt_e100_phy_pcs_caui4 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/wrappers/alt_e100_phy_pcs_caui4";
+      }
+   }
+   COMPONENT alt_e100_pma_siv 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/rtl_src/phy/pma_siv";
+      }
+   }
+   COMPONENT alt_e100_pma_sv 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/rtl_src/phy/pma_sv";
+      }
+   }
+   COMPONENT alt_e100_pma_sv_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/rtl_src/phy/pma_sv_bridge";
+      }
+   }
+   COMPONENT alt_e100_pma_sv_bridge_caui4 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/rtl_src/phy/pma_sv_bridge_caui4";
+      }
+   }
+   COMPONENT alt_e100_pma_sv_caui4 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/100gbe/rtl_src/phy/pma_sv_caui4";
+      }
+   }
+   COMPONENT alt_e40_adapter_rx 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/40gbe/rtl_src/adapter/rx";
+      }
+   }
+   COMPONENT alt_e40_adapter_tx 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/40gbe/rtl_src/adapter/tx";
+      }
+   }
+   COMPONENT alt_e40_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/40gbe/wrappers/alt_e40_bridge";
+      }
+   }
+   COMPONENT alt_e40_e100 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/alt_e40_e100";
+      }
+   }
+   COMPONENT alt_e40_mac 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/40gbe/wrappers/alt_e40_mac";
+      }
+   }
+   COMPONENT alt_e40_phy 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/40gbe/wrappers/alt_e40_phy";
+      }
+   }
+   COMPONENT alt_e40_phy_pcs 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/40gbe/wrappers/alt_e40_phy_pcs";
+      }
+   }
+   COMPONENT alt_e40_pma_siv 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/40gbe/rtl_src/phy/pma_siv";
+      }
+   }
+   COMPONENT alt_e40_pma_sv 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/40gbe/rtl_src/phy/pma_sv";
+      }
+   }
+   COMPONENT alt_e40_pma_sv_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_eth_40g_100g/40gbe/rtl_src/phy/pma_sv_bridge";
+      }
+   }
+   COMPONENT alt_interlaken_pcs_siv 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_interlaken_pcs_siv";
+      }
+   }
+   COMPONENT alt_ioaux20 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/emif/int/ioaux20";
+      }
+   }
+   COMPONENT alt_mem_ddrx_mm_st_converter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_nextgen_ddr_controller_110/rtl/alt_mem_ddrx_mm_st_converter";
+      }
+   }
+   COMPONENT alt_mem_if_ddr2_tg_ed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_ddr2_tg_ed";
+      }
+   }
+   COMPONENT alt_mem_if_ddr2_tg_eds 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_ddr2_tg_eds";
+      }
+   }
+   COMPONENT alt_mem_if_ddr3_tg_ed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_ddr3_tg_ed";
+      }
+   }
+   COMPONENT alt_mem_if_ddr3_tg_eds 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_ddr3_tg_eds";
+      }
+   }
+   COMPONENT alt_mem_if_hps_tg_ed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_hps_tg_ed";
+      }
+   }
+   COMPONENT alt_mem_if_hps_tg_eds 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_hps_tg_eds";
+      }
+   }
+   COMPONENT alt_mem_if_jtag_master 
+   {
+      VERSION 100.99.98.97 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_jtag_master";
+      }
+   }
+   COMPONENT alt_mem_if_lpddr2_tg_ed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_lpddr2_tg_ed";
+      }
+   }
+   COMPONENT alt_mem_if_lpddr2_tg_eds 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_lpddr2_tg_eds";
+      }
+   }
+   COMPONENT alt_mem_if_lpddr_tg_ed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_lpddr_tg_ed";
+      }
+   }
+   COMPONENT alt_mem_if_lpddr_tg_eds 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_lpddr_tg_eds";
+      }
+   }
+   COMPONENT alt_mem_if_pp_gasket 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_pp_gasket";
+      }
+   }
+   COMPONENT alt_mem_if_qdrii_tg_ed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_qdrii_tg_ed";
+      }
+   }
+   COMPONENT alt_mem_if_qdrii_tg_eds 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_qdrii_tg_eds";
+      }
+   }
+   COMPONENT alt_mem_if_rldram3_tg_ed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_rldram3_tg_ed";
+      }
+   }
+   COMPONENT alt_mem_if_rldram3_tg_eds 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_rldram3_tg_eds";
+      }
+   }
+   COMPONENT alt_mem_if_rldramii_tg_ed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_rldramii_tg_ed";
+      }
+   }
+   COMPONENT alt_mem_if_rldramii_tg_eds 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_designs/alt_mem_if_rldramii_tg_eds";
+      }
+   }
+   COMPONENT alt_mem_if_temp_sense_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/temp_sensor_core";
+      }
+   }
+   COMPONENT alt_ntrlkn_10l_6g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_ntrlkn_10l_6g";
+      }
+   }
+   COMPONENT alt_ntrlkn_12l_10g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_ntrlkn_12l_10g";
+      }
+   }
+   COMPONENT alt_ntrlkn_12l_6g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_ntrlkn_12l_6g";
+      }
+   }
+   COMPONENT alt_ntrlkn_20l_6g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_ntrlkn_20l_6g";
+      }
+   }
+   COMPONENT alt_ntrlkn_4l_3g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_ntrlkn_4l_3g";
+      }
+   }
+   COMPONENT alt_ntrlkn_4l_6g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_ntrlkn_4l_6g";
+      }
+   }
+   COMPONENT alt_ntrlkn_8l_3g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_ntrlkn_8l_3g";
+      }
+   }
+   COMPONENT alt_ntrlkn_8l_6g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_ntrlkn_8l_6g";
+      }
+   }
+   COMPONENT alt_ntrlkn_hsio_bank_10g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/altera_interlaken_hsio_bank/altera_interlaken_hsio_bank_10g";
+      }
+   }
+   COMPONENT alt_ntrlkn_hsio_bank_bpcs4 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/altera_interlaken_hsio_bank/altera_interlaken_hsio_bank_bpcs4";
+      }
+   }
+   COMPONENT alt_ntrlkn_hsio_bank_bpcs_3g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/altera_interlaken_hsio_bank/altera_interlaken_hsio_bank_bpcs_3g";
+      }
+   }
+   COMPONENT alt_ntrlkn_hsio_bank_pmad5 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/altera_interlaken_hsio_bank/altera_interlaken_hsio_bank_pmad5";
+      }
+   }
+   COMPONENT alt_ntrlkn_oob_rx 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_ntrlkn_oob/alt_ntrlkn_oob_rx";
+      }
+   }
+   COMPONENT alt_ntrlkn_oob_tx 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_ntrlkn_oob/alt_ntrlkn_oob_tx";
+      }
+   }
+   COMPONENT alt_ntrlkn_reset 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_interlaken_rst";
+      }
+   }
+   COMPONENT alt_ntrlkn_sample_channel_client 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_ntrlkn_sample_channel_client";
+      }
+   }
+   COMPONENT alt_vip_avst_video_monitor 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/monitors/altera_trace_video_snoop";
+      }
+   }
+   COMPONENT alt_vip_cadence_detect 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_cadence_detect";
+      }
+   }
+   COMPONENT alt_vip_cl_dil 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/full_ip/cl_deinterlacer";
+      }
+   }
+   COMPONENT alt_vip_cl_scl 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/full_ip/cl_scaler";
+      }
+   }
+   COMPONENT alt_vip_clip 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/clipper/lib";
+      }
+   }
+   COMPONENT alt_vip_control_slave 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_control_slave";
+      }
+   }
+   COMPONENT alt_vip_cpr 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/color_plane_sequencer/lib";
+      }
+   }
+   COMPONENT alt_vip_crs 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/chroma_resampler/lib";
+      }
+   }
+   COMPONENT alt_vip_csc 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/csc/lib";
+      }
+   }
+   COMPONENT alt_vip_cti 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/clocked_video_input";
+      }
+   }
+   COMPONENT alt_vip_cts 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/control_synchronizer/full_ip/control_synchronizer";
+      }
+   }
+   COMPONENT alt_vip_dil 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/deinterlacer/lib";
+      }
+   }
+   COMPONENT alt_vip_dil_algorithm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_dil_algorithm";
+      }
+   }
+   COMPONENT alt_vip_dil_low_angle_algorithm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_dil_low_angle_algorithm";
+      }
+   }
+   COMPONENT alt_vip_dil_scheduler 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_dil_scheduler";
+      }
+   }
+   COMPONENT alt_vip_dil_sobel_scheduler 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_dil_sobel_scheduler";
+      }
+   }
+   COMPONENT alt_vip_duplicator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_duplicator";
+      }
+   }
+   COMPONENT alt_vip_fir 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/fir_filter_2d/lib";
+      }
+   }
+   COMPONENT alt_vip_fir_alg_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_fir_alg_core";
+      }
+   }
+   COMPONENT alt_vip_fir_scheduler 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_fir_scheduler";
+      }
+   }
+   COMPONENT alt_vip_gam 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/gamma_corrector/lib";
+      }
+   }
+   COMPONENT alt_vip_itc 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/clocked_video_output";
+      }
+   }
+   COMPONENT alt_vip_itl 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/interlacer/lib";
+      }
+   }
+   COMPONENT alt_vip_line_buffer 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_line_buffer";
+      }
+   }
+   COMPONENT alt_vip_med 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/median_filter_2d/lib";
+      }
+   }
+   COMPONENT alt_vip_message_width_adapt 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_message_width_adapt";
+      }
+   }
+   COMPONENT alt_vip_mix 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alpha_blending_mixer/lib";
+      }
+   }
+   COMPONENT alt_vip_motion_detect 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_motion_detect";
+      }
+   }
+   COMPONENT alt_vip_packet_mux 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_packet_mux";
+      }
+   }
+   COMPONENT alt_vip_packet_reader 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_packet_reader";
+      }
+   }
+   COMPONENT alt_vip_packet_writer 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_packet_writer";
+      }
+   }
+   COMPONENT alt_vip_rgb2grey 
+   {
+      VERSION 1.0 
+      {
+         local = "C:/altera/ip/altera/vip/verification/dut";
+      }
+   }
+   COMPONENT alt_vip_scaler_alg_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_scaler_alg_core";
+      }
+   }
+   COMPONENT alt_vip_scaler_kernel_creator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_scaler_kernel_creator";
+      }
+   }
+   COMPONENT alt_vip_scaler_scheduler 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_scaler_scheduler";
+      }
+   }
+   COMPONENT alt_vip_scl 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/scaler/lib";
+      }
+   }
+   COMPONENT alt_vip_swi 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/switch/full_ip/switch";
+      }
+   }
+   COMPONENT alt_vip_tpg 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/test_pattern_generator/lib";
+      }
+   }
+   COMPONENT alt_vip_vfb 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/frame_buffer/lib";
+      }
+   }
+   COMPONENT alt_vip_vfr 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/frame_reader/full_ip/frame_reader";
+      }
+   }
+   COMPONENT alt_vip_video_input_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_video_input_bridge";
+      }
+   }
+   COMPONENT alt_vip_video_output_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/vip/ip_library/component_ip/alt_vip_video_output_bridge";
+      }
+   }
+   COMPONENT alt_xcvr_reconfig 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr_reconfig/alt_xcvr_reconfig";
+      }
+   }
+   COMPONENT alt_xcvr_reconfig_cpu_ctrl_if 
+   {
+      VERSION 11.0 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr_reconfig/alt_xcvr_reconfig_soc";
+      }
+   }
+   COMPONENT alt_xcvr_reconfig_cpu_ram_if 
+   {
+      VERSION 11.0 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr_reconfig/alt_xcvr_reconfig_soc";
+      }
+   }
+   COMPONENT altdq_dqs2 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altdq_dqs2";
+      }
+   }
+   COMPONENT altera_address_span_extender 
+   {
+      VERSION 1.2 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_address_span_extender";
+      }
+   }
+   COMPONENT altera_adv_seu_detection 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_adv_seu_detection/adv_seu_detection";
+      }
+   }
+   COMPONENT altera_adv_seu_detection_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_adv_seu_detection/adv_seu_detection_core";
+      }
+   }
+   COMPONENT altera_avalon_clock_reset_source 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_clock_reset_source";
+      }
+   }
+   COMPONENT altera_avalon_clock_source 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_clock_source";
+      }
+   }
+   COMPONENT altera_avalon_data_pattern_checker 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/gx_debug/altera_avalon_data_pattern_checker";
+      }
+   }
+   COMPONENT altera_avalon_data_pattern_generator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/gx_debug/altera_avalon_data_pattern_generator";
+      }
+   }
+   COMPONENT altera_avalon_dc_fifo 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_dc_fifo";
+      }
+   }
+   COMPONENT altera_avalon_em_pc 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_avalon_mm_efficiency_monitor/top";
+      }
+   }
+   COMPONENT altera_avalon_em_pc_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_avalon_mm_efficiency_monitor/altera_uniphy_efficiency_and_protocol_core";
+      }
+   }
+   COMPONENT altera_avalon_half_rate_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_half_rate_bridge";
+      }
+   }
+   COMPONENT altera_avalon_interrupt_sink 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_interrupt_sink";
+      }
+   }
+   COMPONENT altera_avalon_interrupt_source 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_interrupt_source";
+      }
+   }
+   COMPONENT altera_avalon_mm_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_avalon_mm_bridge";
+      }
+   }
+   COMPONENT altera_avalon_mm_clock_crossing_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_avalon_mm_clock_crossing_bridge";
+      }
+   }
+   COMPONENT altera_avalon_mm_master_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_mm_master_bfm";
+      }
+   }
+   COMPONENT altera_avalon_mm_master_bfm_api_wrapper 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_mm_master_bfm";
+      }
+   }
+   COMPONENT altera_avalon_mm_memory 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_mm_memory";
+      }
+   }
+   COMPONENT altera_avalon_mm_monitor 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_mm_monitor_bfm";
+      }
+   }
+   COMPONENT altera_avalon_mm_passthru 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_avalon_mm_passthru";
+      }
+   }
+   COMPONENT altera_avalon_mm_slave_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_mm_slave_bfm";
+      }
+   }
+   COMPONENT altera_avalon_mm_slave_bfm_api_wrapper 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_mm_slave_bfm";
+      }
+   }
+   COMPONENT altera_avalon_mm_traffic_generator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_avalon_mm_traffic_generator/top";
+      }
+   }
+   COMPONENT altera_avalon_mm_traffic_generator_coordinator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_design_components/altera_avalon_mm_traffic_generator_coordinator";
+      }
+   }
+   COMPONENT altera_avalon_mm_traffic_generator_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_avalon_mm_traffic_generator/altera_avalon_mm_traffic_generator_core";
+      }
+   }
+   COMPONENT altera_avalon_multi_channel_shared_fifo 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_multi_channel_shared_fifo";
+      }
+   }
+   COMPONENT altera_avalon_packets_to_master 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_packets_to_master";
+      }
+   }
+   COMPONENT altera_avalon_pixel_converter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_pixel_converter";
+      }
+   }
+   COMPONENT altera_avalon_remote_update_cycloneiii 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_remote_update_cycloneiii";
+      }
+   }
+   COMPONENT altera_avalon_reset_source 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_reset_source";
+      }
+   }
+   COMPONENT altera_avalon_round_robin_scheduler 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_round_robin_scheduler";
+      }
+   }
+   COMPONENT altera_avalon_sc_fifo 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_sc_fifo";
+      }
+   }
+   COMPONENT altera_avalon_st_adapter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/avalon_st/altera_avalon_st_adapter";
+      }
+   }
+   COMPONENT altera_avalon_st_bytes_to_packets 
+   {
+      VERSION 11.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_st_bytes_to_packets";
+      }
+   }
+   COMPONENT altera_avalon_st_channel_stripper 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/core/altera_avalon_st_channel_stripper";
+      }
+   }
+   COMPONENT altera_avalon_st_delay 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/avalon_st/altera_avalon_st_delay";
+      }
+   }
+   COMPONENT altera_avalon_st_handshake_clock_crosser 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/avalon_st/altera_avalon_st_handshake_clock_crosser";
+      }
+   }
+   COMPONENT altera_avalon_st_idle_inserter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_st_idle_inserter";
+      }
+   }
+   COMPONENT altera_avalon_st_idle_remover 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_st_idle_remover";
+      }
+   }
+   COMPONENT altera_avalon_st_monitor 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_st_monitor_bfm";
+      }
+   }
+   COMPONENT altera_avalon_st_null_sink 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/core/altera_avalon_st_null_sink";
+      }
+   }
+   COMPONENT altera_avalon_st_packet_switch 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_avalon_st_packet_switch";
+      }
+   }
+   COMPONENT altera_avalon_st_packets_to_bytes 
+   {
+      VERSION 11.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_st_packets_to_bytes";
+      }
+   }
+   COMPONENT altera_avalon_st_pipeline_stage 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/avalon_st/altera_avalon_st_pipeline_stage";
+      }
+   }
+   COMPONENT altera_avalon_st_sink_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_st_sink_bfm";
+      }
+   }
+   COMPONENT altera_avalon_st_sink_bfm_api_wrapper 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_st_sink_bfm";
+      }
+   }
+   COMPONENT altera_avalon_st_source_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_st_source_bfm";
+      }
+   }
+   COMPONENT altera_avalon_st_source_bfm_api_wrapper 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_avalon_st_source_bfm";
+      }
+   }
+   COMPONENT altera_avalon_st_splitter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/avalon_st/altera_avalon_st_splitter";
+      }
+   }
+   COMPONENT altera_avalon_sysid_qsys 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_sysid_qsys";
+      }
+   }
+   COMPONENT altera_avalon_video_sync_generator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_video_sync_generator";
+      }
+   }
+   COMPONENT altera_clock_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_clock_bridge";
+      }
+   }
+   COMPONENT altera_conduit_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_conduit_bfm";
+      }
+   }
+   COMPONENT altera_conduit_pin_divider 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_conduit_pin_divider";
+      }
+   }
+   COMPONENT altera_connection_identification_hub 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/core/altera_connection_identification_hub";
+      }
+   }
+   COMPONENT altera_connection_identification_rom_wrapper 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/mm/altera_mm_debug_link";
+      }
+   }
+   COMPONENT altera_core_noise_generator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_core_noise_generator/top";
+      }
+   }
+   COMPONENT altera_core_noise_generator_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_core_noise_generator/altera_core_noise_generator_core";
+      }
+   }
+   COMPONENT altera_cpri 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/cpri/src";
+      }
+   }
+   COMPONENT altera_cpri_instance 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/cpri/src";
+      }
+   }
+   COMPONENT altera_crcerror_verify 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_crcerror_verify";
+      }
+   }
+   COMPONENT altera_customins_master_translator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_customins_master_translator";
+      }
+   }
+   COMPONENT altera_customins_slave_translator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_customins_slave_translator";
+      }
+   }
+   COMPONENT altera_customins_xconnect 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_customins_xconnect";
+      }
+   }
+   COMPONENT altera_ddr2_board_delay_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/board_delay_models/altera_ddr2_board_delay_model";
+      }
+   }
+   COMPONENT altera_ddr3_board_delay_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/board_delay_models/altera_ddr3_board_delay_model";
+      }
+   }
+   COMPONENT altera_ddr3_board_delay_model_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/board_delay_model_bridge";
+      }
+   }
+   COMPONENT altera_debug_fabric 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/core/altera_debug_fabric";
+      }
+   }
+   COMPONENT altera_ejtag 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_ejtag";
+      }
+   }
+   COMPONENT altera_emif 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/emif/top";
+      }
+   }
+   COMPONENT altera_eth_10g_design_example 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/altera_eth_10g_design_example/source";
+      }
+   }
+   COMPONENT altera_eth_10g_mac 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/altera_eth_10g_mac";
+      }
+   }
+   COMPONENT altera_eth_10g_rx_register_map 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_10g_rx_register_map";
+      }
+   }
+   COMPONENT altera_eth_10g_tx_register_map 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_10g_tx_register_map";
+      }
+   }
+   COMPONENT altera_eth_10gmem_statistics_collector 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_10gmem_statistics_collector";
+      }
+   }
+   COMPONENT altera_eth_1588_tod 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_1588_tod";
+      }
+   }
+   COMPONENT altera_eth_2_5g_mac 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/altera_eth_2_5g_mac";
+      }
+   }
+   COMPONENT altera_eth_2_5g_pcs_16b 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/altera_eth_2_5g_pcs_pma_16b";
+      }
+   }
+   COMPONENT altera_eth_2_5g_pcs_pma_16b 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/altera_eth_2_5g_pcs_pma_16b";
+      }
+   }
+   COMPONENT altera_eth_2_5g_system 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/altera_eth_2_5g_system";
+      }
+   }
+   COMPONENT altera_eth_address_inserter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_address_inserter";
+      }
+   }
+   COMPONENT altera_eth_avst2gmii_converter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_avst2gmii_converter";
+      }
+   }
+   COMPONENT altera_eth_channel_adapter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_adapters/altera_eth_channel_adapter";
+      }
+   }
+   COMPONENT altera_eth_crc 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_crc";
+      }
+   }
+   COMPONENT altera_eth_crc_allocation 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_crc_allocation";
+      }
+   }
+   COMPONENT altera_eth_crc_pad_rem 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_crc_pad_rem";
+      }
+   }
+   COMPONENT altera_eth_databus_bit_inserter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_databus_bit_inserter";
+      }
+   }
+   COMPONENT altera_eth_fifo_pause_ctrl_adapter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/altera_eth_10g_design_example/design_example_components/altera_eth_fifo_pause_ctrl_adapter";
+      }
+   }
+   COMPONENT altera_eth_frame_decoder 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_frame_decoder";
+      }
+   }
+   COMPONENT altera_eth_frame_decoder_2_5g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_frame_decoder_2_5g";
+      }
+   }
+   COMPONENT altera_eth_frame_status_merger 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_frame_status_merger";
+      }
+   }
+   COMPONENT altera_eth_gmii2avst_converter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_gmii2avst_converter";
+      }
+   }
+   COMPONENT altera_eth_gmii_crc 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_gmii_crc";
+      }
+   }
+   COMPONENT altera_eth_gmii_decoder 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_gmii_decoder";
+      }
+   }
+   COMPONENT altera_eth_gmii_encoder 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_gmii_encoder";
+      }
+   }
+   COMPONENT altera_eth_gmii_ptp_inserter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_gmii_ptp_inserter";
+      }
+   }
+   COMPONENT altera_eth_gmii_tsu 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_gmii_tsu";
+      }
+   }
+   COMPONENT altera_eth_interface_conversion 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_adapters/altera_eth_interface_conversion";
+      }
+   }
+   COMPONENT altera_eth_lane_decoder 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_lane_decoder";
+      }
+   }
+   COMPONENT altera_eth_lane_decoder_2_5g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_lane_decoder_2_5g";
+      }
+   }
+   COMPONENT altera_eth_lane_encoder_2_5g 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_lane_encoder_2_5g";
+      }
+   }
+   COMPONENT altera_eth_link_fault_detection 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_link_fault_detection";
+      }
+   }
+   COMPONENT altera_eth_link_fault_generation 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_link_fault_generation";
+      }
+   }
+   COMPONENT altera_eth_loopback 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/altera_eth_10g_design_example/design_example_components/altera_eth_loopback";
+      }
+   }
+   COMPONENT altera_eth_loopback_composed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/altera_eth_10g_design_example/design_example_components/altera_eth_loopback_composed";
+      }
+   }
+   COMPONENT altera_eth_mdio 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_mdio";
+      }
+   }
+   COMPONENT altera_eth_packet_classifier 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/altera_eth_10g_design_example/design_example_components/altera_eth_packet_classifier";
+      }
+   }
+   COMPONENT altera_eth_packet_formatter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_packet_formatter";
+      }
+   }
+   COMPONENT altera_eth_packet_overflow_control 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_packet_overflow_control";
+      }
+   }
+   COMPONENT altera_eth_packet_underflow_control 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_packet_underflow_control";
+      }
+   }
+   COMPONENT altera_eth_pad_inserter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_pad_inserter";
+      }
+   }
+   COMPONENT altera_eth_pause_beat_conversion 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_pause_beat_conversion";
+      }
+   }
+   COMPONENT altera_eth_pause_ctrl_gen 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_pause_controller_and_generator";
+      }
+   }
+   COMPONENT altera_eth_pause_req_termination 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_adapters/altera_eth_pause_req_termination";
+      }
+   }
+   COMPONENT altera_eth_pfc_generator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_pfc_generator";
+      }
+   }
+   COMPONENT altera_eth_pfc_pause_conversion 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_pfc_pause_conversion";
+      }
+   }
+   COMPONENT altera_eth_pkt_backpressure_control 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_pkt_backpressure_control";
+      }
+   }
+   COMPONENT altera_eth_preamble_custom 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_preamble_custom";
+      }
+   }
+   COMPONENT altera_eth_preamble_inserter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_preamble_inserter";
+      }
+   }
+   COMPONENT altera_eth_rs_demux 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_adapters/altera_eth_rs_demux";
+      }
+   }
+   COMPONENT altera_eth_rs_mux 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_adapters/altera_eth_rs_mux";
+      }
+   }
+   COMPONENT altera_eth_splitter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_adapters/altera_eth_splitter";
+      }
+   }
+   COMPONENT altera_eth_statistics_collector 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_statistics_collector";
+      }
+   }
+   COMPONENT altera_eth_timestamp_aligner 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_timestamp_aligner";
+      }
+   }
+   COMPONENT altera_eth_timestamp_req_ctrl 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_timestamp_req_ctrl";
+      }
+   }
+   COMPONENT altera_eth_valid_timestamp_detector 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_valid_timestamp_detector";
+      }
+   }
+   COMPONENT altera_eth_xgmii_crc 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_xgmii_crc";
+      }
+   }
+   COMPONENT altera_eth_xgmii_pipeline 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_xgmii_pipeline";
+      }
+   }
+   COMPONENT altera_eth_xgmii_ptp_inserter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_xgmii_ptp_inserter";
+      }
+   }
+   COMPONENT altera_eth_xgmii_termination 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_xgmii_termination";
+      }
+   }
+   COMPONENT altera_eth_xgmii_tsu 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/ethernet/ethernet_ucore/altera_eth_xgmii_tsu";
+      }
+   }
+   COMPONENT altera_external_memory_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_external_memory_bfm";
+      }
+   }
+   COMPONENT altera_fanout 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/altera_fanout";
+      }
+   }
+   COMPONENT altera_fir_compiler_ii 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/fir_compiler_ii/src";
+      }
+   }
+   COMPONENT altera_generic_tristate_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_generic_tristate_controller";
+      }
+   }
+   COMPONENT altera_hps 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/hps/altera_hps";
+      }
+   }
+   COMPONENT altera_hps_io 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/altera/hps/altera_hps_io";
+      }
+   }
+   COMPONENT altera_hps_master_bfm 
+   {
+      VERSION 11.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_hps_master_bfm";
+      }
+   }
+   COMPONENT altera_hps_slave_bfm 
+   {
+      VERSION 11.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_hps_slave_bfm";
+      }
+   }
+   COMPONENT altera_interface_generator 
+   {
+      VERSION 1.0 
+      {
+         local = "C:/altera/ip/altera/hps/altera_interface_generator";
+      }
+   }
+   COMPONENT altera_interlaken 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/altera_interlaken";
+      }
+   }
+   COMPONENT altera_io_col_if 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/emif/col_if_20";
+      }
+   }
+   COMPONENT altera_irq_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_irq_bridge";
+      }
+   }
+   COMPONENT altera_irq_clock_crosser 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_irq_clock_crosser";
+      }
+   }
+   COMPONENT altera_irq_fanout 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_irq_fanout";
+      }
+   }
+   COMPONENT altera_irq_mapper 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_irq_mapper";
+      }
+   }
+   COMPONENT altera_jtag_avalon_master 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_jtag_avalon_master";
+      }
+   }
+   COMPONENT altera_jtag_dc_streaming 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_jtag_phy";
+      }
+   }
+   COMPONENT altera_jtag_debug_link 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/jtag/altera_jtag_debug_link";
+      }
+   }
+   COMPONENT altera_lpddr2_board_delay_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/board_delay_models/altera_lpddr2_board_delay_model";
+      }
+   }
+   COMPONENT altera_mem_if_avalon2apb_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/bridges/altera_mem_if_avalon2apb_bridge";
+      }
+   }
+   COMPONENT altera_mem_if_avalon_dram_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_mem_models/alt_mem_if_avalon_dram_model";
+      }
+   }
+   COMPONENT altera_mem_if_checker 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/altera_mem_if_checker";
+      }
+   }
+   COMPONENT altera_mem_if_clk_rst_source 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/hhp/altera_mem_if_clk_rst_source";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_afi_gasket 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_multirank_gasket/alt_mem_if_ddr2_multirank_gasket";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_afi_mux 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_afi_muxes/altera_mem_if_ddr2_afi_mux";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_afi_splitter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_afi_muxes/altera_mem_if_ddr2_afi_splitter";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_ddr2_controller";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_emif 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_interfaces/alt_mem_if_ddr2_emif";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_hard_memory_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/altera_mem_if_ddr2_hard_memory_controller";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_hard_phy_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_ddr2_hard_phy_core";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_mem_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_mem_models/alt_mem_if_ddr2_mem_model";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_phy_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_ddr2_phy_core";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_pll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_pll/altera_mem_if_ddr2_pll";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_qseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/altera_mem_if_ddr2_qseq";
+      }
+   }
+   COMPONENT altera_mem_if_ddr2_seq_mux_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/bridges/seq_mux_bridges/altera_mem_if_ddr2_seq_mux_bridge";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_afi_gasket 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_multirank_gasket/alt_mem_if_ddr3_multirank_gasket";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_afi_mux 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_afi_muxes/altera_mem_if_ddr3_afi_mux";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_afi_splitter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_afi_muxes/altera_mem_if_ddr3_afi_splitter";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_ddr3_controller";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_emif 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_interfaces/alt_mem_if_ddr3_emif";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_hard_memory_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/altera_mem_if_ddr3_hard_memory_controller";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_hard_phy_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_ddr3_hard_phy_core";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_mem_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_mem_models/alt_mem_if_ddr3_mem_model";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_phy_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_ddr3_phy_core";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_pll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_pll/altera_mem_if_ddr3_pll";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_qseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/altera_mem_if_ddr3_qseq";
+      }
+   }
+   COMPONENT altera_mem_if_ddr3_seq_mux_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/bridges/seq_mux_bridges/altera_mem_if_ddr3_seq_mux_bridge";
+      }
+   }
+   COMPONENT altera_mem_if_dll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_dll";
+      }
+   }
+   COMPONENT altera_mem_if_dll_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_dll_bridge";
+      }
+   }
+   COMPONENT altera_mem_if_fake_ddr2_phy 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_fake_ddr2_phy";
+      }
+   }
+   COMPONENT altera_mem_if_fake_ddr3_phy 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_fake_ddr3_phy";
+      }
+   }
+   COMPONENT altera_mem_if_hcx_rom_reconfig_gen 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_design_components/alt_mem_if_hcx_rom_reconfig_gen";
+      }
+   }
+   COMPONENT altera_mem_if_hhp_ddr2_qseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/altera_mem_if_hhp_qseq";
+      }
+   }
+   COMPONENT altera_mem_if_hhp_ddr3_qseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/altera_mem_if_hhp_qseq";
+      }
+   }
+   COMPONENT altera_mem_if_hhp_lpddr2_qseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/altera_mem_if_hhp_qseq";
+      }
+   }
+   COMPONENT altera_mem_if_hps_ddr2_memory_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/altera_mem_if_hps_memory_controller";
+      }
+   }
+   COMPONENT altera_mem_if_hps_ddr3_memory_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/altera_mem_if_hps_memory_controller";
+      }
+   }
+   COMPONENT altera_mem_if_hps_emif 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_interfaces/alt_mem_if_hps_emif";
+      }
+   }
+   COMPONENT altera_mem_if_hps_lpddr2_memory_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/altera_mem_if_hps_memory_controller";
+      }
+   }
+   COMPONENT altera_mem_if_hps_pll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_pll/altera_mem_if_hps_pll";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr2_afi_mux 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_afi_muxes/altera_mem_if_lpddr2_afi_mux";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr2_afi_splitter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_afi_muxes/altera_mem_if_lpddr2_afi_splitter";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr2_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_lpddr2_controller";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr2_emif 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_interfaces/alt_mem_if_lpddr2_emif";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr2_hard_memory_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/altera_mem_if_lpddr2_hard_memory_controller";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr2_hard_phy_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_lpddr2_hard_phy_core";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr2_mem_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_mem_models/alt_mem_if_lpddr2_mem_model";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr2_phy_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_lpddr2_phy_core";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr2_pll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_pll/altera_mem_if_lpddr2_pll";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr2_qseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/altera_mem_if_lpddr2_qseq";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr2_seq_mux_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/bridges/seq_mux_bridges/altera_mem_if_lpddr2_seq_mux_bridge";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr_afi_mux 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_afi_muxes/altera_mem_if_lpddr_afi_mux";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr_afi_splitter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_afi_muxes/altera_mem_if_lpddr_afi_splitter";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr_hard_memory_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/altera_mem_if_lpddr_hard_memory_controller";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr_hard_phy_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_lpddr_hard_phy_core";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr_mem_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_mem_models/alt_mem_if_lpddr_mem_model";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr_phy_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_lpddr_phy_core";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr_pll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_pll/altera_mem_if_lpddr_pll";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr_qseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/altera_mem_if_lpddr_qseq";
+      }
+   }
+   COMPONENT altera_mem_if_lpddr_seq_mux_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/bridges/seq_mux_bridges/altera_mem_if_lpddr_seq_mux_bridge";
+      }
+   }
+   COMPONENT altera_mem_if_nextgen_ddr2_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_nextgen_ddr2_controller";
+      }
+   }
+   COMPONENT altera_mem_if_nextgen_ddr2_controller_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_nextgen_ddr2_controller_core";
+      }
+   }
+   COMPONENT altera_mem_if_nextgen_ddr3_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_nextgen_ddr3_controller";
+      }
+   }
+   COMPONENT altera_mem_if_nextgen_ddr3_controller_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_nextgen_ddr3_controller_core";
+      }
+   }
+   COMPONENT altera_mem_if_nextgen_lpddr2_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_nextgen_lpddr2_controller";
+      }
+   }
+   COMPONENT altera_mem_if_nextgen_lpddr2_controller_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_nextgen_lpddr2_controller_core";
+      }
+   }
+   COMPONENT altera_mem_if_nextgen_lpddr_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_nextgen_lpddr_controller";
+      }
+   }
+   COMPONENT altera_mem_if_nextgen_lpddr_controller_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_nextgen_lpddr_controller_core";
+      }
+   }
+   COMPONENT altera_mem_if_oct 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_oct";
+      }
+   }
+   COMPONENT altera_mem_if_oct_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_oct_bridge";
+      }
+   }
+   COMPONENT altera_mem_if_pll_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_pll_bridge";
+      }
+   }
+   COMPONENT altera_mem_if_pp_mem_model_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/altera_mem_if_pp_mem_model_bridge";
+      }
+   }
+   COMPONENT altera_mem_if_qdrii_afi_mux 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_afi_muxes/altera_mem_if_qdrii_afi_mux";
+      }
+   }
+   COMPONENT altera_mem_if_qdrii_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_qdrii_controller";
+      }
+   }
+   COMPONENT altera_mem_if_qdrii_emif 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_interfaces/alt_mem_if_qdrii_emif";
+      }
+   }
+   COMPONENT altera_mem_if_qdrii_mem_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_mem_models/alt_mem_if_qdrii_mem_model";
+      }
+   }
+   COMPONENT altera_mem_if_qdrii_phy_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_qdrii_phy_core";
+      }
+   }
+   COMPONENT altera_mem_if_qdrii_pll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_pll/altera_mem_if_qdrii_pll";
+      }
+   }
+   COMPONENT altera_mem_if_qdrii_qseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/altera_mem_if_qdrii_qseq";
+      }
+   }
+   COMPONENT altera_mem_if_qdrii_rseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_rseq/altera_mem_if_qdrii_rseq";
+      }
+   }
+   COMPONENT altera_mem_if_rld_user_refresh_gen 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_design_components/alt_mem_if_rld_user_refresh_gen";
+      }
+   }
+   COMPONENT altera_mem_if_rldram3_afi_driver 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_afi_drivers/alt_mem_if_rldram3_afi_driver";
+      }
+   }
+   COMPONENT altera_mem_if_rldram3_afi_mux 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_afi_muxes/altera_mem_if_rldram3_afi_mux";
+      }
+   }
+   COMPONENT altera_mem_if_rldram3_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_rldram3_controller";
+      }
+   }
+   COMPONENT altera_mem_if_rldram3_emif 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_interfaces/alt_mem_if_rldram3_emif";
+      }
+   }
+   COMPONENT altera_mem_if_rldram3_mem_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_mem_models/alt_mem_if_rldram3_mem_model";
+      }
+   }
+   COMPONENT altera_mem_if_rldram3_phy_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_rldram3_phy_core";
+      }
+   }
+   COMPONENT altera_mem_if_rldram3_pll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_pll/altera_mem_if_rldram3_pll";
+      }
+   }
+   COMPONENT altera_mem_if_rldram3_qseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/altera_mem_if_rldram3_qseq";
+      }
+   }
+   COMPONENT altera_mem_if_rldramii_afi_mux 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_afi_muxes/altera_mem_if_rldramii_afi_mux";
+      }
+   }
+   COMPONENT altera_mem_if_rldramii_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_controllers/alt_mem_if_rldramii_controller";
+      }
+   }
+   COMPONENT altera_mem_if_rldramii_emif 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_interfaces/alt_mem_if_rldramii_emif";
+      }
+   }
+   COMPONENT altera_mem_if_rldramii_mem_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_mem_models/alt_mem_if_rldramii_mem_model";
+      }
+   }
+   COMPONENT altera_mem_if_rldramii_phy_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_phys/alt_mem_if_rldramii_phy_core";
+      }
+   }
+   COMPONENT altera_mem_if_rldramii_pll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_pll/altera_mem_if_rldramii_pll";
+      }
+   }
+   COMPONENT altera_mem_if_rldramii_qseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/altera_mem_if_rldramii_qseq";
+      }
+   }
+   COMPONENT altera_mem_if_rldramii_rseq 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_rseq/altera_mem_if_rldramii_rseq";
+      }
+   }
+   COMPONENT altera_mem_if_sequencer_cpu 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_sequencer_cpu";
+      }
+   }
+   COMPONENT altera_mem_if_sequencer_mem 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/altera_mem_if_sequencer_mem";
+      }
+   }
+   COMPONENT altera_mem_if_sideband_terminator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_design_components/altera_mem_if_sideband_terminator";
+      }
+   }
+   COMPONENT altera_mem_if_simple_avalon_mm_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/bridges/altera_mem_if_simple_avalon_mm_bridge";
+      }
+   }
+   COMPONENT altera_mem_if_single_clock_pll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/altera_mem_if_single_clock_pll";
+      }
+   }
+   COMPONENT altera_mem_if_temp_sense 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/temp_sensor_top";
+      }
+   }
+   COMPONENT altera_merlin_axi_master_ni 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_axi_master_ni";
+      }
+   }
+   COMPONENT altera_merlin_axi_slave_ni 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_axi_slave_ni";
+      }
+   }
+   COMPONENT altera_merlin_axi_translator 
+   {
+      VERSION 1.0 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_axi_translator";
+      }
+   }
+   COMPONENT altera_merlin_burst_adapter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_burst_adapter";
+      }
+   }
+   COMPONENT altera_merlin_combined_width_adapter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_combined_width_adapter";
+      }
+   }
+   COMPONENT altera_merlin_conduit_fanout 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_merlin_demultiplexer 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_demultiplexer";
+      }
+   }
+   COMPONENT altera_merlin_master_agent 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_master_agent";
+      }
+   }
+   COMPONENT altera_merlin_master_translator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_master_translator";
+      }
+   }
+   COMPONENT altera_merlin_mins_network_generator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_mins_network_generator";
+      }
+   }
+   COMPONENT altera_merlin_multiplexer 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_multiplexer";
+      }
+   }
+   COMPONENT altera_merlin_router 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_router";
+      }
+   }
+   COMPONENT altera_merlin_slave_agent 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_slave_agent";
+      }
+   }
+   COMPONENT altera_merlin_slave_translator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_slave_translator";
+      }
+   }
+   COMPONENT altera_merlin_st_pass_through 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_mins_network_generator";
+      }
+   }
+   COMPONENT altera_merlin_std_arbitrator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_std_arbitrator";
+      }
+   }
+   COMPONENT altera_merlin_traffic_limiter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_traffic_limiter";
+      }
+   }
+   COMPONENT altera_merlin_width_adapter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_merlin_width_adapter";
+      }
+   }
+   COMPONENT altera_mm_debug_link 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/mm/altera_mm_debug_link";
+      }
+   }
+   COMPONENT altera_mm_debug_link_datawidth_matcher 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/st/altera_mm_debug_link_datawidth_matcher";
+      }
+   }
+   COMPONENT altera_mp32 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_mp32";
+      }
+   }
+   COMPONENT altera_nios2_custom_instr_hybrid_master_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_nios2_custom_instr_hybrid_master_bfm";
+      }
+   }
+   COMPONENT altera_nios2_custom_instr_master_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_nios2_custom_instr_master_bfm";
+      }
+   }
+   COMPONENT altera_nios2_custom_instr_slave_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_nios2_custom_instr_slave_bfm";
+      }
+   }
+   COMPONENT altera_nios2_qsys 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/nios2_ip/altera_nios2";
+      }
+   }
+   COMPONENT altera_nios_custom_instr_bitswap 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/nios2_ip/altera_nios_custom_instr_bitswap_qsys";
+      }
+   }
+   COMPONENT altera_nios_custom_instr_endian_converter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/nios2_ip/altera_nios_custom_instr_endian_converter_qsys";
+      }
+   }
+   COMPONENT altera_nios_custom_instr_floating_point 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/nios2_ip/altera_nios_custom_instr_floating_point_qsys";
+      }
+   }
+   COMPONENT altera_nios_custom_instr_interrupt_vector 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/nios2_ip/altera_nios_custom_instr_interrupt_vector_qsys";
+      }
+   }
+   COMPONENT altera_pcie_av_hip_ast 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_av_hip_ast";
+      }
+   }
+   COMPONENT altera_pcie_av_hip_avmm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_av_hip_avmm";
+      }
+   }
+   COMPONENT altera_pcie_avgz_hip_ast 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avgz_hip_ast";
+      }
+   }
+   COMPONENT altera_pcie_avgz_hip_avmm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avgz_hip_avmm";
+      }
+   }
+   COMPONENT altera_pcie_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_pcie_bfm_qsys 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_pcie_conduit_fanout 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_pcie_cv_hip_ast 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_cv_hip_ast";
+      }
+   }
+   COMPONENT altera_pcie_cv_hip_avmm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_cv_hip_avmm";
+      }
+   }
+   COMPONENT altera_pcie_hard_ip 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_pcie_hip_ast_ed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_hip_ast_ed";
+      }
+   }
+   COMPONENT altera_pcie_internal_altgx 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_pcie_internal_hard_ip 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_pcie_internal_hard_ip_qsys 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_pcie_internal_pipe_interface 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_pcie_internal_pipe_interface_qsys 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_pcie_internal_reset_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_pcie_internal_reset_controller_qsys 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_avmm";
+      }
+   }
+   COMPONENT altera_pcie_reconfig_driver 
+   {
+      VERSION 1.0 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_hip_ast_ed";
+      }
+   }
+   COMPONENT altera_pcie_sv_hip_ast 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_sv_hip_ast";
+      }
+   }
+   COMPONENT altera_pcie_sv_hip_avmm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_sv_hip_avmm";
+      }
+   }
+   COMPONENT altera_pcie_tbed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie/altera_pcie_hip_ast_tbed";
+      }
+   }
+   COMPONENT altera_pll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pll/source/top";
+      }
+   }
+   COMPONENT altera_pll_reconfig 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pll_reconfig";
+      }
+   }
+   COMPONENT altera_qdrii_board_delay_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/board_delay_models/altera_qdrii_board_delay_model";
+      }
+   }
+   COMPONENT altera_rapidio 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_rapidio";
+      }
+   }
+   COMPONENT altera_rapidio2 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_rapidio2/src";
+      }
+   }
+   COMPONENT altera_reset_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_reset_bridge";
+      }
+   }
+   COMPONENT altera_reset_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_reset_controller";
+      }
+   }
+   COMPONENT altera_rldram3_board_delay_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/board_delay_models/altera_rldram3_board_delay_model";
+      }
+   }
+   COMPONENT altera_rldramii_board_delay_model 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/ed_comps/board_delay_models/altera_rldramii_board_delay_model";
+      }
+   }
+   COMPONENT altera_rs_ii 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/rs_ii/altera_rs_ii";
+      }
+   }
+   COMPONENT altera_rs_ser_bm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/rs_ii/src/rs_ucores/dec/altera_rs_ser_bm";
+      }
+   }
+   COMPONENT altera_rs_ser_correct 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/rs_ii/src/rs_ucores/dec/altera_rs_ser_correct";
+      }
+   }
+   COMPONENT altera_rs_ser_dec 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/rs_ii/src/dec/altera_rs_ser_dec";
+      }
+   }
+   COMPONENT altera_rs_ser_enc 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/rs_ii/src/enc/altera_rs_ser_enc";
+      }
+   }
+   COMPONENT altera_rs_ser_search 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/rs_ii/src/rs_ucores/dec/altera_rs_ser_search";
+      }
+   }
+   COMPONENT altera_rs_ser_syn 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/rs_ii/src/rs_ucores/dec/altera_rs_ser_syn";
+      }
+   }
+   COMPONENT altera_sdram_partner_module 
+   {
+      VERSION 11.0 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_mem_models/altera_sdram_partner_module";
+      }
+   }
+   COMPONENT altera_sld_hub_controller_system 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/core/altera_sld_hub_controller_system";
+      }
+   }
+   COMPONENT altera_streaming_sld_hub_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/st/altera_streaming_sld_hub_controller";
+      }
+   }
+   COMPONENT altera_streaming_sld_hub_controller_core 
+   {
+      VERSION 1.0 
+      {
+         local = "C:/altera/ip/altera/sld/st/altera_streaming_sld_hub_controller";
+      }
+   }
+   COMPONENT altera_super_fabric 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/core/altera_super_fabric";
+      }
+   }
+   COMPONENT altera_super_splitter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/core/altera_super_splitter";
+      }
+   }
+   COMPONENT altera_trace_av_st_monitor 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/monitors/altera_trace_av_st_example_monitor";
+      }
+   }
+   COMPONENT altera_trace_av_st_tap 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/monitors/altera_trace_av_st_tap";
+      }
+   }
+   COMPONENT altera_trace_av_st_video_pixel_grabber_monitor 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/monitors/av_st_video_pixel_grabber";
+      }
+   }
+   COMPONENT altera_trace_capture_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/core/altera_trace_capture_controller";
+      }
+   }
+   COMPONENT altera_trace_controller 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/core/altera_trace_controller";
+      }
+   }
+   COMPONENT altera_trace_dummy_monitor 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/monitors/altera_trace_dummy_monitor";
+      }
+   }
+   COMPONENT altera_trace_rom 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/core/altera_trace_rom";
+      }
+   }
+   COMPONENT altera_trace_system 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/core/altera_trace_system";
+      }
+   }
+   COMPONENT altera_trace_timestamp_monitor 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/monitors/altera_trace_ts_module";
+      }
+   }
+   COMPONENT altera_trace_transacto_lite 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/core/altera_trace_transacto_lite";
+      }
+   }
+   COMPONENT altera_trace_trigger_monitor 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/trace/monitors/altera_trace_trigger_monitor";
+      }
+   }
+   COMPONENT altera_tristate_conduit_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/verification/altera_tristate_conduit_bfm";
+      }
+   }
+   COMPONENT altera_tristate_conduit_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_tristate_conduit_bridge";
+      }
+   }
+   COMPONENT altera_tristate_conduit_bridge_translator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_tristate_conduit_bridge_translator";
+      }
+   }
+   COMPONENT altera_tristate_conduit_pin_sharer 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_tristate_conduit_pin_sharer";
+      }
+   }
+   COMPONENT altera_tristate_conduit_pin_sharer_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_tristate_conduit_pin_sharer_core";
+      }
+   }
+   COMPONENT altera_tristate_controller_aggregator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_tristate_controller_aggregator";
+      }
+   }
+   COMPONENT altera_tristate_controller_translator 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/merlin/altera_tristate_controller_translator";
+      }
+   }
+   COMPONENT altera_uniphy_ddr2 
+   {
+      VERSION 10.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/memphy/altera_uniphy_ddr2";
+      }
+   }
+   COMPONENT altera_uniphy_ddr3 
+   {
+      VERSION 10.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/memphy/altera_uniphy_ddr3";
+      }
+   }
+   COMPONENT altera_uniphy_driver 
+   {
+      VERSION 10.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/memphy/altera_uniphy_driver";
+      }
+   }
+   COMPONENT altera_uniphy_qdrii 
+   {
+      VERSION 10.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/memphy/altera_uniphy_qdrii";
+      }
+   }
+   COMPONENT altera_uniphy_rldramii 
+   {
+      VERSION 10.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/memphy/altera_uniphy_rldramii";
+      }
+   }
+   COMPONENT altera_up_avalon_audio 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/altera_up_avalon_audio";
+      }
+   }
+   COMPONENT altera_up_avalon_audio_and_video_config 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/altera_up_avalon_audio_and_video_config";
+      }
+   }
+   COMPONENT altera_up_avalon_character_lcd 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/altera_up_avalon_character_lcd";
+      }
+   }
+   COMPONENT altera_up_avalon_clocks 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/altera_up_avalon_clocks";
+      }
+   }
+   COMPONENT altera_up_avalon_de0_nano_adc 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Input_Output/altera_up_avalon_de0_nano_adc";
+      }
+   }
+   COMPONENT altera_up_avalon_de0_nano_adc_mega 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Input_Output/altera_up_avalon_de0_nano_adc";
+      }
+   }
+   COMPONENT altera_up_avalon_irda 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Communications/altera_up_avalon_irda";
+      }
+   }
+   COMPONENT altera_up_avalon_parallel_port 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Input_Output/altera_up_avalon_parallel_port";
+      }
+   }
+   COMPONENT altera_up_avalon_ps2 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Input_Output/altera_up_avalon_ps2";
+      }
+   }
+   COMPONENT altera_up_avalon_rs232 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Communications/altera_up_avalon_rs232";
+      }
+   }
+   COMPONENT altera_up_avalon_sram 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Memory/altera_up_avalon_sram";
+      }
+   }
+   COMPONENT altera_up_avalon_to_external_bus_bridge 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Bridges/altera_up_avalon_to_external_bus_bridge";
+      }
+   }
+   COMPONENT altera_up_avalon_video_alpha_blender 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_alpha_blender";
+      }
+   }
+   COMPONENT altera_up_avalon_video_bayer_resampler 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_bayer_resampler";
+      }
+   }
+   COMPONENT altera_up_avalon_video_bridge_raw_to_vip_bridge 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_vip_bridges";
+      }
+   }
+   COMPONENT altera_up_avalon_video_bridge_vip_to_raw_bridge 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_vip_bridges";
+      }
+   }
+   COMPONENT altera_up_avalon_video_character_buffer_with_dma 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_character_buffer_with_dma";
+      }
+   }
+   COMPONENT altera_up_avalon_video_chroma_resampler 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_chroma_resampler";
+      }
+   }
+   COMPONENT altera_up_avalon_video_clipper 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_clipper";
+      }
+   }
+   COMPONENT altera_up_avalon_video_csc 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_csc";
+      }
+   }
+   COMPONENT altera_up_avalon_video_decoder 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_decoder";
+      }
+   }
+   COMPONENT altera_up_avalon_video_dma_controller 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_dma_controller";
+      }
+   }
+   COMPONENT altera_up_avalon_video_dual_clock_buffer 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_dual_clock_buffer";
+      }
+   }
+   COMPONENT altera_up_avalon_video_edge_detection 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_edge_detection";
+      }
+   }
+   COMPONENT altera_up_avalon_video_pixel_buffer_dma 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_pixel_buffer_dma";
+      }
+   }
+   COMPONENT altera_up_avalon_video_rgb_resampler 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_rgb_resampler";
+      }
+   }
+   COMPONENT altera_up_avalon_video_scaler 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_scaler";
+      }
+   }
+   COMPONENT altera_up_avalon_video_stream_router 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_stream_router";
+      }
+   }
+   COMPONENT altera_up_avalon_video_test_pattern 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_test_pattern";
+      }
+   }
+   COMPONENT altera_up_avalon_video_vga_controller 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_vga_controller";
+      }
+   }
+   COMPONENT altera_up_clocks 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/altera_up_clocks";
+      }
+   }
+   COMPONENT altera_up_external_bus_to_avalon_bridge 
+   {
+      VERSION 12.0 
+      {
+         local = "C:/altera/ip/University_Program/Bridges/altera_up_external_bus_to_avalon_bridge";
+      }
+   }
+   COMPONENT altera_usb_debug_fifos 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/usb/altera_usb_debug_fifos";
+      }
+   }
+   COMPONENT altera_usb_debug_link 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/usb/altera_usb_debug_link";
+      }
+   }
+   COMPONENT altera_usb_debug_master 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sld/usb/altera_usb_debug_master";
+      }
+   }
+   COMPONENT altera_vic 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_vectored_interrupt_controller/top";
+      }
+   }
+   COMPONENT altera_vic_csr 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_vectored_interrupt_controller/csr";
+      }
+   }
+   COMPONENT altera_vic_priority 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_vectored_interrupt_controller/priority";
+      }
+   }
+   COMPONENT altera_vic_vector 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_vectored_interrupt_controller/vector";
+      }
+   }
+   COMPONENT altera_xcvr_10gbase_kr 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr/altera_xcvr_10gbase_kr/altera_xcvr_10gbase_kr/tcl";
+      }
+   }
+   COMPONENT altera_xcvr_10gbaser 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_10gbaser_phy/altera_10gbaser_phy";
+      }
+   }
+   COMPONENT altera_xcvr_custom_phy 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_xcvr_8g_custom/xcvr_generic";
+      }
+   }
+   COMPONENT altera_xcvr_det_latency 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_xcvr_det_latency/xcvr_generic";
+      }
+   }
+   COMPONENT altera_xcvr_interlaken 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken/alt_interlaken_pcs";
+      }
+   }
+   COMPONENT altera_xcvr_low_latency_phy 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_pma/source/altera_xcvr_low_latency_phy";
+      }
+   }
+   COMPONENT altera_xcvr_native_av 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr/altera_xcvr_native_phy/av/tcl";
+      }
+   }
+   COMPONENT altera_xcvr_native_avgz 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr/altera_xcvr_native_phy/avgz/tcl";
+      }
+   }
+   COMPONENT altera_xcvr_native_cv 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr/altera_xcvr_native_phy/cv/tcl";
+      }
+   }
+   COMPONENT altera_xcvr_native_sv 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr/altera_xcvr_native_phy/sv/tcl";
+      }
+   }
+   COMPONENT altera_xcvr_pipe 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie_pipe/xcvr_generic";
+      }
+   }
+   COMPONENT altera_xcvr_pll_av 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr/altera_xcvr_pll/av/tcl";
+      }
+   }
+   COMPONENT altera_xcvr_pll_avgz 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr/altera_xcvr_pll/avgz/tcl";
+      }
+   }
+   COMPONENT altera_xcvr_pll_sv 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr/altera_xcvr_pll/sv/tcl";
+      }
+   }
+   COMPONENT altera_xcvr_reset_control 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr/altera_xcvr_reset_control/tcl";
+      }
+   }
+   COMPONENT altera_xcvr_xaui 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xaui/lib";
+      }
+   }
+   COMPONENT altpll 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_altpll";
+      }
+   }
+   COMPONENT audio_embed 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/audio_embed/src";
+      }
+   }
+   COMPONENT audio_extract 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/audio_extract/src";
+      }
+   }
+   COMPONENT clocked_audio_input 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/clocked_audio_input/src";
+      }
+   }
+   COMPONENT clocked_audio_output 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/clocked_audio_output/src";
+      }
+   }
+   COMPONENT configure_reconfig 
+   {
+      VERSION 100.99.98.97 
+      {
+         local = "C:/altera/ip/altera/ethernet/altera_eth_10g_design_example/design_example_components/base_kr";
+      }
+   }
+   COMPONENT hcx_rom_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/hcx_rom_bridge";
+      }
+   }
+   COMPONENT ilk_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_interlaken_hp/ilk_top";
+      }
+   }
+   COMPONENT mgc_axi4_inline_monitor 
+   {
+      VERSION 10.1.3.1 
+      {
+         local = "C:/altera/ip/altera/mentor_vip_ae/axi4/bfm";
+      }
+   }
+   COMPONENT mgc_axi4_master 
+   {
+      VERSION 10.1.3.1 
+      {
+         local = "C:/altera/ip/altera/mentor_vip_ae/axi4/bfm";
+      }
+   }
+   COMPONENT mgc_axi4_slave 
+   {
+      VERSION 10.1.3.1 
+      {
+         local = "C:/altera/ip/altera/mentor_vip_ae/axi4/bfm";
+      }
+   }
+   COMPONENT mgc_axi_inline_monitor 
+   {
+      VERSION 10.1.3.1 
+      {
+         local = "C:/altera/ip/altera/mentor_vip_ae/axi3/bfm";
+      }
+   }
+   COMPONENT mgc_axi_master 
+   {
+      VERSION 10.1.3.1 
+      {
+         local = "C:/altera/ip/altera/mentor_vip_ae/axi3/bfm";
+      }
+   }
+   COMPONENT mgc_axi_slave 
+   {
+      VERSION 10.1.3.1 
+      {
+         local = "C:/altera/ip/altera/mentor_vip_ae/axi3/bfm";
+      }
+   }
+   COMPONENT pci_lite 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_pci_lite";
+      }
+   }
+   COMPONENT pof_avalon_mm_mmr_driver 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/alt_mem_if_example_design_components/pof_avalon_mm_mmr_driver";
+      }
+   }
+   COMPONENT pof_avalon_mm_traffic_generator_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_avalon_mm_traffic_generator/pof_avalon_mm_traffic_generator_core";
+      }
+   }
+   COMPONENT qsys_sequencer_110 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/qsys_sequencer_110";
+      }
+   }
+   COMPONENT sdi_ii 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii";
+      }
+   }
+   COMPONENT sdi_ii_ed_loopback 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_ed_loopback";
+      }
+   }
+   COMPONENT sdi_ii_ed_reconfig_mgmt 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_ed_reconfig_mgmt";
+      }
+   }
+   COMPONENT sdi_ii_ed_reconfig_router 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_ed_reconfig_router";
+      }
+   }
+   COMPONENT sdi_ii_ed_vid_pattgen 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_ed_vid_pattgen";
+      }
+   }
+   COMPONENT sdi_ii_example_design 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_example_design";
+      }
+   }
+   COMPONENT sdi_ii_phy_adapter 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_library/sdi_ii_phy_adapter";
+      }
+   }
+   COMPONENT sdi_ii_rx_phy_mgmt 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_library/sdi_ii_rx_phy_mgmt";
+      }
+   }
+   COMPONENT sdi_ii_rx_protocol 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_library/sdi_ii_rx_protocol";
+      }
+   }
+   COMPONENT sdi_ii_tb 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_tb";
+      }
+   }
+   COMPONENT sdi_ii_tb_control 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_tb_control";
+      }
+   }
+   COMPONENT sdi_ii_tb_rx_checker 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_tb_rx_checker";
+      }
+   }
+   COMPONENT sdi_ii_tb_tx_checker 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_tb_tx_checker";
+      }
+   }
+   COMPONENT sdi_ii_tx_phy_mgmt 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_library/sdi_ii_tx_phy_mgmt";
+      }
+   }
+   COMPONENT sdi_ii_tx_protocol 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sdi_ii/sdi_ii_library/sdi_ii_tx_protocol";
+      }
+   }
+   COMPONENT seq_sim_apb_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/seq_sim_apb_bfm";
+      }
+   }
+   COMPONENT seq_sim_bfm 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/seq_sim_bfm";
+      }
+   }
+   COMPONENT sequencer_data_mgr_110 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/data_mgr_110";
+      }
+   }
+   COMPONENT sequencer_phy_mgr_100 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/phy_mgr_100";
+      }
+   }
+   COMPONENT sequencer_ptr_mgr_100 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/ptr_mgr_100";
+      }
+   }
+   COMPONENT sequencer_reg_file_111 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/reg_file_111";
+      }
+   }
+   COMPONENT sequencer_rw_mgr_ddr2_110 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/rw_mgr_110";
+      }
+   }
+   COMPONENT sequencer_rw_mgr_ddr3_110 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/rw_mgr_110";
+      }
+   }
+   COMPONENT sequencer_rw_mgr_lpddr2_110 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/rw_mgr_110";
+      }
+   }
+   COMPONENT sequencer_rw_mgr_lpddr_111 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/rw_mgr_110";
+      }
+   }
+   COMPONENT sequencer_rw_mgr_qdrii_110 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/rw_mgr_110";
+      }
+   }
+   COMPONENT sequencer_rw_mgr_rldram3_110 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/rw_mgr_110";
+      }
+   }
+   COMPONENT sequencer_rw_mgr_rldram_110 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/rw_mgr_110";
+      }
+   }
+   COMPONENT sequencer_scc_mgr_100 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/scc_mgr_100";
+      }
+   }
+   COMPONENT sequencer_scc_mgr_110 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/scc_mgr_110";
+      }
+   }
+   COMPONENT sequencer_timer_120 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/seq_timer_120";
+      }
+   }
+   COMPONENT sequencer_trk_mgr 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_mem_if_qseq/trk_mgr_110";
+      }
+   }
+   COMPONENT simple_1mm_traffic_gen_core 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_mem_if/altera_avalon_mm_traffic_generator/simple_1mm_traffic_gen_core";
+      }
+   }
+   COMPONENT sls_avalon_udsc 
+   {
+      VERSION 1.2 
+      {
+         local = "C:/altera/ip/sls/udsc/hardware/component";
+      }
+   }
+   COMPONENT sls_avalon_udsc 
+   {
+      VERSION 1.0 
+      {
+         local = "C:/altera/ip/sls/usb20sr/udsc/hardware/component";
+      }
+   }
+   COMPONENT sls_avalon_usb20hc 
+   {
+      VERSION 1.4 
+      {
+         local = "C:/altera/ip/sls/usb20hc/hardware/component";
+      }
+   }
+   COMPONENT sls_avalon_usb20hr 
+   {
+      VERSION 2.4 
+      {
+         local = "C:/altera/ip/sls/usb20hr/hardware/component";
+      }
+   }
+   COMPONENT sls_avalon_usb20sr 
+   {
+      VERSION 1.2 
+      {
+         local = "C:/altera/ip/sls/usb20sr/hardware/component";
+      }
+   }
+   COMPONENT sls_avalon_usb20sr 
+   {
+      VERSION 1.0 
+      {
+         local = "C:/altera/ip/sls/usb20sr/usb20sr/hardware/component";
+      }
+   }
+   COMPONENT spi_slave_to_avalon_mm_master_bridge 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_spislave_to_avalonmm_bridge";
+      }
+   }
+   COMPONENT spislave 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/sopc_builder_ip/altera_avalon_spi_phy_slave";
+      }
+   }
+   COMPONENT sv_xcvr_custom 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_xcvr_8g_custom/sv";
+      }
+   }
+   COMPONENT sv_xcvr_pipe_native 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/altera_pcie_pipe/sv";
+      }
+   }
+   COMPONENT sv_xcvr_reconfig_basic 
+   {
+      VERSION 12.1 
+      {
+         local = "C:/altera/ip/altera/alt_xcvr_reconfig/alt_xcvr_reconfig_basic";
+      }
+   }
+}

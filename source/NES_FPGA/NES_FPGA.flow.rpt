@@ -1,0 +1,136 @@
+Flow report for NES_FPGA
+Sat Aug 23 19:17:05 2014
+Quartus II 32-bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2012 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++------------------------------------+------------------------------------------+
+; Flow Status                        ; Successful - Sat Aug 23 19:16:43 2014    ;
+; Quartus II 32-bit Version          ; 12.1 Build 177 11/07/2012 SJ Web Edition ;
+; Revision Name                      ; NES_FPGA                                 ;
+; Top-level Entity Name              ; NES_FPGA                                 ;
+; Family                             ; Cyclone IV GX                            ;
+; Device                             ; EP4CGX150DF31C7                          ;
+; Timing Models                      ; Final                                    ;
+; Total logic elements               ; 3,652 / 149,760 ( 2 % )                  ;
+;     Total combinational functions  ; 3,233 / 149,760 ( 2 % )                  ;
+;     Dedicated logic registers      ; 2,063 / 149,760 ( 1 % )                  ;
+; Total registers                    ; 2182                                     ;
+; Total pins                         ; 250 / 508 ( 49 % )                       ;
+; Total virtual pins                 ; 0                                        ;
+; Total memory bits                  ; 48,128 / 6,635,520 ( < 1 % )             ;
+; Embedded Multiplier 9-bit elements ; 0 / 720 ( 0 % )                          ;
+; Total GXB Receiver Channel PCS     ; 0 / 8 ( 0 % )                            ;
+; Total GXB Receiver Channel PMA     ; 0 / 8 ( 0 % )                            ;
+; Total GXB Transmitter Channel PCS  ; 0 / 8 ( 0 % )                            ;
+; Total GXB Transmitter Channel PMA  ; 0 / 8 ( 0 % )                            ;
+; Total PLLs                         ; 2 / 8 ( 25 % )                           ;
++------------------------------------+------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 08/23/2014 19:13:07 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; NES_FPGA            ;
++-------------------+---------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                                                                  ;
++-------------------------------------+------------------------------------------------------------------------------------------------------------------+---------------+-------------+------------+
+; Assignment Name                     ; Value                                                                                                            ; Default Value ; Entity Name ; Section Id ;
++-------------------------------------+------------------------------------------------------------------------------------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID               ; 17727277232746.140881398702868                                                                                   ; --            ; --          ; --         ;
+; IP_TOOL_ENV                         ; sopc                                                                                                             ; --            ; nios_system ; --         ;
+; IP_TOOL_NAME                        ; RAM: 2-PORT                                                                                                      ; --            ; --          ; --         ;
+; IP_TOOL_NAME                        ; ALTPLL                                                                                                           ; --            ; --          ; --         ;
+; IP_TOOL_NAME                        ; sopc                                                                                                             ; --            ; nios_system ; --         ;
+; IP_TOOL_VERSION                     ; 8.0                                                                                                              ; --            ; --          ; --         ;
+; IP_TOOL_VERSION                     ; 12.1                                                                                                             ; --            ; --          ; --         ;
+; IP_TOOL_VERSION                     ; 12.1                                                                                                             ; --            ; nios_system ; --         ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                                                                                               ; --            ; --          ; --         ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                                                                                                ; --            ; --          ; --         ;
+; MISC_FILE                           ; c:/altera/ip/University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Card_Memory_Block.bsf ; --            ; --          ; --         ;
+; MISC_FILE                           ; c:/altera/ip/University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Card_Memory_Block.cmp ; --            ; --          ; --         ;
+; MISC_FILE                           ; pixel_clock.ppf                                                                                                  ; --            ; --          ; --         ;
+; PARTITION_COLOR                     ; 16764057                                                                                                         ; --            ; --          ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                                                                                            ; --            ; --          ; Top        ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                                                                                                           ; --            ; --          ; Top        ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                                                                              ; --            ; --          ; --         ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                                                            ; --            ; --          ; --         ;
+; SOPC_BUILDER_SIGNATURE_ID           ; 3859F975A9990000014803D2BF38                                                                                     ; --            ; --          ; --         ;
++-------------------------------------+------------------------------------------------------------------------------------------------------------------+---------------+-------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:56     ; 1.0                     ; 456 MB              ; 00:00:54                           ;
+; Fitter                    ; 00:02:05     ; 2.2                     ; 824 MB              ; 00:02:33                           ;
+; Assembler                 ; 00:00:25     ; 1.0                     ; 402 MB              ; 00:00:25                           ;
+; TimeQuest Timing Analyzer ; 00:00:20     ; 1.2                     ; 512 MB              ; 00:00:21                           ;
+; Total                     ; 00:03:46     ; --                      ; --                  ; 00:04:13                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++---------------------------+------------------+-----------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
++---------------------------+------------------+-----------+------------+----------------+
+; Analysis & Synthesis      ; Sergio-PC        ; Windows 7 ; 6.1        ; x86_64         ;
+; Fitter                    ; Sergio-PC        ; Windows 7 ; 6.1        ; x86_64         ;
+; Assembler                 ; Sergio-PC        ; Windows 7 ; 6.1        ; x86_64         ;
+; TimeQuest Timing Analyzer ; Sergio-PC        ; Windows 7 ; 6.1        ; x86_64         ;
++---------------------------+------------------+-----------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off NES_FPGA -c NES_FPGA
+quartus_fit --read_settings_files=off --write_settings_files=off NES_FPGA -c NES_FPGA
+quartus_asm --read_settings_files=off --write_settings_files=off NES_FPGA -c NES_FPGA
+quartus_sta NES_FPGA -c NES_FPGA
+
+
+
