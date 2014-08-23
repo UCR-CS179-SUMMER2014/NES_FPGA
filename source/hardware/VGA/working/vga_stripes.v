@@ -1,5 +1,6 @@
-/* Module: vga_stripes
-	Generates an "image" on screen */
+/* Module:      vga_stripes
+	Description: Generates an "image" on 
+					 screen when VIDON is enabled */
 module vga_stripes(
 	VIDON,
 	HC,
@@ -10,6 +11,9 @@ module vga_stripes(
 	SW
 	);
 
+// |--------------------|
+// | Port Declarations  |
+// | -------------------|
 input VIDON;
 input [9:0] HC;
 input [9:0] VC;
@@ -19,8 +23,13 @@ output [7:0] B;
 
 input [17:0] SW;	
 
-reg [7:0] Rr, Gg, Bb;
 
+
+
+// |---------------------|
+// | Signal Declarations |
+// | --------------------|
+reg [7:0] Rr, Gg, Bb;
 assign R = Rr;
 assign G = Gg;
 assign B = Bb;
@@ -53,12 +62,18 @@ begin
 			Rr <= 0;
 			Gg <= 0;
 		end*/
+		
+		/*if( (VC > 250 && VC < 350) && (HC > 450 && HC < 550 ))
+		begin
+		/* Switch-Color test. Works! 
 		Rr <= SW[17:10];
 		Bb <= SW[9:2];
-		Gg[1:0] <= SW[1:0];
-		Gg[7:2] <= {VC[4],VC[4],VC[4],VC[4],VC[4],VC[4]};
-		/*Rr <= {VC[4],VC[4],VC[4],VC[4],VC[4],VC[4],VC[4],VC[4]};
-		Bb <= {VC[4],VC[4],VC[4],VC[4],VC[4],VC[4],VC[4],VC[4]};*/
+		Gg[1:0] <= {SW[1:0],1'b0,1'b0,1'b0,1'b0,1'b0,1'b0};
+		end*/
+		
+		Gg <= VC;
+		Rr <= HC;
+		Bb <= VC;
 	end
 end
 	
