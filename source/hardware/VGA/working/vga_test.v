@@ -65,45 +65,45 @@ inout 		          		FAN_CTRL;
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
-wire vidon_w;
-wire hc_w;
-wire vc_w;
-wire pclock_w;
+wire       vidon_w;   // Data enable for RGB (when high)
+wire [9:0] hc_w;		 // Horizontal Counter (AKA X position)
+wire [9:0] vc_w;      // Vertical Counter (AKA Y Position)
+wire       pclock_w;  // Pixel Clock [25Mhz for 640x480 res]
 
 //=======================================================
 //  Structural coding
 //=======================================================
-
-pixel_clock PCLOCK(
-	.inclk0( CLOCK_50 ),
-	.c0( pclock_w)
-);
-
-vga640x480 VGA(
-	.CLK( pclock_w ),
-	.CLR( ~KEY[0] ),
-	.HSYNC( VGA_HS ),
-	.VSYNC( VGA_VS ),
-	.HC( hc_w ),
-	.VC( vc_w ),
-	.VIDON( vidon_w )
-);
-
-vga_stripes COLOR_GEN(
-	.VIDON( vidon_w ),
-	.HC( hc_w ),
-	.VC( vc_w ),
-	.R( VGA_R ),
-	.G( VGA_G ),
-	.B( VGA_B ),
-	.SW( SW )
-);
-
-
-	//////////// FAN Control //////////
 assign FAN_CTRL = 1'bz; // turn on FAN
-assign VGA_BLANK_N = 1;
-assign VGA_SYNC_N = 0;
+assign VGA_BLANK_N = 1; // VGA reset? Disable.
+assign VGA_SYNC_N = 0;  // Not sure what this is, keep active though.
 assign VGA_CLK = pclock_w;
+
+// Module/component connections
+pixel_clock PCLOCK(		  // Altera PLL 
+	.inclk0( CLOCK_50 ),   // 50Mhz input
+	.c0( pclock_w)	        // Outputs 25Mhz clock
+);
+
+vga640x480 VGA(       // 640x480 signal generator
+	.CLK( pclock_w ),  // Pixel Clock
+	.CLR( ~KEY[0] ),   // Clear, aka Reset
+	.HSYNC( VGA_HS ),  // Horizontal Sync
+	.VSYNC( VGA_VS ),  // Vertical Sync
+	.HC( hc_w ),       // Horizontal Counter/Position
+	.VC( vc_w ),       // Vertical Counter/Position
+	.VIDON( vidon_w )  // VIDON enable signal
+);
+
+vga_stripes COLOR_GEN( // Display generator
+	.VIDON( vidon_w ),  // VIDON enable signa;
+	.HC( hc_w ),        // Horizontal Counter/Position
+	.VC( vc_w ),        // Vertical Counter/Position
+	.R( VGA_R ),        // Red data
+	.G( VGA_G ),        // Green data
+	.B( VGA_B ),        // Blue data
+	.SW( SW )           // Switches for color testing
+);
+
+
 
 endmodule
