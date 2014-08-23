@@ -1,5 +1,9 @@
 /* Module: vga640x480
-   Displays resolution mode on screen. */
+	Description: Generates VGA signals for 640x480 resolution
+					 using a 25 MHz pixel clock. Once Vertical and
+					 Horizontal sync signals are in between front
+					 and back porch, VIDON is enabled 
+					 to display data. */
 module vga640x480(
 	CLK,
 	CLR,
@@ -10,6 +14,9 @@ module vga640x480(
 	VIDON
 );
 
+// |--------------------|
+// | Port Declarations  |
+// | -------------------|
 input CLK;  // Clock
 input CLR;  // Clear
 
@@ -19,8 +26,12 @@ output VSYNC; // Vertical Sync
 output [9:0] HC; // Horizontal Counter
 output [9:0] VC; // Vertical Counter
 
-output VIDON;
+output VIDON;    // When active, data may be displayed
 
+
+// |------------------------|
+// | Parameters (Constants) |
+// | -----------------------|
 localparam hpixels = 800 /*10'b1100100000*/, // Pixels in horizontal line = 800
 		      vlines = 521 /*10'b1000001001*/, // Horizontal lines = 521
 			      hbp = 144 /*10'b1100010000*/, // Horizontal Back Porch = 144 (128+16)
@@ -30,7 +41,7 @@ localparam hpixels = 800 /*10'b1100100000*/, // Pixels in horizontal line = 800
 			      vfp = 511 /*10'b0111111111*/; // Vertical Front Porch = 511 (2+29+480)
 			   
 reg [9:0] HCS, VCS; // Horizontal and Vertical counters
-reg VSenable;		// Enable for Vertical counter
+reg VSenable;		  // Enable for Vertical counter
 
 
 assign HC    = HCS;
@@ -43,10 +54,10 @@ assign VIDON = (((HCS < hfp) && (HCS >= hbp)) && ((VCS < vfp) && (VCS >= vbp))) 
 // Counter for the horizontal sync signal
 always @ (posedge CLK)
 begin
-	/*if(CLR == 1'b1)
+	if(CLR == 1'b1)
 		HCS <= 10'b0000000000;
-	else */
-	if(CLK == 1'b1) 
+	
+	else if(CLK == 1'b1) 
 	begin
 		if(HCS < (hpixels - 1'b1) )
 		begin
@@ -67,9 +78,10 @@ end
 // Counter for the vertical sync signal
 always @ (posedge CLK)
 begin
-	/*if(CLR == 1'b1)
+	if(CLR == 1'b1)
 		VCS <= 10'b0000000000;
-	else */if(CLK == 1'b1 && VSenable == 1'b1)
+		
+	else if(CLK == 1'b1 && VSenable == 1'b1)
 	begin
 		// Increment when enabled
 		if( VCS < (vlines - 1'b1) )
