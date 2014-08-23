@@ -10,12 +10,11 @@
 // ----------------------------------------------------------
 //	Date:    August 23, 2014
 // Authors: Sergio Morales,
-//			  	Randy Truong,
-//			  	Omar Torres,
-//			  	Hector Dominguez,
-//			  	Kevin Mitton;
+//          Randy Truong,
+//	    Omar Torres,
+//	    Hector Dominguez,
+//	    Kevin Mitton;
 //===========================================================
-
 module NES_FPGA(
 
 	CLOCK_50, CLOCK2_50, CLOCK3_50, 						 // Clocks
@@ -78,15 +77,56 @@ inout    	  FAN_CTRL;
 //=======================================================
 wire [11:0] controller1_w;	  // SNES Controller 1 Buttons
 
+/* VGA Wires */
+wire       pclock_w;  // Pixel Clock [25Mhz for 640x480 res]
+wire       vidon_w;   // Data enable for RGB (when high)
+wire [9:0] hc_w;		 // Horizontal Counter (AKA X position)
+wire [9:0] vc_w;      // Vertical Counter (AKA Y Position)
+
+
+
+//=======================================================
+//  Wire/Port assignments
+//=======================================================
+assign LEDR[11:0] = controller1_w;
+assign FAN_CTRL = 1'bz;
+
+/* VGA Assignments */
+assign VGA_BLANK_N = 1; // VGA reset? Disable.
+assign VGA_SYNC_N = 0;  // Not sure what this is, keep active though.
+assign VGA_CLK = pclock_w;
 
 
 //=======================================================
 //  Structural coding
 //=======================================================
-assign LEDR[11:0] = controller1_w;
-assign FAN_CTRL = 1'bz;
 
 
+
+/* Video Display (VGA) */
+pixel_clock PCLOCK(		  // Altera PLL 
+	.inclk0( CLOCK_50 ),   // 50Mhz input
+	.c0( pclock_w)	        // Outputs 25Mhz clock
+);
+
+vga640x480 VGA(       // 640x480 signal generator
+	.CLK( pclock_w ),  // Pixel Clock
+	.CLR( ~KEY[0] ),   // Clear, aka Reset
+	.HSYNC( VGA_HS ),  // Horizontal Sync
+	.VSYNC( VGA_VS ),  // Vertical Sync
+	.HC( hc_w ),       // Horizontal Counter/Position
+	.VC( vc_w ),       // Vertical Counter/Position
+	.VIDON( vidon_w )  // VIDON enable signal
+);
+
+color_gen  IMG_GEN(    // Display generator
+	.VIDON( vidon_w ),  // VIDON enable signa;
+	.HC( hc_w ),        // Horizontal Counter/Position
+	.VC( vc_w ),        // Vertical Counter/Position
+	.R( VGA_R ),        // Red data
+	.G( VGA_G ),        // Green data
+	.B( VGA_B )         // Blue data
+);
 
 
 
