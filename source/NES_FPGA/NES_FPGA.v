@@ -8,7 +8,7 @@
 //   / /   \ \/ /  / /___   ____\  \          |  |
 //	 /_/     \__/  /_____/  /_______/          |__|
 // ----------------------------------------------------------
-//	Date:    August 23, 2014
+//	Date:    August 28, 2014
 // Authors: Sergio Morales,
 //				Randy Truong,
 //				Omar Torres,
@@ -85,6 +85,9 @@ wire       vidon_w;   // Data enable for RGB (when high)
 wire [9:0] hc_w;		 // Horizontal Counter (AKA X position)
 wire [9:0] vc_w;      // Vertical Counter (AKA Y Position)
 
+wire [3:0] addr_w;
+wire [15:0] M_w;
+
 /* NIOS I/O Ports */
 reg [7:0] input_one, output_one;
 
@@ -131,14 +134,30 @@ vga640x480 VGA(       // 640x480 signal generator
 	.VIDON( vidon_w )  // VIDON enable signal
 );
 
-color_gen  IMG_GEN(    // Display generator
-	.VIDON( vidon_w ),  // VIDON enable signa;
-	.HC( hc_w ),        // Horizontal Counter/Position
-	.VC( vc_w ),        // Vertical Counter/Position
-	.R( VGA_R ),        // Red data
-	.G( VGA_G ),        // Green data
-	.B( VGA_B )         // Blue data
+prom_DMH CHAR_ROM(		// Grabs an 8x8 sprite
+	.addr(addr_w),
+	.M(M_w)
 );
+
+vga_text  VGA_TEXT_DISP (	// Displays text on VGA
+	.vidon( vidon_w ),
+	.hc( hc_w ),
+	.vc( vc_w),
+	.M( M_w ),        	// The byte from the sprite to be sent
+	.SW( SW[7:0] ),		// Sets the starting x,y position of sprite
+	.rom_addr( addr_w ),
+	.R( VGA_R ),
+	.G( VGA_G ),
+	.B( VGA_B )
+);
+//color_gen  IMG_GEN(    // Display generator. Display THIS or VGA_TEXT_DISP. Comment one out.
+//	.VIDON( vidon_w ),  // VIDON enable signa;
+//	.HC( hc_w ),        // Horizontal Counter/Position
+//	.VC( vc_w ),        // Vertical Counter/Position
+//	.R( VGA_R ),        // Red data
+//	.G( VGA_G ),        // Green data
+//	.B( VGA_B )         // Blue data
+//);
 
 
 

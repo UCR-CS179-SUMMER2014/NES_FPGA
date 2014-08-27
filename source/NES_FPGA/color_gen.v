@@ -39,6 +39,7 @@ begin
 	// When VIDON is enabled
 	if( VIDON == 1'b1 )
 	begin
+	
 		// Begin color generation
 		G <= VC;
 		R <= HC;

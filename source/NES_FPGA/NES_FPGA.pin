@@ -70,7 +70,7 @@
  -- Pin directions (input, output or bidir) are based on device operating in user mode.
  ---------------------------------------------------------------------------------
 
-Quartus II 32-bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
+Quartus II 64-Bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
 CHIP  "NES_FPGA"  ASSIGNED TO AN: EP4CGX150DF31C7
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
@@ -491,8 +491,8 @@ VGA_CLK                      : D27       : output : 3.3-V LVTTL       :         
 GPIO[17]                     : D28       : bidir  : 3.3-V LVTTL       :         : 7         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : D29       :        :                   :         : 6         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : D30       :        :                   :         : 6         :                
-altera_reserved_tms          : E1        : input  : 2.5 V             :         : 9         : N              
-altera_reserved_tdi          : E2        : input  : 2.5 V             :         : 9         : N              
+TMS                          : E1        : input  :                   :         : 9         :                
+TDI                          : E2        : input  :                   :         : 9         :                
 HEX3[4]                      : E3        : output : 2.5 V             :         : 8         : Y              
 HEX3[3]                      : E4        : output : 2.5 V             :         : 8         : Y              
 GND                          : E5        : gnd    :                   :         :           :                
@@ -521,8 +521,8 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : E27       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : E28       :        :                   :         : 6         :                
 GND                          : E29       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : E30       :        :                   :         : 6         :                
-altera_reserved_tdo          : F1        : output : 2.5 V             :         : 9         : N              
-altera_reserved_tck          : F2        : input  : 2.5 V             :         : 9         : N              
+TDO                          : F1        : output :                   :         : 9         :                
+TCK                          : F2        : input  :                   :         : 9         :                
 GND                          : F3        : gnd    :                   :         :           :                
 HEX2[5]                      : F4        : output : 2.5 V             :         : 8         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : F5        :        :                   :         : 8         :                

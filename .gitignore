@@ -2,5 +2,5 @@
 source/cpu/nes_cpu
 source/cpu/*~
 source/cpu/#*
-
-
+source/NES_FPGA/db
+source/NES_FPGA/incremental_db

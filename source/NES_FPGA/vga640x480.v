@@ -34,7 +34,7 @@ output VIDON;    // When active, data may be displayed
 // | -----------------------|
 localparam hpixels = 800 /*10'b1100100000*/, // Pixels in horizontal line = 800
 		      vlines = 521 /*10'b1000001001*/, // Horizontal lines = 521
-			      hbp = 144 /*10'b1100010000*/, // Horizontal Back Porch = 144 (128+16)
+			      hbp = 144 /*10'b0010010000*/, // Horizontal Back Porch = 144 (128+16)
 			      hfp = 784 /*10'b1100010000*/, // Horizontal Front Porch = 784 (128+16+640)
 			   
 			      vbp = 31  /*10'b0000011111*/, // Vertical Back Porch = 31 (2+29)
@@ -48,7 +48,7 @@ assign HC    = HCS;
 assign VC    = VCS;
 assign HSYNC = (HCS < 128) ? 1'b0 : 1'b1; // HS Pulse is low for HCS from 0-127
 assign VSYNC = (VCS < 2)   ? 1'b0 : 1'b1; // VS Pulse is low for VCS from 0-1
-assign VIDON = (((HCS < hfp) && (HCS >= hbp)) && ((VCS < vfp) && (VCS >= vbp))) ? 1 : 0;
+assign VIDON = (((HCS < hfp) && (HCS >= hbp)) && ((VCS < vfp) && (VCS >= vbp))) ? 1'b1 : 1'b0;
 
 
 // Counter for the horizontal sync signal
