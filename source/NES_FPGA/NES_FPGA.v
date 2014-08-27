@@ -94,6 +94,9 @@ reg [7:0] input_one, output_one;
 assign LEDR[11:0] = controller1_w;
 assign FAN_CTRL = 1'bz;
 
+assign LEDG = output_one;
+
+
 /* VGA Assignments */
 assign VGA_BLANK_N = 1; // VGA reset? Disable.
 assign VGA_SYNC_N = 0;  // Not sure what this is, keep active though.
@@ -105,8 +108,10 @@ assign VGA_CLK = pclock_w;
 //  Structural coding
 //=======================================================
 
-
-
+always @ *
+begin
+	input_one = SW;
+end
 /* 
 	Video Display (VGA) 
 	-------------------

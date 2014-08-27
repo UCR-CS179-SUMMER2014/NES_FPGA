@@ -1,14 +1,14 @@
-Fitter Status : Successful - Sat Aug 23 19:16:12 2014
+Fitter Status : Successful - Mon Aug 25 16:44:15 2014
 Quartus II 32-bit Version : 12.1 Build 177 11/07/2012 SJ Web Edition
 Revision Name : NES_FPGA
 Top-level Entity Name : NES_FPGA
 Family : Cyclone IV GX
 Device : EP4CGX150DF31C7
 Timing Models : Final
-Total logic elements : 3,652 / 149,760 ( 2 % )
-    Total combinational functions : 3,233 / 149,760 ( 2 % )
-    Dedicated logic registers : 2,063 / 149,760 ( 1 % )
-Total registers : 2182
+Total logic elements : 3,683 / 149,760 ( 2 % )
+    Total combinational functions : 3,263 / 149,760 ( 2 % )
+    Dedicated logic registers : 2,071 / 149,760 ( 1 % )
+Total registers : 2190
 Total pins : 250 / 508 ( 49 % )
 Total virtual pins : 0
 Total memory bits : 48,128 / 6,635,520 ( < 1 % )
