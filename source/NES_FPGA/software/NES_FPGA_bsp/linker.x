@@ -1,10 +1,10 @@
 /*
  * linker.x - Linker script
  *
- * Machine generated for CPU 'cpu_0' in SOPC Builder design 'nios_system'
- * SOPC Builder design path: C:/Users/Sergio/Desktop/CS179J-NES_FPGA/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
+ * Machine generated for CPU 'CPU' in SOPC Builder design 'nios_system'
+ * SOPC Builder design path: C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
  *
- * Generated: Sun Aug 24 22:45:15 CEST 2014
+ * Generated: Thu Aug 28 16:34:15 CEST 2014
  */
 
 /*
@@ -50,13 +50,11 @@
 
 MEMORY
 {
-    onchip_memory2_0 : ORIGIN = 0x2000, LENGTH = 4096
     reset : ORIGIN = 0x8000000, LENGTH = 32
     sdram_0 : ORIGIN = 0x8000020, LENGTH = 134217696
 }
 
 /* Define symbols for each memory base-address */
-__alt_mem_onchip_memory2_0 = 0x2000;
 __alt_mem_sdram_0 = 0x8000000;
 
 OUTPUT_FORMAT( "elf32-littlenios2",
@@ -308,24 +306,7 @@ SECTIONS
      *
      */
 
-    .onchip_memory2_0 : AT ( LOADADDR (.bss) + SIZEOF (.bss) )
-    {
-        PROVIDE (_alt_partition_onchip_memory2_0_start = ABSOLUTE(.));
-        *(.onchip_memory2_0. onchip_memory2_0.*)
-        . = ALIGN(4);
-        PROVIDE (_alt_partition_onchip_memory2_0_end = ABSOLUTE(.));
-    } > onchip_memory2_0
-
-    PROVIDE (_alt_partition_onchip_memory2_0_load_addr = LOADADDR(.onchip_memory2_0));
-
-    /*
-     *
-     * This section's LMA is set to the .text region.
-     * crt0 will copy to this section's specified mapped region virtual memory address (VMA)
-     *
-     */
-
-    .sdram_0 LOADADDR (.onchip_memory2_0) + SIZEOF (.onchip_memory2_0) : AT ( LOADADDR (.onchip_memory2_0) + SIZEOF (.onchip_memory2_0) )
+    .sdram_0 LOADADDR (.bss) + SIZEOF (.bss) : AT ( LOADADDR (.bss) + SIZEOF (.bss) )
     {
         PROVIDE (_alt_partition_sdram_0_start = ABSOLUTE(.));
         *(.sdram_0. sdram_0.*)

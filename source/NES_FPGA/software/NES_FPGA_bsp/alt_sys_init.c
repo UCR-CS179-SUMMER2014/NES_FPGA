@@ -1,10 +1,10 @@
 /*
  * alt_sys_init.c - HAL initialization source
  *
- * Machine generated for CPU 'cpu_0' in SOPC Builder design 'nios_system'
- * SOPC Builder design path: C:/Users/Sergio/Desktop/CS179J-NES_FPGA/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
+ * Machine generated for CPU 'CPU' in SOPC Builder design 'nios_system'
+ * SOPC Builder design path: C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
  *
- * Generated: Sun Aug 24 22:45:15 CEST 2014
+ * Generated: Thu Aug 28 16:34:15 CEST 2014
  */
 
 /*
@@ -58,18 +58,22 @@
  * Device headers
  */
 
-#include "altera_nios2_irq.h"
+#include "altera_nios2_qsys_irq.h"
 #include "Altera_UP_SD_Card_Avalon_Interface.h"
 #include "altera_avalon_jtag_uart.h"
-#include "altera_avalon_sysid.h"
+#include "altera_avalon_sysid_qsys.h"
+#include "altera_up_avalon_video_character_buffer_with_dma.h"
+#include "altera_up_avalon_video_pixel_buffer_dma.h"
 
 /*
  * Allocate the device storage
  */
 
-ALTERA_NIOS2_IRQ_INSTANCE ( CPU_0, cpu_0);
-ALTERA_AVALON_JTAG_UART_INSTANCE ( JTAG_UART_0, jtag_uart_0);
-ALTERA_AVALON_SYSID_INSTANCE ( SYSID, sysid);
+ALTERA_NIOS2_QSYS_IRQ_INSTANCE ( CPU, CPU);
+ALTERA_AVALON_JTAG_UART_INSTANCE ( JTAG_UART, jtag_uart);
+ALTERA_AVALON_SYSID_QSYS_INSTANCE ( SYSID, sysid);
+ALTERA_UP_AVALON_VIDEO_CHARACTER_BUFFER_WITH_DMA_INSTANCE ( CHAR_BUFFER_WITH_DMA, Char_Buffer_with_DMA);
+ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA_INSTANCE ( PIXEL_BUFFER_DMA, Pixel_Buffer_DMA);
 ALTERA_UP_SD_CARD_AVALON_INTERFACE_INSTANCE ( ALTERA_UP_SD_CARD_AVALON_INTERFACE_0, Altera_UP_SD_Card_Avalon_Interface_0);
 
 /*
@@ -82,7 +86,7 @@ ALTERA_UP_SD_CARD_AVALON_INTERFACE_INSTANCE ( ALTERA_UP_SD_CARD_AVALON_INTERFACE
 
 void alt_irq_init ( const void* base )
 {
-    ALTERA_NIOS2_IRQ_INIT ( CPU_0, cpu_0);
+    ALTERA_NIOS2_QSYS_IRQ_INIT ( CPU, CPU);
     alt_irq_cpu_enable_interrupts();
 }
 
@@ -93,7 +97,9 @@ void alt_irq_init ( const void* base )
 
 void alt_sys_init( void )
 {
-    ALTERA_AVALON_JTAG_UART_INIT ( JTAG_UART_0, jtag_uart_0);
-    ALTERA_AVALON_SYSID_INIT ( SYSID, sysid);
+    ALTERA_AVALON_JTAG_UART_INIT ( JTAG_UART, jtag_uart);
+    ALTERA_AVALON_SYSID_QSYS_INIT ( SYSID, sysid);
+    ALTERA_UP_AVALON_VIDEO_CHARACTER_BUFFER_WITH_DMA_INIT ( CHAR_BUFFER_WITH_DMA, Char_Buffer_with_DMA);
+    ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA_INIT ( PIXEL_BUFFER_DMA, Pixel_Buffer_DMA);
     ALTERA_UP_SD_CARD_AVALON_INTERFACE_INIT ( ALTERA_UP_SD_CARD_AVALON_INTERFACE_0, Altera_UP_SD_Card_Avalon_Interface_0);
 }

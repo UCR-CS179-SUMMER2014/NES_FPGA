@@ -101,7 +101,7 @@ ACDS_VERSION := 12.1
 # BUILD_NUMBER: 177
 
 SETTINGS_FILE := settings.bsp
-SOPC_FILE := C:/Users/Sergio/Desktop/CS179J-NES_FPGA/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
+SOPC_FILE := C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
 
 #-------------------------------------------------------------------------------
 #                             TOOL & COMMAND DEFINITIONS
@@ -226,51 +226,61 @@ altera_avalon_jtag_uart_driver_C_LIB_SRCS := \
 	$(altera_avalon_jtag_uart_driver_SRCS_ROOT)/src/altera_avalon_jtag_uart_ioctl.c \
 	$(altera_avalon_jtag_uart_driver_SRCS_ROOT)/src/altera_avalon_jtag_uart_fd.c
 
-# altera_avalon_pio_driver sources root 
-altera_avalon_pio_driver_SRCS_ROOT := drivers
+# altera_avalon_sysid_qsys_driver sources root 
+altera_avalon_sysid_qsys_driver_SRCS_ROOT := drivers
 
-# altera_avalon_pio_driver sources 
-# altera_avalon_sysid_driver sources root 
-altera_avalon_sysid_driver_SRCS_ROOT := drivers
+# altera_avalon_sysid_qsys_driver sources 
+altera_avalon_sysid_qsys_driver_C_LIB_SRCS := \
+	$(altera_avalon_sysid_qsys_driver_SRCS_ROOT)/src/altera_avalon_sysid_qsys.c
 
-# altera_avalon_sysid_driver sources 
-altera_avalon_sysid_driver_C_LIB_SRCS := \
-	$(altera_avalon_sysid_driver_SRCS_ROOT)/src/altera_avalon_sysid.c
+# altera_nios2_qsys_hal_driver sources root 
+altera_nios2_qsys_hal_driver_SRCS_ROOT := HAL
 
-# altera_nios2_hal_driver sources root 
-altera_nios2_hal_driver_SRCS_ROOT := HAL
+# altera_nios2_qsys_hal_driver sources 
+altera_nios2_qsys_hal_driver_C_LIB_SRCS := \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/altera_nios2_qsys_irq.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_usleep.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_busy_sleep.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_irq_vars.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_icache_flush.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_icache_flush_all.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_dcache_flush.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_dcache_flush_all.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_dcache_flush_no_writeback.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_instruction_exception_entry.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_irq_register.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_iic.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_remap_cached.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_remap_uncached.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_uncached_free.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_uncached_malloc.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_do_ctors.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_do_dtors.c \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_gmon.c
 
-# altera_nios2_hal_driver sources 
-altera_nios2_hal_driver_C_LIB_SRCS := \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/altera_nios2_irq.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_usleep.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_busy_sleep.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_irq_vars.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_icache_flush.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_icache_flush_all.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_dcache_flush.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_dcache_flush_all.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_dcache_flush_no_writeback.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_instruction_exception_entry.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_irq_register.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_iic.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_remap_cached.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_remap_uncached.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_uncached_free.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_uncached_malloc.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_do_ctors.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_do_dtors.c \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_gmon.c
+altera_nios2_qsys_hal_driver_ASM_LIB_SRCS := \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_exception_entry.S \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_exception_trap.S \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_exception_muldiv.S \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_irq_entry.S \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_software_exception.S \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_mcount.S \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/alt_log_macro.S \
+	$(altera_nios2_qsys_hal_driver_SRCS_ROOT)/src/crt0.S
 
-altera_nios2_hal_driver_ASM_LIB_SRCS := \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_exception_entry.S \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_exception_trap.S \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_exception_muldiv.S \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_irq_entry.S \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_software_exception.S \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_mcount.S \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/alt_log_macro.S \
-	$(altera_nios2_hal_driver_SRCS_ROOT)/src/crt0.S
+# altera_up_avalon_video_character_buffer_with_dma_driver sources root 
+altera_up_avalon_video_character_buffer_with_dma_driver_SRCS_ROOT := drivers
+
+# altera_up_avalon_video_character_buffer_with_dma_driver sources 
+altera_up_avalon_video_character_buffer_with_dma_driver_C_LIB_SRCS := \
+	$(altera_up_avalon_video_character_buffer_with_dma_driver_SRCS_ROOT)/src/altera_up_avalon_video_character_buffer_with_dma.c
+
+# avalon_video_pixel_buffer_dma_driver sources root 
+avalon_video_pixel_buffer_dma_driver_SRCS_ROOT := drivers
+
+# avalon_video_pixel_buffer_dma_driver sources 
+avalon_video_pixel_buffer_dma_driver_C_LIB_SRCS := \
+	$(avalon_video_pixel_buffer_dma_driver_SRCS_ROOT)/src/altera_up_avalon_video_pixel_buffer_dma.c
 
 # hal sources root 
 hal_SRCS_ROOT := HAL
@@ -335,13 +345,15 @@ hal_C_LIB_SRCS := \
 COMPONENT_C_LIB_SRCS += \
 	$(Altera_UP_SD_Card_Avalon_Interface_driver_C_LIB_SRCS) \
 	$(altera_avalon_jtag_uart_driver_C_LIB_SRCS) \
-	$(altera_avalon_sysid_driver_C_LIB_SRCS) \
-	$(altera_nios2_hal_driver_C_LIB_SRCS) \
+	$(altera_avalon_sysid_qsys_driver_C_LIB_SRCS) \
+	$(altera_nios2_qsys_hal_driver_C_LIB_SRCS) \
+	$(altera_up_avalon_video_character_buffer_with_dma_driver_C_LIB_SRCS) \
+	$(avalon_video_pixel_buffer_dma_driver_C_LIB_SRCS) \
 	$(hal_C_LIB_SRCS)
 
 # Assemble all component assembly source files 
 COMPONENT_ASM_LIB_SRCS += \
-	$(altera_nios2_hal_driver_ASM_LIB_SRCS)
+	$(altera_nios2_qsys_hal_driver_ASM_LIB_SRCS)
 
 # Assemble all component C++ source files 
 COMPONENT_CPP_LIB_SRCS += \

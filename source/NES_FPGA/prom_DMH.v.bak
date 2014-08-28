@@ -1,7 +1,0 @@
-module prom_DMH(
-	addr,
-	M
-);
-
-input  [3:0]  addr;
-output [31:0] M;

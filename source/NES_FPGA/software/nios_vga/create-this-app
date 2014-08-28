@@ -3,7 +3,7 @@
 # This script creates the blank_project application in this directory.
 
 
-BSP_DIR=..
+BSP_DIR=../nios_vga_bsp
 QUARTUS_PROJECT_DIR=../../
 NIOS2_APP_GEN_ARGS="--elf-name nios_vga.elf --no-src --set OBJDUMP_INCLUDE_SOURCE 1"
 

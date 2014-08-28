@@ -135,10 +135,10 @@ assign LEDG = output_one;
 	Video Display (VGA) 
 	-------------------
 */
-pixel_clock PCLOCK(		  // Altera PLL 
-	.inclk0( CLOCK_50 ),   // 50Mhz input
-	.c0( pclock_w)	        // Outputs 25Mhz clock. Goes to NIOS System
-);
+//pixel_clock PCLOCK(		  // Altera PLL 
+//	.inclk0( CLOCK_50 ),   // 50Mhz input
+//	.c0( pclock_w)	        // Outputs 25Mhz clock. Goes to NIOS System
+//);
 
 
 

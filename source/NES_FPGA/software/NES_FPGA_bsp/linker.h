@@ -1,10 +1,10 @@
 /*
  * linker.h - Linker script mapping information
  *
- * Machine generated for CPU 'cpu_0' in SOPC Builder design 'nios_system'
- * SOPC Builder design path: C:/Users/Sergio/Desktop/CS179J-NES_FPGA/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
+ * Machine generated for CPU 'CPU' in SOPC Builder design 'nios_system'
+ * SOPC Builder design path: C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
  *
- * Generated: Sun Aug 24 22:45:15 CEST 2014
+ * Generated: Thu Aug 28 16:34:15 CEST 2014
  */
 
 /*
@@ -65,8 +65,6 @@
  *
  */
 
-#define ONCHIP_MEMORY2_0_REGION_BASE 0x2000
-#define ONCHIP_MEMORY2_0_REGION_SPAN 4096
 #define RESET_REGION_BASE 0x8000000
 #define RESET_REGION_SPAN 32
 #define SDRAM_0_REGION_BASE 0x8000020

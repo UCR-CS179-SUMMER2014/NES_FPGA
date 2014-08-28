@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2014.08.28.11:58:25</td>
+    <td class="l">2014.08.28.15:36:06</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -91,9 +91,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </a> Nios II 12.1
      <br/>All Components
      <br/>&#160;&#160;
-     <a href="#module_Onchip_Memory"><b>Onchip_Memory</b>
-     </a> altera_avalon_onchip_memory2 12.1
-     <br/>&#160;&#160;
      <a href="#module_Char_Buffer_with_DMA"><b>Char_Buffer_with_DMA</b>
      </a> altera_up_avalon_video_character_buffer_with_dma 12.0
      <br/>&#160;&#160;
@@ -109,10 +106,10 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      <a href="#module_Altera_UP_SD_Card_Avalon_Interface_0"><b>Altera_UP_SD_Card_Avalon_Interface_0</b>
      </a> Altera_UP_SD_Card_Avalon_Interface 1.0
      <br/>&#160;&#160;
-     <a href="#module_jtag_uart_0"><b>jtag_uart_0</b>
+     <a href="#module_jtag_uart"><b>jtag_uart</b>
      </a> altera_avalon_jtag_uart 12.1
      <br/>&#160;&#160;
-     <a href="#module_sysid_qsys_0"><b>sysid_qsys_0</b>
+     <a href="#module_sysid"><b>sysid</b>
      </a> altera_avalon_sysid_qsys 12.1
      <br/>&#160;&#160;
      <a href="#module_sdram_0"><b>sdram_0</b>
@@ -137,21 +134,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <td class="masterlr">&#160;avalon_pixel_dma_master</td>
     <td class="masterl">&#160;data_master</td>
     <td class="masterr">&#160;instruction_master</td>
-   </tr>
-   <tr>
-    <td class="slavemodule">&#160;
-     <a href="#module_Onchip_Memory"><b>Onchip_Memory</b>
-     </a>
-    </td>
-    <td class="empty"></td>
-    <td class="empty"></td>
-    <td class="empty"></td>
-   </tr>
-   <tr>
-    <td class="slaveb">s1&#160;</td>
-    <td class="empty"></td>
-    <td class="addr"><span style="color:#989898">0x</span>00204000</td>
-    <td class="addr"><span style="color:#989898">0x</span>00204000</td>
    </tr>
    <tr>
     <td class="slavemodule">&#160;
@@ -236,7 +218,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    </tr>
    <tr>
     <td class="slavemodule">&#160;
-     <a href="#module_jtag_uart_0"><b>jtag_uart_0</b>
+     <a href="#module_jtag_uart"><b>jtag_uart</b>
      </a>
     </td>
     <td class="empty"></td>
@@ -246,12 +228,12 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <tr>
     <td class="slaveb">avalon_jtag_slave&#160;</td>
     <td class="empty"></td>
-    <td class="addr"><span style="color:#989898">0x</span>00200008</td>
+    <td class="addr"><span style="color:#989898">0x</span>00201008</td>
     <td class="empty"></td>
    </tr>
    <tr>
     <td class="slavemodule">&#160;
-     <a href="#module_sysid_qsys_0"><b>sysid_qsys_0</b>
+     <a href="#module_sysid"><b>sysid</b>
      </a>
     </td>
     <td class="empty"></td>
@@ -261,8 +243,8 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <tr>
     <td class="slaveb">control_slave&#160;</td>
     <td class="empty"></td>
-    <td class="addr"><span style="color:#989898">0x</span>00200010</td>
-    <td class="addr"><span style="color:#989898">0x</span>00200010</td>
+    <td class="addr"><span style="color:#989898">0x</span>00201010</td>
+    <td class="addr"><span style="color:#989898">0x</span>00201010</td>
    </tr>
    <tr>
     <td class="slavemodule">&#160;
@@ -324,222 +306,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <tr>
      <td class="parametersbox">
       <h2>Software Assignments</h2>(none)</td>
-    </tr>
-   </table>
-  </div>
-  <a name="module_Onchip_Memory"> </a>
-  <div>
-   <hr/>
-   <h2>Onchip_Memory</h2>altera_avalon_onchip_memory2 v12.1
-   <br/>
-   <div class="greydiv">
-    <table class="connectionboxes">
-     <tr>
-      <td class="neighbor" rowspan="6">
-       <a href="#module_CPU">CPU</a>
-      </td>
-      <td class="from">instruction_master&#160;&#160;</td>
-      <td class="main" rowspan="12">Onchip_Memory</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;s1</td>
-     </tr>
-     <tr>
-      <td class="from">data_master&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;s1</td>
-     </tr>
-     <tr>
-      <td class="from">jtag_debug_module_reset&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;reset1</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
-     </tr>
-     <tr>
-      <td class="neighbor" rowspan="2">
-       <a href="#module_clk_0">clk_0</a>
-      </td>
-      <td class="from">clk_reset&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;reset1</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
-     </tr>
-     <tr>
-      <td class="neighbor" rowspan="2">
-       <a href="#module_Clock_Signals">Clock_Signals</a>
-      </td>
-      <td class="from">sys_clk&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;clk1</td>
-     </tr>
-    </table>
-   </div>
-   <br/>
-   <br/>
-   <table class="flowbox">
-    <tr>
-     <td class="parametersbox">
-      <h2>Parameters</h2>
-      <table>
-       <tr>
-        <td class="parametername">allowInSystemMemoryContentEditor</td>
-        <td class="parametervalue">false</td>
-       </tr>
-       <tr>
-        <td class="parametername">autoInitializationFileName</td>
-        <td class="parametervalue">nios_system_Onchip_Memory</td>
-       </tr>
-       <tr>
-        <td class="parametername">blockType</td>
-        <td class="parametervalue">AUTO</td>
-       </tr>
-       <tr>
-        <td class="parametername">dataWidth</td>
-        <td class="parametervalue">32</td>
-       </tr>
-       <tr>
-        <td class="parametername">deviceFamily</td>
-        <td class="parametervalue">STINGRAY</td>
-       </tr>
-       <tr>
-        <td class="parametername">dualPort</td>
-        <td class="parametervalue">false</td>
-       </tr>
-       <tr>
-        <td class="parametername">initMemContent</td>
-        <td class="parametervalue">true</td>
-       </tr>
-       <tr>
-        <td class="parametername">initializationFileName</td>
-        <td class="parametervalue">Onchip_Memory</td>
-       </tr>
-       <tr>
-        <td class="parametername">instanceID</td>
-        <td class="parametervalue">NONE</td>
-       </tr>
-       <tr>
-        <td class="parametername">memorySize</td>
-        <td class="parametervalue">16384</td>
-       </tr>
-       <tr>
-        <td class="parametername">readDuringWriteMode</td>
-        <td class="parametervalue">DONT_CARE</td>
-       </tr>
-       <tr>
-        <td class="parametername">simAllowMRAMContentsFile</td>
-        <td class="parametervalue">false</td>
-       </tr>
-       <tr>
-        <td class="parametername">simMemInitOnlyFilename</td>
-        <td class="parametervalue">0</td>
-       </tr>
-       <tr>
-        <td class="parametername">singleClockOperation</td>
-        <td class="parametervalue">false</td>
-       </tr>
-       <tr>
-        <td class="parametername">slave1Latency</td>
-        <td class="parametervalue">1</td>
-       </tr>
-       <tr>
-        <td class="parametername">slave2Latency</td>
-        <td class="parametervalue">1</td>
-       </tr>
-       <tr>
-        <td class="parametername">useNonDefaultInitFile</td>
-        <td class="parametervalue">false</td>
-       </tr>
-       <tr>
-        <td class="parametername">useShallowMemBlocks</td>
-        <td class="parametervalue">false</td>
-       </tr>
-       <tr>
-        <td class="parametername">writable</td>
-        <td class="parametervalue">true</td>
-       </tr>
-       <tr>
-        <td class="parametername">generateLegacySim</td>
-        <td class="parametervalue">false</td>
-       </tr>
-      </table>
-     </td>
-    </tr>
-   </table>&#160;&#160;
-   <table class="flowbox">
-    <tr>
-     <td class="parametersbox">
-      <h2>Software Assignments</h2>
-      <table>
-       <tr>
-        <td class="parametername">ALLOW_MRAM_SIM_CONTENTS_ONLY_FILE</td>
-        <td class="parametervalue">0</td>
-       </tr>
-       <tr>
-        <td class="parametername">INIT_CONTENTS_FILE</td>
-        <td class="parametervalue">"Onchip_Memory"</td>
-       </tr>
-       <tr>
-        <td class="parametername">NON_DEFAULT_INIT_FILE_ENABLED</td>
-        <td class="parametervalue">0</td>
-       </tr>
-       <tr>
-        <td class="parametername">GUI_RAM_BLOCK_TYPE</td>
-        <td class="parametervalue">"Automatic"</td>
-       </tr>
-       <tr>
-        <td class="parametername">WRITABLE</td>
-        <td class="parametervalue">1</td>
-       </tr>
-       <tr>
-        <td class="parametername">DUAL_PORT</td>
-        <td class="parametervalue">0</td>
-       </tr>
-       <tr>
-        <td class="parametername">SINGLE_CLOCK_OP</td>
-        <td class="parametervalue">0</td>
-       </tr>
-       <tr>
-        <td class="parametername">SIZE_VALUE</td>
-        <td class="parametervalue">16384u</td>
-       </tr>
-       <tr>
-        <td class="parametername">SIZE_MULTIPLE</td>
-        <td class="parametervalue">1</td>
-       </tr>
-       <tr>
-        <td class="parametername">CONTENTS_INFO</td>
-        <td class="parametervalue">""</td>
-       </tr>
-       <tr>
-        <td class="parametername">RAM_BLOCK_TYPE</td>
-        <td class="parametervalue">"Auto"</td>
-       </tr>
-       <tr>
-        <td class="parametername">INIT_MEM_CONTENT</td>
-        <td class="parametervalue">1</td>
-       </tr>
-       <tr>
-        <td class="parametername">ALLOW_IN_SYSTEM_MEMORY_CONTENT_EDITOR</td>
-        <td class="parametervalue">0</td>
-       </tr>
-       <tr>
-        <td class="parametername">INSTANCE_ID</td>
-        <td class="parametervalue">"NONE"</td>
-       </tr>
-       <tr>
-        <td class="parametername">READ_DURING_WRITE_MODE</td>
-        <td class="parametervalue">"DONT_CARE"</td>
-       </tr>
-      </table>
-     </td>
     </tr>
    </table>
   </div>
@@ -857,7 +623,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">board</td>
-        <td class="parametervalue">DE2</td>
+        <td class="parametervalue">DE2-115</td>
        </tr>
        <tr>
         <td class="parametername">device</td>
@@ -1527,7 +1293,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_clk_0">clk_0</a>
       </td>
       <td class="from">clk_reset&#160;&#160;</td>
-      <td class="main" rowspan="68">CPU</td>
+      <td class="main" rowspan="61">CPU</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;reset_n</td>
@@ -1543,42 +1309,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">instruction_master&#160;&#160;</td>
-      <td class="neighbor" rowspan="6">
-       <a href="#module_Onchip_Memory">Onchip_Memory</a>
-      </td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;s1</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">data_master&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;s1</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">jtag_debug_module_reset&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;reset1</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
      </tr>
      <tr>
       <td></td>
@@ -1805,7 +1535,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td class="from">instruction_master&#160;&#160;</td>
       <td class="neighbor" rowspan="4">
-       <a href="#module_sysid_qsys_0">sysid_qsys_0</a>
+       <a href="#module_sysid">sysid</a>
       </td>
      </tr>
      <tr>
@@ -1829,25 +1559,25 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      <tr>
       <td></td>
       <td></td>
-      <td class="from">data_master&#160;&#160;</td>
+      <td class="from">d_irq&#160;&#160;</td>
       <td class="neighbor" rowspan="4">
-       <a href="#module_jtag_uart_0">jtag_uart_0</a>
+       <a href="#module_jtag_uart">jtag_uart</a>
       </td>
      </tr>
      <tr>
       <td></td>
       <td></td>
-      <td class="to">&#160;&#160;avalon_jtag_slave</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">d_irq&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
       <td class="to">&#160;&#160;irq</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">data_master&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;avalon_jtag_slave</td>
      </tr>
      <tr style="height:6px">
       <td></td>
@@ -2274,11 +2004,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">instSlaveMapParam</td>
-        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='sysid_qsys_0.control_slave' start='0x200010' end='0x200018' /&gt;&lt;slave name='Onchip_Memory.s1' start='0x204000' end='0x208000' /&gt;&lt;slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /&gt;&lt;slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /&gt;&lt;slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /&gt;&lt;/address-map&gt;</td>
+        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='sysid.control_slave' start='0x201010' end='0x201018' /&gt;&lt;slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /&gt;&lt;slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /&gt;&lt;slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /&gt;&lt;/address-map&gt;</td>
        </tr>
        <tr>
         <td class="parametername">dataSlaveMapParam</td>
-        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='Pixel_Buffer.avalon_ssram_slave' start='0x0' end='0x200000' /&gt;&lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0x200008' end='0x200010' /&gt;&lt;slave name='sysid_qsys_0.control_slave' start='0x200010' end='0x200018' /&gt;&lt;slave name='Onchip_Memory.s1' start='0x204000' end='0x208000' /&gt;&lt;slave name='Char_Buffer_with_DMA.avalon_char_buffer_slave' start='0x208000' end='0x20A000' /&gt;&lt;slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /&gt;&lt;slave name='Pixel_Buffer_DMA.avalon_control_slave' start='0x20B000' end='0x20B010' /&gt;&lt;slave name='Char_Buffer_with_DMA.avalon_char_control_slave' start='0x20B010' end='0x20B018' /&gt;&lt;slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /&gt;&lt;slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /&gt;&lt;/address-map&gt;</td>
+        <td class="parametervalue">&lt;address-map&gt;&lt;slave name='Pixel_Buffer.avalon_ssram_slave' start='0x0' end='0x200000' /&gt;&lt;slave name='jtag_uart.avalon_jtag_slave' start='0x201008' end='0x201010' /&gt;&lt;slave name='sysid.control_slave' start='0x201010' end='0x201018' /&gt;&lt;slave name='Char_Buffer_with_DMA.avalon_char_buffer_slave' start='0x208000' end='0x20A000' /&gt;&lt;slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /&gt;&lt;slave name='Pixel_Buffer_DMA.avalon_control_slave' start='0x20B000' end='0x20B010' /&gt;&lt;slave name='Char_Buffer_with_DMA.avalon_char_control_slave' start='0x20B010' end='0x20B018' /&gt;&lt;slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /&gt;&lt;slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /&gt;&lt;/address-map&gt;</td>
        </tr>
        <tr>
         <td class="parametername">clockFrequency</td>
@@ -2458,7 +2188,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_clk_0">clk_0</a>
       </td>
       <td class="from">clk&#160;&#160;</td>
-      <td class="main" rowspan="52">Clock_Signals</td>
+      <td class="main" rowspan="49">Clock_Signals</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk_in_primary</td>
@@ -2493,22 +2223,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td></td>
       <td class="to">&#160;&#160;clk</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">sys_clk&#160;&#160;</td>
-      <td class="neighbor" rowspan="2">
-       <a href="#module_Onchip_Memory">Onchip_Memory</a>
-      </td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;clk1</td>
      </tr>
      <tr style="height:6px">
       <td></td>
@@ -2672,7 +2386,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td class="from">sys_clk&#160;&#160;</td>
       <td class="neighbor" rowspan="2">
-       <a href="#module_jtag_uart_0">jtag_uart_0</a>
+       <a href="#module_jtag_uart">jtag_uart</a>
       </td>
      </tr>
      <tr>
@@ -2688,7 +2402,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td class="from">sys_clk&#160;&#160;</td>
       <td class="neighbor" rowspan="2">
-       <a href="#module_sysid_qsys_0">sysid_qsys_0</a>
+       <a href="#module_sysid">sysid</a>
       </td>
      </tr>
      <tr>
@@ -2733,7 +2447,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">board</td>
-        <td class="parametervalue">DE2</td>
+        <td class="parametervalue">DE2-70</td>
        </tr>
        <tr>
         <td class="parametername">sys_clk_freq</td>
@@ -2865,37 +2579,19 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </tr>
    </table>
   </div>
-  <a name="module_jtag_uart_0"> </a>
+  <a name="module_jtag_uart"> </a>
   <div>
    <hr/>
-   <h2>jtag_uart_0</h2>altera_avalon_jtag_uart v12.1
+   <h2>jtag_uart</h2>altera_avalon_jtag_uart v12.1
    <br/>
    <div class="greydiv">
     <table class="connectionboxes">
-     <tr>
-      <td class="neighbor" rowspan="4">
-       <a href="#module_CPU">CPU</a>
-      </td>
-      <td class="from">data_master&#160;&#160;</td>
-      <td class="main" rowspan="10">jtag_uart_0</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;avalon_jtag_slave</td>
-     </tr>
-     <tr>
-      <td class="from">d_irq&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;irq</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
-     </tr>
      <tr>
       <td class="neighbor" rowspan="2">
        <a href="#module_clk_0">clk_0</a>
       </td>
       <td class="from">clk_reset&#160;&#160;</td>
+      <td class="main" rowspan="10">jtag_uart</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;reset</td>
@@ -2911,6 +2607,24 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_CPU">CPU</a>
+      </td>
+      <td class="from">d_irq&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;irq</td>
+     </tr>
+     <tr>
+      <td class="from">data_master&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;avalon_jtag_slave</td>
      </tr>
     </table>
    </div>
@@ -3011,10 +2725,10 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </tr>
    </table>
   </div>
-  <a name="module_sysid_qsys_0"> </a>
+  <a name="module_sysid"> </a>
   <div>
    <hr/>
-   <h2>sysid_qsys_0</h2>altera_avalon_sysid_qsys v12.1
+   <h2>sysid</h2>altera_avalon_sysid_qsys v12.1
    <br/>
    <div class="greydiv">
     <table class="connectionboxes">
@@ -3023,7 +2737,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_CPU">CPU</a>
       </td>
       <td class="from">instruction_master&#160;&#160;</td>
-      <td class="main" rowspan="10">sysid_qsys_0</td>
+      <td class="main" rowspan="10">sysid</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;control_slave</td>
@@ -3069,11 +2783,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">id</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">1</td>
        </tr>
        <tr>
         <td class="parametername">timestamp</td>
-        <td class="parametervalue">1409219904</td>
+        <td class="parametervalue">1409232964</td>
        </tr>
        <tr>
         <td class="parametername">AUTO_CLK_CLOCK_RATE</td>
@@ -3102,11 +2816,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">ID</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">1</td>
        </tr>
        <tr>
         <td class="parametername">TIMESTAMP</td>
-        <td class="parametervalue">1409219904</td>
+        <td class="parametervalue">1409232964</td>
        </tr>
       </table>
      </td>
@@ -3379,7 +3093,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </div>
   <table class="blueBar">
    <tr>
-    <td class="l">generation took 0.01 seconds</td>
+    <td class="l">generation took 0.02 seconds</td>
     <td class="r">rendering took 0.27 seconds</td>
    </tr>
   </table>

@@ -729,13 +729,9 @@ set_location_assignment PIN_AK10 -to FS_DQ[30]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FS_DQ[30]
 set_location_assignment PIN_AJ9 -to FS_DQ[31]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FS_DQ[31]
-set_global_assignment -name VHDL_FILE ../../../../../../altera/ip/University_Program/Memory/altera_up_sd_card_avalon_interface/hdl/Altera_UP_SD_Card_Memory_Block.vhd
+set_global_assignment -name VERILOG_FILE snes_controller.v
 set_global_assignment -name QIP_FILE nios_system/synthesis/submodules/Altera_UP_SD_Card_Memory_Block.qip
 set_global_assignment -name QIP_FILE nios_system/synthesis/nios_system.qip
 set_global_assignment -name SDC_FILE NES_FPGA.SDC
-set_global_assignment -name VERILOG_FILE snes_controller.v
-set_global_assignment -name VERILOG_FILE vga640x480.v
-set_global_assignment -name VERILOG_FILE color_gen.v
-set_global_assignment -name VERILOG_FILE prom_DMH.v
-set_global_assignment -name VERILOG_FILE vga_text.v
+set_global_assignment -name VHDL_FILE Altera_UP_SD_Card_Memory_Block.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

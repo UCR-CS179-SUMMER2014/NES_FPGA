@@ -1,29 +1,26 @@
 obj/default/main.o: main.c \
-  ..//drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h \
-  ..//HAL/inc/alt_types.h ..//HAL/inc/sys/alt_dev.h ../system.h \
-  ../linker.h ..//HAL/inc/sys/alt_llist.h \
-  ..//HAL/inc/priv/alt_dev_llist.h ..//HAL/inc/sys/alt_llist.h \
-  ..//drivers/inc/altera_up_avalon_video_character_buffer_with_dma_regs.h \
-  ..//HAL/inc/io.h ..//HAL/inc/alt_types.h
+  ../nios_vga_bsp//drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h \
+  ../nios_vga_bsp//HAL/inc/alt_types.h \
+  ../nios_vga_bsp//HAL/inc/sys/alt_dev.h ../nios_vga_bsp/system.h \
+  ../nios_vga_bsp/linker.h ../nios_vga_bsp//HAL/inc/sys/alt_llist.h \
+  ../nios_vga_bsp//HAL/inc/priv/alt_dev_llist.h \
+  ../nios_vga_bsp//HAL/inc/sys/alt_llist.h \
+  ../nios_vga_bsp//drivers/inc/altera_up_avalon_video_pixel_buffer_dma.h
 
-..//drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h:
+../nios_vga_bsp//drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h:
 
-..//HAL/inc/alt_types.h:
+../nios_vga_bsp//HAL/inc/alt_types.h:
 
-..//HAL/inc/sys/alt_dev.h:
+../nios_vga_bsp//HAL/inc/sys/alt_dev.h:
 
-../system.h:
+../nios_vga_bsp/system.h:
 
-../linker.h:
+../nios_vga_bsp/linker.h:
 
-..//HAL/inc/sys/alt_llist.h:
+../nios_vga_bsp//HAL/inc/sys/alt_llist.h:
 
-..//HAL/inc/priv/alt_dev_llist.h:
+../nios_vga_bsp//HAL/inc/priv/alt_dev_llist.h:
 
-..//HAL/inc/sys/alt_llist.h:
+../nios_vga_bsp//HAL/inc/sys/alt_llist.h:
 
-..//drivers/inc/altera_up_avalon_video_character_buffer_with_dma_regs.h:
-
-..//HAL/inc/io.h:
-
-..//HAL/inc/alt_types.h:
+../nios_vga_bsp//drivers/inc/altera_up_avalon_video_pixel_buffer_dma.h:

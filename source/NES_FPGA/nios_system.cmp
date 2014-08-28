@@ -1,0 +1,43 @@
+	component nios_system is
+		port (
+			VGA_CLK_from_the_VGA_Controller                             : out   std_logic;                                        -- CLK
+			VGA_HS_from_the_VGA_Controller                              : out   std_logic;                                        -- HS
+			VGA_VS_from_the_VGA_Controller                              : out   std_logic;                                        -- VS
+			VGA_BLANK_from_the_VGA_Controller                           : out   std_logic;                                        -- BLANK
+			VGA_SYNC_from_the_VGA_Controller                            : out   std_logic;                                        -- SYNC
+			VGA_R_from_the_VGA_Controller                               : out   std_logic_vector(7 downto 0);                     -- R
+			VGA_G_from_the_VGA_Controller                               : out   std_logic_vector(7 downto 0);                     -- G
+			VGA_B_from_the_VGA_Controller                               : out   std_logic_vector(7 downto 0);                     -- B
+			clk_0                                                       : in    std_logic                     := 'X';             -- clk
+			reset_n                                                     : in    std_logic                     := 'X';             -- reset_n
+			SRAM_DQ_to_and_from_the_Pixel_Buffer                        : inout std_logic_vector(31 downto 0) := (others => 'X'); -- DQ
+			Pixel_Buffer_external_interface_DPA                         : inout std_logic_vector(3 downto 0)  := (others => 'X'); -- DPA
+			SRAM_ADDR_from_the_Pixel_Buffer                             : out   std_logic_vector(18 downto 0);                    -- ADDR
+			Pixel_Buffer_external_interface_ADSC_N                      : out   std_logic;                                        -- ADSC_N
+			Pixel_Buffer_external_interface_ADSP_N                      : out   std_logic;                                        -- ADSP_N
+			Pixel_Buffer_external_interface_ADV_N                       : out   std_logic;                                        -- ADV_N
+			Pixel_Buffer_external_interface_BE_N                        : out   std_logic_vector(3 downto 0);                     -- BE_N
+			Pixel_Buffer_external_interface_CE1_N                       : out   std_logic;                                        -- CE1_N
+			Pixel_Buffer_external_interface_CE2                         : out   std_logic;                                        -- CE2
+			Pixel_Buffer_external_interface_CE3_N                       : out   std_logic;                                        -- CE3_N
+			Pixel_Buffer_external_interface_GW_N                        : out   std_logic;                                        -- GW_N
+			SRAM_OE_N_from_the_Pixel_Buffer                             : out   std_logic;                                        -- OE_N
+			SRAM_WE_N_from_the_Pixel_Buffer                             : out   std_logic;                                        -- WE_N
+			Pixel_Buffer_external_interface_CLK                         : out   std_logic;                                        -- CLK
+			altera_up_sd_card_avalon_interface_0_conduit_end_b_SD_cmd   : inout std_logic                     := 'X';             -- b_SD_cmd
+			altera_up_sd_card_avalon_interface_0_conduit_end_b_SD_dat   : inout std_logic                     := 'X';             -- b_SD_dat
+			altera_up_sd_card_avalon_interface_0_conduit_end_b_SD_dat3  : inout std_logic                     := 'X';             -- b_SD_dat3
+			altera_up_sd_card_avalon_interface_0_conduit_end_o_SD_clock : out   std_logic;                                        -- o_SD_clock
+			sdram_0_wire_addr                                           : out   std_logic_vector(12 downto 0);                    -- addr
+			sdram_0_wire_ba                                             : out   std_logic_vector(1 downto 0);                     -- ba
+			sdram_0_wire_cas_n                                          : out   std_logic;                                        -- cas_n
+			sdram_0_wire_cke                                            : out   std_logic;                                        -- cke
+			sdram_0_wire_cs_n                                           : out   std_logic;                                        -- cs_n
+			sdram_0_wire_dq                                             : inout std_logic_vector(31 downto 0) := (others => 'X'); -- dq
+			sdram_0_wire_dqm                                            : out   std_logic_vector(3 downto 0);                     -- dqm
+			sdram_0_wire_ras_n                                          : out   std_logic;                                        -- ras_n
+			sdram_0_wire_we_n                                           : out   std_logic;                                        -- we_n
+			clock_signals_sdram_clk_clk                                 : out   std_logic                                         -- clk
+		);
+	end component nios_system;
+

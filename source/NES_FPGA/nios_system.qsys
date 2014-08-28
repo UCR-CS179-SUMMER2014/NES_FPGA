@@ -1,0 +1,993 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element $${FILENAME}
+   {
+   }
+   element Alpha_Blender
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
+   element Altera_UP_SD_Card_Avalon_Interface_0
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
+      }
+   }
+   element CPU
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element Char_Buffer_with_DMA
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element Clock_Signals
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element Dual_Clock_FIFO
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element Pixel_Buffer
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element Pixel_Buffer_DMA
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element Pixel_RGB_Resampler
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element Pixel_Scaler
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
+   element VGA_Controller
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element Char_Buffer_with_DMA.avalon_char_buffer_slave
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "2129920";
+         type = "String";
+      }
+   }
+   element Char_Buffer_with_DMA.avalon_char_control_slave
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "2142224";
+         type = "String";
+      }
+   }
+   element Pixel_Buffer_DMA.avalon_control_slave
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "2142208";
+         type = "String";
+      }
+   }
+   element jtag_uart.avalon_jtag_slave
+   {
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
+      datum baseAddress
+      {
+         value = "2101256";
+         type = "String";
+      }
+   }
+   element Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "2162688";
+         type = "String";
+      }
+   }
+   element Pixel_Buffer.avalon_ssram_slave
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "0";
+         type = "String";
+      }
+   }
+   element clk_0
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element sysid.control_slave
+   {
+      datum baseAddress
+      {
+         value = "2101264";
+         type = "String";
+      }
+   }
+   element CPU.jtag_debug_module
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "2140160";
+         type = "String";
+      }
+   }
+   element jtag_uart
+   {
+      datum _sortIndex
+      {
+         value = "12";
+         type = "int";
+      }
+   }
+   element sdram_0.s1
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "134217728";
+         type = "String";
+      }
+   }
+   element sdram_0
+   {
+      datum _sortIndex
+      {
+         value = "14";
+         type = "int";
+      }
+      datum megawizard_uipreferences
+      {
+         value = "{output_language=VERILOG, output_directory=C:\\Users\\Sergio\\Desktop\\NES_FPGA\\source\\NES_FPGA}";
+         type = "String";
+      }
+   }
+   element Clock_Signals.sys_clk
+   {
+      datum _clockDomain
+      {
+         value = "sys_clk";
+         type = "String";
+      }
+   }
+   element sysid
+   {
+      datum _sortIndex
+      {
+         value = "13";
+         type = "int";
+      }
+   }
+   element Clock_Signals.vga_clk
+   {
+      datum _clockDomain
+      {
+         value = "vga_clk";
+         type = "String";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="device" value="EP4CGX150DF31C7" />
+ <parameter name="deviceFamily" value="Cyclone IV GX" />
+ <parameter name="deviceSpeedGrade" value="7" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="maxAdditionalLatency" value="0" />
+ <parameter name="projectName" value="NES_FPGA.qpf" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="1" />
+ <parameter name="timeStamp" value="1409229690937" />
+ <parameter name="useTestBenchNamingPattern" value="false" />
+ <instanceScript></instanceScript>
+ <interface
+   name="VGA_Controller_external_interface"
+   internal="VGA_Controller.external_interface"
+   type="conduit"
+   dir="end">
+  <port name="VGA_CLK_from_the_VGA_Controller" internal="VGA_CLK" />
+  <port name="VGA_HS_from_the_VGA_Controller" internal="VGA_HS" />
+  <port name="VGA_VS_from_the_VGA_Controller" internal="VGA_VS" />
+  <port name="VGA_BLANK_from_the_VGA_Controller" internal="VGA_BLANK" />
+  <port name="VGA_SYNC_from_the_VGA_Controller" internal="VGA_SYNC" />
+  <port name="VGA_R_from_the_VGA_Controller" internal="VGA_R" />
+  <port name="VGA_G_from_the_VGA_Controller" internal="VGA_G" />
+  <port name="VGA_B_from_the_VGA_Controller" internal="VGA_B" />
+ </interface>
+ <interface name="clk_0_clk_in" internal="clk_0.clk_in" type="clock" dir="end">
+  <port name="clk_0" internal="in_clk" />
+ </interface>
+ <interface
+   name="clk_0_clk_in_reset"
+   internal="clk_0.clk_in_reset"
+   type="reset"
+   dir="end">
+  <port name="reset_n" internal="reset_n" />
+ </interface>
+ <interface
+   name="Pixel_Buffer_external_interface"
+   internal="Pixel_Buffer.external_interface"
+   type="conduit"
+   dir="end">
+  <port name="SRAM_DQ_to_and_from_the_Pixel_Buffer" internal="SRAM_DQ" />
+  <port name="SRAM_ADDR_from_the_Pixel_Buffer" internal="SRAM_ADDR" />
+  <port name="SRAM_OE_N_from_the_Pixel_Buffer" internal="SRAM_OE_N" />
+  <port name="SRAM_WE_N_from_the_Pixel_Buffer" internal="SRAM_WE_N" />
+ </interface>
+ <interface
+   name="altera_up_sd_card_avalon_interface_0_conduit_end"
+   internal="Altera_UP_SD_Card_Avalon_Interface_0.conduit_end"
+   type="conduit"
+   dir="end" />
+ <interface name="sdram_0_wire" internal="sdram_0.wire" type="conduit" dir="end" />
+ <interface
+   name="clock_signals_sdram_clk"
+   internal="Clock_Signals.sdram_clk"
+   type="clock"
+   dir="start" />
+ <module kind="clock_source" version="12.1" enabled="1" name="clk_0">
+  <parameter name="clockFrequency" value="50000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module
+   kind="altera_up_avalon_video_character_buffer_with_dma"
+   version="12.0"
+   enabled="1"
+   name="Char_Buffer_with_DMA">
+  <parameter name="vga_device" value="On-board VGA DAC" />
+  <parameter name="enable_transparency" value="true" />
+  <parameter name="color_bits" value="1-bit" />
+  <parameter name="resolution" value="80 x 60" />
+  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module
+   kind="altera_up_avalon_video_dual_clock_buffer"
+   version="12.0"
+   enabled="1"
+   name="Dual_Clock_FIFO">
+  <parameter name="color_bits" value="10" />
+  <parameter name="color_planes" value="3" />
+  <parameter name="AUTO_CLOCK_STREAM_IN_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_CLOCK_STREAM_OUT_CLOCK_RATE" value="25000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module
+   kind="altera_up_avalon_video_vga_controller"
+   version="12.0"
+   enabled="1"
+   name="VGA_Controller">
+  <parameter name="board" value="DE2-115" />
+  <parameter name="device" value="VGA Connector" />
+  <parameter name="underflow_flag" value="false" />
+  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="25000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module
+   kind="altera_up_avalon_sram"
+   version="12.0"
+   enabled="1"
+   name="Pixel_Buffer">
+  <parameter name="board" value="DE2-70" />
+  <parameter name="pixel_buffer" value="true" />
+  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module
+   kind="altera_up_avalon_video_pixel_buffer_dma"
+   version="12.0"
+   enabled="1"
+   name="Pixel_Buffer_DMA">
+  <parameter name="addr_mode" value="X-Y" />
+  <parameter name="start_address" value="0" />
+  <parameter name="back_start_address" value="0" />
+  <parameter name="image_width" value="320" />
+  <parameter name="image_height" value="240" />
+  <parameter name="color_space" value="16-bit RGB" />
+  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module
+   kind="altera_up_avalon_video_rgb_resampler"
+   version="12.0"
+   enabled="1"
+   name="Pixel_RGB_Resampler">
+  <parameter name="input_type" value="16-bit RGB" />
+  <parameter name="output_type" value="30-bit RGB" />
+  <parameter name="alpha" value="255" />
+  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module
+   kind="altera_up_avalon_video_scaler"
+   version="12.0"
+   enabled="1"
+   name="Pixel_Scaler">
+  <parameter name="width_scaling" value="2" />
+  <parameter name="height_scaling" value="2" />
+  <parameter name="width_in" value="320" />
+  <parameter name="height_in" value="240" />
+  <parameter name="color_bits" value="10" />
+  <parameter name="color_planes" value="3" />
+  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module
+   kind="altera_up_avalon_video_alpha_blender"
+   version="12.0"
+   enabled="1"
+   name="Alpha_Blender">
+  <parameter name="mode" value="Simple" />
+  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module kind="altera_nios2_qsys" version="12.1" enabled="1" name="CPU">
+  <parameter name="setting_showUnpublishedSettings" value="false" />
+  <parameter name="setting_showInternalSettings" value="false" />
+  <parameter name="setting_preciseSlaveAccessErrorException" value="false" />
+  <parameter name="setting_preciseIllegalMemAccessException" value="false" />
+  <parameter name="setting_preciseDivisionErrorException" value="false" />
+  <parameter name="setting_performanceCounter" value="false" />
+  <parameter name="setting_illegalMemAccessDetection" value="false" />
+  <parameter name="setting_illegalInstructionsTrap" value="false" />
+  <parameter name="setting_fullWaveformSignals" value="false" />
+  <parameter name="setting_extraExceptionInfo" value="false" />
+  <parameter name="setting_exportPCB" value="false" />
+  <parameter name="setting_debugSimGen" value="false" />
+  <parameter name="setting_clearXBitsLDNonBypass" value="true" />
+  <parameter name="setting_bit31BypassDCache" value="true" />
+  <parameter name="setting_bigEndian" value="false" />
+  <parameter name="setting_export_large_RAMs" value="false" />
+  <parameter name="setting_asic_enabled" value="false" />
+  <parameter name="setting_asic_synopsys_translate_on_off" value="false" />
+  <parameter name="setting_oci_export_jtag_signals" value="false" />
+  <parameter name="setting_bhtIndexPcOnly" value="false" />
+  <parameter name="setting_avalonDebugPortPresent" value="false" />
+  <parameter name="setting_alwaysEncrypt" value="true" />
+  <parameter name="setting_allowFullAddressRange" value="false" />
+  <parameter name="setting_activateTrace" value="true" />
+  <parameter name="setting_activateTestEndChecker" value="false" />
+  <parameter name="setting_activateMonitors" value="true" />
+  <parameter name="setting_activateModelChecker" value="false" />
+  <parameter name="setting_HDLSimCachesCleared" value="true" />
+  <parameter name="setting_HBreakTest" value="false" />
+  <parameter name="muldiv_divider" value="false" />
+  <parameter name="mpu_useLimit" value="false" />
+  <parameter name="mpu_enabled" value="false" />
+  <parameter name="mmu_enabled" value="false" />
+  <parameter name="mmu_autoAssignTlbPtrSz" value="true" />
+  <parameter name="manuallyAssignCpuID" value="false" />
+  <parameter name="debug_triggerArming" value="true" />
+  <parameter name="debug_embeddedPLL" value="true" />
+  <parameter name="debug_debugReqSignals" value="false" />
+  <parameter name="debug_assignJtagInstanceID" value="false" />
+  <parameter name="dcache_omitDataMaster" value="false" />
+  <parameter name="cpuReset" value="false" />
+  <parameter name="is_hardcopy_compatible" value="false" />
+  <parameter name="setting_shadowRegisterSets" value="0" />
+  <parameter name="mpu_numOfInstRegion" value="8" />
+  <parameter name="mpu_numOfDataRegion" value="8" />
+  <parameter name="mmu_TLBMissExcOffset" value="0" />
+  <parameter name="debug_jtagInstanceID" value="0" />
+  <parameter name="resetOffset" value="0" />
+  <parameter name="exceptionOffset" value="32" />
+  <parameter name="cpuID" value="0" />
+  <parameter name="cpuID_stored" value="0" />
+  <parameter name="breakOffset" value="32" />
+  <parameter name="userDefinedSettings" value="" />
+  <parameter name="resetSlave" value="sdram_0.s1" />
+  <parameter name="mmu_TLBMissExcSlave" value="" />
+  <parameter name="exceptionSlave" value="sdram_0.s1" />
+  <parameter name="breakSlave">CPU.jtag_debug_module</parameter>
+  <parameter name="setting_perfCounterWidth" value="32" />
+  <parameter name="setting_interruptControllerType" value="Internal" />
+  <parameter name="setting_branchPredictionType" value="Automatic" />
+  <parameter name="setting_bhtPtrSz" value="8" />
+  <parameter name="muldiv_multiplierType" value="EmbeddedMulFast" />
+  <parameter name="mpu_minInstRegionSize" value="12" />
+  <parameter name="mpu_minDataRegionSize" value="12" />
+  <parameter name="mmu_uitlbNumEntries" value="4" />
+  <parameter name="mmu_udtlbNumEntries" value="6" />
+  <parameter name="mmu_tlbPtrSz" value="7" />
+  <parameter name="mmu_tlbNumWays" value="16" />
+  <parameter name="mmu_processIDNumBits" value="8" />
+  <parameter name="impl" value="Tiny" />
+  <parameter name="icache_size" value="4096" />
+  <parameter name="icache_ramBlockType" value="Automatic" />
+  <parameter name="icache_numTCIM" value="0" />
+  <parameter name="icache_burstType" value="None" />
+  <parameter name="dcache_bursts" value="false" />
+  <parameter name="debug_level" value="Level1" />
+  <parameter name="debug_OCIOnchipTrace" value="_128" />
+  <parameter name="dcache_size" value="2048" />
+  <parameter name="dcache_ramBlockType" value="Automatic" />
+  <parameter name="dcache_numTCDM" value="0" />
+  <parameter name="dcache_lineSize" value="32" />
+  <parameter name="instAddrWidth" value="28" />
+  <parameter name="dataAddrWidth" value="28" />
+  <parameter name="tightlyCoupledDataMaster0AddrWidth" value="1" />
+  <parameter name="tightlyCoupledDataMaster1AddrWidth" value="1" />
+  <parameter name="tightlyCoupledDataMaster2AddrWidth" value="1" />
+  <parameter name="tightlyCoupledDataMaster3AddrWidth" value="1" />
+  <parameter name="tightlyCoupledInstructionMaster0AddrWidth" value="1" />
+  <parameter name="tightlyCoupledInstructionMaster1AddrWidth" value="1" />
+  <parameter name="tightlyCoupledInstructionMaster2AddrWidth" value="1" />
+  <parameter name="tightlyCoupledInstructionMaster3AddrWidth" value="1" />
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sysid.control_slave' start='0x201010' end='0x201018' /><slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /><slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='Pixel_Buffer.avalon_ssram_slave' start='0x0' end='0x200000' /><slave name='jtag_uart.avalon_jtag_slave' start='0x201008' end='0x201010' /><slave name='sysid.control_slave' start='0x201010' end='0x201018' /><slave name='Char_Buffer_with_DMA.avalon_char_buffer_slave' start='0x208000' end='0x20A000' /><slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /><slave name='Pixel_Buffer_DMA.avalon_control_slave' start='0x20B000' end='0x20B010' /><slave name='Char_Buffer_with_DMA.avalon_char_control_slave' start='0x20B010' end='0x20B018' /><slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
+  <parameter name="clockFrequency" value="50000000" />
+  <parameter name="deviceFamilyName" value="Cyclone IV GX" />
+  <parameter name="internalIrqMaskSystemInfo" value="1" />
+  <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
+  <parameter name="deviceFeaturesSystemInfo">NOT_LISTED 0 INSTALLED 1 IS_DEFAULT_FAMILY 1 ADDRESS_STALL 1 CELL_LEVEL_BACK_ANNOTATION_DISABLED 0 COMPILER_SUPPORT 1 DSP 0 DSP_SHIFTER_BLOCK 0 DUMP_ASM_LAB_BITS_FOR_POWER 1 EMUL 1 ENABLE_ADVANCED_IO_ANALYSIS_GUI_FEATURES 1 EPCS 1 ESB 0 FAKE1 0 FAKE2 0 FAKE3 0 FITTER_USE_FALLING_EDGE_DELAY 0 GENERATE_DC_ON_CURRENT_WARNING_FOR_INTERNAL_CLAMPING_DIODE 0 HARDCOPY 0 HAS_18_BIT_MULTS 0 HAS_ACE_SUPPORT 1 HAS_ADJUSTABLE_OUTPUT_IO_TIMING_MEAS_POINT 1 HAS_ADVANCED_IO_INVERTED_CORNER 0 HAS_ADVANCED_IO_POWER_SUPPORT 1 HAS_ADVANCED_IO_TIMING_SUPPORT 1 HAS_ALM_SUPPORT 0 HAS_ATOM_AND_ROUTING_POWER_MODELED_TOGETHER 0 HAS_AUTO_DERIVE_CLOCK_UNCERTAINTY_SUPPORT 1 HAS_AUTO_FIT_SUPPORT 1 HAS_BALANCED_OPT_TECHNIQUE_SUPPORT 1 HAS_BENEFICIAL_SKEW_SUPPORT 1 HAS_BITLEVEL_DRIVE_STRENGTH_CONTROL 1 HAS_BSDL_FILE_GENERATION 1 HAS_CGA_SUPPORT 1 HAS_CHECK_NETLIST_SUPPORT 0 HAS_CLOCK_REGION_CHECKER_ENABLED 1 HAS_CORE_JUNCTION_TEMP_DERATING 0 HAS_CROSSTALK_SUPPORT 0 HAS_CUSTOM_REGION_SUPPORT 1 HAS_DATA_DRIVEN_ACVQ_HSSI_SUPPORT 0 HAS_DDB_FDI_SUPPORT 0 HAS_DESIGN_ANALYZER_SUPPORT 1 HAS_DETAILED_IO_RAIL_POWER_MODEL 1 HAS_DETAILED_LEIM_STATIC_POWER_MODEL 1 HAS_DETAILED_LE_POWER_MODEL 1 HAS_DETAILED_ROUTING_MUX_STATIC_POWER_MODEL 1 HAS_DETAILED_THERMAL_CIRCUIT_PARAMETER_SUPPORT 1 HAS_DEVICE_MIGRATION_SUPPORT 1 HAS_DIAGONAL_MIGRATION_SUPPORT 0 HAS_EMIF_TOOLKIT_SUPPORT 0 HAS_ERROR_DETECTION_SUPPORT 0 HAS_FAMILY_VARIANT_MIGRATION_SUPPORT 0 HAS_FANOUT_FREE_NODE_SUPPORT 1 HAS_FAST_FIT_SUPPORT 1 HAS_FITTER_EARLY_TIMING_ESTIMATE_SUPPORT 1 HAS_FITTER_ECO_SUPPORT 1 HAS_FIT_NETLIST_OPT_RETIME_SUPPORT 1 HAS_FIT_NETLIST_OPT_SUPPORT 1 HAS_FORMAL_VERIFICATION_SUPPORT 0 HAS_FPGA_XCHANGE_SUPPORT 1 HAS_FSAC_LUTRAM_REGISTER_PACKING_SUPPORT 0 HAS_FULL_DAT_MIN_TIMING_SUPPORT 1 HAS_FULL_INCREMENTAL_DESIGN_SUPPORT 1 HAS_FUNCTIONAL_SIMULATION_SUPPORT 1 HAS_FUNCTIONAL_VERILOG_SIMULATION_SUPPORT 0 HAS_FUNCTIONAL_VHDL_SIMULATION_SUPPORT 0 HAS_GLITCH_FILTERING_SUPPORT 1 HAS_HC_READY_SUPPORT 0 HAS_HIGH_SPEED_LOW_POWER_TILE_SUPPORT 0 HAS_HOLD_TIME_AVOIDANCE_ACROSS_CLOCK_SPINE_SUPPORT 1 HAS_HSPICE_WRITER_SUPPORT 1 HAS_HSSI_POWER_CALCULATOR 1 HAS_IBISO_WRITER_SUPPORT 0 HAS_INCREMENTAL_DAT_SUPPORT 1 HAS_INCREMENTAL_SYNTHESIS_SUPPORT 1 HAS_IO_ASSIGNMENT_ANALYSIS_SUPPORT 1 HAS_IO_DECODER 0 HAS_IO_PLACEMENT_OPTIMIZATION_SUPPORT 1 HAS_IO_SMART_RECOMPILE_SUPPORT 0 HAS_JITTER_SUPPORT 1 HAS_JTAG_SLD_HUB_SUPPORT 1 HAS_LOGIC_LOCK_SUPPORT 1 HAS_MICROPROCESSOR 0 HAS_MIF_SMART_COMPILE_SUPPORT 1 HAS_MINMAX_TIMING_MODELING_SUPPORT 1 HAS_MIN_TIMING_ANALYSIS_SUPPORT 1 HAS_MUX_RESTRUCTURE_SUPPORT 1 HAS_NEW_HC_FLOW_SUPPORT 0 HAS_NEW_SERDES_MAX_RESOURCE_COUNT_REPORTING_SUPPORT 1 HAS_NEW_VPR_SUPPORT 1 HAS_NONSOCKET_TECHNOLOGY_MIGRATION_SUPPORT 0 HAS_NO_JTAG_USERCODE_SUPPORT 0 HAS_OPERATING_SETTINGS_AND_CONDITIONS_REPORTING_SUPPORT 1 HAS_PAD_LOCATION_ASSIGNMENT_SUPPORT 0 HAS_PARTIAL_RECONFIG_SUPPORT 0 HAS_PHYSICAL_NETLIST_OUTPUT 0 HAS_PHYSICAL_ROUTING_SUPPORT 0 HAS_PIN_SPECIFIC_VOLTAGE_SUPPORT 1 HAS_PLDM_REF_SUPPORT 1 HAS_POWER_ESTIMATION_SUPPORT 1 HAS_PRELIMINARY_CLOCK_UNCERTAINTY_NUMBERS 0 HAS_PRE_FITTER_FPP_SUPPORT 0 HAS_PRE_FITTER_LUTRAM_NETLIST_CHECKER_ENABLED 0 HAS_PVA_SUPPORT 1 HAS_RCF_SUPPORT 1 HAS_RCF_SUPPORT_FOR_DEBUGGING 0 HAS_RED_BLACK_SEPARATION_SUPPORT 0 HAS_RE_LEVEL_TIMING_GRAPH_SUPPORT 1 HAS_RISEFALL_DELAY_SUPPORT 1 HAS_SIGNAL_PROBE_SUPPORT 1 HAS_SIGNAL_TAP_SUPPORT 1 HAS_SIMULATOR_SUPPORT 0 HAS_SPLIT_IO_SUPPORT 1 HAS_SPLIT_LC_SUPPORT 1 HAS_SYNTH_FSYN_NETLIST_OPT_SUPPORT 1 HAS_SYNTH_NETLIST_OPT_RETIME_SUPPORT 1 HAS_SYNTH_NETLIST_OPT_SUPPORT 1 HAS_TECHNOLOGY_MIGRATION_SUPPORT 0 HAS_TEMPLATED_REGISTER_PACKING_SUPPORT 1 HAS_TIME_BORROWING_SUPPORT 0 HAS_TIMING_DRIVEN_SYNTHESIS_SUPPORT 1 HAS_TIMING_INFO_SUPPORT 1 HAS_TIMING_OPERATING_CONDITIONS 1 HAS_TIMING_SIMULATION_SUPPORT 1 HAS_TITAN_BASED_MAC_REGISTER_PACKER_SUPPORT 0 HAS_USER_HIGH_SPEED_LOW_POWER_TILE_SUPPORT 0 HAS_USE_FITTER_INFO_SUPPORT 1 HAS_VCCPD_POWER_RAIL 0 HAS_VERTICAL_MIGRATION_SUPPORT 1 HAS_VIEWDRAW_SYMBOL_SUPPORT 0 HAS_VIO_SUPPORT 1 HAS_VIRTUAL_DEVICES 0 HAS_WYSIWYG_DFFEAS_SUPPORT 1 HAS_XIBISO_WRITER_SUPPORT 1 INCREMENTAL_DESIGN_SUPPORTS_COMPATIBLE_CONSTRAINTS 1 IS_CONFIG_ROM 0 IS_HARDCOPY_FAMILY 0 LVDS_IO 1 M10K_MEMORY 0 M144K_MEMORY 0 M20K_MEMORY 0 M4K_MEMORY 0 M512_MEMORY 0 M9K_MEMORY 1 MLAB_MEMORY 0 MRAM_MEMORY 0 NO_RPE_SUPPORT 0 NO_SUPPORT_FOR_LOGICLOCK_CONTENT_BACK_ANNOTATION 1 NO_SUPPORT_FOR_STA_CLOCK_UNCERTAINTY_CHECK 0 NO_TDC_SUPPORT 0 POSTFIT_BAK_DATABASE_EXPORT_ENABLED 1 POSTMAP_BAK_DATABASE_EXPORT_ENABLED 1 PROGRAMMER_SUPPORT 1 QFIT_IN_DEVELOPMENT 0 QMAP_IN_DEVELOPMENT 0 RAM_LOGICAL_NAME_CHECKING_IN_CUT_ENABLED 1 REPORTS_METASTABILITY_MTBF 1 REQUIRES_INSTALLATION_PATCH 0 REQUIRES_LIST_OF_TEMPERATURE_AND_VOLTAGE_OPERATING_CONDITIONS 1 RESERVES_SIGNAL_PROBE_PINS 0 RESOLVE_MAX_FANOUT_EARLY 1 RESOLVE_MAX_FANOUT_LATE 0 RESPECTS_FIXED_SIZED_LOCKED_LOCATION_LOGICLOCK 1 RESTRICTED_USER_SELECTION 0 RISEFALL_SUPPORT_IS_HIDDEN 0 STRICT_TIMING_DB_CHECKS 0 SUPPORTS_ADDITIONAL_OPTIONS_FOR_UNUSED_IO 0 SUPPORTS_CRC 1 SUPPORTS_DIFFERENTIAL_AIOT_BOARD_TRACE_MODEL 1 SUPPORTS_DSP_BALANCING_BACK_ANNOTATION 0 SUPPORTS_GENERATION_OF_EARLY_POWER_ESTIMATOR_FILE 1 SUPPORTS_GLOBAL_SIGNAL_BACK_ANNOTATION 0 SUPPORTS_MAC_CHAIN_OUT_ADDER 0 SUPPORTS_RAM_PACKING_BACK_ANNOTATION 0 SUPPORTS_REG_PACKING_BACK_ANNOTATION 0 SUPPORTS_SIGNALPROBE_REGISTER_PIPELINING 1 SUPPORTS_SINGLE_ENDED_AIOT_BOARD_TRACE_MODEL 1 SUPPORTS_USER_MANUAL_LOGIC_DUPLICATION 1 TMV_RUN_CUSTOMIZABLE_VIEWER 1 TMV_RUN_INTERNAL_DETAILS 1 TMV_RUN_INTERNAL_DETAILS_ON_IO 0 TMV_RUN_INTERNAL_DETAILS_ON_IOBUF 1 TMV_RUN_INTERNAL_DETAILS_ON_LCELL 0 TMV_RUN_INTERNAL_DETAILS_ON_LRAM 0 TRANSCEIVER_3G_BLOCK 1 TRANSCEIVER_6G_BLOCK 1 USES_ACV_FOR_FLED 1 USES_ADB_FOR_BACK_ANNOTATION 1 USES_ALTERA_LNSIM 0 USES_ASIC_ROUTING_POWER_CALCULATOR 0 USES_DATA_DRIVEN_PLL_COMPUTATION_UTIL 1 USES_DEV 1 USES_ICP_FOR_ECO_FITTER 0 USES_LIBERTY_TIMING 0 USES_POWER_SIGNAL_ACTIVITIES 1 USES_THIRD_GENERATION_TIMING_MODELS_TIS 1 USE_ADVANCED_IO_POWER_BY_DEFAULT 1 USE_ADVANCED_IO_TIMING_BY_DEFAULT 1 USE_BASE_FAMILY_DDB_PATH 0 USE_OCT_AUTO_CALIBRATION 1 USE_RELAX_IO_ASSIGNMENT_RULES 0 USE_RISEFALL_ONLY 1 USE_SEPARATE_LIST_FOR_TECH_MIGRATION 0 USE_SINGLE_COMPILER_PASS_PLL_MIF_FILE_WRITER 1 USE_TITAN_IO_BASED_IO_REGISTER_PACKER_UTIL 0 WYSIWYG_BUS_WIDTH_CHECKING_IN_CUT_ENABLED 1</parameter>
+  <parameter name="tightlyCoupledDataMaster0MapParam" value="" />
+  <parameter name="tightlyCoupledDataMaster1MapParam" value="" />
+  <parameter name="tightlyCoupledDataMaster2MapParam" value="" />
+  <parameter name="tightlyCoupledDataMaster3MapParam" value="" />
+  <parameter name="tightlyCoupledInstructionMaster0MapParam" value="" />
+  <parameter name="tightlyCoupledInstructionMaster1MapParam" value="" />
+  <parameter name="tightlyCoupledInstructionMaster2MapParam" value="" />
+  <parameter name="tightlyCoupledInstructionMaster3MapParam" value="" />
+ </module>
+ <module
+   kind="altera_up_clocks"
+   version="12.0"
+   enabled="1"
+   name="Clock_Signals">
+  <parameter name="board" value="DE2-70" />
+  <parameter name="sys_clk_freq" value="50" />
+  <parameter name="sdram_clk" value="true" />
+  <parameter name="vga_clk" value="true" />
+  <parameter name="audio_clk" value="false" />
+  <parameter name="audio_clk_freq" value="12.288" />
+  <parameter name="AUTO_CLK_IN_PRIMARY_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module
+   kind="Altera_UP_SD_Card_Avalon_Interface"
+   version="1.0"
+   enabled="1"
+   name="Altera_UP_SD_Card_Avalon_Interface_0">
+  <parameter name="AUTO_CLOCK_SINK_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module
+   kind="altera_avalon_jtag_uart"
+   version="12.1"
+   enabled="1"
+   name="jtag_uart">
+  <parameter name="allowMultipleConnections" value="false" />
+  <parameter name="avalonSpec" value="2.0" />
+  <parameter name="hubInstanceID" value="0" />
+  <parameter name="readBufferDepth" value="64" />
+  <parameter name="readIRQThreshold" value="8" />
+  <parameter name="simInputCharacterStream" value="" />
+  <parameter name="simInteractiveOptions">INTERACTIVE_ASCII_OUTPUT</parameter>
+  <parameter name="useRegistersForReadBuffer" value="false" />
+  <parameter name="useRegistersForWriteBuffer" value="false" />
+  <parameter name="useRelativePathForSimFile" value="false" />
+  <parameter name="writeBufferDepth" value="64" />
+  <parameter name="writeIRQThreshold" value="8" />
+ </module>
+ <module
+   kind="altera_avalon_sysid_qsys"
+   version="12.1"
+   enabled="1"
+   name="sysid">
+  <parameter name="id" value="1" />
+  <parameter name="timestamp" value="0" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module
+   kind="altera_avalon_new_sdram_controller"
+   version="12.1"
+   enabled="1"
+   name="sdram_0">
+  <parameter name="TAC" value="5.5" />
+  <parameter name="TMRD" value="3" />
+  <parameter name="TRCD" value="20.0" />
+  <parameter name="TRFC" value="70.0" />
+  <parameter name="TRP" value="20.0" />
+  <parameter name="TWR" value="14.0" />
+  <parameter name="casLatency" value="3" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="columnWidth" value="10" />
+  <parameter name="dataWidth" value="32" />
+  <parameter name="generateSimulationModel" value="false" />
+  <parameter name="initNOPDelay" value="0.0" />
+  <parameter name="initRefreshCommands" value="2" />
+  <parameter name="masteredTristateBridgeSlave" value="" />
+  <parameter name="model" value="custom" />
+  <parameter name="numberOfBanks" value="4" />
+  <parameter name="numberOfChipSelects" value="1" />
+  <parameter name="pinsSharedViaTriState" value="false" />
+  <parameter name="powerUpDelay" value="200.0" />
+  <parameter name="refreshPeriod" value="7.8125" />
+  <parameter name="registerDataIn" value="true" />
+  <parameter name="rowWidth" value="13" />
+ </module>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.instruction_master"
+   end="CPU.jtag_debug_module">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0020a800" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.data_master"
+   end="CPU.jtag_debug_module">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0020a800" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.data_master"
+   end="Char_Buffer_with_DMA.avalon_char_control_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0020b010" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.data_master"
+   end="Char_Buffer_with_DMA.avalon_char_buffer_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00208000" />
+ </connection>
+ <connection
+   kind="avalon_streaming"
+   version="12.1"
+   start="Dual_Clock_FIFO.avalon_dc_buffer_source"
+   end="VGA_Controller.avalon_vga_sink" />
+ <connection
+   kind="avalon_streaming"
+   version="12.1"
+   start="Pixel_RGB_Resampler.avalon_rgb_source"
+   end="Pixel_Scaler.avalon_scaler_sink" />
+ <connection
+   kind="avalon_streaming"
+   version="12.1"
+   start="Pixel_Buffer_DMA.avalon_pixel_source"
+   end="Pixel_RGB_Resampler.avalon_rgb_sink" />
+ <connection
+   kind="avalon_streaming"
+   version="12.1"
+   start="Pixel_Scaler.avalon_scaler_source"
+   end="Alpha_Blender.avalon_background_sink" />
+ <connection
+   kind="avalon_streaming"
+   version="12.1"
+   start="Char_Buffer_with_DMA.avalon_char_source"
+   end="Alpha_Blender.avalon_foreground_sink" />
+ <connection
+   kind="avalon_streaming"
+   version="12.1"
+   start="Alpha_Blender.avalon_blended_source"
+   end="Dual_Clock_FIFO.avalon_dc_buffer_sink" />
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.data_master"
+   end="Pixel_Buffer_DMA.avalon_control_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0020b000" />
+ </connection>
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="Char_Buffer_with_DMA.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="CPU.jtag_debug_module_reset"
+   end="Char_Buffer_with_DMA.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="Dual_Clock_FIFO.clock_stream_in_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="CPU.jtag_debug_module_reset"
+   end="Dual_Clock_FIFO.clock_stream_in_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="Dual_Clock_FIFO.clock_stream_out_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="CPU.jtag_debug_module_reset"
+   end="Dual_Clock_FIFO.clock_stream_out_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="VGA_Controller.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="CPU.jtag_debug_module_reset"
+   end="VGA_Controller.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="Pixel_Buffer.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="CPU.jtag_debug_module_reset"
+   end="Pixel_Buffer.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="Pixel_Buffer_DMA.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="CPU.jtag_debug_module_reset"
+   end="Pixel_Buffer_DMA.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="Pixel_RGB_Resampler.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="CPU.jtag_debug_module_reset"
+   end="Pixel_RGB_Resampler.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="Pixel_Scaler.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="CPU.jtag_debug_module_reset"
+   end="Pixel_Scaler.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="Alpha_Blender.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="CPU.jtag_debug_module_reset"
+   end="Alpha_Blender.clock_reset_reset" />
+ <connection kind="reset" version="12.1" start="clk_0.clk_reset" end="CPU.reset_n" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="CPU.jtag_debug_module_reset"
+   end="CPU.reset_n" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="clk_0.clk"
+   end="Clock_Signals.clk_in_primary" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="Clock_Signals.clk_in_primary_reset" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="CPU.jtag_debug_module_reset"
+   end="Clock_Signals.clk_in_primary_reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="CPU.clk" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="Char_Buffer_with_DMA.clock_reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="Pixel_Buffer.clock_reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="Pixel_Buffer_DMA.clock_reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="Pixel_RGB_Resampler.clock_reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="Pixel_Scaler.clock_reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="Alpha_Blender.clock_reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="Dual_Clock_FIFO.clock_stream_in" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.vga_clk"
+   end="Dual_Clock_FIFO.clock_stream_out" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.vga_clk"
+   end="VGA_Controller.clock_reset" />
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.data_master"
+   end="Pixel_Buffer.avalon_ssram_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="Pixel_Buffer_DMA.avalon_pixel_dma_master"
+   end="Pixel_Buffer.avalon_ssram_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.data_master"
+   end="Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00210000" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.instruction_master"
+   end="Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00210000" />
+ </connection>
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="Altera_UP_SD_Card_Avalon_Interface_0.clock_sink" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="Altera_UP_SD_Card_Avalon_Interface_0.clock_sink_reset" />
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.instruction_master"
+   end="sysid.control_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00201010" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.data_master"
+   end="sysid.control_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00201010" />
+ </connection>
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="jtag_uart.reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="jtag_uart.clk" />
+ <connection kind="reset" version="12.1" start="clk_0.clk_reset" end="sysid.reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="sysid.clk" />
+ <connection kind="interrupt" version="12.1" start="CPU.d_irq" end="jtag_uart.irq">
+  <parameter name="irqNumber" value="0" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.instruction_master"
+   end="sdram_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x08000000" />
+ </connection>
+ <connection kind="avalon" version="12.1" start="CPU.data_master" end="sdram_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x08000000" />
+ </connection>
+ <connection
+   kind="reset"
+   version="12.1"
+   start="Clock_Signals.sys_clk_reset"
+   end="sdram_0.reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="sdram_0.clk" />
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.data_master"
+   end="jtag_uart.avalon_jtag_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00201008" />
+ </connection>
+</system>
