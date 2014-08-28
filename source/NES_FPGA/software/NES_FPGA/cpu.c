@@ -1,5 +1,5 @@
 #include "cpu.h"
-
+#include "sdcard.h"
 
 /*
    Function: decode_instruction( byte )
@@ -719,6 +719,9 @@ inline void cpu_reset()
 	for(i = 0; i < 0xFFFF+1; ++i)
 		CPU->MEM[i] = 0;
 
+	// Load the rom after memory is cleared.
+	load_rom();
+
 	CPU->S = 0xFD;
 	CPU->P.N = 0x00;
 	CPU->P.V = 0x00;
@@ -727,7 +730,7 @@ inline void cpu_reset()
 	CPU->P.I = 0x01;
 	CPU->P.C = 0x00;
 	CPU->P.Z = 0x00;
-	CPU->PC = CPU->MEM[ RESL ] | (CPU->MEM[ RESH ] << 8); // RESET vector
+	CPU->PC = CPU->MEM[RESL] | (CPU->MEM[ RESH ] << 8); // RESET vector
 	CPU->A = 0x00;
 	CPU->X = 0x00;
 	CPU->Y = 0x00;

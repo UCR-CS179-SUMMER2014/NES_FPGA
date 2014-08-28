@@ -7,7 +7,7 @@
 int main()
 {
   // Declare appropriate arrays and variables
-  char* file_name = "SMB.nes";
+  file_name = "SMB.nes";
   char* en = (char*) malloc(sizeof(char)*2); // Buffer for cpu cycle pauses
 
   // Initialize CPU
@@ -20,9 +20,8 @@ int main()
 	if(CPU->RES == 1) // Reset
 	{
 		// Load NES rom from file
-		// bootloader(); // Not implemented yet --> Gets filename for ROM
+		// TODO: bootloader();   /*Not implemented yet --> Gets filename for ROM*/
 		cpu_reset();
-		load_rom(file_name);
 
 		// Display contents of PRG_ROM
 		#ifdef DEBUG
@@ -42,7 +41,7 @@ int main()
 		}
 		printf("\n\n");
 		#endif
-		printf("RES!\n");
+		printf("RES! Into: %x\n", CPU->PC);
 	} // end RESET
 	else if(CPU->NMI == 1) // Non-maskable interrupt (PPU)
 	{

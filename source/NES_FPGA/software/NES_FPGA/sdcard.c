@@ -1,6 +1,6 @@
 #include "sdcard.h"
 
-void load_rom(char* rom)
+void load_rom()
 {
 	int sd_fileh;
 
@@ -25,8 +25,8 @@ void load_rom(char* rom)
 	if(alt_up_sd_card_is_FAT16())
 	{
 		//opens the file to be read - 0 if successful
-		printf("Opening %s...\n", rom);
-		sd_fileh = alt_up_sd_card_fopen(rom, false);
+		printf("Opening %s...\n", file_name);
+		sd_fileh = alt_up_sd_card_fopen(file_name, false);
 
 		// Successful open
 		if(sd_fileh == 0)
@@ -47,6 +47,8 @@ void load_rom(char* rom)
 			for(i = 0; i < 10; i++)
 			  data = alt_up_sd_card_read(sd_fileh);
 
+			/* TODO: Check for different PRG sizes. If its one, we mirror it to the second bank.
+			         We also need to take into consideration the type of memory mapping, if present. */
 			// Extract the PRG Data
 			for(i = 0; i < (prg_size*16*1024); ++i)
 			{

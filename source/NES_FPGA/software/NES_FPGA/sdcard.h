@@ -3,7 +3,7 @@
 
 #include "NES.h"
 
-void load_rom(char* rom);
+void load_rom();
 
 
 #endif /* SDCARD_H_ */

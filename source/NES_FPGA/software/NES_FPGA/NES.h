@@ -77,7 +77,7 @@ typedef struct // 6502 Microprocessor Struct
 byte* CHR_ROM; // Holds CHR data stored in ROM
 byte chr_size; // The number of PRG and CHR banks in ROM
 byte prg_size;
-
+char* file_name;
 NMOS6502* CPU;			 // CPU Struct Instance
 
 
