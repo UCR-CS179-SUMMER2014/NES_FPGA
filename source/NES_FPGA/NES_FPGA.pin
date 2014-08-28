@@ -70,7 +70,7 @@
  -- Pin directions (input, output or bidir) are based on device operating in user mode.
  ---------------------------------------------------------------------------------
 
-Quartus II 32-bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
+Quartus II 64-Bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
 CHIP  "NES_FPGA"  ASSIGNED TO AN: EP4CGX150DF31C7
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
@@ -118,12 +118,12 @@ DRAM_DQ[14]                  : AA12      : bidir  : 3.3-V LVTTL       :         
 DRAM_DQ[12]                  : AA13      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 VCCINT                       : AA14      : power  :                   : 1.2V    :           :                
 DRAM_DQ[15]                  : AA15      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AA16      :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AA17      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AA18      :        :                   :         : 4         :                
+FS_ADDR[22]                  : AA16      : output : 3.3-V LVTTL       :         : 3         : Y              
+FS_DQ[7]                     : AA17      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[5]                   : AA18      : output : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : AA19      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AA20      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AA21      :        :                   :         : 4         :                
+FS_DQ[10]                    : AA20      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FS_DQ[4]                     : AA21      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 LEDG[7]                      : AA22      : output : 2.5 V             :         : 5         : Y              
 VCCIO5                       : AA23      : power  :                   : 2.5V    : 5         :                
 VCCIO5                       : AA24      : power  :                   : 2.5V    : 5         :                
@@ -148,13 +148,13 @@ VCCIO3                       : AB12      : power  :                   : 3.3V    
 DRAM_DQ[8]                   : AB13      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_DQM[1]                  : AB14      : output : 3.3-V LVTTL       :         : 3         : Y              
 VCCIO3                       : AB15      : power  :                   : 3.3V    : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB16      :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB17      :        :                   :         : 4         :                
+FS_ADDR[26]                  : AB16      : output : 3.3-V LVTTL       :         : 3         : Y              
+FS_DQ[8]                     : AB17      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 VCCIO4                       : AB18      : power  :                   : 3.3V    : 4         :                
 VCCIO4                       : AB19      : power  :                   : 3.3V    : 4         :                
 VCCIO4                       : AB20      : power  :                   : 3.3V    : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB21      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB22      :        :                   :         : 4         :                
+FS_ADDR[16]                  : AB21      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[1]                   : AB22      : output : 3.3-V LVTTL       :         : 4         : Y              
 VCCD_PLL                     : AB23      : power  :                   : 1.2V    :           :                
 VCCA                         : AB24      : power  :                   : 2.5V    :           :                
 LEDG[1]                      : AB25      : output : 2.5 V             :         : 5         : Y              
@@ -178,7 +178,7 @@ VCCIO3                       : AC12      : power  :                   : 3.3V    
 VCCIO3                       : AC13      : power  :                   : 3.3V    : 3         :                
 GND                          : AC14      : gnd    :                   :         :           :                
 VCCIO3                       : AC15      : power  :                   : 3.3V    : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AC16      :        :                   :         : 3         :                
+FS_DQ[22]                    : AC16      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 GND                          : AC17      : gnd    :                   :         :           :                
 VCCIO4                       : AC18      : power  :                   : 3.3V    : 4         :                
 VCCIO4                       : AC19      : power  :                   : 3.3V    : 4         :                
@@ -208,14 +208,14 @@ VCCIO3                       : AD12      : power  :                   : 3.3V    
 VCCIO3                       : AD13      : power  :                   : 3.3V    : 3         :                
 VCCIO3                       : AD14      : power  :                   : 3.3V    : 3         :                
 VCCIO3                       : AD15      : power  :                   : 3.3V    : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AD16      :        :                   :         : 4         :                
+FS_DQ[25]                    : AD16      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 VCCIO4                       : AD17      : power  :                   : 3.3V    : 4         :                
 VCCIO4                       : AD18      : power  :                   : 3.3V    : 4         :                
 VCCIO4                       : AD19      : power  :                   : 3.3V    : 4         :                
 VCCIO4                       : AD20      : power  :                   : 3.3V    : 4         :                
 VCCIO4                       : AD21      : power  :                   : 3.3V    : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AD22      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AD23      :        :                   :         : 4         :                
+FS_ADDR[13]                  : AD22      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[15]                  : AD23      : output : 3.3-V LVTTL       :         : 4         : Y              
 SD_DAT[2]                    : AD24      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD25      :        :                   :         : 5         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD26      :        :                   :         : 5         :                
@@ -239,14 +239,14 @@ DRAM_ADDR[8]                 : AE13      : output : 3.3-V LVTTL       :         
 DRAM_ADDR[6]                 : AE14      : output : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_ADDR[7]                 : AE15      : output : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_ADDR[4]                 : AE16      : output : 3.3-V LVTTL       :         : 4         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AE17      :        :                   :         : 4         :                
+FS_ADDR[18]                  : AE17      : output : 3.3-V LVTTL       :         : 4         : Y              
 SD_DAT[3]                    : AE18      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AE19      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AE20      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AE21      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AE22      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AE23      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AE24      :        :                   :         : 4         :                
+FS_ADDR[21]                  : AE19      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_DQ[5]                     : AE20      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FS_DQ[11]                    : AE21      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FS_DQ[14]                    : AE22      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FS_DQ[1]                     : AE23      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[14]                  : AE24      : output : 3.3-V LVTTL       :         : 4         : Y              
 KEY[1]                       : AE25      : input  : 2.5 V             :         : 5         : Y              
 KEY[3]                       : AE26      : input  : 2.5 V             :         : 5         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE27      :        :                   :         : 5         :                
@@ -267,16 +267,16 @@ GND                          : AF11      : gnd    :                   :         
 DRAM_DQ[10]                  : AF12      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_DQ[9]                   : AF13      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 GND                          : AF14      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF15      :        :                   :         : 3         :                
+FS_ADDR[23]                  : AF15      : output : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_ADDR[5]                 : AF16      : output : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : AF17      : gnd    :                   :         :           :                
 SD_CMD                       : AF18      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF19      :        :                   :         : 4         :                
+FL_RY                        : AF19      : output : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : AF20      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF21      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF22      :        :                   :         : 4         :                
+SSRAM_BE[3]                  : AF21      : output : 3.3-V LVTTL       :         : 4         : Y              
+SSRAM_BE[0]                  : AF22      : output : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : AF23      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF24      :        :                   :         : 4         :                
+SSRAM_CLK                    : AF24      : output : 3.3-V LVTTL       :         : 4         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF25      :        :                   :         : 4         :                
 GND                          : AF26      : gnd    :                   :         :           :                
 LCD_ON                       : AF27      : output : 2.5 V             :         : 5         : Y              
@@ -297,16 +297,16 @@ DRAM_DQ[17]                  : AG11      : bidir  : 3.3-V LVTTL       :         
 DRAM_DQ[19]                  : AG12      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_DQ[21]                  : AG13      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_DQ[22]                  : AG14      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG15      :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG16      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG17      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG18      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG19      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG20      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG21      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG22      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG23      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG24      :        :                   :         : 4         :                
+FS_ADDR[24]                  : AG15      : output : 3.3-V LVTTL       :         : 3         : Y              
+FS_DQ[24]                    : AG16      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FL_WE_N                      : AG17      : output : 3.3-V LVTTL       :         : 4         : Y              
+FL_RESET_N                   : AG18      : output : 3.3-V LVTTL       :         : 4         : Y              
+FL_CE_N                      : AG19      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[19]                  : AG20      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[11]                  : AG21      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[12]                  : AG22      : output : 3.3-V LVTTL       :         : 4         : Y              
+SSRAM1_CE_N                  : AG23      : output : 3.3-V LVTTL       :         : 4         : Y              
+SSRAM_OE_N                   : AG24      : output : 3.3-V LVTTL       :         : 4         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AG25      :        :                   :         : 4         :                
 GPIO[34]                     : AG26      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AG27      :        :                   :         : 4         :                
@@ -328,17 +328,17 @@ DRAM_DQ[18]                  : AH12      : bidir  : 3.3-V LVTTL       :         
 DRAM_DQ[20]                  : AH13      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_DQ[23]                  : AH14      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_DQM[2]                  : AH15      : output : 3.3-V LVTTL       :         : 3         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH16      :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH17      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH18      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH19      :        :                   :         : 4         :                
+FS_DQ[23]                    : AH16      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+FS_ADDR[17]                  : AH17      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[6]                   : AH18      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[2]                   : AH19      : output : 3.3-V LVTTL       :         : 4         : Y              
 VGA_SYNC_N                   : AH20      : output : 3.3-V LVTTL       :         : 4         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH21      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH22      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH23      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH24      :        :                   :         : 4         :                
+FS_ADDR[10]                  : AH21      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_DQ[12]                    : AH22      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FS_DQ[3]                     : AH23      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FS_DQ[2]                     : AH24      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 SD_CLK                       : AH25      : output : 3.3-V LVTTL       :         : 4         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH26      :        :                   :         : 4         :                
+SSRAM_ADV_N                  : AH26      : output : 3.3-V LVTTL       :         : 4         : Y              
 SD_DAT[0]                    : AH27      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH28      :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH29      :        :                   :         : 5         :                
@@ -351,23 +351,23 @@ GND                          : AJ5       : gnd    :                   :         
 DRAM_DQ[30]                  : AJ6       : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_ADDR[1]                 : AJ7       : output : 3.3-V LVTTL       :         : 3         : Y              
 GND                          : AJ8       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ9       :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ10      :        :                   :         : 3         :                
+FS_DQ[31]                    : AJ9       : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+FS_DQ[17]                    : AJ10      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 GND                          : AJ11      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ12      :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ13      :        :                   :         : 3         :                
+FS_DQ[29]                    : AJ12      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+FS_DQ[20]                    : AJ13      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 GND                          : AJ14      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ15      :        :                   :         : 4         :                
+FS_DQ[26]                    : AJ15      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 CLOCK_50                     : AJ16      : input  : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : AJ17      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ18      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ19      :        :                   :         : 4         :                
+FS_ADDR[4]                   : AJ18      : output : 3.3-V LVTTL       :         : 4         : Y              
+FL_OE_N                      : AJ19      : output : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : AJ20      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ21      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ22      :        :                   :         : 4         :                
+SSRAM0_CE_N                  : AJ21      : output : 3.3-V LVTTL       :         : 4         : Y              
+SSRAM_BE[2]                  : AJ22      : output : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : AJ23      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ24      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ25      :        :                   :         : 4         :                
+FS_DQ[13]                    : AJ24      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+SSRAM_ADSP_N                 : AJ25      : output : 3.3-V LVTTL       :         : 4         : Y              
 GND                          : AJ26      : gnd    :                   :         :           :                
 SD_WP_N                      : AJ27      : input  : 3.3-V LVTTL       :         : 4         : Y              
 SD_DAT[1]                    : AJ28      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
@@ -380,27 +380,27 @@ DRAM_DQ[31]                  : AK5       : bidir  : 3.3-V LVTTL       :         
 DRAM_DQ[29]                  : AK6       : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_DQ[27]                  : AK7       : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 DRAM_DQ[25]                  : AK8       : bidir  : 3.3-V LVTTL       :         : 3         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK9       :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK10      :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK11      :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK12      :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK13      :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK14      :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK15      :        :                   :         : 4         :                
+FS_DQ[16]                    : AK9       : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+FS_DQ[30]                    : AK10      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+FS_DQ[18]                    : AK11      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+FS_DQ[19]                    : AK12      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+FS_DQ[28]                    : AK13      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+FS_DQ[27]                    : AK14      : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+FS_DQ[21]                    : AK15      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 GND+                         : AK16      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK17      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK18      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK19      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK20      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK21      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK22      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK23      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK24      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK25      :        :                   :         : 4         :                
+FS_ADDR[7]                   : AK17      : output : 3.3-V LVTTL       :         : 4         : Y              
+FL_WP_N                      : AK18      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[3]                   : AK19      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[20]                  : AK20      : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[9]                   : AK21      : output : 3.3-V LVTTL       :         : 4         : Y              
+SSRAM_BE[1]                  : AK22      : output : 3.3-V LVTTL       :         : 4         : Y              
+SSRAM_GW_N                   : AK23      : output : 3.3-V LVTTL       :         : 4         : Y              
+SSRAM_WE_N                   : AK24      : output : 3.3-V LVTTL       :         : 4         : Y              
+SSRAM_ADSC_N                 : AK25      : output : 3.3-V LVTTL       :         : 4         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AK26      :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AK27      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK28      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK29      :        :                   :         : 4         :                
+FS_DQ[15]                    : AK28      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FS_DQ[0]                     : AK29      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 nCONFIG                      : B1        :        :                   :         : 9         :                
 GND                          : B2        : gnd    :                   :         :           :                
 ~ALTERA_DCLK~                : B3        : output : 2.5 V             :         : 9         : N              
@@ -957,10 +957,10 @@ VCCINT                       : Y13       : power  :                   : 1.2V    
 GND                          : Y14       : gnd    :                   :         :           :                
 VCCINT                       : Y15       : power  :                   : 1.2V    :           :                
 GND                          : Y16       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : Y17       :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : Y18       :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : Y19       :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : Y20       :        :                   :         : 4         :                
+FS_ADDR[25]                  : Y17       : output : 3.3-V LVTTL       :         : 4         : Y              
+FS_DQ[9]                     : Y18       : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FS_DQ[6]                     : Y19       : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+FS_ADDR[8]                   : Y20       : output : 3.3-V LVTTL       :         : 4         : Y              
 GPIO[35]                     : Y21       : bidir  : 3.3-V LVTTL       :         : 4         : Y              
 LEDG[5]                      : Y22       : output : 2.5 V             :         : 5         : Y              
 GND                          : Y23       : gnd    :                   :         :           :                

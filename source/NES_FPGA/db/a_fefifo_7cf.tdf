@@ -1,5 +1,5 @@
 --a_fefifo ALLOW_RWCYCLE_WHEN_FULL="OFF" LPM_NUMWORDS=64 lpm_widthad=6 OVERFLOW_CHECKING="OFF" UNDERFLOW_CHECKING="OFF" aclr clock empty full rreq sclr usedw_out wreq
---VERSION_BEGIN 12.1 cbx_cycloneii 2012:11:07:18:03:51:SJ cbx_fifo_common 2012:11:07:18:03:51:SJ cbx_lpm_add_sub 2012:11:07:18:03:51:SJ cbx_lpm_compare 2012:11:07:18:03:51:SJ cbx_lpm_counter 2012:11:07:18:03:51:SJ cbx_lpm_decode 2012:11:07:18:03:51:SJ cbx_mgl 2012:11:07:18:06:30:SJ cbx_stratix 2012:11:07:18:03:51:SJ cbx_stratixii 2012:11:07:18:03:51:SJ  VERSION_END
+--VERSION_BEGIN 12.1 cbx_cycloneii 2012:11:07:18:03:59:SJ cbx_fifo_common 2012:11:07:18:03:59:SJ cbx_lpm_add_sub 2012:11:07:18:03:59:SJ cbx_lpm_compare 2012:11:07:18:03:59:SJ cbx_lpm_counter 2012:11:07:18:03:59:SJ cbx_lpm_decode 2012:11:07:18:03:59:SJ cbx_mgl 2012:11:07:18:06:30:SJ cbx_stratix 2012:11:07:18:03:59:SJ cbx_stratixii 2012:11:07:18:03:59:SJ  VERSION_END
 
 
 -- Copyright (C) 1991-2012 Altera Corporation

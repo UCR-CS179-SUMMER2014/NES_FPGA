@@ -29,6 +29,12 @@ module NES_FPGA(
 	DRAM_ADDR, DRAM_BA, DRAM_CAS_N, DRAM_CKE,        // SDRAM
 	DRAM_CLK, DRAM_CS_N, DRAM_DQ, DRAM_DQM, 
 	DRAM_RAS_N, DRAM_WE_N,
+	SSRAM_ADSC_N, SSRAM_ADSP_N, SSRAM_ADV_N,			 // SSRAM
+	SSRAM_BE, SSRAM_CLK, SSRAM_GW_N, SSRAM_OE_N,
+	SSRAM_WE_N, SSRAM0_CE_N, SSRAM1_CE_N,
+	FL_CE_N, FL_OE_N, FL_RESET_N, FL_RY, 				 // FLASH
+	FL_WE_N, FL_WP_N,
+	FS_ADDR, FS_DQ,											 // Flash/SSRAM Shared
 	GPIO,															 // GPIO
 	FAN_CTRL 
 );
@@ -64,6 +70,20 @@ output        DRAM_CAS_N, DRAM_CKE,
 				  DRAM_RAS_N, DRAM_WE_N;
 inout  [31:0] DRAM_DQ;
 output [3:0]  DRAM_DQM;
+output		  SSRAM_ADSC_N, 				// SSRAM
+              SSRAM_ADSP_N,
+        		  SSRAM_ADV_N; 
+output [3:0]  SSRAM_BE;
+output		  SSRAM_CLK, SSRAM_GW_N,
+   		     SSRAM_OE_N, SSRAM_WE_N,
+  		        SSRAM0_CE_N,
+				  SSRAM1_CE_N;	
+output		  FL_CE_N, FL_OE_N,			// Flash
+   		     FL_RESET_N, FL_RY,
+				  FL_WE_N, FL_WP_N;
+output [26:1] FS_ADDR;						// SSRAM/Flash
+inout  [31:0] FS_DQ;
+
 inout  [35:0] GPIO;				         // GPIO
 inout    	  FAN_CTRL;
 
@@ -111,53 +131,14 @@ assign LEDG = output_one;
 //  Structural coding
 //=======================================================
 
-always @ *
-begin
-	input_one = buttons;
-end
-/* 
+/*
 	Video Display (VGA) 
 	-------------------
 */
 pixel_clock PCLOCK(		  // Altera PLL 
 	.inclk0( CLOCK_50 ),   // 50Mhz input
-	.c0( pclock_w)	        // Outputs 25Mhz clock
+	.c0( pclock_w)	        // Outputs 25Mhz clock. Goes to NIOS System
 );
-//
-//vga640x480 VGA(       // 640x480 signal generator
-//	.CLK( pclock_w ),  // Pixel Clock
-//	.CLR( ~KEY[0] ),   // Clear, aka Reset
-//	.HSYNC( VGA_HS ),  // Horizontal Sync
-//	.VSYNC( VGA_VS ),  // Vertical Sync
-//	.HC( hc_w ),       // Horizontal Counter/Position
-//	.VC( vc_w ),       // Vertical Counter/Position
-//	.VIDON( vidon_w )  // VIDON enable signal
-//);
-//
-//prom_DMH CHAR_ROM(		// Grabs an 8x8 sprite
-//	.addr(addr_w),
-//	.M(M_w)
-//);
-
-//vga_text  VGA_TEXT_DISP (	// Displays text on VGA
-//	.vidon( vidon_w ),
-//	.hc( hc_w ),
-//	.vc( vc_w),
-//	.M( M_w ),        	// The byte from the sprite to be sent
-//	.SW( SW[7:0] ),		// Sets the starting x,y position of sprite
-//	.rom_addr( addr_w ),
-//	.R( VGA_R ),
-//	.G( VGA_G ),
-//	.B( VGA_B )
-//);
-//color_gen  IMG_GEN(    // Display generator. Display THIS or VGA_TEXT_DISP. Comment one out.
-//	.VIDON( vidon_w ),  // VIDON enable signa;
-//	.HC( hc_w ),        // Horizontal Counter/Position
-//	.VC( vc_w ),        // Vertical Counter/Position
-//	.R( VGA_R ),        // Red data
-//	.G( VGA_G ),        // Green data
-//	.B( VGA_B )         // Blue data
-//);
 
 
 
@@ -178,36 +159,47 @@ snes_controller  CONTROLLER1(
 	NIOS System
 	-----------
 */
-nios_system NIOS(
-	.VGA_BLANK_from_the_video_vga_controller_0                      (VGA_BLANK_N),  // VGA
-	.VGA_B_from_the_video_vga_controller_0                          (VGA_B),
-	.VGA_CLK_from_the_video_vga_controller_0                        (VGA_CLK),
-	.VGA_G_from_the_video_vga_controller_0                          (VGA_G),
-	.VGA_HS_from_the_video_vga_controller_0                         (VGA_HS),
-	.VGA_R_from_the_video_vga_controller_0                          (VGA_R),
-	.VGA_SYNC_from_the_video_vga_controller_0                       (VGA_SYNC_N),
-	.VGA_VS_from_the_video_vga_controller_0                         (VGA_VS),
-   .vga_clock                                                      (pclock_w),
-	.b_SD_cmd_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0  (SD_CMD),			// SD Card
-	.b_SD_dat3_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0 (SD_DAT[3]),
-	.b_SD_dat_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0  (SD_DAT[0]),
-	.clk_0                                                          (CLOCK_50),      // CLOCK
-	.clocks_SDRAM_CLK_out                                           (DRAM_CLK),      
-	.clocks_sys_clk_out                                             (),  // Unused
-	.in_port_to_the_input1                                          (input_one),     // I/O IN
-	.o_SD_clock_from_the_Altera_UP_SD_Card_Avalon_Interface_0       (SD_CLK),
-	.out_port_from_the_output1                                      (output_one),    // I/O OUT
-	.reset_n                                                        (1),
-	.zs_addr_from_the_sdram_0                                       (DRAM_ADDR),     // DRAM
-	.zs_ba_from_the_sdram_0                                         (DRAM_BA),
-	.zs_cas_n_from_the_sdram_0                                      (DRAM_CAS_N),
-	.zs_cke_from_the_sdram_0                                        (DRAM_CKE),
-	.zs_cs_n_from_the_sdram_0                                       (DRAM_CS_N),
-	.zs_dq_to_and_from_the_sdram_0                                  (DRAM_DQ),
-	.zs_dqm_from_the_sdram_0                                        (DRAM_DQM),
-	.zs_ras_n_from_the_sdram_0                                      (DRAM_RAS_N),
-	.zs_we_n_from_the_sdram_0                                       (DRAM_WE_N)
- );
 
-
+ nios_system u0 (
+	 
+	  .SRAM_DQ_to_and_from_the_Pixel_Buffer                        (FS_DQ),                        //                  Pixel_Buffer_external_interface.DQ
+	  .Pixel_Buffer_external_interface_DPA                         (),                         //                                                 .DPA
+	  .SRAM_ADDR_from_the_Pixel_Buffer                             (FS_ADDR),                             //                                                 .ADDR
+	  .Pixel_Buffer_external_interface_ADSC_N                      (SSRAM_ADSC_N),                      //                                                 .ADSC_N
+	  .Pixel_Buffer_external_interface_ADSP_N                      (SSRAM_ADSP_N),                      //                                                 .ADSP_N
+	  .Pixel_Buffer_external_interface_ADV_N                       (SSRAM_ADV_N),                       //                                                 .ADV_N
+	  .Pixel_Buffer_external_interface_BE_N                        (SSRAM_BE),                        //                                                 .BE_N
+	  .Pixel_Buffer_external_interface_CE1_N                       (SSRAM0_CE_N),                       //                                                 .CE1_N
+	  .Pixel_Buffer_external_interface_CE2                         (),                         //                                                 .CE2
+	  .Pixel_Buffer_external_interface_CE3_N                       (SSRAM1_CE_N),                       //                                                 .CE3_N
+	  .Pixel_Buffer_external_interface_GW_N                        (SSRAM_GW_N),                        //                                                 .GW_N
+	  .SRAM_OE_N_from_the_Pixel_Buffer                             (SSRAM_OE_N),                             //                                                 .OE_N
+	  .SRAM_WE_N_from_the_Pixel_Buffer                             (SSRAM_WE_N),                             //                                                 .WE_N
+	  .Pixel_Buffer_external_interface_CLK                         (SSRAM_CLK),                         //                                                 .CLK
+  
+	  .VGA_CLK_from_the_VGA_Controller                             (VGA_CLK),                             //                VGA_Controller_external_interface.CLK
+	  .VGA_HS_from_the_VGA_Controller                              (VGA_HS),                              //                                                 .HS
+	  .VGA_VS_from_the_VGA_Controller                              (VGA_VS),                              //                                                 .VS
+	  .VGA_BLANK_from_the_VGA_Controller                           (VGA_BLANK_N),                           //                                                 .BLANK
+	  .VGA_SYNC_from_the_VGA_Controller                            (VGA_SYNC_N),                            //                                                 .SYNC
+	  .VGA_R_from_the_VGA_Controller                               (VGA_R),                               //                                                 .R
+	  .VGA_G_from_the_VGA_Controller                               (VGA_G),                               //                                                 .G
+	  .VGA_B_from_the_VGA_Controller                               (VGA_B),                               //                                                 .B
+	  .clk_0                                                       (CLOCK_50),                                                       //                                     clk_0_clk_in.clk
+	  .reset_n                                                     (KEY[0]),                                                     //                               clk_0_clk_in_reset.reset_n
+	  .sdram_0_wire_addr                                           (DRAM_ADDR),                                           //                                     sdram_0_wire.addr
+	  .sdram_0_wire_ba                                             (DRAM_BA),                                             //                                                 .ba
+	  .sdram_0_wire_cas_n                                          (DRAM_CAS_N),                                          //                                                 .cas_n
+	  .sdram_0_wire_cke                                            (DRAM_CKE),                                            //                                                 .cke
+	  .sdram_0_wire_cs_n                                           (DRAM_CS_N),                                           //                                                 .cs_n
+	  .sdram_0_wire_dq                                             (DRAM_DQ),                                             //                                                 .dq
+	  .sdram_0_wire_dqm                                            (DRAM_DQM),                                            //                                                 .dqm
+	  .sdram_0_wire_ras_n                                          (DRAM_RAS_N),                                          //                                                 .ras_n
+	  .sdram_0_wire_we_n                                           (DRAM_WE_N),                                           //                                                 .we_n
+	  .altera_up_sd_card_avalon_interface_0_conduit_end_b_SD_cmd   (SD_CMD),   // altera_up_sd_card_avalon_interface_0_conduit_end.b_SD_cmd
+	  .altera_up_sd_card_avalon_interface_0_conduit_end_b_SD_dat   (SD_DAT[0]),   //                                                 .b_SD_dat
+	  .altera_up_sd_card_avalon_interface_0_conduit_end_b_SD_dat3  (SD_DAT[3]),  //                                                 .b_SD_dat3
+	  .altera_up_sd_card_avalon_interface_0_conduit_end_o_SD_clock (SD_CLK), //                                                 .o_SD_clock
+     .clock_signals_sdram_clk_clk                                 (DRAM_CLK)  
+	  );
 endmodule

@@ -1,6 +1,6 @@
 Assembler report for NES_FPGA
-Thu Aug 28 12:59:03 2014
-Quartus II 32-bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
+Thu Aug 28 12:13:28 2014
+Quartus II 64-Bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
 
 
 ---------------------
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Aug 28 12:59:02 2014 ;
+; Assembler Status      ; Successful - Thu Aug 28 12:13:28 2014 ;
 ; Revision Name         ; NES_FPGA                              ;
 ; Top-level Entity Name ; NES_FPGA                              ;
 ; Family                ; Cyclone IV GX                         ;
@@ -104,7 +104,7 @@ applicable agreement for further details.
 +----------------+------------------------------------------------------------------------+
 ; Device         ; EP4CGX150DF31C7                                                        ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                             ;
-; Checksum       ; 0x00A13384                                                             ;
+; Checksum       ; 0x00A93F5A                                                             ;
 +----------------+------------------------------------------------------------------------+
 
 
@@ -112,16 +112,16 @@ applicable agreement for further details.
 ; Assembler Messages ;
 +--------------------+
 Info: *******************************************************************
-Info: Running Quartus II 32-bit Assembler
+Info: Running Quartus II 64-Bit Assembler
     Info: Version 12.1 Build 177 11/07/2012 SJ Web Edition
-    Info: Processing started: Thu Aug 28 12:58:37 2014
+    Info: Processing started: Thu Aug 28 12:13:06 2014
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off NES_FPGA -c NES_FPGA
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
-Info: Quartus II 32-bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 411 megabytes
-    Info: Processing ended: Thu Aug 28 12:59:03 2014
-    Info: Elapsed time: 00:00:26
-    Info: Total CPU time (on all processors): 00:00:26
+Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 513 megabytes
+    Info: Processing ended: Thu Aug 28 12:13:28 2014
+    Info: Elapsed time: 00:00:22
+    Info: Total CPU time (on all processors): 00:00:22
 
 

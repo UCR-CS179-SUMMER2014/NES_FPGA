@@ -4,27 +4,3 @@ Info (10281): Verilog HDL Declaration information at snes_controller.v(29): obje
 Warning (10273): Verilog HDL warning at vga_text.v(66): extended using "x" or "z"
 Warning (10273): Verilog HDL warning at vga_text.v(67): extended using "x" or "z"
 Warning (10273): Verilog HDL warning at vga_text.v(68): extended using "x" or "z"
-Warning (10037): Verilog HDL or VHDL warning at cpu_0.v(1559): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at cpu_0.v(1561): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at cpu_0.v(1717): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at cpu_0.v(2636): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_0.v(98): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_0.v(107): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_0.v(116): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_0.v(245): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_0.v(254): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_0.v(263): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_0.v(272): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_0.v(281): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_1.v(98): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_1.v(107): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_1.v(116): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_1.v(245): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_1.v(254): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_1.v(263): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_1.v(272): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at nios_system_clock_1.v(281): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at sdram_0.v(316): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at sdram_0.v(326): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at sdram_0.v(336): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at sdram_0.v(680): conditional expression evaluates to a constant

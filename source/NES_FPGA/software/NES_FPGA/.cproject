@@ -24,7 +24,6 @@
 									<listOptionValue builtIn="false" value="__FLT_EPSILON__"/>
 									<listOptionValue builtIn="false" value="__DEC64_MANT_DIG__"/>
 									<listOptionValue builtIn="false" value="__DBL_MIN__"/>
-									<listOptionValue builtIn="false" value="SYSTEM_BUS_WIDTH"/>
 									<listOptionValue builtIn="false" value="__INT_LEAST64_TYPE__"/>
 									<listOptionValue builtIn="false" value="__SCHAR_MAX__"/>
 									<listOptionValue builtIn="false" value="__DEC128_MANT_DIG__"/>
@@ -33,8 +32,8 @@
 									<listOptionValue builtIn="false" value="__unix__"/>
 									<listOptionValue builtIn="false" value="__DBL_DENORM_MIN__"/>
 									<listOptionValue builtIn="false" value="_stdcall"/>
-									<listOptionValue builtIn="false" value="__DBL_HAS_DENORM__"/>
 									<listOptionValue builtIn="false" value="__SHRT_MAX__"/>
+									<listOptionValue builtIn="false" value="__DBL_HAS_DENORM__"/>
 									<listOptionValue builtIn="false" value="__SIZEOF_WCHAR_T__"/>
 									<listOptionValue builtIn="false" value="__SIZEOF_PTRDIFF_T__"/>
 									<listOptionValue builtIn="false" value="__GXX_TYPEINFO_EQUALITY_INLINE"/>
@@ -94,7 +93,6 @@
 									<listOptionValue builtIn="false" value="__DEC128_EPSILON__"/>
 									<listOptionValue builtIn="false" value="__GNUC__"/>
 									<listOptionValue builtIn="false" value="__INT_LEAST8_TYPE__"/>
-									<listOptionValue builtIn="false" value="ALT_NO_INSTRUCTION_EMULATION"/>
 									<listOptionValue builtIn="false" value="__unix"/>
 									<listOptionValue builtIn="false" value="__DEC128_MIN_EXP__"/>
 									<listOptionValue builtIn="false" value="__fastcall"/>
@@ -110,7 +108,6 @@
 									<listOptionValue builtIn="false" value="__INT_LEAST16_TYPE__"/>
 									<listOptionValue builtIn="false" value="__SIZE_TYPE__"/>
 									<listOptionValue builtIn="false" value="__DEC32_MANT_DIG__"/>
-									<listOptionValue builtIn="false" value="ALT_SINGLE_THREADED"/>
 									<listOptionValue builtIn="false" value="__DBL_MAX__"/>
 									<listOptionValue builtIn="false" value="__GXX_WEAK__"/>
 									<listOptionValue builtIn="false" value="__i686__"/>
@@ -167,7 +164,6 @@
 									<listOptionValue builtIn="false" value="__SIG_ATOMIC_MIN__"/>
 									<listOptionValue builtIn="false" value="__FLT_MIN__"/>
 									<listOptionValue builtIn="false" value="__DBL_EPSILON__"/>
-									<listOptionValue builtIn="false" value="__hal__"/>
 									<listOptionValue builtIn="false" value="__GXX_RTTI"/>
 									<listOptionValue builtIn="false" value="__UINT_FAST64_MAX__"/>
 									<listOptionValue builtIn="false" value="__DEC128_MAX_EXP__"/>
@@ -217,8 +213,8 @@
 									<listOptionValue builtIn="false" value="__FLT_MAX__"/>
 									<listOptionValue builtIn="false" value="__UINT_FAST16_TYPE__"/>
 									<listOptionValue builtIn="false" value="__UINT_LEAST64_TYPE__"/>
-									<listOptionValue builtIn="false" value="__GNUC_GNU_INLINE__"/>
 									<listOptionValue builtIn="false" value="__DEC128_MIN__"/>
+									<listOptionValue builtIn="false" value="__GNUC_GNU_INLINE__"/>
 									<listOptionValue builtIn="false" value="_fastcall"/>
 									<listOptionValue builtIn="false" value="__declspec(x)"/>
 									<listOptionValue builtIn="false" value="__FLT_HAS_INFINITY__"/>
@@ -243,7 +239,6 @@
 									<listOptionValue builtIn="false" value="__FLT_EPSILON__"/>
 									<listOptionValue builtIn="false" value="__DEC64_MANT_DIG__"/>
 									<listOptionValue builtIn="false" value="__DBL_MIN__"/>
-									<listOptionValue builtIn="false" value="SYSTEM_BUS_WIDTH"/>
 									<listOptionValue builtIn="false" value="__INT_LEAST64_TYPE__"/>
 									<listOptionValue builtIn="false" value="__SCHAR_MAX__"/>
 									<listOptionValue builtIn="false" value="__DEC128_MANT_DIG__"/>
@@ -252,8 +247,8 @@
 									<listOptionValue builtIn="false" value="__unix__"/>
 									<listOptionValue builtIn="false" value="__DBL_DENORM_MIN__"/>
 									<listOptionValue builtIn="false" value="_stdcall"/>
-									<listOptionValue builtIn="false" value="__DBL_HAS_DENORM__"/>
 									<listOptionValue builtIn="false" value="__SHRT_MAX__"/>
+									<listOptionValue builtIn="false" value="__DBL_HAS_DENORM__"/>
 									<listOptionValue builtIn="false" value="__SIZEOF_WCHAR_T__"/>
 									<listOptionValue builtIn="false" value="__SIZEOF_PTRDIFF_T__"/>
 									<listOptionValue builtIn="false" value="__GXX_TYPEINFO_EQUALITY_INLINE"/>
@@ -313,7 +308,6 @@
 									<listOptionValue builtIn="false" value="__DEC128_EPSILON__"/>
 									<listOptionValue builtIn="false" value="__GNUC__"/>
 									<listOptionValue builtIn="false" value="__INT_LEAST8_TYPE__"/>
-									<listOptionValue builtIn="false" value="ALT_NO_INSTRUCTION_EMULATION"/>
 									<listOptionValue builtIn="false" value="__unix"/>
 									<listOptionValue builtIn="false" value="__DEC128_MIN_EXP__"/>
 									<listOptionValue builtIn="false" value="__fastcall"/>
@@ -329,7 +323,6 @@
 									<listOptionValue builtIn="false" value="__INT_LEAST16_TYPE__"/>
 									<listOptionValue builtIn="false" value="__SIZE_TYPE__"/>
 									<listOptionValue builtIn="false" value="__DEC32_MANT_DIG__"/>
-									<listOptionValue builtIn="false" value="ALT_SINGLE_THREADED"/>
 									<listOptionValue builtIn="false" value="__DBL_MAX__"/>
 									<listOptionValue builtIn="false" value="__i686__"/>
 									<listOptionValue builtIn="false" value="__INT_FAST16_MAX__"/>
@@ -381,7 +374,6 @@
 									<listOptionValue builtIn="false" value="__SIG_ATOMIC_MIN__"/>
 									<listOptionValue builtIn="false" value="__FLT_MIN__"/>
 									<listOptionValue builtIn="false" value="__DBL_EPSILON__"/>
-									<listOptionValue builtIn="false" value="__hal__"/>
 									<listOptionValue builtIn="false" value="__UINT_FAST64_MAX__"/>
 									<listOptionValue builtIn="false" value="__DEC128_MAX_EXP__"/>
 									<listOptionValue builtIn="false" value="__SIZEOF_SIZE_T__"/>
@@ -513,4 +505,5 @@
 			</target>
 		</buildTargets>
 	</storageModule>
+	<storageModule moduleId="refreshScope"/>
 </cproject>

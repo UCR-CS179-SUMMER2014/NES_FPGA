@@ -1,10 +1,5 @@
-PLL_Name	nios_system:NIOS|clocks:the_clocks|altpll:DE_Clock_Generator_System|altpll_0vb2:auto_generated|pll1
+PLL_Name	nios_system:u0|nios_system_Clock_Signals:clock_signals|altpll:DE_Clock_Generator_System|pll
 PLLJITTER	26
-PLLSPEmax	84
-PLLSPEmin	-53
-
-PLL_Name	pixel_clock:PCLOCK|altpll:altpll_component|pixel_clock_altpll:auto_generated|pll1
-PLLJITTER	25
 PLLSPEmax	84
 PLLSPEmin	-53
 
