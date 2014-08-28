@@ -1033,11 +1033,14 @@ module cpu_0_data_master_arbitrator (
                                        clk,
                                        clocks_avalon_clocks_slave_readdata_from_sa,
                                        cpu_0_data_master_address,
+                                       cpu_0_data_master_byteenable_nios_system_clock_1_in,
                                        cpu_0_data_master_granted_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave,
                                        cpu_0_data_master_granted_clocks_avalon_clocks_slave,
                                        cpu_0_data_master_granted_cpu_0_jtag_debug_module,
                                        cpu_0_data_master_granted_input1_s1,
                                        cpu_0_data_master_granted_jtag_uart_0_avalon_jtag_slave,
+                                       cpu_0_data_master_granted_nios_system_clock_0_in,
+                                       cpu_0_data_master_granted_nios_system_clock_1_in,
                                        cpu_0_data_master_granted_onchip_memory2_0_s1,
                                        cpu_0_data_master_granted_output1_s1,
                                        cpu_0_data_master_granted_sdram_0_s1,
@@ -1047,6 +1050,8 @@ module cpu_0_data_master_arbitrator (
                                        cpu_0_data_master_qualified_request_cpu_0_jtag_debug_module,
                                        cpu_0_data_master_qualified_request_input1_s1,
                                        cpu_0_data_master_qualified_request_jtag_uart_0_avalon_jtag_slave,
+                                       cpu_0_data_master_qualified_request_nios_system_clock_0_in,
+                                       cpu_0_data_master_qualified_request_nios_system_clock_1_in,
                                        cpu_0_data_master_qualified_request_onchip_memory2_0_s1,
                                        cpu_0_data_master_qualified_request_output1_s1,
                                        cpu_0_data_master_qualified_request_sdram_0_s1,
@@ -1057,6 +1062,8 @@ module cpu_0_data_master_arbitrator (
                                        cpu_0_data_master_read_data_valid_cpu_0_jtag_debug_module,
                                        cpu_0_data_master_read_data_valid_input1_s1,
                                        cpu_0_data_master_read_data_valid_jtag_uart_0_avalon_jtag_slave,
+                                       cpu_0_data_master_read_data_valid_nios_system_clock_0_in,
+                                       cpu_0_data_master_read_data_valid_nios_system_clock_1_in,
                                        cpu_0_data_master_read_data_valid_onchip_memory2_0_s1,
                                        cpu_0_data_master_read_data_valid_output1_s1,
                                        cpu_0_data_master_read_data_valid_sdram_0_s1,
@@ -1067,17 +1074,22 @@ module cpu_0_data_master_arbitrator (
                                        cpu_0_data_master_requests_cpu_0_jtag_debug_module,
                                        cpu_0_data_master_requests_input1_s1,
                                        cpu_0_data_master_requests_jtag_uart_0_avalon_jtag_slave,
+                                       cpu_0_data_master_requests_nios_system_clock_0_in,
+                                       cpu_0_data_master_requests_nios_system_clock_1_in,
                                        cpu_0_data_master_requests_onchip_memory2_0_s1,
                                        cpu_0_data_master_requests_output1_s1,
                                        cpu_0_data_master_requests_sdram_0_s1,
                                        cpu_0_data_master_requests_sysid_control_slave,
                                        cpu_0_data_master_write,
+                                       cpu_0_data_master_writedata,
                                        cpu_0_jtag_debug_module_readdata_from_sa,
                                        d1_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_end_xfer,
                                        d1_clocks_avalon_clocks_slave_end_xfer,
                                        d1_cpu_0_jtag_debug_module_end_xfer,
                                        d1_input1_s1_end_xfer,
                                        d1_jtag_uart_0_avalon_jtag_slave_end_xfer,
+                                       d1_nios_system_clock_0_in_end_xfer,
+                                       d1_nios_system_clock_1_in_end_xfer,
                                        d1_onchip_memory2_0_s1_end_xfer,
                                        d1_output1_s1_end_xfer,
                                        d1_sdram_0_s1_end_xfer,
@@ -1086,6 +1098,10 @@ module cpu_0_data_master_arbitrator (
                                        jtag_uart_0_avalon_jtag_slave_irq_from_sa,
                                        jtag_uart_0_avalon_jtag_slave_readdata_from_sa,
                                        jtag_uart_0_avalon_jtag_slave_waitrequest_from_sa,
+                                       nios_system_clock_0_in_readdata_from_sa,
+                                       nios_system_clock_0_in_waitrequest_from_sa,
+                                       nios_system_clock_1_in_readdata_from_sa,
+                                       nios_system_clock_1_in_waitrequest_from_sa,
                                        onchip_memory2_0_s1_readdata_from_sa,
                                        output1_s1_readdata_from_sa,
                                        registered_cpu_0_data_master_read_data_valid_clocks_avalon_clocks_slave,
@@ -1098,7 +1114,9 @@ module cpu_0_data_master_arbitrator (
                                       // outputs:
                                        cpu_0_data_master_address_to_slave,
                                        cpu_0_data_master_dbs_address,
+                                       cpu_0_data_master_dbs_write_8,
                                        cpu_0_data_master_irq,
+                                       cpu_0_data_master_no_byte_enables_and_last_term,
                                        cpu_0_data_master_readdata,
                                        cpu_0_data_master_waitrequest
                                     )
@@ -1106,7 +1124,9 @@ module cpu_0_data_master_arbitrator (
 
   output  [ 27: 0] cpu_0_data_master_address_to_slave;
   output  [  1: 0] cpu_0_data_master_dbs_address;
+  output  [  7: 0] cpu_0_data_master_dbs_write_8;
   output  [ 31: 0] cpu_0_data_master_irq;
+  output           cpu_0_data_master_no_byte_enables_and_last_term;
   output  [ 31: 0] cpu_0_data_master_readdata;
   output           cpu_0_data_master_waitrequest;
   input   [ 31: 0] Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_readdata_from_sa;
@@ -1114,11 +1134,14 @@ module cpu_0_data_master_arbitrator (
   input            clk;
   input   [  7: 0] clocks_avalon_clocks_slave_readdata_from_sa;
   input   [ 27: 0] cpu_0_data_master_address;
+  input            cpu_0_data_master_byteenable_nios_system_clock_1_in;
   input            cpu_0_data_master_granted_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave;
   input            cpu_0_data_master_granted_clocks_avalon_clocks_slave;
   input            cpu_0_data_master_granted_cpu_0_jtag_debug_module;
   input            cpu_0_data_master_granted_input1_s1;
   input            cpu_0_data_master_granted_jtag_uart_0_avalon_jtag_slave;
+  input            cpu_0_data_master_granted_nios_system_clock_0_in;
+  input            cpu_0_data_master_granted_nios_system_clock_1_in;
   input            cpu_0_data_master_granted_onchip_memory2_0_s1;
   input            cpu_0_data_master_granted_output1_s1;
   input            cpu_0_data_master_granted_sdram_0_s1;
@@ -1128,6 +1151,8 @@ module cpu_0_data_master_arbitrator (
   input            cpu_0_data_master_qualified_request_cpu_0_jtag_debug_module;
   input            cpu_0_data_master_qualified_request_input1_s1;
   input            cpu_0_data_master_qualified_request_jtag_uart_0_avalon_jtag_slave;
+  input            cpu_0_data_master_qualified_request_nios_system_clock_0_in;
+  input            cpu_0_data_master_qualified_request_nios_system_clock_1_in;
   input            cpu_0_data_master_qualified_request_onchip_memory2_0_s1;
   input            cpu_0_data_master_qualified_request_output1_s1;
   input            cpu_0_data_master_qualified_request_sdram_0_s1;
@@ -1138,6 +1163,8 @@ module cpu_0_data_master_arbitrator (
   input            cpu_0_data_master_read_data_valid_cpu_0_jtag_debug_module;
   input            cpu_0_data_master_read_data_valid_input1_s1;
   input            cpu_0_data_master_read_data_valid_jtag_uart_0_avalon_jtag_slave;
+  input            cpu_0_data_master_read_data_valid_nios_system_clock_0_in;
+  input            cpu_0_data_master_read_data_valid_nios_system_clock_1_in;
   input            cpu_0_data_master_read_data_valid_onchip_memory2_0_s1;
   input            cpu_0_data_master_read_data_valid_output1_s1;
   input            cpu_0_data_master_read_data_valid_sdram_0_s1;
@@ -1148,17 +1175,22 @@ module cpu_0_data_master_arbitrator (
   input            cpu_0_data_master_requests_cpu_0_jtag_debug_module;
   input            cpu_0_data_master_requests_input1_s1;
   input            cpu_0_data_master_requests_jtag_uart_0_avalon_jtag_slave;
+  input            cpu_0_data_master_requests_nios_system_clock_0_in;
+  input            cpu_0_data_master_requests_nios_system_clock_1_in;
   input            cpu_0_data_master_requests_onchip_memory2_0_s1;
   input            cpu_0_data_master_requests_output1_s1;
   input            cpu_0_data_master_requests_sdram_0_s1;
   input            cpu_0_data_master_requests_sysid_control_slave;
   input            cpu_0_data_master_write;
+  input   [ 31: 0] cpu_0_data_master_writedata;
   input   [ 31: 0] cpu_0_jtag_debug_module_readdata_from_sa;
   input            d1_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_end_xfer;
   input            d1_clocks_avalon_clocks_slave_end_xfer;
   input            d1_cpu_0_jtag_debug_module_end_xfer;
   input            d1_input1_s1_end_xfer;
   input            d1_jtag_uart_0_avalon_jtag_slave_end_xfer;
+  input            d1_nios_system_clock_0_in_end_xfer;
+  input            d1_nios_system_clock_1_in_end_xfer;
   input            d1_onchip_memory2_0_s1_end_xfer;
   input            d1_output1_s1_end_xfer;
   input            d1_sdram_0_s1_end_xfer;
@@ -1167,6 +1199,10 @@ module cpu_0_data_master_arbitrator (
   input            jtag_uart_0_avalon_jtag_slave_irq_from_sa;
   input   [ 31: 0] jtag_uart_0_avalon_jtag_slave_readdata_from_sa;
   input            jtag_uart_0_avalon_jtag_slave_waitrequest_from_sa;
+  input   [ 31: 0] nios_system_clock_0_in_readdata_from_sa;
+  input            nios_system_clock_0_in_waitrequest_from_sa;
+  input   [  7: 0] nios_system_clock_1_in_readdata_from_sa;
+  input            nios_system_clock_1_in_waitrequest_from_sa;
   input   [ 31: 0] onchip_memory2_0_s1_readdata_from_sa;
   input   [ 31: 0] output1_s1_readdata_from_sa;
   input            registered_cpu_0_data_master_read_data_valid_clocks_avalon_clocks_slave;
@@ -1179,7 +1215,9 @@ module cpu_0_data_master_arbitrator (
   wire    [ 27: 0] cpu_0_data_master_address_to_slave;
   reg     [  1: 0] cpu_0_data_master_dbs_address;
   wire    [  1: 0] cpu_0_data_master_dbs_increment;
+  wire    [  7: 0] cpu_0_data_master_dbs_write_8;
   wire    [ 31: 0] cpu_0_data_master_irq;
+  reg              cpu_0_data_master_no_byte_enables_and_last_term;
   wire    [ 31: 0] cpu_0_data_master_readdata;
   wire             cpu_0_data_master_run;
   reg              cpu_0_data_master_waitrequest;
@@ -1188,6 +1226,7 @@ module cpu_0_data_master_arbitrator (
   reg     [  7: 0] dbs_8_reg_segment_2;
   wire             dbs_count_enable;
   wire             dbs_counter_overflow;
+  wire             last_dbs_term_and_run;
   wire    [  1: 0] next_dbs_address;
   wire    [  7: 0] p1_dbs_8_reg_segment_0;
   wire    [  7: 0] p1_dbs_8_reg_segment_1;
@@ -1196,15 +1235,19 @@ module cpu_0_data_master_arbitrator (
   wire             pre_dbs_count_enable;
   wire             r_0;
   wire             r_1;
+  wire             r_2;
   reg     [ 31: 0] registered_cpu_0_data_master_readdata;
   //r_0 master_run cascaded wait assignment, which is an e_assign
   assign r_0 = 1 & (cpu_0_data_master_qualified_request_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave | ~cpu_0_data_master_requests_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave) & ((~cpu_0_data_master_qualified_request_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave | ~(cpu_0_data_master_read | cpu_0_data_master_write) | (1 & ~Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_waitrequest_from_sa & (cpu_0_data_master_read | cpu_0_data_master_write)))) & ((~cpu_0_data_master_qualified_request_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave | ~(cpu_0_data_master_read | cpu_0_data_master_write) | (1 & ~Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_waitrequest_from_sa & (cpu_0_data_master_read | cpu_0_data_master_write)))) & 1 & ((cpu_0_data_master_qualified_request_clocks_avalon_clocks_slave | (registered_cpu_0_data_master_read_data_valid_clocks_avalon_clocks_slave & cpu_0_data_master_dbs_address[1] & cpu_0_data_master_dbs_address[0]) | ~cpu_0_data_master_requests_clocks_avalon_clocks_slave)) & ((~cpu_0_data_master_qualified_request_clocks_avalon_clocks_slave | ~cpu_0_data_master_read | (registered_cpu_0_data_master_read_data_valid_clocks_avalon_clocks_slave & (cpu_0_data_master_dbs_address[1] & cpu_0_data_master_dbs_address[0]) & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_clocks_avalon_clocks_slave | ~cpu_0_data_master_write | (1 & (cpu_0_data_master_dbs_address[1] & cpu_0_data_master_dbs_address[0]) & cpu_0_data_master_write))) & 1 & (cpu_0_data_master_qualified_request_cpu_0_jtag_debug_module | ~cpu_0_data_master_requests_cpu_0_jtag_debug_module) & (cpu_0_data_master_granted_cpu_0_jtag_debug_module | ~cpu_0_data_master_qualified_request_cpu_0_jtag_debug_module) & ((~cpu_0_data_master_qualified_request_cpu_0_jtag_debug_module | ~cpu_0_data_master_read | (1 & 1 & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_cpu_0_jtag_debug_module | ~cpu_0_data_master_write | (1 & cpu_0_data_master_write))) & 1 & ((~cpu_0_data_master_qualified_request_input1_s1 | ~cpu_0_data_master_read | (1 & 1 & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_input1_s1 | ~cpu_0_data_master_write | (1 & cpu_0_data_master_write))) & 1 & (cpu_0_data_master_qualified_request_jtag_uart_0_avalon_jtag_slave | ~cpu_0_data_master_requests_jtag_uart_0_avalon_jtag_slave) & ((~cpu_0_data_master_qualified_request_jtag_uart_0_avalon_jtag_slave | ~(cpu_0_data_master_read | cpu_0_data_master_write) | (1 & ~jtag_uart_0_avalon_jtag_slave_waitrequest_from_sa & (cpu_0_data_master_read | cpu_0_data_master_write)))) & ((~cpu_0_data_master_qualified_request_jtag_uart_0_avalon_jtag_slave | ~(cpu_0_data_master_read | cpu_0_data_master_write) | (1 & ~jtag_uart_0_avalon_jtag_slave_waitrequest_from_sa & (cpu_0_data_master_read | cpu_0_data_master_write))));
 
   //cascaded wait assignment, which is an e_assign
-  assign cpu_0_data_master_run = r_0 & r_1;
+  assign cpu_0_data_master_run = r_0 & r_1 & r_2;
 
   //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = 1 & (cpu_0_data_master_qualified_request_onchip_memory2_0_s1 | registered_cpu_0_data_master_read_data_valid_onchip_memory2_0_s1 | ~cpu_0_data_master_requests_onchip_memory2_0_s1) & (cpu_0_data_master_granted_onchip_memory2_0_s1 | ~cpu_0_data_master_qualified_request_onchip_memory2_0_s1) & ((~cpu_0_data_master_qualified_request_onchip_memory2_0_s1 | ~cpu_0_data_master_read | (registered_cpu_0_data_master_read_data_valid_onchip_memory2_0_s1 & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_onchip_memory2_0_s1 | ~(cpu_0_data_master_read | cpu_0_data_master_write) | (1 & (cpu_0_data_master_read | cpu_0_data_master_write)))) & 1 & (cpu_0_data_master_qualified_request_output1_s1 | ~cpu_0_data_master_requests_output1_s1) & ((~cpu_0_data_master_qualified_request_output1_s1 | ~cpu_0_data_master_read | (1 & 1 & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_output1_s1 | ~cpu_0_data_master_write | (1 & cpu_0_data_master_write))) & 1 & (cpu_0_data_master_qualified_request_sdram_0_s1 | cpu_0_data_master_read_data_valid_sdram_0_s1 | ~cpu_0_data_master_requests_sdram_0_s1) & (cpu_0_data_master_granted_sdram_0_s1 | ~cpu_0_data_master_qualified_request_sdram_0_s1) & ((~cpu_0_data_master_qualified_request_sdram_0_s1 | ~cpu_0_data_master_read | (cpu_0_data_master_read_data_valid_sdram_0_s1 & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_sdram_0_s1 | ~(cpu_0_data_master_read | cpu_0_data_master_write) | (1 & ~sdram_0_s1_waitrequest_from_sa & (cpu_0_data_master_read | cpu_0_data_master_write)))) & 1 & ((~cpu_0_data_master_qualified_request_sysid_control_slave | ~cpu_0_data_master_read | (1 & 1 & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_sysid_control_slave | ~cpu_0_data_master_write | (1 & cpu_0_data_master_write)));
+  assign r_1 = 1 & (cpu_0_data_master_qualified_request_nios_system_clock_0_in | ~cpu_0_data_master_requests_nios_system_clock_0_in) & ((~cpu_0_data_master_qualified_request_nios_system_clock_0_in | ~(cpu_0_data_master_read | cpu_0_data_master_write) | (1 & ~nios_system_clock_0_in_waitrequest_from_sa & (cpu_0_data_master_read | cpu_0_data_master_write)))) & ((~cpu_0_data_master_qualified_request_nios_system_clock_0_in | ~(cpu_0_data_master_read | cpu_0_data_master_write) | (1 & ~nios_system_clock_0_in_waitrequest_from_sa & (cpu_0_data_master_read | cpu_0_data_master_write)))) & 1 & ((cpu_0_data_master_qualified_request_nios_system_clock_1_in | ((cpu_0_data_master_write & !cpu_0_data_master_byteenable_nios_system_clock_1_in & cpu_0_data_master_dbs_address[1] & cpu_0_data_master_dbs_address[0])) | ~cpu_0_data_master_requests_nios_system_clock_1_in)) & ((~cpu_0_data_master_qualified_request_nios_system_clock_1_in | ~cpu_0_data_master_read | (1 & ~nios_system_clock_1_in_waitrequest_from_sa & (cpu_0_data_master_dbs_address[1] & cpu_0_data_master_dbs_address[0]) & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_nios_system_clock_1_in | ~cpu_0_data_master_write | (1 & ~nios_system_clock_1_in_waitrequest_from_sa & (cpu_0_data_master_dbs_address[1] & cpu_0_data_master_dbs_address[0]) & cpu_0_data_master_write))) & 1 & (cpu_0_data_master_qualified_request_onchip_memory2_0_s1 | registered_cpu_0_data_master_read_data_valid_onchip_memory2_0_s1 | ~cpu_0_data_master_requests_onchip_memory2_0_s1) & (cpu_0_data_master_granted_onchip_memory2_0_s1 | ~cpu_0_data_master_qualified_request_onchip_memory2_0_s1) & ((~cpu_0_data_master_qualified_request_onchip_memory2_0_s1 | ~cpu_0_data_master_read | (registered_cpu_0_data_master_read_data_valid_onchip_memory2_0_s1 & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_onchip_memory2_0_s1 | ~(cpu_0_data_master_read | cpu_0_data_master_write) | (1 & (cpu_0_data_master_read | cpu_0_data_master_write)))) & 1 & (cpu_0_data_master_qualified_request_output1_s1 | ~cpu_0_data_master_requests_output1_s1) & ((~cpu_0_data_master_qualified_request_output1_s1 | ~cpu_0_data_master_read | (1 & 1 & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_output1_s1 | ~cpu_0_data_master_write | (1 & cpu_0_data_master_write))) & 1 & (cpu_0_data_master_qualified_request_sdram_0_s1 | cpu_0_data_master_read_data_valid_sdram_0_s1 | ~cpu_0_data_master_requests_sdram_0_s1) & (cpu_0_data_master_granted_sdram_0_s1 | ~cpu_0_data_master_qualified_request_sdram_0_s1);
+
+  //r_2 master_run cascaded wait assignment, which is an e_assign
+  assign r_2 = ((~cpu_0_data_master_qualified_request_sdram_0_s1 | ~cpu_0_data_master_read | (cpu_0_data_master_read_data_valid_sdram_0_s1 & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_sdram_0_s1 | ~(cpu_0_data_master_read | cpu_0_data_master_write) | (1 & ~sdram_0_s1_waitrequest_from_sa & (cpu_0_data_master_read | cpu_0_data_master_write)))) & 1 & ((~cpu_0_data_master_qualified_request_sysid_control_slave | ~cpu_0_data_master_read | (1 & 1 & cpu_0_data_master_read))) & ((~cpu_0_data_master_qualified_request_sysid_control_slave | ~cpu_0_data_master_write | (1 & cpu_0_data_master_write)));
 
   //optimize select-logic by passing only those address bits which matter.
   assign cpu_0_data_master_address_to_slave = cpu_0_data_master_address[27 : 0];
@@ -1222,6 +1265,11 @@ module cpu_0_data_master_arbitrator (
   //registered readdata mux, which is an e_mux
   assign p1_registered_cpu_0_data_master_readdata = ({32 {~cpu_0_data_master_requests_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave}} | Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_readdata_from_sa) &
     ({32 {~cpu_0_data_master_requests_jtag_uart_0_avalon_jtag_slave}} | jtag_uart_0_avalon_jtag_slave_readdata_from_sa) &
+    ({32 {~cpu_0_data_master_requests_nios_system_clock_0_in}} | nios_system_clock_0_in_readdata_from_sa) &
+    ({32 {~cpu_0_data_master_requests_nios_system_clock_1_in}} | {nios_system_clock_1_in_readdata_from_sa[7 : 0],
+    dbs_8_reg_segment_2,
+    dbs_8_reg_segment_1,
+    dbs_8_reg_segment_0}) &
     ({32 {~cpu_0_data_master_requests_sdram_0_s1}} | sdram_0_s1_readdata_from_sa);
 
   //cpu_0/data_master readdata mux, which is an e_mux
@@ -1233,6 +1281,8 @@ module cpu_0_data_master_arbitrator (
     ({32 {~cpu_0_data_master_requests_cpu_0_jtag_debug_module}} | cpu_0_jtag_debug_module_readdata_from_sa) &
     ({32 {~cpu_0_data_master_requests_input1_s1}} | input1_s1_readdata_from_sa) &
     ({32 {~cpu_0_data_master_requests_jtag_uart_0_avalon_jtag_slave}} | registered_cpu_0_data_master_readdata) &
+    ({32 {~cpu_0_data_master_requests_nios_system_clock_0_in}} | registered_cpu_0_data_master_readdata) &
+    ({32 {~cpu_0_data_master_requests_nios_system_clock_1_in}} | registered_cpu_0_data_master_readdata) &
     ({32 {~cpu_0_data_master_requests_onchip_memory2_0_s1}} | onchip_memory2_0_s1_readdata_from_sa) &
     ({32 {~cpu_0_data_master_requests_output1_s1}} | output1_s1_readdata_from_sa) &
     ({32 {~cpu_0_data_master_requests_sdram_0_s1}} | registered_cpu_0_data_master_readdata) &
@@ -1249,7 +1299,8 @@ module cpu_0_data_master_arbitrator (
 
 
   //input to dbs-8 stored 0, which is an e_mux
-  assign p1_dbs_8_reg_segment_0 = clocks_avalon_clocks_slave_readdata_from_sa;
+  assign p1_dbs_8_reg_segment_0 = (cpu_0_data_master_requests_clocks_avalon_clocks_slave)? clocks_avalon_clocks_slave_readdata_from_sa :
+    nios_system_clock_1_in_readdata_from_sa;
 
   //dbs register for dbs-8 segment 0, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -1262,7 +1313,8 @@ module cpu_0_data_master_arbitrator (
 
 
   //input to dbs-8 stored 1, which is an e_mux
-  assign p1_dbs_8_reg_segment_1 = clocks_avalon_clocks_slave_readdata_from_sa;
+  assign p1_dbs_8_reg_segment_1 = (cpu_0_data_master_requests_clocks_avalon_clocks_slave)? clocks_avalon_clocks_slave_readdata_from_sa :
+    nios_system_clock_1_in_readdata_from_sa;
 
   //dbs register for dbs-8 segment 1, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -1275,7 +1327,8 @@ module cpu_0_data_master_arbitrator (
 
 
   //input to dbs-8 stored 2, which is an e_mux
-  assign p1_dbs_8_reg_segment_2 = clocks_avalon_clocks_slave_readdata_from_sa;
+  assign p1_dbs_8_reg_segment_2 = (cpu_0_data_master_requests_clocks_avalon_clocks_slave)? clocks_avalon_clocks_slave_readdata_from_sa :
+    nios_system_clock_1_in_readdata_from_sa;
 
   //dbs register for dbs-8 segment 2, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -1289,6 +1342,7 @@ module cpu_0_data_master_arbitrator (
 
   //dbs count increment, which is an e_mux
   assign cpu_0_data_master_dbs_increment = (cpu_0_data_master_requests_clocks_avalon_clocks_slave)? 1 :
+    (cpu_0_data_master_requests_nios_system_clock_1_in)? 1 :
     0;
 
   //dbs counter overflow, which is an e_assign
@@ -1299,7 +1353,8 @@ module cpu_0_data_master_arbitrator (
 
   //dbs count enable, which is an e_mux
   assign dbs_count_enable = pre_dbs_count_enable &
-    (~(cpu_0_data_master_requests_clocks_avalon_clocks_slave & ~cpu_0_data_master_waitrequest & cpu_0_data_master_write));
+    (~(cpu_0_data_master_requests_clocks_avalon_clocks_slave & ~cpu_0_data_master_waitrequest & cpu_0_data_master_write)) &
+    (~(cpu_0_data_master_requests_nios_system_clock_1_in & ~cpu_0_data_master_waitrequest));
 
   //dbs counter, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -1313,7 +1368,10 @@ module cpu_0_data_master_arbitrator (
 
   //pre dbs count enable, which is an e_mux
   assign pre_dbs_count_enable = cpu_0_data_master_read_data_valid_clocks_avalon_clocks_slave |
-    (cpu_0_data_master_granted_clocks_avalon_clocks_slave & cpu_0_data_master_write & 1 & 1);
+    (cpu_0_data_master_granted_clocks_avalon_clocks_slave & cpu_0_data_master_write & 1 & 1) |
+    (((~cpu_0_data_master_no_byte_enables_and_last_term) & cpu_0_data_master_requests_nios_system_clock_1_in & cpu_0_data_master_write & !cpu_0_data_master_byteenable_nios_system_clock_1_in)) |
+    (cpu_0_data_master_granted_nios_system_clock_1_in & cpu_0_data_master_read & 1 & 1 & ~nios_system_clock_1_in_waitrequest_from_sa) |
+    (cpu_0_data_master_granted_nios_system_clock_1_in & cpu_0_data_master_write & 1 & 1 & ~nios_system_clock_1_in_waitrequest_from_sa);
 
   //irq assign, which is an e_assign
   assign cpu_0_data_master_irq = {1'b0,
@@ -1348,6 +1406,25 @@ module cpu_0_data_master_arbitrator (
     1'b0,
     1'b0,
     jtag_uart_0_avalon_jtag_slave_irq_from_sa};
+
+  //no_byte_enables_and_last_term, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          cpu_0_data_master_no_byte_enables_and_last_term <= 0;
+      else 
+        cpu_0_data_master_no_byte_enables_and_last_term <= last_dbs_term_and_run;
+    end
+
+
+  //compute the last dbs term, which is an e_mux
+  assign last_dbs_term_and_run = (cpu_0_data_master_dbs_address == 2'b11) & cpu_0_data_master_write & !cpu_0_data_master_byteenable_nios_system_clock_1_in;
+
+  //mux write dbs 2, which is an e_mux
+  assign cpu_0_data_master_dbs_write_8 = ((cpu_0_data_master_dbs_address[1 : 0] == 0))? cpu_0_data_master_writedata[7 : 0] :
+    ((cpu_0_data_master_dbs_address[1 : 0] == 1))? cpu_0_data_master_writedata[15 : 8] :
+    ((cpu_0_data_master_dbs_address[1 : 0] == 2))? cpu_0_data_master_writedata[23 : 16] :
+    cpu_0_data_master_writedata[31 : 24];
 
 
 endmodule
@@ -1432,14 +1509,18 @@ module cpu_0_instruction_master_arbitrator (
   wire             cpu_0_instruction_master_waitrequest;
   wire             r_0;
   wire             r_1;
+  wire             r_2;
   //r_0 master_run cascaded wait assignment, which is an e_assign
   assign r_0 = 1 & (cpu_0_instruction_master_qualified_request_cpu_0_jtag_debug_module | ~cpu_0_instruction_master_requests_cpu_0_jtag_debug_module) & (cpu_0_instruction_master_granted_cpu_0_jtag_debug_module | ~cpu_0_instruction_master_qualified_request_cpu_0_jtag_debug_module) & ((~cpu_0_instruction_master_qualified_request_cpu_0_jtag_debug_module | ~cpu_0_instruction_master_read | (1 & ~d1_cpu_0_jtag_debug_module_end_xfer & cpu_0_instruction_master_read)));
 
   //cascaded wait assignment, which is an e_assign
-  assign cpu_0_instruction_master_run = r_0 & r_1;
+  assign cpu_0_instruction_master_run = r_0 & r_1 & r_2;
 
   //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = 1 & (cpu_0_instruction_master_qualified_request_onchip_memory2_0_s1 | cpu_0_instruction_master_read_data_valid_onchip_memory2_0_s1 | ~cpu_0_instruction_master_requests_onchip_memory2_0_s1) & (cpu_0_instruction_master_granted_onchip_memory2_0_s1 | ~cpu_0_instruction_master_qualified_request_onchip_memory2_0_s1) & ((~cpu_0_instruction_master_qualified_request_onchip_memory2_0_s1 | ~cpu_0_instruction_master_read | (cpu_0_instruction_master_read_data_valid_onchip_memory2_0_s1 & cpu_0_instruction_master_read))) & 1 & (cpu_0_instruction_master_qualified_request_sdram_0_s1 | cpu_0_instruction_master_read_data_valid_sdram_0_s1 | ~cpu_0_instruction_master_requests_sdram_0_s1) & (cpu_0_instruction_master_granted_sdram_0_s1 | ~cpu_0_instruction_master_qualified_request_sdram_0_s1) & ((~cpu_0_instruction_master_qualified_request_sdram_0_s1 | ~cpu_0_instruction_master_read | (cpu_0_instruction_master_read_data_valid_sdram_0_s1 & cpu_0_instruction_master_read)));
+  assign r_1 = 1 & (cpu_0_instruction_master_qualified_request_onchip_memory2_0_s1 | cpu_0_instruction_master_read_data_valid_onchip_memory2_0_s1 | ~cpu_0_instruction_master_requests_onchip_memory2_0_s1) & (cpu_0_instruction_master_granted_onchip_memory2_0_s1 | ~cpu_0_instruction_master_qualified_request_onchip_memory2_0_s1) & ((~cpu_0_instruction_master_qualified_request_onchip_memory2_0_s1 | ~cpu_0_instruction_master_read | (cpu_0_instruction_master_read_data_valid_onchip_memory2_0_s1 & cpu_0_instruction_master_read))) & 1 & (cpu_0_instruction_master_qualified_request_sdram_0_s1 | cpu_0_instruction_master_read_data_valid_sdram_0_s1 | ~cpu_0_instruction_master_requests_sdram_0_s1);
+
+  //r_2 master_run cascaded wait assignment, which is an e_assign
+  assign r_2 = (cpu_0_instruction_master_granted_sdram_0_s1 | ~cpu_0_instruction_master_qualified_request_sdram_0_s1) & ((~cpu_0_instruction_master_qualified_request_sdram_0_s1 | ~cpu_0_instruction_master_read | (cpu_0_instruction_master_read_data_valid_sdram_0_s1 & cpu_0_instruction_master_read)));
 
   //optimize select-logic by passing only those address bits which matter.
   assign cpu_0_instruction_master_address_to_slave = cpu_0_instruction_master_address[27 : 0];
@@ -2083,6 +2164,1020 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
+module nios_system_clock_0_in_arbitrator (
+                                           // inputs:
+                                            clk,
+                                            cpu_0_data_master_address_to_slave,
+                                            cpu_0_data_master_byteenable,
+                                            cpu_0_data_master_read,
+                                            cpu_0_data_master_waitrequest,
+                                            cpu_0_data_master_write,
+                                            cpu_0_data_master_writedata,
+                                            nios_system_clock_0_in_endofpacket,
+                                            nios_system_clock_0_in_readdata,
+                                            nios_system_clock_0_in_waitrequest,
+                                            reset_n,
+
+                                           // outputs:
+                                            cpu_0_data_master_granted_nios_system_clock_0_in,
+                                            cpu_0_data_master_qualified_request_nios_system_clock_0_in,
+                                            cpu_0_data_master_read_data_valid_nios_system_clock_0_in,
+                                            cpu_0_data_master_requests_nios_system_clock_0_in,
+                                            d1_nios_system_clock_0_in_end_xfer,
+                                            nios_system_clock_0_in_address,
+                                            nios_system_clock_0_in_byteenable,
+                                            nios_system_clock_0_in_endofpacket_from_sa,
+                                            nios_system_clock_0_in_nativeaddress,
+                                            nios_system_clock_0_in_read,
+                                            nios_system_clock_0_in_readdata_from_sa,
+                                            nios_system_clock_0_in_reset_n,
+                                            nios_system_clock_0_in_waitrequest_from_sa,
+                                            nios_system_clock_0_in_write,
+                                            nios_system_clock_0_in_writedata
+                                         )
+;
+
+  output           cpu_0_data_master_granted_nios_system_clock_0_in;
+  output           cpu_0_data_master_qualified_request_nios_system_clock_0_in;
+  output           cpu_0_data_master_read_data_valid_nios_system_clock_0_in;
+  output           cpu_0_data_master_requests_nios_system_clock_0_in;
+  output           d1_nios_system_clock_0_in_end_xfer;
+  output  [  2: 0] nios_system_clock_0_in_address;
+  output  [  3: 0] nios_system_clock_0_in_byteenable;
+  output           nios_system_clock_0_in_endofpacket_from_sa;
+  output           nios_system_clock_0_in_nativeaddress;
+  output           nios_system_clock_0_in_read;
+  output  [ 31: 0] nios_system_clock_0_in_readdata_from_sa;
+  output           nios_system_clock_0_in_reset_n;
+  output           nios_system_clock_0_in_waitrequest_from_sa;
+  output           nios_system_clock_0_in_write;
+  output  [ 31: 0] nios_system_clock_0_in_writedata;
+  input            clk;
+  input   [ 27: 0] cpu_0_data_master_address_to_slave;
+  input   [  3: 0] cpu_0_data_master_byteenable;
+  input            cpu_0_data_master_read;
+  input            cpu_0_data_master_waitrequest;
+  input            cpu_0_data_master_write;
+  input   [ 31: 0] cpu_0_data_master_writedata;
+  input            nios_system_clock_0_in_endofpacket;
+  input   [ 31: 0] nios_system_clock_0_in_readdata;
+  input            nios_system_clock_0_in_waitrequest;
+  input            reset_n;
+
+  wire             cpu_0_data_master_arbiterlock;
+  wire             cpu_0_data_master_arbiterlock2;
+  wire             cpu_0_data_master_continuerequest;
+  wire             cpu_0_data_master_granted_nios_system_clock_0_in;
+  wire             cpu_0_data_master_qualified_request_nios_system_clock_0_in;
+  wire             cpu_0_data_master_read_data_valid_nios_system_clock_0_in;
+  wire             cpu_0_data_master_requests_nios_system_clock_0_in;
+  wire             cpu_0_data_master_saved_grant_nios_system_clock_0_in;
+  reg              d1_nios_system_clock_0_in_end_xfer;
+  reg              d1_reasons_to_wait;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_nios_system_clock_0_in;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire    [  2: 0] nios_system_clock_0_in_address;
+  wire             nios_system_clock_0_in_allgrants;
+  wire             nios_system_clock_0_in_allow_new_arb_cycle;
+  wire             nios_system_clock_0_in_any_bursting_master_saved_grant;
+  wire             nios_system_clock_0_in_any_continuerequest;
+  wire             nios_system_clock_0_in_arb_counter_enable;
+  reg     [  2: 0] nios_system_clock_0_in_arb_share_counter;
+  wire    [  2: 0] nios_system_clock_0_in_arb_share_counter_next_value;
+  wire    [  2: 0] nios_system_clock_0_in_arb_share_set_values;
+  wire             nios_system_clock_0_in_beginbursttransfer_internal;
+  wire             nios_system_clock_0_in_begins_xfer;
+  wire    [  3: 0] nios_system_clock_0_in_byteenable;
+  wire             nios_system_clock_0_in_end_xfer;
+  wire             nios_system_clock_0_in_endofpacket_from_sa;
+  wire             nios_system_clock_0_in_firsttransfer;
+  wire             nios_system_clock_0_in_grant_vector;
+  wire             nios_system_clock_0_in_in_a_read_cycle;
+  wire             nios_system_clock_0_in_in_a_write_cycle;
+  wire             nios_system_clock_0_in_master_qreq_vector;
+  wire             nios_system_clock_0_in_nativeaddress;
+  wire             nios_system_clock_0_in_non_bursting_master_requests;
+  wire             nios_system_clock_0_in_read;
+  wire    [ 31: 0] nios_system_clock_0_in_readdata_from_sa;
+  reg              nios_system_clock_0_in_reg_firsttransfer;
+  wire             nios_system_clock_0_in_reset_n;
+  reg              nios_system_clock_0_in_slavearbiterlockenable;
+  wire             nios_system_clock_0_in_slavearbiterlockenable2;
+  wire             nios_system_clock_0_in_unreg_firsttransfer;
+  wire             nios_system_clock_0_in_waitrequest_from_sa;
+  wire             nios_system_clock_0_in_waits_for_read;
+  wire             nios_system_clock_0_in_waits_for_write;
+  wire             nios_system_clock_0_in_write;
+  wire    [ 31: 0] nios_system_clock_0_in_writedata;
+  wire             wait_for_nios_system_clock_0_in_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~nios_system_clock_0_in_end_xfer;
+    end
+
+
+  assign nios_system_clock_0_in_begins_xfer = ~d1_reasons_to_wait & ((cpu_0_data_master_qualified_request_nios_system_clock_0_in));
+  //assign nios_system_clock_0_in_readdata_from_sa = nios_system_clock_0_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign nios_system_clock_0_in_readdata_from_sa = nios_system_clock_0_in_readdata;
+
+  assign cpu_0_data_master_requests_nios_system_clock_0_in = ({cpu_0_data_master_address_to_slave[27 : 3] , 3'b0} == 28'h38) & (cpu_0_data_master_read | cpu_0_data_master_write);
+  //assign nios_system_clock_0_in_waitrequest_from_sa = nios_system_clock_0_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign nios_system_clock_0_in_waitrequest_from_sa = nios_system_clock_0_in_waitrequest;
+
+  //nios_system_clock_0_in_arb_share_counter set values, which is an e_mux
+  assign nios_system_clock_0_in_arb_share_set_values = 1;
+
+  //nios_system_clock_0_in_non_bursting_master_requests mux, which is an e_mux
+  assign nios_system_clock_0_in_non_bursting_master_requests = cpu_0_data_master_requests_nios_system_clock_0_in;
+
+  //nios_system_clock_0_in_any_bursting_master_saved_grant mux, which is an e_mux
+  assign nios_system_clock_0_in_any_bursting_master_saved_grant = 0;
+
+  //nios_system_clock_0_in_arb_share_counter_next_value assignment, which is an e_assign
+  assign nios_system_clock_0_in_arb_share_counter_next_value = nios_system_clock_0_in_firsttransfer ? (nios_system_clock_0_in_arb_share_set_values - 1) : |nios_system_clock_0_in_arb_share_counter ? (nios_system_clock_0_in_arb_share_counter - 1) : 0;
+
+  //nios_system_clock_0_in_allgrants all slave grants, which is an e_mux
+  assign nios_system_clock_0_in_allgrants = |nios_system_clock_0_in_grant_vector;
+
+  //nios_system_clock_0_in_end_xfer assignment, which is an e_assign
+  assign nios_system_clock_0_in_end_xfer = ~(nios_system_clock_0_in_waits_for_read | nios_system_clock_0_in_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_nios_system_clock_0_in arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_nios_system_clock_0_in = nios_system_clock_0_in_end_xfer & (~nios_system_clock_0_in_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //nios_system_clock_0_in_arb_share_counter arbitration counter enable, which is an e_assign
+  assign nios_system_clock_0_in_arb_counter_enable = (end_xfer_arb_share_counter_term_nios_system_clock_0_in & nios_system_clock_0_in_allgrants) | (end_xfer_arb_share_counter_term_nios_system_clock_0_in & ~nios_system_clock_0_in_non_bursting_master_requests);
+
+  //nios_system_clock_0_in_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_0_in_arb_share_counter <= 0;
+      else if (nios_system_clock_0_in_arb_counter_enable)
+          nios_system_clock_0_in_arb_share_counter <= nios_system_clock_0_in_arb_share_counter_next_value;
+    end
+
+
+  //nios_system_clock_0_in_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_0_in_slavearbiterlockenable <= 0;
+      else if ((|nios_system_clock_0_in_master_qreq_vector & end_xfer_arb_share_counter_term_nios_system_clock_0_in) | (end_xfer_arb_share_counter_term_nios_system_clock_0_in & ~nios_system_clock_0_in_non_bursting_master_requests))
+          nios_system_clock_0_in_slavearbiterlockenable <= |nios_system_clock_0_in_arb_share_counter_next_value;
+    end
+
+
+  //cpu_0/data_master nios_system_clock_0/in arbiterlock, which is an e_assign
+  assign cpu_0_data_master_arbiterlock = nios_system_clock_0_in_slavearbiterlockenable & cpu_0_data_master_continuerequest;
+
+  //nios_system_clock_0_in_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign nios_system_clock_0_in_slavearbiterlockenable2 = |nios_system_clock_0_in_arb_share_counter_next_value;
+
+  //cpu_0/data_master nios_system_clock_0/in arbiterlock2, which is an e_assign
+  assign cpu_0_data_master_arbiterlock2 = nios_system_clock_0_in_slavearbiterlockenable2 & cpu_0_data_master_continuerequest;
+
+  //nios_system_clock_0_in_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign nios_system_clock_0_in_any_continuerequest = 1;
+
+  //cpu_0_data_master_continuerequest continued request, which is an e_assign
+  assign cpu_0_data_master_continuerequest = 1;
+
+  assign cpu_0_data_master_qualified_request_nios_system_clock_0_in = cpu_0_data_master_requests_nios_system_clock_0_in & ~((cpu_0_data_master_read & (~cpu_0_data_master_waitrequest)) | ((~cpu_0_data_master_waitrequest) & cpu_0_data_master_write));
+  //nios_system_clock_0_in_writedata mux, which is an e_mux
+  assign nios_system_clock_0_in_writedata = cpu_0_data_master_writedata;
+
+  //assign nios_system_clock_0_in_endofpacket_from_sa = nios_system_clock_0_in_endofpacket so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign nios_system_clock_0_in_endofpacket_from_sa = nios_system_clock_0_in_endofpacket;
+
+  //master is always granted when requested
+  assign cpu_0_data_master_granted_nios_system_clock_0_in = cpu_0_data_master_qualified_request_nios_system_clock_0_in;
+
+  //cpu_0/data_master saved-grant nios_system_clock_0/in, which is an e_assign
+  assign cpu_0_data_master_saved_grant_nios_system_clock_0_in = cpu_0_data_master_requests_nios_system_clock_0_in;
+
+  //allow new arb cycle for nios_system_clock_0/in, which is an e_assign
+  assign nios_system_clock_0_in_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign nios_system_clock_0_in_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign nios_system_clock_0_in_master_qreq_vector = 1;
+
+  //nios_system_clock_0_in_reset_n assignment, which is an e_assign
+  assign nios_system_clock_0_in_reset_n = reset_n;
+
+  //nios_system_clock_0_in_firsttransfer first transaction, which is an e_assign
+  assign nios_system_clock_0_in_firsttransfer = nios_system_clock_0_in_begins_xfer ? nios_system_clock_0_in_unreg_firsttransfer : nios_system_clock_0_in_reg_firsttransfer;
+
+  //nios_system_clock_0_in_unreg_firsttransfer first transaction, which is an e_assign
+  assign nios_system_clock_0_in_unreg_firsttransfer = ~(nios_system_clock_0_in_slavearbiterlockenable & nios_system_clock_0_in_any_continuerequest);
+
+  //nios_system_clock_0_in_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_0_in_reg_firsttransfer <= 1'b1;
+      else if (nios_system_clock_0_in_begins_xfer)
+          nios_system_clock_0_in_reg_firsttransfer <= nios_system_clock_0_in_unreg_firsttransfer;
+    end
+
+
+  //nios_system_clock_0_in_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign nios_system_clock_0_in_beginbursttransfer_internal = nios_system_clock_0_in_begins_xfer;
+
+  //nios_system_clock_0_in_read assignment, which is an e_mux
+  assign nios_system_clock_0_in_read = cpu_0_data_master_granted_nios_system_clock_0_in & cpu_0_data_master_read;
+
+  //nios_system_clock_0_in_write assignment, which is an e_mux
+  assign nios_system_clock_0_in_write = cpu_0_data_master_granted_nios_system_clock_0_in & cpu_0_data_master_write;
+
+  //nios_system_clock_0_in_address mux, which is an e_mux
+  assign nios_system_clock_0_in_address = cpu_0_data_master_address_to_slave;
+
+  //slaveid nios_system_clock_0_in_nativeaddress nativeaddress mux, which is an e_mux
+  assign nios_system_clock_0_in_nativeaddress = cpu_0_data_master_address_to_slave >> 2;
+
+  //d1_nios_system_clock_0_in_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_nios_system_clock_0_in_end_xfer <= 1;
+      else 
+        d1_nios_system_clock_0_in_end_xfer <= nios_system_clock_0_in_end_xfer;
+    end
+
+
+  //nios_system_clock_0_in_waits_for_read in a cycle, which is an e_mux
+  assign nios_system_clock_0_in_waits_for_read = nios_system_clock_0_in_in_a_read_cycle & nios_system_clock_0_in_waitrequest_from_sa;
+
+  //nios_system_clock_0_in_in_a_read_cycle assignment, which is an e_assign
+  assign nios_system_clock_0_in_in_a_read_cycle = cpu_0_data_master_granted_nios_system_clock_0_in & cpu_0_data_master_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = nios_system_clock_0_in_in_a_read_cycle;
+
+  //nios_system_clock_0_in_waits_for_write in a cycle, which is an e_mux
+  assign nios_system_clock_0_in_waits_for_write = nios_system_clock_0_in_in_a_write_cycle & nios_system_clock_0_in_waitrequest_from_sa;
+
+  //nios_system_clock_0_in_in_a_write_cycle assignment, which is an e_assign
+  assign nios_system_clock_0_in_in_a_write_cycle = cpu_0_data_master_granted_nios_system_clock_0_in & cpu_0_data_master_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = nios_system_clock_0_in_in_a_write_cycle;
+
+  assign wait_for_nios_system_clock_0_in_counter = 0;
+  //nios_system_clock_0_in_byteenable byte enable port mux, which is an e_mux
+  assign nios_system_clock_0_in_byteenable = (cpu_0_data_master_granted_nios_system_clock_0_in)? cpu_0_data_master_byteenable :
+    -1;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //nios_system_clock_0/in enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+// synthesis translate_off
+`timescale 1ns / 1ps
+// synthesis translate_on
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module nios_system_clock_0_out_arbitrator (
+                                            // inputs:
+                                             clk,
+                                             d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer,
+                                             nios_system_clock_0_out_address,
+                                             nios_system_clock_0_out_byteenable,
+                                             nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave,
+                                             nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave,
+                                             nios_system_clock_0_out_read,
+                                             nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave,
+                                             nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave,
+                                             nios_system_clock_0_out_write,
+                                             nios_system_clock_0_out_writedata,
+                                             reset_n,
+                                             video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa,
+
+                                            // outputs:
+                                             nios_system_clock_0_out_address_to_slave,
+                                             nios_system_clock_0_out_readdata,
+                                             nios_system_clock_0_out_reset_n,
+                                             nios_system_clock_0_out_waitrequest
+                                          )
+;
+
+  output  [  2: 0] nios_system_clock_0_out_address_to_slave;
+  output  [ 31: 0] nios_system_clock_0_out_readdata;
+  output           nios_system_clock_0_out_reset_n;
+  output           nios_system_clock_0_out_waitrequest;
+  input            clk;
+  input            d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer;
+  input   [  2: 0] nios_system_clock_0_out_address;
+  input   [  3: 0] nios_system_clock_0_out_byteenable;
+  input            nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  input            nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  input            nios_system_clock_0_out_read;
+  input            nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  input            nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  input            nios_system_clock_0_out_write;
+  input   [ 31: 0] nios_system_clock_0_out_writedata;
+  input            reset_n;
+  input   [ 31: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa;
+
+  reg              active_and_waiting_last_time;
+  reg     [  2: 0] nios_system_clock_0_out_address_last_time;
+  wire    [  2: 0] nios_system_clock_0_out_address_to_slave;
+  reg     [  3: 0] nios_system_clock_0_out_byteenable_last_time;
+  reg              nios_system_clock_0_out_read_last_time;
+  wire    [ 31: 0] nios_system_clock_0_out_readdata;
+  wire             nios_system_clock_0_out_reset_n;
+  wire             nios_system_clock_0_out_run;
+  wire             nios_system_clock_0_out_waitrequest;
+  reg              nios_system_clock_0_out_write_last_time;
+  reg     [ 31: 0] nios_system_clock_0_out_writedata_last_time;
+  wire             r_2;
+  //r_2 master_run cascaded wait assignment, which is an e_assign
+  assign r_2 = 1 & (nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave | nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave | ~nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave) & ((~nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave | ~nios_system_clock_0_out_read | (nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave & nios_system_clock_0_out_read))) & ((~nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave | ~(nios_system_clock_0_out_read | nios_system_clock_0_out_write) | (1 & (nios_system_clock_0_out_read | nios_system_clock_0_out_write))));
+
+  //cascaded wait assignment, which is an e_assign
+  assign nios_system_clock_0_out_run = r_2;
+
+  //optimize select-logic by passing only those address bits which matter.
+  assign nios_system_clock_0_out_address_to_slave = nios_system_clock_0_out_address;
+
+  //nios_system_clock_0/out readdata mux, which is an e_mux
+  assign nios_system_clock_0_out_readdata = video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa;
+
+  //actual waitrequest port, which is an e_assign
+  assign nios_system_clock_0_out_waitrequest = ~nios_system_clock_0_out_run;
+
+  //nios_system_clock_0_out_reset_n assignment, which is an e_assign
+  assign nios_system_clock_0_out_reset_n = reset_n;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //nios_system_clock_0_out_address check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_0_out_address_last_time <= 0;
+      else 
+        nios_system_clock_0_out_address_last_time <= nios_system_clock_0_out_address;
+    end
+
+
+  //nios_system_clock_0/out waited last time, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          active_and_waiting_last_time <= 0;
+      else 
+        active_and_waiting_last_time <= nios_system_clock_0_out_waitrequest & (nios_system_clock_0_out_read | nios_system_clock_0_out_write);
+    end
+
+
+  //nios_system_clock_0_out_address matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (nios_system_clock_0_out_address != nios_system_clock_0_out_address_last_time))
+        begin
+          $write("%0d ns: nios_system_clock_0_out_address did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //nios_system_clock_0_out_byteenable check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_0_out_byteenable_last_time <= 0;
+      else 
+        nios_system_clock_0_out_byteenable_last_time <= nios_system_clock_0_out_byteenable;
+    end
+
+
+  //nios_system_clock_0_out_byteenable matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (nios_system_clock_0_out_byteenable != nios_system_clock_0_out_byteenable_last_time))
+        begin
+          $write("%0d ns: nios_system_clock_0_out_byteenable did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //nios_system_clock_0_out_read check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_0_out_read_last_time <= 0;
+      else 
+        nios_system_clock_0_out_read_last_time <= nios_system_clock_0_out_read;
+    end
+
+
+  //nios_system_clock_0_out_read matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (nios_system_clock_0_out_read != nios_system_clock_0_out_read_last_time))
+        begin
+          $write("%0d ns: nios_system_clock_0_out_read did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //nios_system_clock_0_out_write check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_0_out_write_last_time <= 0;
+      else 
+        nios_system_clock_0_out_write_last_time <= nios_system_clock_0_out_write;
+    end
+
+
+  //nios_system_clock_0_out_write matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (nios_system_clock_0_out_write != nios_system_clock_0_out_write_last_time))
+        begin
+          $write("%0d ns: nios_system_clock_0_out_write did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //nios_system_clock_0_out_writedata check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_0_out_writedata_last_time <= 0;
+      else 
+        nios_system_clock_0_out_writedata_last_time <= nios_system_clock_0_out_writedata;
+    end
+
+
+  //nios_system_clock_0_out_writedata matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (nios_system_clock_0_out_writedata != nios_system_clock_0_out_writedata_last_time) & nios_system_clock_0_out_write)
+        begin
+          $write("%0d ns: nios_system_clock_0_out_writedata did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+// synthesis translate_off
+`timescale 1ns / 1ps
+// synthesis translate_on
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module nios_system_clock_1_in_arbitrator (
+                                           // inputs:
+                                            clk,
+                                            cpu_0_data_master_address_to_slave,
+                                            cpu_0_data_master_byteenable,
+                                            cpu_0_data_master_dbs_address,
+                                            cpu_0_data_master_dbs_write_8,
+                                            cpu_0_data_master_no_byte_enables_and_last_term,
+                                            cpu_0_data_master_read,
+                                            cpu_0_data_master_waitrequest,
+                                            cpu_0_data_master_write,
+                                            nios_system_clock_1_in_endofpacket,
+                                            nios_system_clock_1_in_readdata,
+                                            nios_system_clock_1_in_waitrequest,
+                                            reset_n,
+
+                                           // outputs:
+                                            cpu_0_data_master_byteenable_nios_system_clock_1_in,
+                                            cpu_0_data_master_granted_nios_system_clock_1_in,
+                                            cpu_0_data_master_qualified_request_nios_system_clock_1_in,
+                                            cpu_0_data_master_read_data_valid_nios_system_clock_1_in,
+                                            cpu_0_data_master_requests_nios_system_clock_1_in,
+                                            d1_nios_system_clock_1_in_end_xfer,
+                                            nios_system_clock_1_in_address,
+                                            nios_system_clock_1_in_endofpacket_from_sa,
+                                            nios_system_clock_1_in_nativeaddress,
+                                            nios_system_clock_1_in_read,
+                                            nios_system_clock_1_in_readdata_from_sa,
+                                            nios_system_clock_1_in_reset_n,
+                                            nios_system_clock_1_in_waitrequest_from_sa,
+                                            nios_system_clock_1_in_write,
+                                            nios_system_clock_1_in_writedata
+                                         )
+;
+
+  output           cpu_0_data_master_byteenable_nios_system_clock_1_in;
+  output           cpu_0_data_master_granted_nios_system_clock_1_in;
+  output           cpu_0_data_master_qualified_request_nios_system_clock_1_in;
+  output           cpu_0_data_master_read_data_valid_nios_system_clock_1_in;
+  output           cpu_0_data_master_requests_nios_system_clock_1_in;
+  output           d1_nios_system_clock_1_in_end_xfer;
+  output  [ 12: 0] nios_system_clock_1_in_address;
+  output           nios_system_clock_1_in_endofpacket_from_sa;
+  output  [ 12: 0] nios_system_clock_1_in_nativeaddress;
+  output           nios_system_clock_1_in_read;
+  output  [  7: 0] nios_system_clock_1_in_readdata_from_sa;
+  output           nios_system_clock_1_in_reset_n;
+  output           nios_system_clock_1_in_waitrequest_from_sa;
+  output           nios_system_clock_1_in_write;
+  output  [  7: 0] nios_system_clock_1_in_writedata;
+  input            clk;
+  input   [ 27: 0] cpu_0_data_master_address_to_slave;
+  input   [  3: 0] cpu_0_data_master_byteenable;
+  input   [  1: 0] cpu_0_data_master_dbs_address;
+  input   [  7: 0] cpu_0_data_master_dbs_write_8;
+  input            cpu_0_data_master_no_byte_enables_and_last_term;
+  input            cpu_0_data_master_read;
+  input            cpu_0_data_master_waitrequest;
+  input            cpu_0_data_master_write;
+  input            nios_system_clock_1_in_endofpacket;
+  input   [  7: 0] nios_system_clock_1_in_readdata;
+  input            nios_system_clock_1_in_waitrequest;
+  input            reset_n;
+
+  wire             cpu_0_data_master_arbiterlock;
+  wire             cpu_0_data_master_arbiterlock2;
+  wire             cpu_0_data_master_byteenable_nios_system_clock_1_in;
+  wire             cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_0;
+  wire             cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_1;
+  wire             cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_2;
+  wire             cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_3;
+  wire             cpu_0_data_master_continuerequest;
+  wire             cpu_0_data_master_granted_nios_system_clock_1_in;
+  wire             cpu_0_data_master_qualified_request_nios_system_clock_1_in;
+  wire             cpu_0_data_master_read_data_valid_nios_system_clock_1_in;
+  wire             cpu_0_data_master_requests_nios_system_clock_1_in;
+  wire             cpu_0_data_master_saved_grant_nios_system_clock_1_in;
+  reg              d1_nios_system_clock_1_in_end_xfer;
+  reg              d1_reasons_to_wait;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_nios_system_clock_1_in;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire    [ 12: 0] nios_system_clock_1_in_address;
+  wire             nios_system_clock_1_in_allgrants;
+  wire             nios_system_clock_1_in_allow_new_arb_cycle;
+  wire             nios_system_clock_1_in_any_bursting_master_saved_grant;
+  wire             nios_system_clock_1_in_any_continuerequest;
+  wire             nios_system_clock_1_in_arb_counter_enable;
+  reg     [  2: 0] nios_system_clock_1_in_arb_share_counter;
+  wire    [  2: 0] nios_system_clock_1_in_arb_share_counter_next_value;
+  wire    [  2: 0] nios_system_clock_1_in_arb_share_set_values;
+  wire             nios_system_clock_1_in_beginbursttransfer_internal;
+  wire             nios_system_clock_1_in_begins_xfer;
+  wire             nios_system_clock_1_in_end_xfer;
+  wire             nios_system_clock_1_in_endofpacket_from_sa;
+  wire             nios_system_clock_1_in_firsttransfer;
+  wire             nios_system_clock_1_in_grant_vector;
+  wire             nios_system_clock_1_in_in_a_read_cycle;
+  wire             nios_system_clock_1_in_in_a_write_cycle;
+  wire             nios_system_clock_1_in_master_qreq_vector;
+  wire    [ 12: 0] nios_system_clock_1_in_nativeaddress;
+  wire             nios_system_clock_1_in_non_bursting_master_requests;
+  wire             nios_system_clock_1_in_pretend_byte_enable;
+  wire             nios_system_clock_1_in_read;
+  wire    [  7: 0] nios_system_clock_1_in_readdata_from_sa;
+  reg              nios_system_clock_1_in_reg_firsttransfer;
+  wire             nios_system_clock_1_in_reset_n;
+  reg              nios_system_clock_1_in_slavearbiterlockenable;
+  wire             nios_system_clock_1_in_slavearbiterlockenable2;
+  wire             nios_system_clock_1_in_unreg_firsttransfer;
+  wire             nios_system_clock_1_in_waitrequest_from_sa;
+  wire             nios_system_clock_1_in_waits_for_read;
+  wire             nios_system_clock_1_in_waits_for_write;
+  wire             nios_system_clock_1_in_write;
+  wire    [  7: 0] nios_system_clock_1_in_writedata;
+  wire             wait_for_nios_system_clock_1_in_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~nios_system_clock_1_in_end_xfer;
+    end
+
+
+  assign nios_system_clock_1_in_begins_xfer = ~d1_reasons_to_wait & ((cpu_0_data_master_qualified_request_nios_system_clock_1_in));
+  //assign nios_system_clock_1_in_readdata_from_sa = nios_system_clock_1_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign nios_system_clock_1_in_readdata_from_sa = nios_system_clock_1_in_readdata;
+
+  assign cpu_0_data_master_requests_nios_system_clock_1_in = ({cpu_0_data_master_address_to_slave[27 : 13] , 13'b0} == 28'h2000) & (cpu_0_data_master_read | cpu_0_data_master_write);
+  //assign nios_system_clock_1_in_waitrequest_from_sa = nios_system_clock_1_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign nios_system_clock_1_in_waitrequest_from_sa = nios_system_clock_1_in_waitrequest;
+
+  //nios_system_clock_1_in_arb_share_counter set values, which is an e_mux
+  assign nios_system_clock_1_in_arb_share_set_values = (cpu_0_data_master_granted_nios_system_clock_1_in)? 4 :
+    1;
+
+  //nios_system_clock_1_in_non_bursting_master_requests mux, which is an e_mux
+  assign nios_system_clock_1_in_non_bursting_master_requests = cpu_0_data_master_requests_nios_system_clock_1_in;
+
+  //nios_system_clock_1_in_any_bursting_master_saved_grant mux, which is an e_mux
+  assign nios_system_clock_1_in_any_bursting_master_saved_grant = 0;
+
+  //nios_system_clock_1_in_arb_share_counter_next_value assignment, which is an e_assign
+  assign nios_system_clock_1_in_arb_share_counter_next_value = nios_system_clock_1_in_firsttransfer ? (nios_system_clock_1_in_arb_share_set_values - 1) : |nios_system_clock_1_in_arb_share_counter ? (nios_system_clock_1_in_arb_share_counter - 1) : 0;
+
+  //nios_system_clock_1_in_allgrants all slave grants, which is an e_mux
+  assign nios_system_clock_1_in_allgrants = |nios_system_clock_1_in_grant_vector;
+
+  //nios_system_clock_1_in_end_xfer assignment, which is an e_assign
+  assign nios_system_clock_1_in_end_xfer = ~(nios_system_clock_1_in_waits_for_read | nios_system_clock_1_in_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_nios_system_clock_1_in arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_nios_system_clock_1_in = nios_system_clock_1_in_end_xfer & (~nios_system_clock_1_in_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //nios_system_clock_1_in_arb_share_counter arbitration counter enable, which is an e_assign
+  assign nios_system_clock_1_in_arb_counter_enable = (end_xfer_arb_share_counter_term_nios_system_clock_1_in & nios_system_clock_1_in_allgrants) | (end_xfer_arb_share_counter_term_nios_system_clock_1_in & ~nios_system_clock_1_in_non_bursting_master_requests);
+
+  //nios_system_clock_1_in_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_1_in_arb_share_counter <= 0;
+      else if (nios_system_clock_1_in_arb_counter_enable)
+          nios_system_clock_1_in_arb_share_counter <= nios_system_clock_1_in_arb_share_counter_next_value;
+    end
+
+
+  //nios_system_clock_1_in_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_1_in_slavearbiterlockenable <= 0;
+      else if ((|nios_system_clock_1_in_master_qreq_vector & end_xfer_arb_share_counter_term_nios_system_clock_1_in) | (end_xfer_arb_share_counter_term_nios_system_clock_1_in & ~nios_system_clock_1_in_non_bursting_master_requests))
+          nios_system_clock_1_in_slavearbiterlockenable <= |nios_system_clock_1_in_arb_share_counter_next_value;
+    end
+
+
+  //cpu_0/data_master nios_system_clock_1/in arbiterlock, which is an e_assign
+  assign cpu_0_data_master_arbiterlock = nios_system_clock_1_in_slavearbiterlockenable & cpu_0_data_master_continuerequest;
+
+  //nios_system_clock_1_in_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign nios_system_clock_1_in_slavearbiterlockenable2 = |nios_system_clock_1_in_arb_share_counter_next_value;
+
+  //cpu_0/data_master nios_system_clock_1/in arbiterlock2, which is an e_assign
+  assign cpu_0_data_master_arbiterlock2 = nios_system_clock_1_in_slavearbiterlockenable2 & cpu_0_data_master_continuerequest;
+
+  //nios_system_clock_1_in_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign nios_system_clock_1_in_any_continuerequest = 1;
+
+  //cpu_0_data_master_continuerequest continued request, which is an e_assign
+  assign cpu_0_data_master_continuerequest = 1;
+
+  assign cpu_0_data_master_qualified_request_nios_system_clock_1_in = cpu_0_data_master_requests_nios_system_clock_1_in & ~((cpu_0_data_master_read & (~cpu_0_data_master_waitrequest)) | ((~cpu_0_data_master_waitrequest | cpu_0_data_master_no_byte_enables_and_last_term | !cpu_0_data_master_byteenable_nios_system_clock_1_in) & cpu_0_data_master_write));
+  //nios_system_clock_1_in_writedata mux, which is an e_mux
+  assign nios_system_clock_1_in_writedata = cpu_0_data_master_dbs_write_8;
+
+  //assign nios_system_clock_1_in_endofpacket_from_sa = nios_system_clock_1_in_endofpacket so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign nios_system_clock_1_in_endofpacket_from_sa = nios_system_clock_1_in_endofpacket;
+
+  //master is always granted when requested
+  assign cpu_0_data_master_granted_nios_system_clock_1_in = cpu_0_data_master_qualified_request_nios_system_clock_1_in;
+
+  //cpu_0/data_master saved-grant nios_system_clock_1/in, which is an e_assign
+  assign cpu_0_data_master_saved_grant_nios_system_clock_1_in = cpu_0_data_master_requests_nios_system_clock_1_in;
+
+  //allow new arb cycle for nios_system_clock_1/in, which is an e_assign
+  assign nios_system_clock_1_in_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign nios_system_clock_1_in_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign nios_system_clock_1_in_master_qreq_vector = 1;
+
+  //nios_system_clock_1_in_reset_n assignment, which is an e_assign
+  assign nios_system_clock_1_in_reset_n = reset_n;
+
+  //nios_system_clock_1_in_firsttransfer first transaction, which is an e_assign
+  assign nios_system_clock_1_in_firsttransfer = nios_system_clock_1_in_begins_xfer ? nios_system_clock_1_in_unreg_firsttransfer : nios_system_clock_1_in_reg_firsttransfer;
+
+  //nios_system_clock_1_in_unreg_firsttransfer first transaction, which is an e_assign
+  assign nios_system_clock_1_in_unreg_firsttransfer = ~(nios_system_clock_1_in_slavearbiterlockenable & nios_system_clock_1_in_any_continuerequest);
+
+  //nios_system_clock_1_in_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_1_in_reg_firsttransfer <= 1'b1;
+      else if (nios_system_clock_1_in_begins_xfer)
+          nios_system_clock_1_in_reg_firsttransfer <= nios_system_clock_1_in_unreg_firsttransfer;
+    end
+
+
+  //nios_system_clock_1_in_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign nios_system_clock_1_in_beginbursttransfer_internal = nios_system_clock_1_in_begins_xfer;
+
+  //nios_system_clock_1_in_read assignment, which is an e_mux
+  assign nios_system_clock_1_in_read = cpu_0_data_master_granted_nios_system_clock_1_in & cpu_0_data_master_read;
+
+  //nios_system_clock_1_in_write assignment, which is an e_mux
+  assign nios_system_clock_1_in_write = ((cpu_0_data_master_granted_nios_system_clock_1_in & cpu_0_data_master_write)) & nios_system_clock_1_in_pretend_byte_enable;
+
+  //nios_system_clock_1_in_address mux, which is an e_mux
+  assign nios_system_clock_1_in_address = {cpu_0_data_master_address_to_slave >> 2,
+    cpu_0_data_master_dbs_address[1 : 0]};
+
+  //slaveid nios_system_clock_1_in_nativeaddress nativeaddress mux, which is an e_mux
+  assign nios_system_clock_1_in_nativeaddress = cpu_0_data_master_address_to_slave >> 2;
+
+  //d1_nios_system_clock_1_in_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_nios_system_clock_1_in_end_xfer <= 1;
+      else 
+        d1_nios_system_clock_1_in_end_xfer <= nios_system_clock_1_in_end_xfer;
+    end
+
+
+  //nios_system_clock_1_in_waits_for_read in a cycle, which is an e_mux
+  assign nios_system_clock_1_in_waits_for_read = nios_system_clock_1_in_in_a_read_cycle & nios_system_clock_1_in_waitrequest_from_sa;
+
+  //nios_system_clock_1_in_in_a_read_cycle assignment, which is an e_assign
+  assign nios_system_clock_1_in_in_a_read_cycle = cpu_0_data_master_granted_nios_system_clock_1_in & cpu_0_data_master_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = nios_system_clock_1_in_in_a_read_cycle;
+
+  //nios_system_clock_1_in_waits_for_write in a cycle, which is an e_mux
+  assign nios_system_clock_1_in_waits_for_write = nios_system_clock_1_in_in_a_write_cycle & nios_system_clock_1_in_waitrequest_from_sa;
+
+  //nios_system_clock_1_in_in_a_write_cycle assignment, which is an e_assign
+  assign nios_system_clock_1_in_in_a_write_cycle = cpu_0_data_master_granted_nios_system_clock_1_in & cpu_0_data_master_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = nios_system_clock_1_in_in_a_write_cycle;
+
+  assign wait_for_nios_system_clock_1_in_counter = 0;
+  //nios_system_clock_1_in_pretend_byte_enable byte enable port mux, which is an e_mux
+  assign nios_system_clock_1_in_pretend_byte_enable = (cpu_0_data_master_granted_nios_system_clock_1_in)? cpu_0_data_master_byteenable_nios_system_clock_1_in :
+    -1;
+
+  assign {cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_3,
+cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_2,
+cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_1,
+cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_0} = cpu_0_data_master_byteenable;
+  assign cpu_0_data_master_byteenable_nios_system_clock_1_in = ((cpu_0_data_master_dbs_address[1 : 0] == 0))? cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_0 :
+    ((cpu_0_data_master_dbs_address[1 : 0] == 1))? cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_1 :
+    ((cpu_0_data_master_dbs_address[1 : 0] == 2))? cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_2 :
+    cpu_0_data_master_byteenable_nios_system_clock_1_in_segment_3;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //nios_system_clock_1/in enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+// synthesis translate_off
+`timescale 1ns / 1ps
+// synthesis translate_on
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module nios_system_clock_1_out_arbitrator (
+                                            // inputs:
+                                             clk,
+                                             d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer,
+                                             nios_system_clock_1_out_address,
+                                             nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave,
+                                             nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave,
+                                             nios_system_clock_1_out_read,
+                                             nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave,
+                                             nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave,
+                                             nios_system_clock_1_out_write,
+                                             nios_system_clock_1_out_writedata,
+                                             reset_n,
+                                             video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa,
+                                             video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa,
+
+                                            // outputs:
+                                             nios_system_clock_1_out_address_to_slave,
+                                             nios_system_clock_1_out_readdata,
+                                             nios_system_clock_1_out_reset_n,
+                                             nios_system_clock_1_out_waitrequest
+                                          )
+;
+
+  output  [ 12: 0] nios_system_clock_1_out_address_to_slave;
+  output  [  7: 0] nios_system_clock_1_out_readdata;
+  output           nios_system_clock_1_out_reset_n;
+  output           nios_system_clock_1_out_waitrequest;
+  input            clk;
+  input            d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer;
+  input   [ 12: 0] nios_system_clock_1_out_address;
+  input            nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  input            nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  input            nios_system_clock_1_out_read;
+  input            nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  input            nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  input            nios_system_clock_1_out_write;
+  input   [  7: 0] nios_system_clock_1_out_writedata;
+  input            reset_n;
+  input   [  7: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa;
+  input            video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa;
+
+  reg              active_and_waiting_last_time;
+  reg     [ 12: 0] nios_system_clock_1_out_address_last_time;
+  wire    [ 12: 0] nios_system_clock_1_out_address_to_slave;
+  reg              nios_system_clock_1_out_read_last_time;
+  wire    [  7: 0] nios_system_clock_1_out_readdata;
+  wire             nios_system_clock_1_out_reset_n;
+  wire             nios_system_clock_1_out_run;
+  wire             nios_system_clock_1_out_waitrequest;
+  reg              nios_system_clock_1_out_write_last_time;
+  reg     [  7: 0] nios_system_clock_1_out_writedata_last_time;
+  wire             r_2;
+  //r_2 master_run cascaded wait assignment, which is an e_assign
+  assign r_2 = 1 & (nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave | nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave | ~nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave) & ((~nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave | ~nios_system_clock_1_out_read | (nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave & nios_system_clock_1_out_read))) & ((~nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave | ~(nios_system_clock_1_out_read | nios_system_clock_1_out_write) | (1 & ~video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa & (nios_system_clock_1_out_read | nios_system_clock_1_out_write))));
+
+  //cascaded wait assignment, which is an e_assign
+  assign nios_system_clock_1_out_run = r_2;
+
+  //optimize select-logic by passing only those address bits which matter.
+  assign nios_system_clock_1_out_address_to_slave = nios_system_clock_1_out_address;
+
+  //nios_system_clock_1/out readdata mux, which is an e_mux
+  assign nios_system_clock_1_out_readdata = video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa;
+
+  //actual waitrequest port, which is an e_assign
+  assign nios_system_clock_1_out_waitrequest = ~nios_system_clock_1_out_run;
+
+  //nios_system_clock_1_out_reset_n assignment, which is an e_assign
+  assign nios_system_clock_1_out_reset_n = reset_n;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //nios_system_clock_1_out_address check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_1_out_address_last_time <= 0;
+      else 
+        nios_system_clock_1_out_address_last_time <= nios_system_clock_1_out_address;
+    end
+
+
+  //nios_system_clock_1/out waited last time, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          active_and_waiting_last_time <= 0;
+      else 
+        active_and_waiting_last_time <= nios_system_clock_1_out_waitrequest & (nios_system_clock_1_out_read | nios_system_clock_1_out_write);
+    end
+
+
+  //nios_system_clock_1_out_address matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (nios_system_clock_1_out_address != nios_system_clock_1_out_address_last_time))
+        begin
+          $write("%0d ns: nios_system_clock_1_out_address did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //nios_system_clock_1_out_read check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_1_out_read_last_time <= 0;
+      else 
+        nios_system_clock_1_out_read_last_time <= nios_system_clock_1_out_read;
+    end
+
+
+  //nios_system_clock_1_out_read matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (nios_system_clock_1_out_read != nios_system_clock_1_out_read_last_time))
+        begin
+          $write("%0d ns: nios_system_clock_1_out_read did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //nios_system_clock_1_out_write check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_1_out_write_last_time <= 0;
+      else 
+        nios_system_clock_1_out_write_last_time <= nios_system_clock_1_out_write;
+    end
+
+
+  //nios_system_clock_1_out_write matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (nios_system_clock_1_out_write != nios_system_clock_1_out_write_last_time))
+        begin
+          $write("%0d ns: nios_system_clock_1_out_write did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //nios_system_clock_1_out_writedata check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_1_out_writedata_last_time <= 0;
+      else 
+        nios_system_clock_1_out_writedata_last_time <= nios_system_clock_1_out_writedata;
+    end
+
+
+  //nios_system_clock_1_out_writedata matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (nios_system_clock_1_out_writedata != nios_system_clock_1_out_writedata_last_time) & nios_system_clock_1_out_write)
+        begin
+          $write("%0d ns: nios_system_clock_1_out_writedata did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+// synthesis translate_off
+`timescale 1ns / 1ps
+// synthesis translate_on
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
 module onchip_memory2_0_s1_arbitrator (
                                         // inputs:
                                          clk,
@@ -2128,7 +3223,7 @@ module onchip_memory2_0_s1_arbitrator (
   output           cpu_0_instruction_master_read_data_valid_onchip_memory2_0_s1;
   output           cpu_0_instruction_master_requests_onchip_memory2_0_s1;
   output           d1_onchip_memory2_0_s1_end_xfer;
-  output  [  9: 0] onchip_memory2_0_s1_address;
+  output  [ 11: 0] onchip_memory2_0_s1_address;
   output  [  3: 0] onchip_memory2_0_s1_byteenable;
   output           onchip_memory2_0_s1_chipselect;
   output           onchip_memory2_0_s1_clken;
@@ -2177,7 +3272,7 @@ module onchip_memory2_0_s1_arbitrator (
   wire             in_a_write_cycle;
   reg              last_cycle_cpu_0_data_master_granted_slave_onchip_memory2_0_s1;
   reg              last_cycle_cpu_0_instruction_master_granted_slave_onchip_memory2_0_s1;
-  wire    [  9: 0] onchip_memory2_0_s1_address;
+  wire    [ 11: 0] onchip_memory2_0_s1_address;
   wire             onchip_memory2_0_s1_allgrants;
   wire             onchip_memory2_0_s1_allow_new_arb_cycle;
   wire             onchip_memory2_0_s1_any_bursting_master_saved_grant;
@@ -2233,7 +3328,7 @@ module onchip_memory2_0_s1_arbitrator (
   //assign onchip_memory2_0_s1_readdata_from_sa = onchip_memory2_0_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign onchip_memory2_0_s1_readdata_from_sa = onchip_memory2_0_s1_readdata;
 
-  assign cpu_0_data_master_requests_onchip_memory2_0_s1 = ({cpu_0_data_master_address_to_slave[27 : 12] , 12'b0} == 28'h2000) & (cpu_0_data_master_read | cpu_0_data_master_write);
+  assign cpu_0_data_master_requests_onchip_memory2_0_s1 = ({cpu_0_data_master_address_to_slave[27 : 14] , 14'b0} == 28'h10000) & (cpu_0_data_master_read | cpu_0_data_master_write);
   //registered rdv signal_name registered_cpu_0_data_master_read_data_valid_onchip_memory2_0_s1 assignment, which is an e_assign
   assign registered_cpu_0_data_master_read_data_valid_onchip_memory2_0_s1 = cpu_0_data_master_read_data_valid_onchip_memory2_0_s1_shift_register_in;
 
@@ -2345,7 +3440,7 @@ module onchip_memory2_0_s1_arbitrator (
   //mux onchip_memory2_0_s1_clken, which is an e_mux
   assign onchip_memory2_0_s1_clken = 1'b1;
 
-  assign cpu_0_instruction_master_requests_onchip_memory2_0_s1 = (({cpu_0_instruction_master_address_to_slave[27 : 12] , 12'b0} == 28'h2000) & (cpu_0_instruction_master_read)) & cpu_0_instruction_master_read;
+  assign cpu_0_instruction_master_requests_onchip_memory2_0_s1 = (({cpu_0_instruction_master_address_to_slave[27 : 14] , 14'b0} == 28'h10000) & (cpu_0_instruction_master_read)) & cpu_0_instruction_master_read;
   //cpu_0/data_master granted onchip_memory2_0/s1 last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -4263,6 +5358,726 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
+module video_character_buffer_with_dma_0_avalon_char_buffer_slave_arbitrator (
+                                                                               // inputs:
+                                                                                clk,
+                                                                                nios_system_clock_1_out_address_to_slave,
+                                                                                nios_system_clock_1_out_read,
+                                                                                nios_system_clock_1_out_write,
+                                                                                nios_system_clock_1_out_writedata,
+                                                                                reset_n,
+                                                                                video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata,
+                                                                                video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest,
+
+                                                                               // outputs:
+                                                                                d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer,
+                                                                                nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave,
+                                                                                nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave,
+                                                                                nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave,
+                                                                                nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave,
+                                                                                video_character_buffer_with_dma_0_avalon_char_buffer_slave_address,
+                                                                                video_character_buffer_with_dma_0_avalon_char_buffer_slave_byteenable,
+                                                                                video_character_buffer_with_dma_0_avalon_char_buffer_slave_chipselect,
+                                                                                video_character_buffer_with_dma_0_avalon_char_buffer_slave_read,
+                                                                                video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa,
+                                                                                video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa,
+                                                                                video_character_buffer_with_dma_0_avalon_char_buffer_slave_write,
+                                                                                video_character_buffer_with_dma_0_avalon_char_buffer_slave_writedata
+                                                                             )
+;
+
+  output           d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer;
+  output           nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  output           nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  output           nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  output           nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  output  [ 12: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_address;
+  output           video_character_buffer_with_dma_0_avalon_char_buffer_slave_byteenable;
+  output           video_character_buffer_with_dma_0_avalon_char_buffer_slave_chipselect;
+  output           video_character_buffer_with_dma_0_avalon_char_buffer_slave_read;
+  output  [  7: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa;
+  output           video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa;
+  output           video_character_buffer_with_dma_0_avalon_char_buffer_slave_write;
+  output  [  7: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_writedata;
+  input            clk;
+  input   [ 12: 0] nios_system_clock_1_out_address_to_slave;
+  input            nios_system_clock_1_out_read;
+  input            nios_system_clock_1_out_write;
+  input   [  7: 0] nios_system_clock_1_out_writedata;
+  input            reset_n;
+  input   [  7: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata;
+  input            video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest;
+
+  reg              d1_reasons_to_wait;
+  reg              d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire             nios_system_clock_1_out_arbiterlock;
+  wire             nios_system_clock_1_out_arbiterlock2;
+  wire             nios_system_clock_1_out_continuerequest;
+  wire             nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  wire             nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  wire             nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  reg              nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register;
+  wire             nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register_in;
+  wire             nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  wire             nios_system_clock_1_out_saved_grant_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  wire             p1_nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register;
+  wire    [ 12: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_address;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_allgrants;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_allow_new_arb_cycle;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_any_bursting_master_saved_grant;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_any_continuerequest;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_counter_enable;
+  reg              video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter_next_value;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_set_values;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_beginbursttransfer_internal;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_begins_xfer;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_byteenable;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_chipselect;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_firsttransfer;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_grant_vector;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_in_a_read_cycle;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_in_a_write_cycle;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_master_qreq_vector;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_non_bursting_master_requests;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_read;
+  wire    [  7: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa;
+  reg              video_character_buffer_with_dma_0_avalon_char_buffer_slave_reg_firsttransfer;
+  reg              video_character_buffer_with_dma_0_avalon_char_buffer_slave_slavearbiterlockenable;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_slavearbiterlockenable2;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_unreg_firsttransfer;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_waits_for_read;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_waits_for_write;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_write;
+  wire    [  7: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_writedata;
+  wire             wait_for_video_character_buffer_with_dma_0_avalon_char_buffer_slave_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer;
+    end
+
+
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_begins_xfer = ~d1_reasons_to_wait & ((nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave));
+  //assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa = video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa = video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata;
+
+  assign nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave = (1) & (nios_system_clock_1_out_read | nios_system_clock_1_out_write);
+  //assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa = video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa = video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter set values, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_set_values = 1;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_non_bursting_master_requests mux, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_non_bursting_master_requests = nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_any_bursting_master_saved_grant mux, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_any_bursting_master_saved_grant = 0;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter_next_value assignment, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter_next_value = video_character_buffer_with_dma_0_avalon_char_buffer_slave_firsttransfer ? (video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_set_values - 1) : |video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter ? (video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter - 1) : 0;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_allgrants all slave grants, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_allgrants = |video_character_buffer_with_dma_0_avalon_char_buffer_slave_grant_vector;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer assignment, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer = ~(video_character_buffer_with_dma_0_avalon_char_buffer_slave_waits_for_read | video_character_buffer_with_dma_0_avalon_char_buffer_slave_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_buffer_slave arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_buffer_slave = video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer & (~video_character_buffer_with_dma_0_avalon_char_buffer_slave_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter arbitration counter enable, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_counter_enable = (end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_buffer_slave & video_character_buffer_with_dma_0_avalon_char_buffer_slave_allgrants) | (end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_buffer_slave & ~video_character_buffer_with_dma_0_avalon_char_buffer_slave_non_bursting_master_requests);
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter <= 0;
+      else if (video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_counter_enable)
+          video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter <= video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter_next_value;
+    end
+
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          video_character_buffer_with_dma_0_avalon_char_buffer_slave_slavearbiterlockenable <= 0;
+      else if ((|video_character_buffer_with_dma_0_avalon_char_buffer_slave_master_qreq_vector & end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_buffer_slave) | (end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_buffer_slave & ~video_character_buffer_with_dma_0_avalon_char_buffer_slave_non_bursting_master_requests))
+          video_character_buffer_with_dma_0_avalon_char_buffer_slave_slavearbiterlockenable <= |video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter_next_value;
+    end
+
+
+  //nios_system_clock_1/out video_character_buffer_with_dma_0/avalon_char_buffer_slave arbiterlock, which is an e_assign
+  assign nios_system_clock_1_out_arbiterlock = video_character_buffer_with_dma_0_avalon_char_buffer_slave_slavearbiterlockenable & nios_system_clock_1_out_continuerequest;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_slavearbiterlockenable2 = |video_character_buffer_with_dma_0_avalon_char_buffer_slave_arb_share_counter_next_value;
+
+  //nios_system_clock_1/out video_character_buffer_with_dma_0/avalon_char_buffer_slave arbiterlock2, which is an e_assign
+  assign nios_system_clock_1_out_arbiterlock2 = video_character_buffer_with_dma_0_avalon_char_buffer_slave_slavearbiterlockenable2 & nios_system_clock_1_out_continuerequest;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_any_continuerequest = 1;
+
+  //nios_system_clock_1_out_continuerequest continued request, which is an e_assign
+  assign nios_system_clock_1_out_continuerequest = 1;
+
+  assign nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave = nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave & ~((nios_system_clock_1_out_read & ((|nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register))));
+  //nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register_in mux for readlatency shift register, which is an e_mux
+  assign nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register_in = nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave & nios_system_clock_1_out_read & ~video_character_buffer_with_dma_0_avalon_char_buffer_slave_waits_for_read & ~(|nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register);
+
+  //shift register p1 nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register in if flush, otherwise shift left, which is an e_mux
+  assign p1_nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register = {nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register, nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register_in};
+
+  //nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register for remembering which master asked for a fixed latency read, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register <= 0;
+      else 
+        nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register <= p1_nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register;
+    end
+
+
+  //local readdatavalid nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave, which is an e_mux
+  assign nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave = nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave_shift_register;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_writedata mux, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_writedata = nios_system_clock_1_out_writedata;
+
+  //master is always granted when requested
+  assign nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave = nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+
+  //nios_system_clock_1/out saved-grant video_character_buffer_with_dma_0/avalon_char_buffer_slave, which is an e_assign
+  assign nios_system_clock_1_out_saved_grant_video_character_buffer_with_dma_0_avalon_char_buffer_slave = nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+
+  //allow new arb cycle for video_character_buffer_with_dma_0/avalon_char_buffer_slave, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_master_qreq_vector = 1;
+
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_chipselect = nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_firsttransfer first transaction, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_firsttransfer = video_character_buffer_with_dma_0_avalon_char_buffer_slave_begins_xfer ? video_character_buffer_with_dma_0_avalon_char_buffer_slave_unreg_firsttransfer : video_character_buffer_with_dma_0_avalon_char_buffer_slave_reg_firsttransfer;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_unreg_firsttransfer first transaction, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_unreg_firsttransfer = ~(video_character_buffer_with_dma_0_avalon_char_buffer_slave_slavearbiterlockenable & video_character_buffer_with_dma_0_avalon_char_buffer_slave_any_continuerequest);
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          video_character_buffer_with_dma_0_avalon_char_buffer_slave_reg_firsttransfer <= 1'b1;
+      else if (video_character_buffer_with_dma_0_avalon_char_buffer_slave_begins_xfer)
+          video_character_buffer_with_dma_0_avalon_char_buffer_slave_reg_firsttransfer <= video_character_buffer_with_dma_0_avalon_char_buffer_slave_unreg_firsttransfer;
+    end
+
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_beginbursttransfer_internal = video_character_buffer_with_dma_0_avalon_char_buffer_slave_begins_xfer;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_read assignment, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_read = nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave & nios_system_clock_1_out_read;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_write assignment, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_write = nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave & nios_system_clock_1_out_write;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_address mux, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_address = nios_system_clock_1_out_address_to_slave;
+
+  //d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer <= 1;
+      else 
+        d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer <= video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer;
+    end
+
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_waits_for_read in a cycle, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_waits_for_read = video_character_buffer_with_dma_0_avalon_char_buffer_slave_in_a_read_cycle & video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_in_a_read_cycle assignment, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_in_a_read_cycle = nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave & nios_system_clock_1_out_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = video_character_buffer_with_dma_0_avalon_char_buffer_slave_in_a_read_cycle;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_waits_for_write in a cycle, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_waits_for_write = video_character_buffer_with_dma_0_avalon_char_buffer_slave_in_a_write_cycle & video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa;
+
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_in_a_write_cycle assignment, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_in_a_write_cycle = nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave & nios_system_clock_1_out_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = video_character_buffer_with_dma_0_avalon_char_buffer_slave_in_a_write_cycle;
+
+  assign wait_for_video_character_buffer_with_dma_0_avalon_char_buffer_slave_counter = 0;
+  //video_character_buffer_with_dma_0_avalon_char_buffer_slave_byteenable byte enable port mux, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_buffer_slave_byteenable = (nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave)? {1 {1'b1}} :
+    -1;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //video_character_buffer_with_dma_0/avalon_char_buffer_slave enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+// synthesis translate_off
+`timescale 1ns / 1ps
+// synthesis translate_on
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module video_character_buffer_with_dma_0_avalon_char_control_slave_arbitrator (
+                                                                                // inputs:
+                                                                                 clk,
+                                                                                 nios_system_clock_0_out_address_to_slave,
+                                                                                 nios_system_clock_0_out_byteenable,
+                                                                                 nios_system_clock_0_out_read,
+                                                                                 nios_system_clock_0_out_write,
+                                                                                 nios_system_clock_0_out_writedata,
+                                                                                 reset_n,
+                                                                                 video_character_buffer_with_dma_0_avalon_char_control_slave_readdata,
+
+                                                                                // outputs:
+                                                                                 d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer,
+                                                                                 nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave,
+                                                                                 nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave,
+                                                                                 nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave,
+                                                                                 nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave,
+                                                                                 video_character_buffer_with_dma_0_avalon_char_control_slave_address,
+                                                                                 video_character_buffer_with_dma_0_avalon_char_control_slave_byteenable,
+                                                                                 video_character_buffer_with_dma_0_avalon_char_control_slave_chipselect,
+                                                                                 video_character_buffer_with_dma_0_avalon_char_control_slave_read,
+                                                                                 video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa,
+                                                                                 video_character_buffer_with_dma_0_avalon_char_control_slave_reset,
+                                                                                 video_character_buffer_with_dma_0_avalon_char_control_slave_write,
+                                                                                 video_character_buffer_with_dma_0_avalon_char_control_slave_writedata
+                                                                              )
+;
+
+  output           d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer;
+  output           nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  output           nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  output           nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  output           nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  output           video_character_buffer_with_dma_0_avalon_char_control_slave_address;
+  output  [  3: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_byteenable;
+  output           video_character_buffer_with_dma_0_avalon_char_control_slave_chipselect;
+  output           video_character_buffer_with_dma_0_avalon_char_control_slave_read;
+  output  [ 31: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa;
+  output           video_character_buffer_with_dma_0_avalon_char_control_slave_reset;
+  output           video_character_buffer_with_dma_0_avalon_char_control_slave_write;
+  output  [ 31: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_writedata;
+  input            clk;
+  input   [  2: 0] nios_system_clock_0_out_address_to_slave;
+  input   [  3: 0] nios_system_clock_0_out_byteenable;
+  input            nios_system_clock_0_out_read;
+  input            nios_system_clock_0_out_write;
+  input   [ 31: 0] nios_system_clock_0_out_writedata;
+  input            reset_n;
+  input   [ 31: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_readdata;
+
+  reg              d1_reasons_to_wait;
+  reg              d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire             nios_system_clock_0_out_arbiterlock;
+  wire             nios_system_clock_0_out_arbiterlock2;
+  wire             nios_system_clock_0_out_continuerequest;
+  wire             nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  wire             nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  wire             nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  reg              nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register;
+  wire             nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register_in;
+  wire             nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  wire             nios_system_clock_0_out_saved_grant_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  wire             p1_nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register;
+  wire    [  2: 0] shifted_address_to_video_character_buffer_with_dma_0_avalon_char_control_slave_from_nios_system_clock_0_out;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_address;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_allgrants;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_allow_new_arb_cycle;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_any_bursting_master_saved_grant;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_any_continuerequest;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_arb_counter_enable;
+  reg              video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter_next_value;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_set_values;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_beginbursttransfer_internal;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_begins_xfer;
+  wire    [  3: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_byteenable;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_chipselect;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_firsttransfer;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_grant_vector;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_in_a_read_cycle;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_in_a_write_cycle;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_master_qreq_vector;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_non_bursting_master_requests;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_read;
+  wire    [ 31: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa;
+  reg              video_character_buffer_with_dma_0_avalon_char_control_slave_reg_firsttransfer;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_reset;
+  reg              video_character_buffer_with_dma_0_avalon_char_control_slave_slavearbiterlockenable;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_slavearbiterlockenable2;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_unreg_firsttransfer;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_waits_for_read;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_waits_for_write;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_write;
+  wire    [ 31: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_writedata;
+  wire             wait_for_video_character_buffer_with_dma_0_avalon_char_control_slave_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer;
+    end
+
+
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_begins_xfer = ~d1_reasons_to_wait & ((nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave));
+  //assign video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa = video_character_buffer_with_dma_0_avalon_char_control_slave_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa = video_character_buffer_with_dma_0_avalon_char_control_slave_readdata;
+
+  assign nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave = (1) & (nios_system_clock_0_out_read | nios_system_clock_0_out_write);
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter set values, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_set_values = 1;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_non_bursting_master_requests mux, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_non_bursting_master_requests = nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_any_bursting_master_saved_grant mux, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_any_bursting_master_saved_grant = 0;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter_next_value assignment, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter_next_value = video_character_buffer_with_dma_0_avalon_char_control_slave_firsttransfer ? (video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_set_values - 1) : |video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter ? (video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter - 1) : 0;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_allgrants all slave grants, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_allgrants = |video_character_buffer_with_dma_0_avalon_char_control_slave_grant_vector;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer assignment, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer = ~(video_character_buffer_with_dma_0_avalon_char_control_slave_waits_for_read | video_character_buffer_with_dma_0_avalon_char_control_slave_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_control_slave arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_control_slave = video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer & (~video_character_buffer_with_dma_0_avalon_char_control_slave_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter arbitration counter enable, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_arb_counter_enable = (end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_control_slave & video_character_buffer_with_dma_0_avalon_char_control_slave_allgrants) | (end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_control_slave & ~video_character_buffer_with_dma_0_avalon_char_control_slave_non_bursting_master_requests);
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter <= 0;
+      else if (video_character_buffer_with_dma_0_avalon_char_control_slave_arb_counter_enable)
+          video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter <= video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter_next_value;
+    end
+
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          video_character_buffer_with_dma_0_avalon_char_control_slave_slavearbiterlockenable <= 0;
+      else if ((|video_character_buffer_with_dma_0_avalon_char_control_slave_master_qreq_vector & end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_control_slave) | (end_xfer_arb_share_counter_term_video_character_buffer_with_dma_0_avalon_char_control_slave & ~video_character_buffer_with_dma_0_avalon_char_control_slave_non_bursting_master_requests))
+          video_character_buffer_with_dma_0_avalon_char_control_slave_slavearbiterlockenable <= |video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter_next_value;
+    end
+
+
+  //nios_system_clock_0/out video_character_buffer_with_dma_0/avalon_char_control_slave arbiterlock, which is an e_assign
+  assign nios_system_clock_0_out_arbiterlock = video_character_buffer_with_dma_0_avalon_char_control_slave_slavearbiterlockenable & nios_system_clock_0_out_continuerequest;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_slavearbiterlockenable2 = |video_character_buffer_with_dma_0_avalon_char_control_slave_arb_share_counter_next_value;
+
+  //nios_system_clock_0/out video_character_buffer_with_dma_0/avalon_char_control_slave arbiterlock2, which is an e_assign
+  assign nios_system_clock_0_out_arbiterlock2 = video_character_buffer_with_dma_0_avalon_char_control_slave_slavearbiterlockenable2 & nios_system_clock_0_out_continuerequest;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_any_continuerequest = 1;
+
+  //nios_system_clock_0_out_continuerequest continued request, which is an e_assign
+  assign nios_system_clock_0_out_continuerequest = 1;
+
+  assign nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave = nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave & ~((nios_system_clock_0_out_read & ((|nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register))));
+  //nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register_in mux for readlatency shift register, which is an e_mux
+  assign nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register_in = nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave & nios_system_clock_0_out_read & ~video_character_buffer_with_dma_0_avalon_char_control_slave_waits_for_read & ~(|nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register);
+
+  //shift register p1 nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register in if flush, otherwise shift left, which is an e_mux
+  assign p1_nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register = {nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register, nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register_in};
+
+  //nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register for remembering which master asked for a fixed latency read, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register <= 0;
+      else 
+        nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register <= p1_nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register;
+    end
+
+
+  //local readdatavalid nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave, which is an e_mux
+  assign nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave = nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave_shift_register;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_writedata mux, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_writedata = nios_system_clock_0_out_writedata;
+
+  //master is always granted when requested
+  assign nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave = nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave;
+
+  //nios_system_clock_0/out saved-grant video_character_buffer_with_dma_0/avalon_char_control_slave, which is an e_assign
+  assign nios_system_clock_0_out_saved_grant_video_character_buffer_with_dma_0_avalon_char_control_slave = nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave;
+
+  //allow new arb cycle for video_character_buffer_with_dma_0/avalon_char_control_slave, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_master_qreq_vector = 1;
+
+  //~video_character_buffer_with_dma_0_avalon_char_control_slave_reset assignment, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_reset = ~reset_n;
+
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_chipselect = nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_firsttransfer first transaction, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_firsttransfer = video_character_buffer_with_dma_0_avalon_char_control_slave_begins_xfer ? video_character_buffer_with_dma_0_avalon_char_control_slave_unreg_firsttransfer : video_character_buffer_with_dma_0_avalon_char_control_slave_reg_firsttransfer;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_unreg_firsttransfer first transaction, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_unreg_firsttransfer = ~(video_character_buffer_with_dma_0_avalon_char_control_slave_slavearbiterlockenable & video_character_buffer_with_dma_0_avalon_char_control_slave_any_continuerequest);
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          video_character_buffer_with_dma_0_avalon_char_control_slave_reg_firsttransfer <= 1'b1;
+      else if (video_character_buffer_with_dma_0_avalon_char_control_slave_begins_xfer)
+          video_character_buffer_with_dma_0_avalon_char_control_slave_reg_firsttransfer <= video_character_buffer_with_dma_0_avalon_char_control_slave_unreg_firsttransfer;
+    end
+
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_beginbursttransfer_internal = video_character_buffer_with_dma_0_avalon_char_control_slave_begins_xfer;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_read assignment, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_read = nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave & nios_system_clock_0_out_read;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_write assignment, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_write = nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave & nios_system_clock_0_out_write;
+
+  assign shifted_address_to_video_character_buffer_with_dma_0_avalon_char_control_slave_from_nios_system_clock_0_out = nios_system_clock_0_out_address_to_slave;
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_address mux, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_address = shifted_address_to_video_character_buffer_with_dma_0_avalon_char_control_slave_from_nios_system_clock_0_out >> 2;
+
+  //d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer <= 1;
+      else 
+        d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer <= video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer;
+    end
+
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_waits_for_read in a cycle, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_waits_for_read = video_character_buffer_with_dma_0_avalon_char_control_slave_in_a_read_cycle & 0;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_in_a_read_cycle assignment, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_in_a_read_cycle = nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave & nios_system_clock_0_out_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = video_character_buffer_with_dma_0_avalon_char_control_slave_in_a_read_cycle;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_waits_for_write in a cycle, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_waits_for_write = video_character_buffer_with_dma_0_avalon_char_control_slave_in_a_write_cycle & 0;
+
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_in_a_write_cycle assignment, which is an e_assign
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_in_a_write_cycle = nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave & nios_system_clock_0_out_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = video_character_buffer_with_dma_0_avalon_char_control_slave_in_a_write_cycle;
+
+  assign wait_for_video_character_buffer_with_dma_0_avalon_char_control_slave_counter = 0;
+  //video_character_buffer_with_dma_0_avalon_char_control_slave_byteenable byte enable port mux, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_control_slave_byteenable = (nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave)? nios_system_clock_0_out_byteenable :
+    -1;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //video_character_buffer_with_dma_0/avalon_char_control_slave enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+// synthesis translate_off
+`timescale 1ns / 1ps
+// synthesis translate_on
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module video_character_buffer_with_dma_0_avalon_char_source_arbitrator (
+                                                                         // inputs:
+                                                                          clk,
+                                                                          reset_n,
+                                                                          video_character_buffer_with_dma_0_avalon_char_source_data,
+                                                                          video_character_buffer_with_dma_0_avalon_char_source_endofpacket,
+                                                                          video_character_buffer_with_dma_0_avalon_char_source_startofpacket,
+                                                                          video_character_buffer_with_dma_0_avalon_char_source_valid,
+                                                                          video_vga_controller_0_avalon_vga_sink_ready_from_sa,
+
+                                                                         // outputs:
+                                                                          video_character_buffer_with_dma_0_avalon_char_source_ready
+                                                                       )
+;
+
+  output           video_character_buffer_with_dma_0_avalon_char_source_ready;
+  input            clk;
+  input            reset_n;
+  input   [ 29: 0] video_character_buffer_with_dma_0_avalon_char_source_data;
+  input            video_character_buffer_with_dma_0_avalon_char_source_endofpacket;
+  input            video_character_buffer_with_dma_0_avalon_char_source_startofpacket;
+  input            video_character_buffer_with_dma_0_avalon_char_source_valid;
+  input            video_vga_controller_0_avalon_vga_sink_ready_from_sa;
+
+  wire             video_character_buffer_with_dma_0_avalon_char_source_ready;
+  //mux video_character_buffer_with_dma_0_avalon_char_source_ready, which is an e_mux
+  assign video_character_buffer_with_dma_0_avalon_char_source_ready = video_vga_controller_0_avalon_vga_sink_ready_from_sa;
+
+
+endmodule
+
+
+// synthesis translate_off
+`timescale 1ns / 1ps
+// synthesis translate_on
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module video_vga_controller_0_avalon_vga_sink_arbitrator (
+                                                           // inputs:
+                                                            clk,
+                                                            reset_n,
+                                                            video_character_buffer_with_dma_0_avalon_char_source_data,
+                                                            video_character_buffer_with_dma_0_avalon_char_source_endofpacket,
+                                                            video_character_buffer_with_dma_0_avalon_char_source_startofpacket,
+                                                            video_character_buffer_with_dma_0_avalon_char_source_valid,
+                                                            video_vga_controller_0_avalon_vga_sink_ready,
+
+                                                           // outputs:
+                                                            video_vga_controller_0_avalon_vga_sink_data,
+                                                            video_vga_controller_0_avalon_vga_sink_endofpacket,
+                                                            video_vga_controller_0_avalon_vga_sink_ready_from_sa,
+                                                            video_vga_controller_0_avalon_vga_sink_reset,
+                                                            video_vga_controller_0_avalon_vga_sink_startofpacket,
+                                                            video_vga_controller_0_avalon_vga_sink_valid
+                                                         )
+;
+
+  output  [ 29: 0] video_vga_controller_0_avalon_vga_sink_data;
+  output           video_vga_controller_0_avalon_vga_sink_endofpacket;
+  output           video_vga_controller_0_avalon_vga_sink_ready_from_sa;
+  output           video_vga_controller_0_avalon_vga_sink_reset;
+  output           video_vga_controller_0_avalon_vga_sink_startofpacket;
+  output           video_vga_controller_0_avalon_vga_sink_valid;
+  input            clk;
+  input            reset_n;
+  input   [ 29: 0] video_character_buffer_with_dma_0_avalon_char_source_data;
+  input            video_character_buffer_with_dma_0_avalon_char_source_endofpacket;
+  input            video_character_buffer_with_dma_0_avalon_char_source_startofpacket;
+  input            video_character_buffer_with_dma_0_avalon_char_source_valid;
+  input            video_vga_controller_0_avalon_vga_sink_ready;
+
+  wire    [ 29: 0] video_vga_controller_0_avalon_vga_sink_data;
+  wire             video_vga_controller_0_avalon_vga_sink_endofpacket;
+  wire             video_vga_controller_0_avalon_vga_sink_ready_from_sa;
+  wire             video_vga_controller_0_avalon_vga_sink_reset;
+  wire             video_vga_controller_0_avalon_vga_sink_startofpacket;
+  wire             video_vga_controller_0_avalon_vga_sink_valid;
+  //mux video_vga_controller_0_avalon_vga_sink_data, which is an e_mux
+  assign video_vga_controller_0_avalon_vga_sink_data = video_character_buffer_with_dma_0_avalon_char_source_data;
+
+  //mux video_vga_controller_0_avalon_vga_sink_endofpacket, which is an e_mux
+  assign video_vga_controller_0_avalon_vga_sink_endofpacket = video_character_buffer_with_dma_0_avalon_char_source_endofpacket;
+
+  //assign video_vga_controller_0_avalon_vga_sink_ready_from_sa = video_vga_controller_0_avalon_vga_sink_ready so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign video_vga_controller_0_avalon_vga_sink_ready_from_sa = video_vga_controller_0_avalon_vga_sink_ready;
+
+  //mux video_vga_controller_0_avalon_vga_sink_startofpacket, which is an e_mux
+  assign video_vga_controller_0_avalon_vga_sink_startofpacket = video_character_buffer_with_dma_0_avalon_char_source_startofpacket;
+
+  //mux video_vga_controller_0_avalon_vga_sink_valid, which is an e_mux
+  assign video_vga_controller_0_avalon_vga_sink_valid = video_character_buffer_with_dma_0_avalon_char_source_valid;
+
+  //~video_vga_controller_0_avalon_vga_sink_reset assignment, which is an e_assign
+  assign video_vga_controller_0_avalon_vga_sink_reset = ~reset_n;
+
+
+endmodule
+
+
+// synthesis translate_off
+`timescale 1ns / 1ps
+// synthesis translate_on
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
 module nios_system_reset_clk_0_domain_synch_module (
                                                      // inputs:
                                                       clk,
@@ -4311,12 +6126,61 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
+module nios_system_reset_vga_clock_domain_synch_module (
+                                                         // inputs:
+                                                          clk,
+                                                          data_in,
+                                                          reset_n,
+
+                                                         // outputs:
+                                                          data_out
+                                                       )
+;
+
+  output           data_out;
+  input            clk;
+  input            data_in;
+  input            reset_n;
+
+  reg              data_in_d1 /* synthesis ALTERA_ATTRIBUTE = "{-from \"*\"} CUT=ON ; PRESERVE_REGISTER=ON ; SUPPRESS_DA_RULE_INTERNAL=R101"  */;
+  reg              data_out /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON ; SUPPRESS_DA_RULE_INTERNAL=R101"  */;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          data_in_d1 <= 0;
+      else 
+        data_in_d1 <= data_in;
+    end
+
+
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          data_out <= 0;
+      else 
+        data_out <= data_in_d1;
+    end
+
+
+
+endmodule
+
+
+// synthesis translate_off
+`timescale 1ns / 1ps
+// synthesis translate_on
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
 module nios_system (
                      // 1) global signals:
                       clk_0,
                       clocks_SDRAM_CLK_out,
                       clocks_sys_clk_out,
                       reset_n,
+                      vga_clock,
 
                      // the_Altera_UP_SD_Card_Avalon_Interface_0
                       b_SD_cmd_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0,
@@ -4339,10 +6203,28 @@ module nios_system (
                       zs_dq_to_and_from_the_sdram_0,
                       zs_dqm_from_the_sdram_0,
                       zs_ras_n_from_the_sdram_0,
-                      zs_we_n_from_the_sdram_0
+                      zs_we_n_from_the_sdram_0,
+
+                     // the_video_vga_controller_0
+                      VGA_BLANK_from_the_video_vga_controller_0,
+                      VGA_B_from_the_video_vga_controller_0,
+                      VGA_CLK_from_the_video_vga_controller_0,
+                      VGA_G_from_the_video_vga_controller_0,
+                      VGA_HS_from_the_video_vga_controller_0,
+                      VGA_R_from_the_video_vga_controller_0,
+                      VGA_SYNC_from_the_video_vga_controller_0,
+                      VGA_VS_from_the_video_vga_controller_0
                    )
 ;
 
+  output           VGA_BLANK_from_the_video_vga_controller_0;
+  output  [  7: 0] VGA_B_from_the_video_vga_controller_0;
+  output           VGA_CLK_from_the_video_vga_controller_0;
+  output  [  7: 0] VGA_G_from_the_video_vga_controller_0;
+  output           VGA_HS_from_the_video_vga_controller_0;
+  output  [  7: 0] VGA_R_from_the_video_vga_controller_0;
+  output           VGA_SYNC_from_the_video_vga_controller_0;
+  output           VGA_VS_from_the_video_vga_controller_0;
   inout            b_SD_cmd_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0;
   inout            b_SD_dat3_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0;
   inout            b_SD_dat_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0;
@@ -4362,6 +6244,7 @@ module nios_system (
   input            clk_0;
   input   [  7: 0] in_port_to_the_input1;
   input            reset_n;
+  input            vga_clock;
 
   wire    [  7: 0] Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_address;
   wire    [  3: 0] Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_byteenable;
@@ -4374,6 +6257,14 @@ module nios_system (
   wire             Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_waitrequest_from_sa;
   wire             Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_write;
   wire    [ 31: 0] Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_writedata;
+  wire             VGA_BLANK_from_the_video_vga_controller_0;
+  wire    [  7: 0] VGA_B_from_the_video_vga_controller_0;
+  wire             VGA_CLK_from_the_video_vga_controller_0;
+  wire    [  7: 0] VGA_G_from_the_video_vga_controller_0;
+  wire             VGA_HS_from_the_video_vga_controller_0;
+  wire    [  7: 0] VGA_R_from_the_video_vga_controller_0;
+  wire             VGA_SYNC_from_the_video_vga_controller_0;
+  wire             VGA_VS_from_the_video_vga_controller_0;
   wire             b_SD_cmd_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0;
   wire             b_SD_dat3_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0;
   wire             b_SD_dat_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0;
@@ -4386,23 +6277,30 @@ module nios_system (
   wire    [ 27: 0] cpu_0_data_master_address;
   wire    [ 27: 0] cpu_0_data_master_address_to_slave;
   wire    [  3: 0] cpu_0_data_master_byteenable;
+  wire             cpu_0_data_master_byteenable_nios_system_clock_1_in;
   wire    [  1: 0] cpu_0_data_master_dbs_address;
+  wire    [  7: 0] cpu_0_data_master_dbs_write_8;
   wire             cpu_0_data_master_debugaccess;
   wire             cpu_0_data_master_granted_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave;
   wire             cpu_0_data_master_granted_clocks_avalon_clocks_slave;
   wire             cpu_0_data_master_granted_cpu_0_jtag_debug_module;
   wire             cpu_0_data_master_granted_input1_s1;
   wire             cpu_0_data_master_granted_jtag_uart_0_avalon_jtag_slave;
+  wire             cpu_0_data_master_granted_nios_system_clock_0_in;
+  wire             cpu_0_data_master_granted_nios_system_clock_1_in;
   wire             cpu_0_data_master_granted_onchip_memory2_0_s1;
   wire             cpu_0_data_master_granted_output1_s1;
   wire             cpu_0_data_master_granted_sdram_0_s1;
   wire             cpu_0_data_master_granted_sysid_control_slave;
   wire    [ 31: 0] cpu_0_data_master_irq;
+  wire             cpu_0_data_master_no_byte_enables_and_last_term;
   wire             cpu_0_data_master_qualified_request_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave;
   wire             cpu_0_data_master_qualified_request_clocks_avalon_clocks_slave;
   wire             cpu_0_data_master_qualified_request_cpu_0_jtag_debug_module;
   wire             cpu_0_data_master_qualified_request_input1_s1;
   wire             cpu_0_data_master_qualified_request_jtag_uart_0_avalon_jtag_slave;
+  wire             cpu_0_data_master_qualified_request_nios_system_clock_0_in;
+  wire             cpu_0_data_master_qualified_request_nios_system_clock_1_in;
   wire             cpu_0_data_master_qualified_request_onchip_memory2_0_s1;
   wire             cpu_0_data_master_qualified_request_output1_s1;
   wire             cpu_0_data_master_qualified_request_sdram_0_s1;
@@ -4413,6 +6311,8 @@ module nios_system (
   wire             cpu_0_data_master_read_data_valid_cpu_0_jtag_debug_module;
   wire             cpu_0_data_master_read_data_valid_input1_s1;
   wire             cpu_0_data_master_read_data_valid_jtag_uart_0_avalon_jtag_slave;
+  wire             cpu_0_data_master_read_data_valid_nios_system_clock_0_in;
+  wire             cpu_0_data_master_read_data_valid_nios_system_clock_1_in;
   wire             cpu_0_data_master_read_data_valid_onchip_memory2_0_s1;
   wire             cpu_0_data_master_read_data_valid_output1_s1;
   wire             cpu_0_data_master_read_data_valid_sdram_0_s1;
@@ -4424,6 +6324,8 @@ module nios_system (
   wire             cpu_0_data_master_requests_cpu_0_jtag_debug_module;
   wire             cpu_0_data_master_requests_input1_s1;
   wire             cpu_0_data_master_requests_jtag_uart_0_avalon_jtag_slave;
+  wire             cpu_0_data_master_requests_nios_system_clock_0_in;
+  wire             cpu_0_data_master_requests_nios_system_clock_1_in;
   wire             cpu_0_data_master_requests_onchip_memory2_0_s1;
   wire             cpu_0_data_master_requests_output1_s1;
   wire             cpu_0_data_master_requests_sdram_0_s1;
@@ -4466,10 +6368,14 @@ module nios_system (
   wire             d1_cpu_0_jtag_debug_module_end_xfer;
   wire             d1_input1_s1_end_xfer;
   wire             d1_jtag_uart_0_avalon_jtag_slave_end_xfer;
+  wire             d1_nios_system_clock_0_in_end_xfer;
+  wire             d1_nios_system_clock_1_in_end_xfer;
   wire             d1_onchip_memory2_0_s1_end_xfer;
   wire             d1_output1_s1_end_xfer;
   wire             d1_sdram_0_s1_end_xfer;
   wire             d1_sysid_control_slave_end_xfer;
+  wire             d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer;
+  wire             d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer;
   wire    [  1: 0] input1_s1_address;
   wire    [ 31: 0] input1_s1_readdata;
   wire    [ 31: 0] input1_s1_readdata_from_sa;
@@ -4490,8 +6396,62 @@ module nios_system (
   wire             jtag_uart_0_avalon_jtag_slave_waitrequest_from_sa;
   wire             jtag_uart_0_avalon_jtag_slave_write_n;
   wire    [ 31: 0] jtag_uart_0_avalon_jtag_slave_writedata;
+  wire    [  2: 0] nios_system_clock_0_in_address;
+  wire    [  3: 0] nios_system_clock_0_in_byteenable;
+  wire             nios_system_clock_0_in_endofpacket;
+  wire             nios_system_clock_0_in_endofpacket_from_sa;
+  wire             nios_system_clock_0_in_nativeaddress;
+  wire             nios_system_clock_0_in_read;
+  wire    [ 31: 0] nios_system_clock_0_in_readdata;
+  wire    [ 31: 0] nios_system_clock_0_in_readdata_from_sa;
+  wire             nios_system_clock_0_in_reset_n;
+  wire             nios_system_clock_0_in_waitrequest;
+  wire             nios_system_clock_0_in_waitrequest_from_sa;
+  wire             nios_system_clock_0_in_write;
+  wire    [ 31: 0] nios_system_clock_0_in_writedata;
+  wire    [  2: 0] nios_system_clock_0_out_address;
+  wire    [  2: 0] nios_system_clock_0_out_address_to_slave;
+  wire    [  3: 0] nios_system_clock_0_out_byteenable;
+  wire             nios_system_clock_0_out_endofpacket;
+  wire             nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  wire             nios_system_clock_0_out_nativeaddress;
+  wire             nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  wire             nios_system_clock_0_out_read;
+  wire             nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  wire    [ 31: 0] nios_system_clock_0_out_readdata;
+  wire             nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave;
+  wire             nios_system_clock_0_out_reset_n;
+  wire             nios_system_clock_0_out_waitrequest;
+  wire             nios_system_clock_0_out_write;
+  wire    [ 31: 0] nios_system_clock_0_out_writedata;
+  wire    [ 12: 0] nios_system_clock_1_in_address;
+  wire             nios_system_clock_1_in_endofpacket;
+  wire             nios_system_clock_1_in_endofpacket_from_sa;
+  wire    [ 12: 0] nios_system_clock_1_in_nativeaddress;
+  wire             nios_system_clock_1_in_read;
+  wire    [  7: 0] nios_system_clock_1_in_readdata;
+  wire    [  7: 0] nios_system_clock_1_in_readdata_from_sa;
+  wire             nios_system_clock_1_in_reset_n;
+  wire             nios_system_clock_1_in_waitrequest;
+  wire             nios_system_clock_1_in_waitrequest_from_sa;
+  wire             nios_system_clock_1_in_write;
+  wire    [  7: 0] nios_system_clock_1_in_writedata;
+  wire    [ 12: 0] nios_system_clock_1_out_address;
+  wire    [ 12: 0] nios_system_clock_1_out_address_to_slave;
+  wire             nios_system_clock_1_out_endofpacket;
+  wire             nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  wire    [ 12: 0] nios_system_clock_1_out_nativeaddress;
+  wire             nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  wire             nios_system_clock_1_out_read;
+  wire             nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  wire    [  7: 0] nios_system_clock_1_out_readdata;
+  wire             nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave;
+  wire             nios_system_clock_1_out_reset_n;
+  wire             nios_system_clock_1_out_waitrequest;
+  wire             nios_system_clock_1_out_write;
+  wire    [  7: 0] nios_system_clock_1_out_writedata;
   wire             o_SD_clock_from_the_Altera_UP_SD_Card_Avalon_Interface_0;
-  wire    [  9: 0] onchip_memory2_0_s1_address;
+  wire    [ 11: 0] onchip_memory2_0_s1_address;
   wire    [  3: 0] onchip_memory2_0_s1_byteenable;
   wire             onchip_memory2_0_s1_chipselect;
   wire             onchip_memory2_0_s1_clken;
@@ -4530,6 +6490,38 @@ module nios_system (
   wire    [ 31: 0] sysid_control_slave_readdata;
   wire    [ 31: 0] sysid_control_slave_readdata_from_sa;
   wire             sysid_control_slave_reset_n;
+  wire             vga_clock_reset_n;
+  wire    [ 12: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_address;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_byteenable;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_chipselect;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_read;
+  wire    [  7: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata;
+  wire    [  7: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa;
+  wire             video_character_buffer_with_dma_0_avalon_char_buffer_slave_write;
+  wire    [  7: 0] video_character_buffer_with_dma_0_avalon_char_buffer_slave_writedata;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_address;
+  wire    [  3: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_byteenable;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_chipselect;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_read;
+  wire    [ 31: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_readdata;
+  wire    [ 31: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_reset;
+  wire             video_character_buffer_with_dma_0_avalon_char_control_slave_write;
+  wire    [ 31: 0] video_character_buffer_with_dma_0_avalon_char_control_slave_writedata;
+  wire    [ 29: 0] video_character_buffer_with_dma_0_avalon_char_source_data;
+  wire             video_character_buffer_with_dma_0_avalon_char_source_endofpacket;
+  wire             video_character_buffer_with_dma_0_avalon_char_source_ready;
+  wire             video_character_buffer_with_dma_0_avalon_char_source_startofpacket;
+  wire             video_character_buffer_with_dma_0_avalon_char_source_valid;
+  wire    [ 29: 0] video_vga_controller_0_avalon_vga_sink_data;
+  wire             video_vga_controller_0_avalon_vga_sink_endofpacket;
+  wire             video_vga_controller_0_avalon_vga_sink_ready;
+  wire             video_vga_controller_0_avalon_vga_sink_ready_from_sa;
+  wire             video_vga_controller_0_avalon_vga_sink_reset;
+  wire             video_vga_controller_0_avalon_vga_sink_startofpacket;
+  wire             video_vga_controller_0_avalon_vga_sink_valid;
   wire    [ 12: 0] zs_addr_from_the_sdram_0;
   wire    [  1: 0] zs_ba_from_the_sdram_0;
   wire             zs_cas_n_from_the_sdram_0;
@@ -4663,22 +6655,29 @@ module nios_system (
       .clocks_avalon_clocks_slave_readdata_from_sa                                                  (clocks_avalon_clocks_slave_readdata_from_sa),
       .cpu_0_data_master_address                                                                    (cpu_0_data_master_address),
       .cpu_0_data_master_address_to_slave                                                           (cpu_0_data_master_address_to_slave),
+      .cpu_0_data_master_byteenable_nios_system_clock_1_in                                          (cpu_0_data_master_byteenable_nios_system_clock_1_in),
       .cpu_0_data_master_dbs_address                                                                (cpu_0_data_master_dbs_address),
+      .cpu_0_data_master_dbs_write_8                                                                (cpu_0_data_master_dbs_write_8),
       .cpu_0_data_master_granted_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave           (cpu_0_data_master_granted_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave),
       .cpu_0_data_master_granted_clocks_avalon_clocks_slave                                         (cpu_0_data_master_granted_clocks_avalon_clocks_slave),
       .cpu_0_data_master_granted_cpu_0_jtag_debug_module                                            (cpu_0_data_master_granted_cpu_0_jtag_debug_module),
       .cpu_0_data_master_granted_input1_s1                                                          (cpu_0_data_master_granted_input1_s1),
       .cpu_0_data_master_granted_jtag_uart_0_avalon_jtag_slave                                      (cpu_0_data_master_granted_jtag_uart_0_avalon_jtag_slave),
+      .cpu_0_data_master_granted_nios_system_clock_0_in                                             (cpu_0_data_master_granted_nios_system_clock_0_in),
+      .cpu_0_data_master_granted_nios_system_clock_1_in                                             (cpu_0_data_master_granted_nios_system_clock_1_in),
       .cpu_0_data_master_granted_onchip_memory2_0_s1                                                (cpu_0_data_master_granted_onchip_memory2_0_s1),
       .cpu_0_data_master_granted_output1_s1                                                         (cpu_0_data_master_granted_output1_s1),
       .cpu_0_data_master_granted_sdram_0_s1                                                         (cpu_0_data_master_granted_sdram_0_s1),
       .cpu_0_data_master_granted_sysid_control_slave                                                (cpu_0_data_master_granted_sysid_control_slave),
       .cpu_0_data_master_irq                                                                        (cpu_0_data_master_irq),
+      .cpu_0_data_master_no_byte_enables_and_last_term                                              (cpu_0_data_master_no_byte_enables_and_last_term),
       .cpu_0_data_master_qualified_request_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave (cpu_0_data_master_qualified_request_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave),
       .cpu_0_data_master_qualified_request_clocks_avalon_clocks_slave                               (cpu_0_data_master_qualified_request_clocks_avalon_clocks_slave),
       .cpu_0_data_master_qualified_request_cpu_0_jtag_debug_module                                  (cpu_0_data_master_qualified_request_cpu_0_jtag_debug_module),
       .cpu_0_data_master_qualified_request_input1_s1                                                (cpu_0_data_master_qualified_request_input1_s1),
       .cpu_0_data_master_qualified_request_jtag_uart_0_avalon_jtag_slave                            (cpu_0_data_master_qualified_request_jtag_uart_0_avalon_jtag_slave),
+      .cpu_0_data_master_qualified_request_nios_system_clock_0_in                                   (cpu_0_data_master_qualified_request_nios_system_clock_0_in),
+      .cpu_0_data_master_qualified_request_nios_system_clock_1_in                                   (cpu_0_data_master_qualified_request_nios_system_clock_1_in),
       .cpu_0_data_master_qualified_request_onchip_memory2_0_s1                                      (cpu_0_data_master_qualified_request_onchip_memory2_0_s1),
       .cpu_0_data_master_qualified_request_output1_s1                                               (cpu_0_data_master_qualified_request_output1_s1),
       .cpu_0_data_master_qualified_request_sdram_0_s1                                               (cpu_0_data_master_qualified_request_sdram_0_s1),
@@ -4689,6 +6688,8 @@ module nios_system (
       .cpu_0_data_master_read_data_valid_cpu_0_jtag_debug_module                                    (cpu_0_data_master_read_data_valid_cpu_0_jtag_debug_module),
       .cpu_0_data_master_read_data_valid_input1_s1                                                  (cpu_0_data_master_read_data_valid_input1_s1),
       .cpu_0_data_master_read_data_valid_jtag_uart_0_avalon_jtag_slave                              (cpu_0_data_master_read_data_valid_jtag_uart_0_avalon_jtag_slave),
+      .cpu_0_data_master_read_data_valid_nios_system_clock_0_in                                     (cpu_0_data_master_read_data_valid_nios_system_clock_0_in),
+      .cpu_0_data_master_read_data_valid_nios_system_clock_1_in                                     (cpu_0_data_master_read_data_valid_nios_system_clock_1_in),
       .cpu_0_data_master_read_data_valid_onchip_memory2_0_s1                                        (cpu_0_data_master_read_data_valid_onchip_memory2_0_s1),
       .cpu_0_data_master_read_data_valid_output1_s1                                                 (cpu_0_data_master_read_data_valid_output1_s1),
       .cpu_0_data_master_read_data_valid_sdram_0_s1                                                 (cpu_0_data_master_read_data_valid_sdram_0_s1),
@@ -4700,18 +6701,23 @@ module nios_system (
       .cpu_0_data_master_requests_cpu_0_jtag_debug_module                                           (cpu_0_data_master_requests_cpu_0_jtag_debug_module),
       .cpu_0_data_master_requests_input1_s1                                                         (cpu_0_data_master_requests_input1_s1),
       .cpu_0_data_master_requests_jtag_uart_0_avalon_jtag_slave                                     (cpu_0_data_master_requests_jtag_uart_0_avalon_jtag_slave),
+      .cpu_0_data_master_requests_nios_system_clock_0_in                                            (cpu_0_data_master_requests_nios_system_clock_0_in),
+      .cpu_0_data_master_requests_nios_system_clock_1_in                                            (cpu_0_data_master_requests_nios_system_clock_1_in),
       .cpu_0_data_master_requests_onchip_memory2_0_s1                                               (cpu_0_data_master_requests_onchip_memory2_0_s1),
       .cpu_0_data_master_requests_output1_s1                                                        (cpu_0_data_master_requests_output1_s1),
       .cpu_0_data_master_requests_sdram_0_s1                                                        (cpu_0_data_master_requests_sdram_0_s1),
       .cpu_0_data_master_requests_sysid_control_slave                                               (cpu_0_data_master_requests_sysid_control_slave),
       .cpu_0_data_master_waitrequest                                                                (cpu_0_data_master_waitrequest),
       .cpu_0_data_master_write                                                                      (cpu_0_data_master_write),
+      .cpu_0_data_master_writedata                                                                  (cpu_0_data_master_writedata),
       .cpu_0_jtag_debug_module_readdata_from_sa                                                     (cpu_0_jtag_debug_module_readdata_from_sa),
       .d1_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_end_xfer                         (d1_Altera_UP_SD_Card_Avalon_Interface_0_avalon_sdcard_slave_end_xfer),
       .d1_clocks_avalon_clocks_slave_end_xfer                                                       (d1_clocks_avalon_clocks_slave_end_xfer),
       .d1_cpu_0_jtag_debug_module_end_xfer                                                          (d1_cpu_0_jtag_debug_module_end_xfer),
       .d1_input1_s1_end_xfer                                                                        (d1_input1_s1_end_xfer),
       .d1_jtag_uart_0_avalon_jtag_slave_end_xfer                                                    (d1_jtag_uart_0_avalon_jtag_slave_end_xfer),
+      .d1_nios_system_clock_0_in_end_xfer                                                           (d1_nios_system_clock_0_in_end_xfer),
+      .d1_nios_system_clock_1_in_end_xfer                                                           (d1_nios_system_clock_1_in_end_xfer),
       .d1_onchip_memory2_0_s1_end_xfer                                                              (d1_onchip_memory2_0_s1_end_xfer),
       .d1_output1_s1_end_xfer                                                                       (d1_output1_s1_end_xfer),
       .d1_sdram_0_s1_end_xfer                                                                       (d1_sdram_0_s1_end_xfer),
@@ -4720,6 +6726,10 @@ module nios_system (
       .jtag_uart_0_avalon_jtag_slave_irq_from_sa                                                    (jtag_uart_0_avalon_jtag_slave_irq_from_sa),
       .jtag_uart_0_avalon_jtag_slave_readdata_from_sa                                               (jtag_uart_0_avalon_jtag_slave_readdata_from_sa),
       .jtag_uart_0_avalon_jtag_slave_waitrequest_from_sa                                            (jtag_uart_0_avalon_jtag_slave_waitrequest_from_sa),
+      .nios_system_clock_0_in_readdata_from_sa                                                      (nios_system_clock_0_in_readdata_from_sa),
+      .nios_system_clock_0_in_waitrequest_from_sa                                                   (nios_system_clock_0_in_waitrequest_from_sa),
+      .nios_system_clock_1_in_readdata_from_sa                                                      (nios_system_clock_1_in_readdata_from_sa),
+      .nios_system_clock_1_in_waitrequest_from_sa                                                   (nios_system_clock_1_in_waitrequest_from_sa),
       .onchip_memory2_0_s1_readdata_from_sa                                                         (onchip_memory2_0_s1_readdata_from_sa),
       .output1_s1_readdata_from_sa                                                                  (output1_s1_readdata_from_sa),
       .registered_cpu_0_data_master_read_data_valid_clocks_avalon_clocks_slave                      (registered_cpu_0_data_master_read_data_valid_clocks_avalon_clocks_slave),
@@ -4862,6 +6872,160 @@ module nios_system (
       .dataavailable  (jtag_uart_0_avalon_jtag_slave_dataavailable),
       .readyfordata   (jtag_uart_0_avalon_jtag_slave_readyfordata),
       .rst_n          (jtag_uart_0_avalon_jtag_slave_reset_n)
+    );
+
+  nios_system_clock_0_in_arbitrator the_nios_system_clock_0_in
+    (
+      .clk                                                        (clk_0),
+      .cpu_0_data_master_address_to_slave                         (cpu_0_data_master_address_to_slave),
+      .cpu_0_data_master_byteenable                               (cpu_0_data_master_byteenable),
+      .cpu_0_data_master_granted_nios_system_clock_0_in           (cpu_0_data_master_granted_nios_system_clock_0_in),
+      .cpu_0_data_master_qualified_request_nios_system_clock_0_in (cpu_0_data_master_qualified_request_nios_system_clock_0_in),
+      .cpu_0_data_master_read                                     (cpu_0_data_master_read),
+      .cpu_0_data_master_read_data_valid_nios_system_clock_0_in   (cpu_0_data_master_read_data_valid_nios_system_clock_0_in),
+      .cpu_0_data_master_requests_nios_system_clock_0_in          (cpu_0_data_master_requests_nios_system_clock_0_in),
+      .cpu_0_data_master_waitrequest                              (cpu_0_data_master_waitrequest),
+      .cpu_0_data_master_write                                    (cpu_0_data_master_write),
+      .cpu_0_data_master_writedata                                (cpu_0_data_master_writedata),
+      .d1_nios_system_clock_0_in_end_xfer                         (d1_nios_system_clock_0_in_end_xfer),
+      .nios_system_clock_0_in_address                             (nios_system_clock_0_in_address),
+      .nios_system_clock_0_in_byteenable                          (nios_system_clock_0_in_byteenable),
+      .nios_system_clock_0_in_endofpacket                         (nios_system_clock_0_in_endofpacket),
+      .nios_system_clock_0_in_endofpacket_from_sa                 (nios_system_clock_0_in_endofpacket_from_sa),
+      .nios_system_clock_0_in_nativeaddress                       (nios_system_clock_0_in_nativeaddress),
+      .nios_system_clock_0_in_read                                (nios_system_clock_0_in_read),
+      .nios_system_clock_0_in_readdata                            (nios_system_clock_0_in_readdata),
+      .nios_system_clock_0_in_readdata_from_sa                    (nios_system_clock_0_in_readdata_from_sa),
+      .nios_system_clock_0_in_reset_n                             (nios_system_clock_0_in_reset_n),
+      .nios_system_clock_0_in_waitrequest                         (nios_system_clock_0_in_waitrequest),
+      .nios_system_clock_0_in_waitrequest_from_sa                 (nios_system_clock_0_in_waitrequest_from_sa),
+      .nios_system_clock_0_in_write                               (nios_system_clock_0_in_write),
+      .nios_system_clock_0_in_writedata                           (nios_system_clock_0_in_writedata),
+      .reset_n                                                    (clk_0_reset_n)
+    );
+
+  nios_system_clock_0_out_arbitrator the_nios_system_clock_0_out
+    (
+      .clk                                                                                                   (vga_clock),
+      .d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer                               (d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer),
+      .nios_system_clock_0_out_address                                                                       (nios_system_clock_0_out_address),
+      .nios_system_clock_0_out_address_to_slave                                                              (nios_system_clock_0_out_address_to_slave),
+      .nios_system_clock_0_out_byteenable                                                                    (nios_system_clock_0_out_byteenable),
+      .nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave           (nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave),
+      .nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave (nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave),
+      .nios_system_clock_0_out_read                                                                          (nios_system_clock_0_out_read),
+      .nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave   (nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave),
+      .nios_system_clock_0_out_readdata                                                                      (nios_system_clock_0_out_readdata),
+      .nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave          (nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave),
+      .nios_system_clock_0_out_reset_n                                                                       (nios_system_clock_0_out_reset_n),
+      .nios_system_clock_0_out_waitrequest                                                                   (nios_system_clock_0_out_waitrequest),
+      .nios_system_clock_0_out_write                                                                         (nios_system_clock_0_out_write),
+      .nios_system_clock_0_out_writedata                                                                     (nios_system_clock_0_out_writedata),
+      .reset_n                                                                                               (vga_clock_reset_n),
+      .video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa                          (video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa)
+    );
+
+  nios_system_clock_0 the_nios_system_clock_0
+    (
+      .master_address       (nios_system_clock_0_out_address),
+      .master_byteenable    (nios_system_clock_0_out_byteenable),
+      .master_clk           (vga_clock),
+      .master_endofpacket   (nios_system_clock_0_out_endofpacket),
+      .master_nativeaddress (nios_system_clock_0_out_nativeaddress),
+      .master_read          (nios_system_clock_0_out_read),
+      .master_readdata      (nios_system_clock_0_out_readdata),
+      .master_reset_n       (nios_system_clock_0_out_reset_n),
+      .master_waitrequest   (nios_system_clock_0_out_waitrequest),
+      .master_write         (nios_system_clock_0_out_write),
+      .master_writedata     (nios_system_clock_0_out_writedata),
+      .slave_address        (nios_system_clock_0_in_address),
+      .slave_byteenable     (nios_system_clock_0_in_byteenable),
+      .slave_clk            (clk_0),
+      .slave_endofpacket    (nios_system_clock_0_in_endofpacket),
+      .slave_nativeaddress  (nios_system_clock_0_in_nativeaddress),
+      .slave_read           (nios_system_clock_0_in_read),
+      .slave_readdata       (nios_system_clock_0_in_readdata),
+      .slave_reset_n        (nios_system_clock_0_in_reset_n),
+      .slave_waitrequest    (nios_system_clock_0_in_waitrequest),
+      .slave_write          (nios_system_clock_0_in_write),
+      .slave_writedata      (nios_system_clock_0_in_writedata)
+    );
+
+  nios_system_clock_1_in_arbitrator the_nios_system_clock_1_in
+    (
+      .clk                                                        (clk_0),
+      .cpu_0_data_master_address_to_slave                         (cpu_0_data_master_address_to_slave),
+      .cpu_0_data_master_byteenable                               (cpu_0_data_master_byteenable),
+      .cpu_0_data_master_byteenable_nios_system_clock_1_in        (cpu_0_data_master_byteenable_nios_system_clock_1_in),
+      .cpu_0_data_master_dbs_address                              (cpu_0_data_master_dbs_address),
+      .cpu_0_data_master_dbs_write_8                              (cpu_0_data_master_dbs_write_8),
+      .cpu_0_data_master_granted_nios_system_clock_1_in           (cpu_0_data_master_granted_nios_system_clock_1_in),
+      .cpu_0_data_master_no_byte_enables_and_last_term            (cpu_0_data_master_no_byte_enables_and_last_term),
+      .cpu_0_data_master_qualified_request_nios_system_clock_1_in (cpu_0_data_master_qualified_request_nios_system_clock_1_in),
+      .cpu_0_data_master_read                                     (cpu_0_data_master_read),
+      .cpu_0_data_master_read_data_valid_nios_system_clock_1_in   (cpu_0_data_master_read_data_valid_nios_system_clock_1_in),
+      .cpu_0_data_master_requests_nios_system_clock_1_in          (cpu_0_data_master_requests_nios_system_clock_1_in),
+      .cpu_0_data_master_waitrequest                              (cpu_0_data_master_waitrequest),
+      .cpu_0_data_master_write                                    (cpu_0_data_master_write),
+      .d1_nios_system_clock_1_in_end_xfer                         (d1_nios_system_clock_1_in_end_xfer),
+      .nios_system_clock_1_in_address                             (nios_system_clock_1_in_address),
+      .nios_system_clock_1_in_endofpacket                         (nios_system_clock_1_in_endofpacket),
+      .nios_system_clock_1_in_endofpacket_from_sa                 (nios_system_clock_1_in_endofpacket_from_sa),
+      .nios_system_clock_1_in_nativeaddress                       (nios_system_clock_1_in_nativeaddress),
+      .nios_system_clock_1_in_read                                (nios_system_clock_1_in_read),
+      .nios_system_clock_1_in_readdata                            (nios_system_clock_1_in_readdata),
+      .nios_system_clock_1_in_readdata_from_sa                    (nios_system_clock_1_in_readdata_from_sa),
+      .nios_system_clock_1_in_reset_n                             (nios_system_clock_1_in_reset_n),
+      .nios_system_clock_1_in_waitrequest                         (nios_system_clock_1_in_waitrequest),
+      .nios_system_clock_1_in_waitrequest_from_sa                 (nios_system_clock_1_in_waitrequest_from_sa),
+      .nios_system_clock_1_in_write                               (nios_system_clock_1_in_write),
+      .nios_system_clock_1_in_writedata                           (nios_system_clock_1_in_writedata),
+      .reset_n                                                    (clk_0_reset_n)
+    );
+
+  nios_system_clock_1_out_arbitrator the_nios_system_clock_1_out
+    (
+      .clk                                                                                                  (vga_clock),
+      .d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer                               (d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer),
+      .nios_system_clock_1_out_address                                                                      (nios_system_clock_1_out_address),
+      .nios_system_clock_1_out_address_to_slave                                                             (nios_system_clock_1_out_address_to_slave),
+      .nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave           (nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave),
+      .nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave (nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave),
+      .nios_system_clock_1_out_read                                                                         (nios_system_clock_1_out_read),
+      .nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave   (nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave),
+      .nios_system_clock_1_out_readdata                                                                     (nios_system_clock_1_out_readdata),
+      .nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave          (nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave),
+      .nios_system_clock_1_out_reset_n                                                                      (nios_system_clock_1_out_reset_n),
+      .nios_system_clock_1_out_waitrequest                                                                  (nios_system_clock_1_out_waitrequest),
+      .nios_system_clock_1_out_write                                                                        (nios_system_clock_1_out_write),
+      .nios_system_clock_1_out_writedata                                                                    (nios_system_clock_1_out_writedata),
+      .reset_n                                                                                              (vga_clock_reset_n),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa                          (video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa                       (video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa)
+    );
+
+  nios_system_clock_1 the_nios_system_clock_1
+    (
+      .master_address       (nios_system_clock_1_out_address),
+      .master_clk           (vga_clock),
+      .master_endofpacket   (nios_system_clock_1_out_endofpacket),
+      .master_nativeaddress (nios_system_clock_1_out_nativeaddress),
+      .master_read          (nios_system_clock_1_out_read),
+      .master_readdata      (nios_system_clock_1_out_readdata),
+      .master_reset_n       (nios_system_clock_1_out_reset_n),
+      .master_waitrequest   (nios_system_clock_1_out_waitrequest),
+      .master_write         (nios_system_clock_1_out_write),
+      .master_writedata     (nios_system_clock_1_out_writedata),
+      .slave_address        (nios_system_clock_1_in_address),
+      .slave_clk            (clk_0),
+      .slave_endofpacket    (nios_system_clock_1_in_endofpacket),
+      .slave_nativeaddress  (nios_system_clock_1_in_nativeaddress),
+      .slave_read           (nios_system_clock_1_in_read),
+      .slave_readdata       (nios_system_clock_1_in_readdata),
+      .slave_reset_n        (nios_system_clock_1_in_reset_n),
+      .slave_waitrequest    (nios_system_clock_1_in_waitrequest),
+      .slave_write          (nios_system_clock_1_in_write),
+      .slave_writedata      (nios_system_clock_1_in_writedata)
     );
 
   onchip_memory2_0_s1_arbitrator the_onchip_memory2_0_s1
@@ -5032,6 +7196,130 @@ module nios_system (
       .reset_n  (sysid_control_slave_reset_n)
     );
 
+  video_character_buffer_with_dma_0_avalon_char_buffer_slave_arbitrator the_video_character_buffer_with_dma_0_avalon_char_buffer_slave
+    (
+      .clk                                                                                                  (vga_clock),
+      .d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer                               (d1_video_character_buffer_with_dma_0_avalon_char_buffer_slave_end_xfer),
+      .nios_system_clock_1_out_address_to_slave                                                             (nios_system_clock_1_out_address_to_slave),
+      .nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave           (nios_system_clock_1_out_granted_video_character_buffer_with_dma_0_avalon_char_buffer_slave),
+      .nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave (nios_system_clock_1_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_buffer_slave),
+      .nios_system_clock_1_out_read                                                                         (nios_system_clock_1_out_read),
+      .nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave   (nios_system_clock_1_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_buffer_slave),
+      .nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave          (nios_system_clock_1_out_requests_video_character_buffer_with_dma_0_avalon_char_buffer_slave),
+      .nios_system_clock_1_out_write                                                                        (nios_system_clock_1_out_write),
+      .nios_system_clock_1_out_writedata                                                                    (nios_system_clock_1_out_writedata),
+      .reset_n                                                                                              (vga_clock_reset_n),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_address                                   (video_character_buffer_with_dma_0_avalon_char_buffer_slave_address),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_byteenable                                (video_character_buffer_with_dma_0_avalon_char_buffer_slave_byteenable),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_chipselect                                (video_character_buffer_with_dma_0_avalon_char_buffer_slave_chipselect),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_read                                      (video_character_buffer_with_dma_0_avalon_char_buffer_slave_read),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata                                  (video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa                          (video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata_from_sa),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest                               (video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa                       (video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest_from_sa),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_write                                     (video_character_buffer_with_dma_0_avalon_char_buffer_slave_write),
+      .video_character_buffer_with_dma_0_avalon_char_buffer_slave_writedata                                 (video_character_buffer_with_dma_0_avalon_char_buffer_slave_writedata)
+    );
+
+  video_character_buffer_with_dma_0_avalon_char_control_slave_arbitrator the_video_character_buffer_with_dma_0_avalon_char_control_slave
+    (
+      .clk                                                                                                   (vga_clock),
+      .d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer                               (d1_video_character_buffer_with_dma_0_avalon_char_control_slave_end_xfer),
+      .nios_system_clock_0_out_address_to_slave                                                              (nios_system_clock_0_out_address_to_slave),
+      .nios_system_clock_0_out_byteenable                                                                    (nios_system_clock_0_out_byteenable),
+      .nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave           (nios_system_clock_0_out_granted_video_character_buffer_with_dma_0_avalon_char_control_slave),
+      .nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave (nios_system_clock_0_out_qualified_request_video_character_buffer_with_dma_0_avalon_char_control_slave),
+      .nios_system_clock_0_out_read                                                                          (nios_system_clock_0_out_read),
+      .nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave   (nios_system_clock_0_out_read_data_valid_video_character_buffer_with_dma_0_avalon_char_control_slave),
+      .nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave          (nios_system_clock_0_out_requests_video_character_buffer_with_dma_0_avalon_char_control_slave),
+      .nios_system_clock_0_out_write                                                                         (nios_system_clock_0_out_write),
+      .nios_system_clock_0_out_writedata                                                                     (nios_system_clock_0_out_writedata),
+      .reset_n                                                                                               (vga_clock_reset_n),
+      .video_character_buffer_with_dma_0_avalon_char_control_slave_address                                   (video_character_buffer_with_dma_0_avalon_char_control_slave_address),
+      .video_character_buffer_with_dma_0_avalon_char_control_slave_byteenable                                (video_character_buffer_with_dma_0_avalon_char_control_slave_byteenable),
+      .video_character_buffer_with_dma_0_avalon_char_control_slave_chipselect                                (video_character_buffer_with_dma_0_avalon_char_control_slave_chipselect),
+      .video_character_buffer_with_dma_0_avalon_char_control_slave_read                                      (video_character_buffer_with_dma_0_avalon_char_control_slave_read),
+      .video_character_buffer_with_dma_0_avalon_char_control_slave_readdata                                  (video_character_buffer_with_dma_0_avalon_char_control_slave_readdata),
+      .video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa                          (video_character_buffer_with_dma_0_avalon_char_control_slave_readdata_from_sa),
+      .video_character_buffer_with_dma_0_avalon_char_control_slave_reset                                     (video_character_buffer_with_dma_0_avalon_char_control_slave_reset),
+      .video_character_buffer_with_dma_0_avalon_char_control_slave_write                                     (video_character_buffer_with_dma_0_avalon_char_control_slave_write),
+      .video_character_buffer_with_dma_0_avalon_char_control_slave_writedata                                 (video_character_buffer_with_dma_0_avalon_char_control_slave_writedata)
+    );
+
+  video_character_buffer_with_dma_0_avalon_char_source_arbitrator the_video_character_buffer_with_dma_0_avalon_char_source
+    (
+      .clk                                                                (vga_clock),
+      .reset_n                                                            (vga_clock_reset_n),
+      .video_character_buffer_with_dma_0_avalon_char_source_data          (video_character_buffer_with_dma_0_avalon_char_source_data),
+      .video_character_buffer_with_dma_0_avalon_char_source_endofpacket   (video_character_buffer_with_dma_0_avalon_char_source_endofpacket),
+      .video_character_buffer_with_dma_0_avalon_char_source_ready         (video_character_buffer_with_dma_0_avalon_char_source_ready),
+      .video_character_buffer_with_dma_0_avalon_char_source_startofpacket (video_character_buffer_with_dma_0_avalon_char_source_startofpacket),
+      .video_character_buffer_with_dma_0_avalon_char_source_valid         (video_character_buffer_with_dma_0_avalon_char_source_valid),
+      .video_vga_controller_0_avalon_vga_sink_ready_from_sa               (video_vga_controller_0_avalon_vga_sink_ready_from_sa)
+    );
+
+  video_character_buffer_with_dma_0 the_video_character_buffer_with_dma_0
+    (
+      .buf_address          (video_character_buffer_with_dma_0_avalon_char_buffer_slave_address),
+      .buf_byteenable       (video_character_buffer_with_dma_0_avalon_char_buffer_slave_byteenable),
+      .buf_chipselect       (video_character_buffer_with_dma_0_avalon_char_buffer_slave_chipselect),
+      .buf_read             (video_character_buffer_with_dma_0_avalon_char_buffer_slave_read),
+      .buf_readdata         (video_character_buffer_with_dma_0_avalon_char_buffer_slave_readdata),
+      .buf_waitrequest      (video_character_buffer_with_dma_0_avalon_char_buffer_slave_waitrequest),
+      .buf_write            (video_character_buffer_with_dma_0_avalon_char_buffer_slave_write),
+      .buf_writedata        (video_character_buffer_with_dma_0_avalon_char_buffer_slave_writedata),
+      .clk                  (vga_clock),
+      .ctrl_address         (video_character_buffer_with_dma_0_avalon_char_control_slave_address),
+      .ctrl_byteenable      (video_character_buffer_with_dma_0_avalon_char_control_slave_byteenable),
+      .ctrl_chipselect      (video_character_buffer_with_dma_0_avalon_char_control_slave_chipselect),
+      .ctrl_read            (video_character_buffer_with_dma_0_avalon_char_control_slave_read),
+      .ctrl_readdata        (video_character_buffer_with_dma_0_avalon_char_control_slave_readdata),
+      .ctrl_write           (video_character_buffer_with_dma_0_avalon_char_control_slave_write),
+      .ctrl_writedata       (video_character_buffer_with_dma_0_avalon_char_control_slave_writedata),
+      .reset                (video_character_buffer_with_dma_0_avalon_char_control_slave_reset),
+      .stream_data          (video_character_buffer_with_dma_0_avalon_char_source_data),
+      .stream_endofpacket   (video_character_buffer_with_dma_0_avalon_char_source_endofpacket),
+      .stream_ready         (video_character_buffer_with_dma_0_avalon_char_source_ready),
+      .stream_startofpacket (video_character_buffer_with_dma_0_avalon_char_source_startofpacket),
+      .stream_valid         (video_character_buffer_with_dma_0_avalon_char_source_valid)
+    );
+
+  video_vga_controller_0_avalon_vga_sink_arbitrator the_video_vga_controller_0_avalon_vga_sink
+    (
+      .clk                                                                (vga_clock),
+      .reset_n                                                            (vga_clock_reset_n),
+      .video_character_buffer_with_dma_0_avalon_char_source_data          (video_character_buffer_with_dma_0_avalon_char_source_data),
+      .video_character_buffer_with_dma_0_avalon_char_source_endofpacket   (video_character_buffer_with_dma_0_avalon_char_source_endofpacket),
+      .video_character_buffer_with_dma_0_avalon_char_source_startofpacket (video_character_buffer_with_dma_0_avalon_char_source_startofpacket),
+      .video_character_buffer_with_dma_0_avalon_char_source_valid         (video_character_buffer_with_dma_0_avalon_char_source_valid),
+      .video_vga_controller_0_avalon_vga_sink_data                        (video_vga_controller_0_avalon_vga_sink_data),
+      .video_vga_controller_0_avalon_vga_sink_endofpacket                 (video_vga_controller_0_avalon_vga_sink_endofpacket),
+      .video_vga_controller_0_avalon_vga_sink_ready                       (video_vga_controller_0_avalon_vga_sink_ready),
+      .video_vga_controller_0_avalon_vga_sink_ready_from_sa               (video_vga_controller_0_avalon_vga_sink_ready_from_sa),
+      .video_vga_controller_0_avalon_vga_sink_reset                       (video_vga_controller_0_avalon_vga_sink_reset),
+      .video_vga_controller_0_avalon_vga_sink_startofpacket               (video_vga_controller_0_avalon_vga_sink_startofpacket),
+      .video_vga_controller_0_avalon_vga_sink_valid                       (video_vga_controller_0_avalon_vga_sink_valid)
+    );
+
+  video_vga_controller_0 the_video_vga_controller_0
+    (
+      .VGA_B         (VGA_B_from_the_video_vga_controller_0),
+      .VGA_BLANK     (VGA_BLANK_from_the_video_vga_controller_0),
+      .VGA_CLK       (VGA_CLK_from_the_video_vga_controller_0),
+      .VGA_G         (VGA_G_from_the_video_vga_controller_0),
+      .VGA_HS        (VGA_HS_from_the_video_vga_controller_0),
+      .VGA_R         (VGA_R_from_the_video_vga_controller_0),
+      .VGA_SYNC      (VGA_SYNC_from_the_video_vga_controller_0),
+      .VGA_VS        (VGA_VS_from_the_video_vga_controller_0),
+      .clk           (vga_clock),
+      .data          (video_vga_controller_0_avalon_vga_sink_data),
+      .endofpacket   (video_vga_controller_0_avalon_vga_sink_endofpacket),
+      .ready         (video_vga_controller_0_avalon_vga_sink_ready),
+      .reset         (video_vga_controller_0_avalon_vga_sink_reset),
+      .startofpacket (video_vga_controller_0_avalon_vga_sink_startofpacket),
+      .valid         (video_vga_controller_0_avalon_vga_sink_valid)
+    );
+
   //reset is asserted asynchronously and deasserted synchronously
   nios_system_reset_clk_0_domain_synch_module nios_system_reset_clk_0_domain_synch
     (
@@ -5045,7 +7333,23 @@ module nios_system (
   assign reset_n_sources = ~(~reset_n |
     0 |
     cpu_0_jtag_debug_module_resetrequest_from_sa |
-    cpu_0_jtag_debug_module_resetrequest_from_sa);
+    cpu_0_jtag_debug_module_resetrequest_from_sa |
+    0);
+
+  //reset is asserted asynchronously and deasserted synchronously
+  nios_system_reset_vga_clock_domain_synch_module nios_system_reset_vga_clock_domain_synch
+    (
+      .clk      (vga_clock),
+      .data_in  (1'b1),
+      .data_out (vga_clock_reset_n),
+      .reset_n  (reset_n_sources)
+    );
+
+  //nios_system_clock_0_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
+  assign nios_system_clock_0_out_endofpacket = 0;
+
+  //nios_system_clock_1_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
+  assign nios_system_clock_1_out_endofpacket = 0;
 
   //sysid_control_slave_clock of type clock does not connect to anything so wire it to default (0)
   assign sysid_control_slave_clock = 0;
@@ -5074,20 +7378,27 @@ endmodule
 `include "c:/altera/quartus/eda/sim_lib/altera_mf.v"
 `include "c:/altera/quartus/eda/sim_lib/220model.v"
 `include "c:/altera/quartus/eda/sim_lib/sgate.v"
+`include "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_vga_controller/hdl/altera_up_avalon_video_vga_timing.v"
+`include "video_vga_controller_0.v"
+`include "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_character_buffer_with_dma/hdl/altera_up_video_128_character_rom.v"
+`include "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_character_buffer_with_dma/hdl/altera_up_video_fb_color_rom.v"
+`include "video_character_buffer_with_dma_0.v"
 `include "clocks.v"
 // Altera_UP_SD_Card_Avalon_Interface_0.vhd
 `include "sdram_0.v"
-`include "input1.v"
+`include "nios_system_clock_1.v"
 `include "sysid.v"
-`include "jtag_uart_0.v"
 `include "cpu_0_test_bench.v"
 `include "cpu_0_oci_test_bench.v"
 `include "cpu_0_jtag_debug_module_tck.v"
 `include "cpu_0_jtag_debug_module_sysclk.v"
 `include "cpu_0_jtag_debug_module_wrapper.v"
 `include "cpu_0.v"
-`include "onchip_memory2_0.v"
 `include "output1.v"
+`include "input1.v"
+`include "jtag_uart_0.v"
+`include "onchip_memory2_0.v"
+`include "nios_system_clock_0.v"
 
 `timescale 1ns / 1ps
 
@@ -5095,6 +7406,14 @@ module test_bench
 ;
 
 
+  wire             VGA_BLANK_from_the_video_vga_controller_0;
+  wire    [  7: 0] VGA_B_from_the_video_vga_controller_0;
+  wire             VGA_CLK_from_the_video_vga_controller_0;
+  wire    [  7: 0] VGA_G_from_the_video_vga_controller_0;
+  wire             VGA_HS_from_the_video_vga_controller_0;
+  wire    [  7: 0] VGA_R_from_the_video_vga_controller_0;
+  wire             VGA_SYNC_from_the_video_vga_controller_0;
+  wire             VGA_VS_from_the_video_vga_controller_0;
   wire             b_SD_cmd_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0;
   wire             b_SD_dat3_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0;
   wire             b_SD_dat_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0;
@@ -5105,10 +7424,17 @@ module test_bench
   wire    [  7: 0] in_port_to_the_input1;
   wire             jtag_uart_0_avalon_jtag_slave_dataavailable_from_sa;
   wire             jtag_uart_0_avalon_jtag_slave_readyfordata_from_sa;
+  wire             nios_system_clock_0_in_endofpacket_from_sa;
+  wire             nios_system_clock_0_out_endofpacket;
+  wire             nios_system_clock_0_out_nativeaddress;
+  wire             nios_system_clock_1_in_endofpacket_from_sa;
+  wire             nios_system_clock_1_out_endofpacket;
+  wire    [ 12: 0] nios_system_clock_1_out_nativeaddress;
   wire             o_SD_clock_from_the_Altera_UP_SD_Card_Avalon_Interface_0;
   wire    [  7: 0] out_port_from_the_output1;
   reg              reset_n;
   wire             sysid_control_slave_clock;
+  reg              vga_clock;
   wire    [ 12: 0] zs_addr_from_the_sdram_0;
   wire    [  1: 0] zs_ba_from_the_sdram_0;
   wire             zs_cas_n_from_the_sdram_0;
@@ -5127,6 +7453,14 @@ module test_bench
   //Set us up the Dut
   nios_system DUT
     (
+      .VGA_BLANK_from_the_video_vga_controller_0                      (VGA_BLANK_from_the_video_vga_controller_0),
+      .VGA_B_from_the_video_vga_controller_0                          (VGA_B_from_the_video_vga_controller_0),
+      .VGA_CLK_from_the_video_vga_controller_0                        (VGA_CLK_from_the_video_vga_controller_0),
+      .VGA_G_from_the_video_vga_controller_0                          (VGA_G_from_the_video_vga_controller_0),
+      .VGA_HS_from_the_video_vga_controller_0                         (VGA_HS_from_the_video_vga_controller_0),
+      .VGA_R_from_the_video_vga_controller_0                          (VGA_R_from_the_video_vga_controller_0),
+      .VGA_SYNC_from_the_video_vga_controller_0                       (VGA_SYNC_from_the_video_vga_controller_0),
+      .VGA_VS_from_the_video_vga_controller_0                         (VGA_VS_from_the_video_vga_controller_0),
       .b_SD_cmd_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0  (b_SD_cmd_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0),
       .b_SD_dat3_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0 (b_SD_dat3_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0),
       .b_SD_dat_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0  (b_SD_dat_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0),
@@ -5137,6 +7471,7 @@ module test_bench
       .o_SD_clock_from_the_Altera_UP_SD_Card_Avalon_Interface_0       (o_SD_clock_from_the_Altera_UP_SD_Card_Avalon_Interface_0),
       .out_port_from_the_output1                                      (out_port_from_the_output1),
       .reset_n                                                        (reset_n),
+      .vga_clock                                                      (vga_clock),
       .zs_addr_from_the_sdram_0                                       (zs_addr_from_the_sdram_0),
       .zs_ba_from_the_sdram_0                                         (zs_ba_from_the_sdram_0),
       .zs_cas_n_from_the_sdram_0                                      (zs_cas_n_from_the_sdram_0),
@@ -5158,6 +7493,11 @@ module test_bench
       reset_n <= 0;
       #200 reset_n <= 1;
     end
+  initial
+    vga_clock = 1'b0;
+  always
+    #20 vga_clock <= ~vga_clock;
+  
 
 endmodule
 

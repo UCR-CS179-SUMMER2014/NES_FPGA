@@ -101,9 +101,9 @@ assign LEDG = output_one;
 
 
 /* VGA Assignments */
-assign VGA_BLANK_N = 1; // VGA reset? Disable.
-assign VGA_SYNC_N = 0;  // Not sure what this is, keep active though.
-assign VGA_CLK = pclock_w;
+//assign VGA_BLANK_N = 1; // VGA reset? Disable.
+//assign VGA_SYNC_N = 0;  // Not sure what this is, keep active though.
+//assign VGA_CLK = pclock_w;
 
 
 
@@ -113,7 +113,7 @@ assign VGA_CLK = pclock_w;
 
 always @ *
 begin
-	input_one = SW;
+	input_one = buttons;
 end
 /* 
 	Video Display (VGA) 
@@ -123,33 +123,33 @@ pixel_clock PCLOCK(		  // Altera PLL
 	.inclk0( CLOCK_50 ),   // 50Mhz input
 	.c0( pclock_w)	        // Outputs 25Mhz clock
 );
+//
+//vga640x480 VGA(       // 640x480 signal generator
+//	.CLK( pclock_w ),  // Pixel Clock
+//	.CLR( ~KEY[0] ),   // Clear, aka Reset
+//	.HSYNC( VGA_HS ),  // Horizontal Sync
+//	.VSYNC( VGA_VS ),  // Vertical Sync
+//	.HC( hc_w ),       // Horizontal Counter/Position
+//	.VC( vc_w ),       // Vertical Counter/Position
+//	.VIDON( vidon_w )  // VIDON enable signal
+//);
+//
+//prom_DMH CHAR_ROM(		// Grabs an 8x8 sprite
+//	.addr(addr_w),
+//	.M(M_w)
+//);
 
-vga640x480 VGA(       // 640x480 signal generator
-	.CLK( pclock_w ),  // Pixel Clock
-	.CLR( ~KEY[0] ),   // Clear, aka Reset
-	.HSYNC( VGA_HS ),  // Horizontal Sync
-	.VSYNC( VGA_VS ),  // Vertical Sync
-	.HC( hc_w ),       // Horizontal Counter/Position
-	.VC( vc_w ),       // Vertical Counter/Position
-	.VIDON( vidon_w )  // VIDON enable signal
-);
-
-prom_DMH CHAR_ROM(		// Grabs an 8x8 sprite
-	.addr(addr_w),
-	.M(M_w)
-);
-
-vga_text  VGA_TEXT_DISP (	// Displays text on VGA
-	.vidon( vidon_w ),
-	.hc( hc_w ),
-	.vc( vc_w),
-	.M( M_w ),        	// The byte from the sprite to be sent
-	.SW( SW[7:0] ),		// Sets the starting x,y position of sprite
-	.rom_addr( addr_w ),
-	.R( VGA_R ),
-	.G( VGA_G ),
-	.B( VGA_B )
-);
+//vga_text  VGA_TEXT_DISP (	// Displays text on VGA
+//	.vidon( vidon_w ),
+//	.hc( hc_w ),
+//	.vc( vc_w),
+//	.M( M_w ),        	// The byte from the sprite to be sent
+//	.SW( SW[7:0] ),		// Sets the starting x,y position of sprite
+//	.rom_addr( addr_w ),
+//	.R( VGA_R ),
+//	.G( VGA_G ),
+//	.B( VGA_B )
+//);
 //color_gen  IMG_GEN(    // Display generator. Display THIS or VGA_TEXT_DISP. Comment one out.
 //	.VIDON( vidon_w ),  // VIDON enable signa;
 //	.HC( hc_w ),        // Horizontal Counter/Position
@@ -179,6 +179,15 @@ snes_controller  CONTROLLER1(
 	-----------
 */
 nios_system NIOS(
+	.VGA_BLANK_from_the_video_vga_controller_0                      (VGA_BLANK_N),  // VGA
+	.VGA_B_from_the_video_vga_controller_0                          (VGA_B),
+	.VGA_CLK_from_the_video_vga_controller_0                        (VGA_CLK),
+	.VGA_G_from_the_video_vga_controller_0                          (VGA_G),
+	.VGA_HS_from_the_video_vga_controller_0                         (VGA_HS),
+	.VGA_R_from_the_video_vga_controller_0                          (VGA_R),
+	.VGA_SYNC_from_the_video_vga_controller_0                       (VGA_SYNC_N),
+	.VGA_VS_from_the_video_vga_controller_0                         (VGA_VS),
+   .vga_clock                                                      (pclock_w),
 	.b_SD_cmd_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0  (SD_CMD),			// SD Card
 	.b_SD_dat3_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0 (SD_DAT[3]),
 	.b_SD_dat_to_and_from_the_Altera_UP_SD_Card_Avalon_Interface_0  (SD_DAT[0]),

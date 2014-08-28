@@ -9,6 +9,27 @@
          value = "3";
          type = "int";
       }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element video_character_buffer_with_dma_0.avalon_char_buffer_slave
+   {
+      datum baseAddress
+      {
+         value = "8192";
+         type = "String";
+      }
+   }
+   element video_character_buffer_with_dma_0.avalon_char_control_slave
+   {
+      datum baseAddress
+      {
+         value = "56";
+         type = "String";
+      }
    }
    element clocks.avalon_clocks_slave
    {
@@ -75,6 +96,11 @@
          value = "{output_language=VERILOG, output_directory=C:\\Users\\Sergio\\Desktop\\NES_FPGA}";
          type = "String";
       }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
    }
    element input1
    {
@@ -104,6 +130,11 @@
          value = "2";
          type = "int";
       }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
    }
    element nios_system
    {
@@ -122,27 +153,6 @@
       {
          value = "6";
          type = "int";
-      }
-   }
-   element input1.s1
-   {
-      datum _lockedAddress
-      {
-         value = "0";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "16";
-         type = "String";
-      }
-   }
-   element sdram_0.s1
-   {
-      datum baseAddress
-      {
-         value = "134217728";
-         type = "String";
       }
    }
    element output1.s1
@@ -172,7 +182,28 @@
       }
       datum baseAddress
       {
-         value = "8192";
+         value = "65536";
+         type = "String";
+      }
+   }
+   element sdram_0.s1
+   {
+      datum baseAddress
+      {
+         value = "134217728";
+         type = "String";
+      }
+   }
+   element input1.s1
+   {
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "16";
          type = "String";
       }
    }
@@ -188,6 +219,11 @@
          value = "{}";
          type = "String";
       }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
    }
    element sysid
    {
@@ -197,10 +233,34 @@
          type = "int";
       }
    }
+   element vga_clock
+   {
+      datum _sortIndex
+      {
+         value = "12";
+         type = "int";
+      }
+   }
+   element video_character_buffer_with_dma_0
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+   }
+   element video_vga_controller_0
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
+      }
+   }
 }
 ]]></parameter>
  <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
- <parameter name="device" value="EP4CGX150DF31C7" />
+ <parameter name="device" value="Unknown" />
  <parameter name="deviceFamily" value="Cyclone IV GX" />
  <parameter name="deviceSpeedGrade" value="Unknown" />
  <parameter name="fabricMode" value="SOPC" />
@@ -209,10 +269,10 @@
  <parameter name="globalResetBus" value="true" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="maxAdditionalLatency" value="0" />
- <parameter name="projectName" value="SDRAM.qpf" />
+ <parameter name="projectName" value="NES_FPGA.qpf" />
  <parameter name="sopcBorderPoints" value="true" />
- <parameter name="systemHash" value="-25439583097" />
- <parameter name="timeStamp" value="1408812646165" />
+ <parameter name="systemHash" value="-38634793768" />
+ <parameter name="timeStamp" value="1409223117970" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <module kind="clock_source" version="12.1" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="50000000" />
@@ -289,7 +349,7 @@
   <parameter name="mmu_TLBMissExcOffset" value="0" />
   <parameter name="manuallyAssignCpuID" value="false" />
   <parameter name="internalIrqMaskSystemInfo" value="1" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='cpu_0.jtag_debug_module' start='0x800' end='0x1000' /><slave name='onchip_memory2_0.s1' start='0x2000' end='0x3000' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='cpu_0.jtag_debug_module' start='0x800' end='0x1000' /><slave name='onchip_memory2_0.s1' start='0x10000' end='0x14000' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
   <parameter name="instAddrWidth" value="28" />
   <parameter name="impl" value="Tiny" />
   <parameter name="icache_size" value="_4096" />
@@ -313,7 +373,7 @@
   <parameter name="dcache_numTCDM" value="_0" />
   <parameter name="dcache_lineSize" value="_32" />
   <parameter name="dcache_bursts" value="false" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='output1.s1' start='0x0' end='0x10' /><slave name='input1.s1' start='0x10' end='0x20' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x20' end='0x28' /><slave name='clocks.avalon_clocks_slave' start='0x28' end='0x2A' /><slave name='sysid.control_slave' start='0x30' end='0x38' /><slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x400' end='0x800' /><slave name='cpu_0.jtag_debug_module' start='0x800' end='0x1000' /><slave name='onchip_memory2_0.s1' start='0x2000' end='0x3000' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='output1.s1' start='0x0' end='0x10' /><slave name='input1.s1' start='0x10' end='0x20' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x20' end='0x28' /><slave name='clocks.avalon_clocks_slave' start='0x28' end='0x2A' /><slave name='sysid.control_slave' start='0x30' end='0x38' /><slave name='video_character_buffer_with_dma_0.avalon_char_control_slave' start='0x38' end='0x40' /><slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x400' end='0x800' /><slave name='cpu_0.jtag_debug_module' start='0x800' end='0x1000' /><slave name='video_character_buffer_with_dma_0.avalon_char_buffer_slave' start='0x2000' end='0x4000' /><slave name='onchip_memory2_0.s1' start='0x10000' end='0x14000' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
   <parameter name="dataAddrWidth" value="28" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="cpuReset" value="false" />
@@ -336,7 +396,7 @@
   <parameter name="initMemContent" value="true" />
   <parameter name="initializationFileName" value="onchip_memory2_0" />
   <parameter name="instanceID" value="NONE" />
-  <parameter name="memorySize" value="4096" />
+  <parameter name="memorySize" value="16384" />
   <parameter name="readDuringWriteMode" value="DONT_CARE" />
   <parameter name="simAllowMRAMContentsFile" value="false" />
   <parameter name="simMemInitOnlyFilename" value="0" />
@@ -446,6 +506,35 @@
  <module kind="altera_avalon_sysid" version="12.1" enabled="1" name="sysid">
   <parameter name="id" value="0" />
  </module>
+ <module
+   kind="altera_up_avalon_video_character_buffer_with_dma"
+   version="12.0"
+   enabled="1"
+   name="video_character_buffer_with_dma_0">
+  <parameter name="vga_device" value="On-board VGA DAC" />
+  <parameter name="enable_transparency" value="false" />
+  <parameter name="color_bits" value="1-bit" />
+  <parameter name="resolution" value="80 x 60" />
+  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="25000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module
+   kind="altera_up_avalon_video_vga_controller"
+   version="12.0"
+   enabled="1"
+   name="video_vga_controller_0">
+  <parameter name="board" value="DE2-115" />
+  <parameter name="device" value="VGA Connector" />
+  <parameter name="underflow_flag" value="false" />
+  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="25000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
+ </module>
+ <module kind="clock_source" version="12.1" enabled="1" name="vga_clock">
+  <parameter name="clockFrequency" value="25000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
  <connection kind="clock" version="12.1" start="clk_0.clk" end="cpu_0.clk" />
  <connection
    kind="avalon"
@@ -474,7 +563,7 @@
    start="cpu_0.instruction_master"
    end="onchip_memory2_0.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2000" />
+  <parameter name="baseAddress" value="0x00010000" />
  </connection>
  <connection
    kind="avalon"
@@ -482,7 +571,7 @@
    start="cpu_0.data_master"
    end="onchip_memory2_0.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2000" />
+  <parameter name="baseAddress" value="0x00010000" />
  </connection>
  <connection kind="clock" version="12.1" start="clk_0.clk" end="output1.clk" />
  <connection
@@ -570,4 +659,35 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0030" />
  </connection>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="cpu_0.data_master"
+   end="video_character_buffer_with_dma_0.avalon_char_control_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0038" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="cpu_0.data_master"
+   end="video_character_buffer_with_dma_0.avalon_char_buffer_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x2000" />
+ </connection>
+ <connection
+   kind="avalon_streaming"
+   version="12.1"
+   start="video_character_buffer_with_dma_0.avalon_char_source"
+   end="video_vga_controller_0.avalon_vga_sink" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="vga_clock.clk"
+   end="video_vga_controller_0.clock_reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="vga_clock.clk"
+   end="video_character_buffer_with_dma_0.clock_reset" />
 </system>

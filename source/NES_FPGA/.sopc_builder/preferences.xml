@@ -4,7 +4,7 @@
  <systemtable filter="Default">
   <columns>
    <opcodeName visible="0" />
-   <connections preferredWidth="47" />
+   <connections preferredWidth="63" />
    <irq preferredWidth="34" />
    <export visible="0" />
    <description preferredWidth="280" />
@@ -13,12 +13,12 @@
  </systemtable>
  <clocktable>
   <columns>
-   <clockname preferredWidth="243" />
-   <clocksource preferredWidth="243" />
-   <frequency preferredWidth="227" />
+   <clockname preferredWidth="296" />
+   <clocksource preferredWidth="295" />
+   <frequency preferredWidth="281" />
   </columns>
  </clocktable>
- <window width="1366" height="728" x="-5" y="0" />
+ <window width="1382" height="744" x="-8" y="-8" />
  <library
-   expandedCategories="Library/Peripherals,Library,Library/Verification/Debug &amp; Performance,Library/Verification,Library/Peripherals/Debug and Performance,Project" />
+   expandedCategories="Project,Library,Library/University Program/Audio &amp; Video/Video,Library/University Program,Library/University Program/Audio &amp; Video" />
 </preferences>

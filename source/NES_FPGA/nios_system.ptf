@@ -54,6 +54,15 @@ SYSTEM nios_system
             Is_Clock_Source = "0";
             display_name = "clocks_SDRAM_CLK_out";
          }
+         CLOCK vga_clock
+         {
+            frequency = "25000000";
+            source = "External";
+            Is_Clock_Source = "0";
+            display_name = "vga_clock";
+            pipeline = "0";
+            clock_module_connection_point_for_c2h = "vga_clock.clk";
+         }
       }
       clock_freq = "50000000";
       clock_freq = "50000000";
@@ -170,8 +179,8 @@ SYSTEM nios_system
             }
             Entry onchip_memory2_0/s1
             {
-               address = "0x00002000";
-               span = "0x00001000";
+               address = "0x00010000";
+               span = "0x00004000";
                is_bridge = "0";
             }
             Entry sdram_0/s1
@@ -534,8 +543,8 @@ SYSTEM nios_system
             }
             Entry onchip_memory2_0/s1
             {
-               address = "0x00002000";
-               span = "0x00001000";
+               address = "0x00010000";
+               span = "0x00004000";
                is_bridge = "0";
             }
             Entry output1/s1
@@ -578,6 +587,18 @@ SYSTEM nios_system
             {
                address = "0x00000030";
                span = "0x00000008";
+               is_bridge = "0";
+            }
+            Entry video_character_buffer_with_dma_0/avalon_char_control_slave
+            {
+               address = "0x00000038";
+               span = "0x00000008";
+               is_bridge = "0";
+            }
+            Entry video_character_buffer_with_dma_0/avalon_char_buffer_slave
+            {
+               address = "0x00002000";
+               span = "0x00002000";
                is_bridge = "0";
             }
          }
@@ -1308,7 +1329,7 @@ SYSTEM nios_system
             PORT address
             {
                type = "address";
-               width = "10";
+               width = "12";
                direction = "input";
                Is_Enabled = "1";
             }
@@ -1367,7 +1388,7 @@ SYSTEM nios_system
             Address_Alignment = "dynamic";
             Well_Behaved_Waitrequest = "0";
             Is_Nonvolatile_Storage = "0";
-            Address_Span = "4096";
+            Address_Span = "16384";
             Read_Latency = "1";
             Is_Memory_Device = "1";
             Maximum_Pending_Read_Transactions = "0";
@@ -1376,7 +1397,7 @@ SYSTEM nios_system
             Write_Latency = "0";
             Is_Flash = "0";
             Data_Width = "32";
-            Address_Width = "10";
+            Address_Width = "12";
             Maximum_Burst_Size = "1";
             Register_Incoming_Signals = "0";
             Register_Outgoing_Signals = "0";
@@ -1389,14 +1410,14 @@ SYSTEM nios_system
             MASTERED_BY cpu_0/instruction_master
             {
                priority = "1";
-               Offset_Address = "0x00002000";
+               Offset_Address = "0x00010000";
             }
             MASTERED_BY cpu_0/data_master
             {
                priority = "1";
-               Offset_Address = "0x00002000";
+               Offset_Address = "0x00010000";
             }
-            Base_Address = "0x00002000";
+            Base_Address = "0x00010000";
             Address_Group = "0";
             Has_IRQ = "0";
             Is_Channel = "1";
@@ -1419,7 +1440,7 @@ SYSTEM nios_system
          Writeable = "1";
          dual_port = "0";
          single_clock_operation = "0";
-         Size_Value = "4096";
+         Size_Value = "16384";
          Size_Multiple = "1";
          use_shallow_mem_blocks = "0";
          init_mem_content = "1";
@@ -1444,7 +1465,7 @@ SYSTEM nios_system
                onchip_memory2_0 
                {
                   Command1 = "@echo Post-processing to create $(notdir $@)";
-                  Command2 = "elf2hex $(ELF) 0x00002000 0x2FFF --width=32 $(QUARTUS_PROJECT_DIR)/onchip_memory2_0.hex --create-lanes=0 ";
+                  Command2 = "elf2hex $(ELF) 0x00010000 0x13FFF --width=32 $(QUARTUS_PROJECT_DIR)/onchip_memory2_0.hex --create-lanes=0 ";
                   Dependency = "$(ELF)";
                   Target_File = "$(QUARTUS_PROJECT_DIR)/onchip_memory2_0.hex";
                }
@@ -1461,7 +1482,7 @@ SYSTEM nios_system
                }
             }
          }
-         contents_info = "QUARTUS_PROJECT_DIR/onchip_memory2_0.hex 1408813460 ";
+         contents_info = "";
       }
       SIMULATION 
       {
@@ -1537,12 +1558,12 @@ SYSTEM nios_system
             Is_Memory_Device = "1";
             Address_Group = "0";
             Address_Alignment = "dynamic";
-            Address_Width = "10";
+            Address_Width = "12";
             Data_Width = "32";
             Has_IRQ = "0";
             Read_Wait_States = "0";
             Write_Wait_States = "0";
-            Address_Span = "4096";
+            Address_Span = "16384";
             Read_Latency = "1";
             Is_Channel = "1";
             Is_Enabled = "0";
@@ -2997,7 +3018,7 @@ SYSTEM nios_system
          Has_Clock = "1";
          View 
          {
-            Settings_Summary = "System ID (at last Generate):<br> <b>00000000</b>    (unique ID tag) <br> <b>53F8C666</b> (timestamp: Sat Aug 23, 2014 @6:50 PM)";
+            Settings_Summary = "System ID (at last Generate):<br> <b>00000000</b>    (unique ID tag) <br> <b>53FF09CE</b> (timestamp: Thu Aug 28, 2014 @12:51 AM)";
             MESSAGES 
             {
             }
@@ -3006,7 +3027,7 @@ SYSTEM nios_system
       WIZARD_SCRIPT_ARGUMENTS 
       {
          id = "0u";
-         timestamp = "1408812646u";
+         timestamp = "1409223118u";
          regenerate_values = "0";
          MAKE 
          {
@@ -3015,7 +3036,7 @@ SYSTEM nios_system
                verifysysid 
                {
                   All_Depends_On = "0";
-                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x00000030 --id=0 --timestamp=1408812646";
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x00000030 --id=0 --timestamp=1409223118";
                   Is_Phony = "1";
                   Target_File = "dummy_verifysysid_file";
                }
@@ -3030,6 +3051,449 @@ SYSTEM nios_system
          Synthesis_Only_Files = "";
       }
       PORT_WIRING 
+      {
+      }
+   }
+   MODULE video_character_buffer_with_dma_0
+   {
+      SLAVE avalon_char_control_slave
+      {
+         PORT_WIRING 
+         {
+            PORT clk
+            {
+               type = "clk";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT reset
+            {
+               type = "reset";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT ctrl_address
+            {
+               type = "address";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT ctrl_byteenable
+            {
+               type = "byteenable";
+               width = "4";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT ctrl_chipselect
+            {
+               type = "chipselect";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT ctrl_read
+            {
+               type = "read";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT ctrl_write
+            {
+               type = "write";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT ctrl_writedata
+            {
+               type = "writedata";
+               width = "32";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT ctrl_readdata
+            {
+               type = "readdata";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Write_Wait_States = "0cycles";
+            Read_Wait_States = "0cycles";
+            Hold_Time = "0cycles";
+            Setup_Time = "0cycles";
+            Is_Printable_Device = "0";
+            Address_Alignment = "dynamic";
+            Well_Behaved_Waitrequest = "0";
+            Is_Nonvolatile_Storage = "0";
+            Address_Span = "8";
+            Read_Latency = "1";
+            Is_Memory_Device = "0";
+            Maximum_Pending_Read_Transactions = "0";
+            Minimum_Uninterrupted_Run_Length = "1";
+            Accepts_Internal_Connections = "1";
+            Write_Latency = "0";
+            Is_Flash = "0";
+            Data_Width = "32";
+            Address_Width = "1";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            MASTERED_BY cpu_0/data_master
+            {
+               priority = "1";
+               Offset_Address = "0x00000038";
+            }
+            Base_Address = "0x00000038";
+            Address_Group = "0";
+            IRQ_MASTER cpu_0/data_master
+            {
+               IRQ_Number = "NC";
+            }
+         }
+      }
+      MASTER avalon_char_source
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "atlantic";
+         }
+         PORT_WIRING 
+         {
+            PORT stream_ready
+            {
+               type = "ready";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT stream_startofpacket
+            {
+               type = "startofpacket";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT stream_endofpacket
+            {
+               type = "endofpacket";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT stream_valid
+            {
+               type = "valid";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT stream_data
+            {
+               type = "data";
+               width = "30";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+      }
+      SLAVE avalon_char_buffer_slave
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Read_Wait_States = "peripheral_controlled";
+            Write_Wait_States = "peripheral_controlled";
+            Hold_Time = "0cycles";
+            Setup_Time = "0cycles";
+            Is_Printable_Device = "0";
+            Address_Alignment = "dynamic";
+            Well_Behaved_Waitrequest = "0";
+            Is_Nonvolatile_Storage = "0";
+            Address_Span = "8192";
+            Read_Latency = "1";
+            Is_Memory_Device = "0";
+            Maximum_Pending_Read_Transactions = "0";
+            Minimum_Uninterrupted_Run_Length = "1";
+            Accepts_Internal_Connections = "1";
+            Write_Latency = "0";
+            Is_Flash = "0";
+            Data_Width = "8";
+            Address_Width = "13";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            MASTERED_BY cpu_0/data_master
+            {
+               priority = "1";
+               Offset_Address = "0x00002000";
+            }
+            Base_Address = "0x00002000";
+            Address_Group = "1";
+            IRQ_MASTER cpu_0/data_master
+            {
+               IRQ_Number = "NC";
+            }
+         }
+         PORT_WIRING 
+         {
+            PORT buf_byteenable
+            {
+               type = "byteenable";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT buf_chipselect
+            {
+               type = "chipselect";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT buf_read
+            {
+               type = "read";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT buf_write
+            {
+               type = "write";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT buf_writedata
+            {
+               type = "writedata";
+               width = "8";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT buf_readdata
+            {
+               type = "readdata";
+               width = "8";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT buf_waitrequest
+            {
+               type = "waitrequest";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT buf_address
+            {
+               type = "address";
+               width = "13";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+         }
+      }
+      class = "no_legacy_module";
+      class_version = "7.08121";
+      gtf_class_name = "altera_up_avalon_video_character_buffer_with_dma";
+      gtf_class_version = "12.0";
+      SYSTEM_BUILDER_INFO 
+      {
+         Do_Not_Generate = "1";
+         Instantiate_In_System_Module = "1";
+         Is_Bridge = "0";
+         Is_Enabled = "1";
+         Clock_Source = "vga_clock";
+         Has_Clock = "1";
+         View 
+         {
+            MESSAGES 
+            {
+            }
+         }
+      }
+      HDL_INFO 
+      {
+         Simulation_HDL_Files = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_character_buffer_with_dma/hdl/altera_up_video_128_character_rom.v,C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_character_buffer_with_dma/hdl/altera_up_video_fb_color_rom.v,__PROJECT_DIRECTORY__/video_character_buffer_with_dma_0.v";
+      }
+      WIZARD_SCRIPT_ARGUMENTS 
+      {
+      }
+   }
+   MODULE video_vga_controller_0
+   {
+      SLAVE avalon_vga_sink
+      {
+         PORT_WIRING 
+         {
+            PORT clk
+            {
+               type = "clk";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT reset
+            {
+               type = "reset";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT data
+            {
+               type = "data";
+               width = "30";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT startofpacket
+            {
+               type = "startofpacket";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT endofpacket
+            {
+               type = "endofpacket";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT valid
+            {
+               type = "valid";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT ready
+            {
+               type = "ready";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "atlantic";
+            Accepts_Internal_Connections = "1";
+            MASTERED_BY video_character_buffer_with_dma_0/avalon_char_source
+            {
+               priority = "0";
+            }
+            Address_Group = "0";
+            Base_Address = "0x00000000";
+         }
+      }
+      PORT_WIRING 
+      {
+         PORT VGA_CLK
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT VGA_HS
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT VGA_VS
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT VGA_BLANK
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT VGA_SYNC
+         {
+            type = "export";
+            width = "1";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT VGA_R
+         {
+            type = "export";
+            width = "8";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT VGA_G
+         {
+            type = "export";
+            width = "8";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+         PORT VGA_B
+         {
+            type = "export";
+            width = "8";
+            direction = "output";
+            Is_Enabled = "1";
+         }
+      }
+      class = "no_legacy_module";
+      class_version = "7.08121";
+      gtf_class_name = "altera_up_avalon_video_vga_controller";
+      gtf_class_version = "12.0";
+      SYSTEM_BUILDER_INFO 
+      {
+         Do_Not_Generate = "1";
+         Instantiate_In_System_Module = "1";
+         Is_Bridge = "0";
+         Is_Enabled = "1";
+         Clock_Source = "vga_clock";
+         Has_Clock = "1";
+         View 
+         {
+            MESSAGES 
+            {
+            }
+         }
+      }
+      HDL_INFO 
+      {
+         Simulation_HDL_Files = "C:/altera/ip/University_Program/Audio_Video/Video/altera_up_avalon_video_vga_controller/hdl/altera_up_avalon_video_vga_timing.v,__PROJECT_DIRECTORY__/video_vga_controller_0.v";
+      }
+      WIZARD_SCRIPT_ARGUMENTS 
       {
       }
    }

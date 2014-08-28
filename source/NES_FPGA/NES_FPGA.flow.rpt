@@ -1,6 +1,6 @@
 Flow report for NES_FPGA
-Thu Aug 28 00:57:00 2014
-Quartus II 64-Bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
+Thu Aug 28 12:59:25 2014
+Quartus II 32-bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
 
 
 ---------------------
@@ -38,26 +38,26 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +------------------------------------+------------------------------------------+
-; Flow Status                        ; Successful - Thu Aug 28 00:56:49 2014    ;
-; Quartus II 64-Bit Version          ; 12.1 Build 177 11/07/2012 SJ Web Edition ;
+; Flow Status                        ; Successful - Thu Aug 28 12:59:02 2014    ;
+; Quartus II 32-bit Version          ; 12.1 Build 177 11/07/2012 SJ Web Edition ;
 ; Revision Name                      ; NES_FPGA                                 ;
 ; Top-level Entity Name              ; NES_FPGA                                 ;
 ; Family                             ; Cyclone IV GX                            ;
 ; Device                             ; EP4CGX150DF31C7                          ;
 ; Timing Models                      ; Final                                    ;
-; Total logic elements               ; 83 / 149,760 ( < 1 % )                   ;
-;     Total combinational functions  ; 83 / 149,760 ( < 1 % )                   ;
-;     Dedicated logic registers      ; 21 / 149,760 ( < 1 % )                   ;
-; Total registers                    ; 21                                       ;
+; Total logic elements               ; 4,143 / 149,760 ( 3 % )                  ;
+;     Total combinational functions  ; 3,532 / 149,760 ( 2 % )                  ;
+;     Dedicated logic registers      ; 2,480 / 149,760 ( 2 % )                  ;
+; Total registers                    ; 2599                                     ;
 ; Total pins                         ; 250 / 508 ( 49 % )                       ;
 ; Total virtual pins                 ; 0                                        ;
-; Total memory bits                  ; 0 / 6,635,520 ( 0 % )                    ;
+; Total memory bits                  ; 211,968 / 6,635,520 ( 3 % )              ;
 ; Embedded Multiplier 9-bit elements ; 0 / 720 ( 0 % )                          ;
 ; Total GXB Receiver Channel PCS     ; 0 / 8 ( 0 % )                            ;
 ; Total GXB Receiver Channel PMA     ; 0 / 8 ( 0 % )                            ;
 ; Total GXB Transmitter Channel PCS  ; 0 / 8 ( 0 % )                            ;
 ; Total GXB Transmitter Channel PMA  ; 0 / 8 ( 0 % )                            ;
-; Total PLLs                         ; 1 / 8 ( 13 % )                           ;
+; Total PLLs                         ; 2 / 8 ( 25 % )                           ;
 +------------------------------------+------------------------------------------+
 
 
@@ -66,7 +66,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 08/28/2014 00:55:27 ;
+; Start date & time ; 08/28/2014 12:55:07 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; NES_FPGA            ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ applicable agreement for further details.
 +-------------------------------------+------------------------------------------------------------------------------------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                                                                                            ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+------------------------------------------------------------------------------------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 17727277232746.140918012704440                                                                                   ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 17727277232746.140922330603500                                                                                   ; --            ; --          ; --         ;
 ; IP_TOOL_ENV                         ; sopc                                                                                                             ; --            ; nios_system ; --         ;
 ; IP_TOOL_NAME                        ; RAM: 2-PORT                                                                                                      ; --            ; --          ; --         ;
 ; IP_TOOL_NAME                        ; ALTPLL                                                                                                           ; --            ; --          ; --         ;
@@ -95,7 +95,7 @@ applicable agreement for further details.
 ; PARTITION_NETLIST_TYPE              ; SOURCE                                                                                                           ; --            ; --          ; Top        ;
 ; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                                                                              ; --            ; --          ; --         ;
 ; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                                                            ; --            ; --          ; --         ;
-; SOPC_BUILDER_SIGNATURE_ID           ; 3859F975A9990000014803D2BF38                                                                                     ; --            ; --          ; --         ;
+; SOPC_BUILDER_SIGNATURE_ID           ; 3859F975A999000001481C3EFC1B                                                                                     ; --            ; --          ; --         ;
 +-------------------------------------+------------------------------------------------------------------------------------------------------------------+---------------+-------------+------------+
 
 
@@ -104,11 +104,11 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:06     ; 1.0                     ; 549 MB              ; 00:00:06                           ;
-; Fitter                    ; 00:00:53     ; 2.0                     ; 1022 MB             ; 00:01:06                           ;
-; Assembler                 ; 00:00:20     ; 1.0                     ; 493 MB              ; 00:00:20                           ;
-; TimeQuest Timing Analyzer ; 00:00:10     ; 1.0                     ; 600 MB              ; 00:00:10                           ;
-; Total                     ; 00:01:29     ; --                      ; --                  ; 00:01:42                           ;
+; Analysis & Synthesis      ; 00:01:02     ; 1.0                     ; 464 MB              ; 00:01:01                           ;
+; Fitter                    ; 00:02:17     ; 2.0                     ; 823 MB              ; 00:02:48                           ;
+; Assembler                 ; 00:00:25     ; 1.0                     ; 410 MB              ; 00:00:26                           ;
+; TimeQuest Timing Analyzer ; 00:00:21     ; 1.2                     ; 534 MB              ; 00:00:24                           ;
+; Total                     ; 00:04:05     ; --                      ; --                  ; 00:04:39                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

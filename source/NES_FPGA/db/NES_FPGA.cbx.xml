@@ -1,6 +1,17 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="NES_FPGA">
+		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|nios_system:NIOS|clocks:the_clocks|altpll:DE_Clock_Generator_System" CBX_FILE_NAME="altpll_0vb2.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|nios_system:NIOS|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_nios2_oci_im:the_cpu_0_nios2_oci_im|cpu_0_traceram_lpm_dram_bdp_component_module:cpu_0_traceram_lpm_dram_bdp_component|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_qd02.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|nios_system:NIOS|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_nios2_ocimem:the_cpu_0_nios2_ocimem|cpu_0_ociram_lpm_dram_bdp_component_module:cpu_0_ociram_lpm_dram_bdp_component|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_od72.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|nios_system:NIOS|cpu_0:the_cpu_0|cpu_0_register_bank_a_module:cpu_0_register_bank_a|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_bjf1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|nios_system:NIOS|jtag_uart_0:the_jtag_uart_0|jtag_uart_0_scfifo_w:the_jtag_uart_0_scfifo_w|scfifo:wfifo" CBX_FILE_NAME="scfifo_dv21.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|nios_system:NIOS|video_character_buffer_with_dma_0:the_video_character_buffer_with_dma_0|altera_up_video_128_character_rom:Character_Rom|altsyncram:character_data_rom" CBX_FILE_NAME="altsyncram_qdi1.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|pixel_clock:PCLOCK|altpll:altpll_component" CBX_FILE_NAME="pixel_clock_altpll.v"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|nios_system:NIOS|jtag_uart_0:the_jtag_uart_0|jtag_uart_0_scfifo_r:the_jtag_uart_0_scfifo_r|scfifo:rfifo" CBX_FILE_NAME="scfifo_dv21.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|nios_system:NIOS|onchip_memory2_0:the_onchip_memory2_0|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_lcc1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|nios_system:NIOS|Altera_UP_SD_Card_Avalon_Interface_0:the_Altera_UP_SD_Card_Avalon_Interface_0|Altera_UP_SD_Card_Avalon_Interface:altera_up_sd_card_avalon_interface_0|Altera_UP_SD_Card_Interface:SD_Card_Port|Altera_UP_SD_Card_Buffer:data_line|Altera_UP_SD_Card_Memory_Block:packet_memory|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_jv92.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|nios_system:NIOS|cpu_0:the_cpu_0|cpu_0_register_bank_b_module:cpu_0_register_bank_b|altsyncram:the_altsyncram" CBX_FILE_NAME="altsyncram_cjf1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|NES_FPGA|nios_system:NIOS|video_character_buffer_with_dma_0:the_video_character_buffer_with_dma_0|altsyncram:Char_Buffer_Memory" CBX_FILE_NAME="altsyncram_ga72.tdf"/>
 	</PROJECT>
 </LOG_ROOT>
