@@ -3,7 +3,7 @@
 # Machine generated for CPU 'CPU' in SOPC Builder design 'nios_system'
 # SOPC Builder design path: C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
 #
-# Generated: Thu Aug 28 12:27:25 CEST 2014
+# Generated: Thu Aug 28 17:42:21 CEST 2014
 
 # DO NOT MODIFY THIS FILE
 #
@@ -45,9 +45,6 @@
 # Define memory regions for each memory connected to the CPU.
 # The cache attribute is specified which improves GDB performance
 # by allowing GDB to cache memory contents on the host.
-
-# Onchip_Memory
-memory 0x204000 0x208000 cache
 
 # sdram_0
 memory 0x8000000 0x10000000 cache

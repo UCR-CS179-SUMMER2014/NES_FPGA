@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Aug 28, 2014 1:50:08 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1409226608279</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Aug 28, 2014 5:47:01 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1409240821096</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\Sergio\Desktop\NES_FPGA\source\NES_FPGA\software\nios_vga_test2_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>C:\Users\Sergio\Desktop\NES_FPGA\source\NES_FPGA\nios_system.sopcinfo</SopcDesignFile>
@@ -867,12 +867,6 @@
                 <addressRange>0x00201010 - 0x00201017</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>Onchip_Memory</slaveDescriptor>
-                <addressRange>0x00204000 - 0x00207FFF</addressRange>
-                <addressSpan>16384</addressSpan>
-                <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>Char_Buffer_with_DMA_avalon_char_buffer_slave</slaveDescriptor>

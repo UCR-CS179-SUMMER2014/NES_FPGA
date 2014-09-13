@@ -115,7 +115,7 @@ reg [7:0] input_one, output_one;
 //  Wire/Port assignments
 //=======================================================
 assign LEDR[11:0] = controller1_w;
-assign FAN_CTRL = 1'bz;
+assign FAN_CTRL = 1'b1;
 
 assign LEDG = output_one;
 

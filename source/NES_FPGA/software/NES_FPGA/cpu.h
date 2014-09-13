@@ -4,6 +4,8 @@
 #include "NES.h"
 
 
+void prg_test();
+
 /* Function:    cpu_reset
    Description: Initializes CPU */
 inline void cpu_reset();

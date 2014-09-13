@@ -16,7 +16,7 @@
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "6";
          type = "int";
       }
    }
@@ -24,7 +24,7 @@
    {
       datum _sortIndex
       {
-         value = "11";
+         value = "9";
          type = "int";
       }
    }
@@ -32,7 +32,7 @@
    {
       datum _sortIndex
       {
-         value = "0";
+         value = "2";
          type = "int";
       }
       datum sopceditor_expanded
@@ -58,7 +58,7 @@
    {
       datum _sortIndex
       {
-         value = "2";
+         value = "1";
          type = "int";
       }
    }
@@ -66,7 +66,7 @@
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "7";
          type = "int";
       }
       datum sopceditor_expanded
@@ -101,32 +101,11 @@
          type = "boolean";
       }
    }
-   element Pixel_RGB_Resampler
-   {
-      datum _sortIndex
-      {
-         value = "6";
-         type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
-   }
-   element Pixel_Scaler
-   {
-      datum _sortIndex
-      {
-         value = "7";
-         type = "int";
-      }
-   }
    element VGA_Controller
    {
       datum _sortIndex
       {
-         value = "10";
+         value = "8";
          type = "int";
       }
       datum sopceditor_expanded
@@ -222,7 +201,7 @@
    {
       datum _sortIndex
       {
-         value = "1";
+         value = "0";
          type = "int";
       }
    }
@@ -251,7 +230,7 @@
    {
       datum _sortIndex
       {
-         value = "12";
+         value = "10";
          type = "int";
       }
    }
@@ -272,7 +251,7 @@
    {
       datum _sortIndex
       {
-         value = "14";
+         value = "12";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -293,7 +272,7 @@
    {
       datum _sortIndex
       {
-         value = "13";
+         value = "11";
          type = "int";
       }
    }
@@ -320,7 +299,7 @@
  <parameter name="projectName" value="NES_FPGA.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1409229690937" />
+ <parameter name="timeStamp" value="1409239871100" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface
@@ -426,34 +405,9 @@
   <parameter name="addr_mode" value="X-Y" />
   <parameter name="start_address" value="0" />
   <parameter name="back_start_address" value="0" />
-  <parameter name="image_width" value="320" />
-  <parameter name="image_height" value="240" />
-  <parameter name="color_space" value="16-bit RGB" />
-  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
-  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
- </module>
- <module
-   kind="altera_up_avalon_video_rgb_resampler"
-   version="12.0"
-   enabled="1"
-   name="Pixel_RGB_Resampler">
-  <parameter name="input_type" value="16-bit RGB" />
-  <parameter name="output_type" value="30-bit RGB" />
-  <parameter name="alpha" value="255" />
-  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
-  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
- </module>
- <module
-   kind="altera_up_avalon_video_scaler"
-   version="12.0"
-   enabled="1"
-   name="Pixel_Scaler">
-  <parameter name="width_scaling" value="2" />
-  <parameter name="height_scaling" value="2" />
-  <parameter name="width_in" value="320" />
-  <parameter name="height_in" value="240" />
-  <parameter name="color_bits" value="10" />
-  <parameter name="color_planes" value="3" />
+  <parameter name="image_width" value="640" />
+  <parameter name="image_height" value="480" />
+  <parameter name="color_space" value="30-bit RGB" />
   <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
  </module>
@@ -462,7 +416,7 @@
    version="12.0"
    enabled="1"
    name="Alpha_Blender">
-  <parameter name="mode" value="Simple" />
+  <parameter name="mode" value="Normal" />
   <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
  </module>
@@ -692,21 +646,6 @@
  <connection
    kind="avalon_streaming"
    version="12.1"
-   start="Pixel_RGB_Resampler.avalon_rgb_source"
-   end="Pixel_Scaler.avalon_scaler_sink" />
- <connection
-   kind="avalon_streaming"
-   version="12.1"
-   start="Pixel_Buffer_DMA.avalon_pixel_source"
-   end="Pixel_RGB_Resampler.avalon_rgb_sink" />
- <connection
-   kind="avalon_streaming"
-   version="12.1"
-   start="Pixel_Scaler.avalon_scaler_source"
-   end="Alpha_Blender.avalon_background_sink" />
- <connection
-   kind="avalon_streaming"
-   version="12.1"
    start="Char_Buffer_with_DMA.avalon_char_source"
    end="Alpha_Blender.avalon_foreground_sink" />
  <connection
@@ -786,26 +725,6 @@
    kind="reset"
    version="12.1"
    start="clk_0.clk_reset"
-   end="Pixel_RGB_Resampler.clock_reset_reset" />
- <connection
-   kind="reset"
-   version="12.1"
-   start="CPU.jtag_debug_module_reset"
-   end="Pixel_RGB_Resampler.clock_reset_reset" />
- <connection
-   kind="reset"
-   version="12.1"
-   start="clk_0.clk_reset"
-   end="Pixel_Scaler.clock_reset_reset" />
- <connection
-   kind="reset"
-   version="12.1"
-   start="CPU.jtag_debug_module_reset"
-   end="Pixel_Scaler.clock_reset_reset" />
- <connection
-   kind="reset"
-   version="12.1"
-   start="clk_0.clk_reset"
    end="Alpha_Blender.clock_reset_reset" />
  <connection
    kind="reset"
@@ -853,16 +772,6 @@
    version="12.1"
    start="Clock_Signals.sys_clk"
    end="Pixel_Buffer_DMA.clock_reset" />
- <connection
-   kind="clock"
-   version="12.1"
-   start="Clock_Signals.sys_clk"
-   end="Pixel_RGB_Resampler.clock_reset" />
- <connection
-   kind="clock"
-   version="12.1"
-   start="Clock_Signals.sys_clk"
-   end="Pixel_Scaler.clock_reset" />
  <connection
    kind="clock"
    version="12.1"
@@ -990,4 +899,9 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00201008" />
  </connection>
+ <connection
+   kind="avalon_streaming"
+   version="12.1"
+   start="Pixel_Buffer_DMA.avalon_pixel_source"
+   end="Alpha_Blender.avalon_background_sink" />
 </system>

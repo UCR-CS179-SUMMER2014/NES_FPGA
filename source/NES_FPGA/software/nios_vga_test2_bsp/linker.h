@@ -4,7 +4,7 @@
  * Machine generated for CPU 'CPU' in SOPC Builder design 'nios_system'
  * SOPC Builder design path: C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
  *
- * Generated: Thu Aug 28 12:27:25 CEST 2014
+ * Generated: Thu Aug 28 17:42:21 CEST 2014
  */
 
 /*
@@ -65,8 +65,6 @@
  *
  */
 
-#define ONCHIP_MEMORY_REGION_BASE 0x204000
-#define ONCHIP_MEMORY_REGION_SPAN 16384
 #define RESET_REGION_BASE 0x8000000
 #define RESET_REGION_SPAN 32
 #define SDRAM_0_REGION_BASE 0x8000020

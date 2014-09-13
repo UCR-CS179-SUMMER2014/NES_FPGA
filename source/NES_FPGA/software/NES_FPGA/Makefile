@@ -145,6 +145,7 @@ ELF := NES_FPGA.elf
 C_SRCS += cpu.c
 C_SRCS += main.c
 C_SRCS += sdcard.c
+C_SRCS += vga.c
 CXX_SRCS :=
 ASM_SRCS :=
 

@@ -1,5 +1,5 @@
 Assembler report for NES_FPGA
-Thu Aug 28 15:48:06 2014
+Fri Aug 29 15:19:45 2014
 Quartus II 64-Bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Aug 28 15:48:06 2014 ;
+; Assembler Status      ; Successful - Fri Aug 29 15:19:45 2014 ;
 ; Revision Name         ; NES_FPGA                              ;
 ; Top-level Entity Name ; NES_FPGA                              ;
 ; Family                ; Cyclone IV GX                         ;
@@ -104,7 +104,7 @@ applicable agreement for further details.
 +----------------+------------------------------------------------------------------------+
 ; Device         ; EP4CGX150DF31C7                                                        ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                             ;
-; Checksum       ; 0x00A7AF4E                                                             ;
+; Checksum       ; 0x00A53F76                                                             ;
 +----------------+------------------------------------------------------------------------+
 
 
@@ -114,14 +114,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 12.1 Build 177 11/07/2012 SJ Web Edition
-    Info: Processing started: Thu Aug 28 15:47:44 2014
+    Info: Processing started: Fri Aug 29 15:19:22 2014
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off NES_FPGA -c NES_FPGA
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 521 megabytes
-    Info: Processing ended: Thu Aug 28 15:48:06 2014
-    Info: Elapsed time: 00:00:22
+    Info: Peak virtual memory: 526 megabytes
+    Info: Processing ended: Fri Aug 29 15:19:45 2014
+    Info: Elapsed time: 00:00:23
     Info: Total CPU time (on all processors): 00:00:22
 
 

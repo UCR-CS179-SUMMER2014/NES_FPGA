@@ -1,12 +1,17 @@
-obj/default/main.o: main.c NES.h \
+obj/default/main.o: main.c cpu.h NES.h \
   ../NES_FPGA_bsp//drivers/inc/altera_up_sd_card_avalon_interface.h \
   ../NES_FPGA_bsp//HAL/inc/alt_types.h \
   ../NES_FPGA_bsp//HAL/inc/sys/alt_dev.h ../NES_FPGA_bsp/system.h \
   ../NES_FPGA_bsp/linker.h ../NES_FPGA_bsp//HAL/inc/sys/alt_llist.h \
   ../NES_FPGA_bsp//HAL/inc/priv/alt_dev_llist.h \
-  ../NES_FPGA_bsp//HAL/inc/sys/alt_llist.h ../NES_FPGA_bsp/system.h \
-  ../NES_FPGA_bsp//HAL/inc/sys/alt_irq.h ../NES_FPGA_bsp//HAL/inc/nios2.h \
-  ../NES_FPGA_bsp//HAL/inc/sys/alt_sys_init.h sdcard.h cpu.h
+  ../NES_FPGA_bsp//HAL/inc/sys/alt_llist.h \
+  ../NES_FPGA_bsp//drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h \
+  ../NES_FPGA_bsp//drivers/inc/altera_up_avalon_video_pixel_buffer_dma.h \
+  ../NES_FPGA_bsp/system.h ../NES_FPGA_bsp//HAL/inc/sys/alt_irq.h \
+  ../NES_FPGA_bsp//HAL/inc/nios2.h \
+  ../NES_FPGA_bsp//HAL/inc/sys/alt_sys_init.h vga.h sdcard.h
+
+cpu.h:
 
 NES.h:
 
@@ -26,6 +31,10 @@ NES.h:
 
 ../NES_FPGA_bsp//HAL/inc/sys/alt_llist.h:
 
+../NES_FPGA_bsp//drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h:
+
+../NES_FPGA_bsp//drivers/inc/altera_up_avalon_video_pixel_buffer_dma.h:
+
 ../NES_FPGA_bsp/system.h:
 
 ../NES_FPGA_bsp//HAL/inc/sys/alt_irq.h:
@@ -34,6 +43,6 @@ NES.h:
 
 ../NES_FPGA_bsp//HAL/inc/sys/alt_sys_init.h:
 
-sdcard.h:
+vga.h:
 
-cpu.h:
+sdcard.h:

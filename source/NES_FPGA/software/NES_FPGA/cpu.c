@@ -1,6 +1,29 @@
 #include "cpu.h"
 #include "sdcard.h"
 
+
+
+void prg_test()
+{
+	cpu_status();
+	int i = 0;
+	int c = 0;
+	for(i = 0; i < 0x8000; ++i)
+	{
+	printf("%x ", CPU->MEM[PRG + i ]);
+	if(c >= 50)
+	{
+		printf("\n");
+		c = 0;
+	}
+	else
+		++c;
+	}
+	printf("\n\n");
+
+	return;
+}
+
 /*
    Function: decode_instruction( byte )
    Description: Reads in byte to decode into corresponding
