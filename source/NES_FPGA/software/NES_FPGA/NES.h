@@ -61,8 +61,8 @@ typedef struct // 6502 Microprocessor Struct
 typedef struct
 {
 	byte* MEM;	// PPU Memory Map
-
 	byte* OAM;	// PPU Object Attribute Memory, AKA Sprite Table
+
 	byte* sprite_buffer;	// Stores data of sprites during rendering.
 
 	/*
@@ -73,7 +73,7 @@ typedef struct
 } RP2C02;
 
 
-/* Definitions */
+/* CPU Definitions */
 #define PRG     0x8000    // Length: 0x8000 Program Memory
 #define SRAM    0x6000    // Length: 0x2000
 #define EROM    0x4020    // Length: 0x1180
@@ -86,13 +86,12 @@ typedef struct
 #define NMIL     0xFFFE   // Non-maskable Interrupt Low
 #define NMIH     0xFFFF   // Non-maskable Interrupt High
 
-#define SPR_DMA  0x4014   // PPU Sprite DMA (256 bytes)
+/* PPU Definitions */
+#define PATTERN_TABLE_0		0x0000		// Sprite Pattern Table
+#define PATTERN_TABLE_1		0x1000		// Background Pattern Table
 
-#define PATTERN_TABLE_0		0x0000
-#define PATTERN_TABLE_1		0x1000
-
-#define NAMETABLE_0			0x2000
-#define ATTRIBUTE_TABLE_0	0x23C0
+#define NAMETABLE_0			0x2000		// The BG tiles to be displayed on screen. 32x30. (960 bytes total)
+#define ATTRIBUTE_TABLE_0	0x23C0		// The upper 2 bits of palette colors for tiles. 1 byte populates 16 tiles. (64 bytes total, 4 unused)
 #define NAMETABLE_1			0x2400
 #define ATTRIBUTE_TABLE_1	0x27C0
 #define NAMETABLE_2			0x2800
@@ -234,6 +233,9 @@ typedef struct
 	((ppu.reg[6] & 0x3F00) == 0x3F00) what is returned is the palette data,
 	but what is copied to the delayed buffer is addr[ppu.reg[6] - 0x1000];
  */
+
+#define SPR_DMA  0x4014   // PPU Sprite DMA (256 bytes) to populate OAM (Sprite Table)
+
 #define BYTETOBINARYPATTERN "%d%d%d%d%d%d%d%d"  // Displays a byte in binary
 #define BYTETOBINARY(byte)  \
   (byte & 0x80 ? 1 : 0), \
@@ -251,6 +253,8 @@ typedef struct
 //					GLOBAL VARIABLES
 //=========================================================
 byte* CHR_ROM; // Holds CHR data stored in ROM
+
+/* iNES Header Variables */
 byte chr_size; // The number of PRG banks in ROM
 byte prg_size; // The number of CHR banks in ROM
 byte cpu_sram_batt; // SRAM in CPU is battery packed
@@ -259,7 +263,6 @@ byte cpu_sram;      // $6000-$7FFF.  0 if present, 1 if not present
 byte prg_ram_size;  // in 8 kB units
 byte tv_system;     // Unused. 0: NTSC, 1: PAL
 byte mapper;	    // Type of NES cart mapper
-
 /*
 	Horizontal Mirroring:
 	[0x2000, 0x23FF] mirrors [0x2400, 27FF]
@@ -277,15 +280,17 @@ byte mapper;	    // Type of NES cart mapper
  */
 byte mirroring;     // Horizontal, vertical, or four-screen mirroring.
 
+/* Altera library variables */
 alt_up_char_buffer_dev* char_buffer;		// Character Buffer for Altera
 alt_up_pixel_buffer_dma_dev* pix_buffer;    // Color/pixel Buffer for Altera
+
 
 char* file_name;		 // The name of the ROM
 
 NMOS6502* CPU;			 // CPU Struct Instance
 RP2C02* PPU;			 // PPU Struct Instance
 
-word t1, t2;
+word t1, t2;			 // Temp values
 //=========================================================
 //					ALTERA CYCLONE CONNECTIONS
 //=========================================================
