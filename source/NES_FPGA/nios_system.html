@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2014.08.28.17:32:22</td>
+    <td class="l">2014.09.14.12:27:33</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -568,22 +568,10 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <table class="connectionboxes">
      <tr>
       <td class="neighbor" rowspan="2">
-       <a href="#module_Dual_Clock_FIFO">Dual_Clock_FIFO</a>
-      </td>
-      <td class="from">avalon_dc_buffer_source&#160;&#160;</td>
-      <td class="main" rowspan="11">VGA_Controller</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;avalon_vga_sink</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
-     </tr>
-     <tr>
-      <td class="neighbor" rowspan="2">
        <a href="#module_clk_0">clk_0</a>
       </td>
       <td class="from">clk_reset&#160;&#160;</td>
+      <td class="main" rowspan="11">VGA_Controller</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clock_reset_reset</td>
@@ -611,6 +599,18 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </tr>
      <tr>
       <td class="to">&#160;&#160;clock_reset</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_Dual_Clock_FIFO">Dual_Clock_FIFO</a>
+      </td>
+      <td class="from">avalon_dc_buffer_source&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;avalon_vga_sink</td>
      </tr>
     </table>
    </div>
@@ -988,7 +988,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">mode</td>
-        <td class="parametervalue">Normal</td>
+        <td class="parametervalue">Simple</td>
        </tr>
        <tr>
         <td class="parametername">AUTO_CLOCK_RESET_CLOCK_RATE</td>
@@ -2024,22 +2024,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      <tr>
       <td></td>
       <td></td>
-      <td class="from">vga_clk&#160;&#160;</td>
-      <td class="neighbor" rowspan="2">
-       <a href="#module_VGA_Controller">VGA_Controller</a>
-      </td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;clock_reset</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
       <td class="from">sys_clk&#160;&#160;</td>
       <td class="neighbor" rowspan="2">
        <a href="#module_Altera_UP_SD_Card_Avalon_Interface_0">Altera_UP_SD_Card_Avalon_Interface_0</a>
@@ -2108,6 +2092,22 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td class="to">&#160;&#160;clk</td>
      </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">vga_clk&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_VGA_Controller">VGA_Controller</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;clock_reset</td>
+     </tr>
     </table>
    </div>
    <br/>
@@ -2119,7 +2119,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">board</td>
-        <td class="parametervalue">DE2-70</td>
+        <td class="parametervalue">DE2-115</td>
        </tr>
        <tr>
         <td class="parametername">sys_clk_freq</td>
@@ -2459,7 +2459,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">timestamp</td>
-        <td class="parametervalue">1409239941</td>
+        <td class="parametervalue">1410722852</td>
        </tr>
        <tr>
         <td class="parametername">AUTO_CLK_CLOCK_RATE</td>
@@ -2492,7 +2492,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">TIMESTAMP</td>
-        <td class="parametervalue">1409239941</td>
+        <td class="parametervalue">1410722852</td>
        </tr>
       </table>
      </td>

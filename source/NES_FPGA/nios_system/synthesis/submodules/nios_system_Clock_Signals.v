@@ -177,7 +177,7 @@ defparam
 	DE_Clock_Generator_System.compensate_clock			= "CLK0",
 	DE_Clock_Generator_System.gate_lock_signal			= "NO",
 	DE_Clock_Generator_System.inclk0_input_frequency	= 20000,
-	DE_Clock_Generator_System.intended_device_family	= "Cyclone II",
+	DE_Clock_Generator_System.intended_device_family	= "Cyclone IV",
 	DE_Clock_Generator_System.invalid_lock_multiplier	= 5,
 	DE_Clock_Generator_System.lpm_type						= "altpll",
 	DE_Clock_Generator_System.operation_mode				= "NORMAL",

@@ -299,7 +299,7 @@
  <parameter name="projectName" value="NES_FPGA.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1409239871100" />
+ <parameter name="timeStamp" value="1410721013118" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface
@@ -416,7 +416,7 @@
    version="12.0"
    enabled="1"
    name="Alpha_Blender">
-  <parameter name="mode" value="Normal" />
+  <parameter name="mode" value="Simple" />
   <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
  </module>
@@ -533,7 +533,7 @@
    version="12.0"
    enabled="1"
    name="Clock_Signals">
-  <parameter name="board" value="DE2-70" />
+  <parameter name="board" value="DE2-115" />
   <parameter name="sys_clk_freq" value="50" />
   <parameter name="sdram_clk" value="true" />
   <parameter name="vga_clk" value="true" />
@@ -638,11 +638,6 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00208000" />
  </connection>
- <connection
-   kind="avalon_streaming"
-   version="12.1"
-   start="Dual_Clock_FIFO.avalon_dc_buffer_source"
-   end="VGA_Controller.avalon_vga_sink" />
  <connection
    kind="avalon_streaming"
    version="12.1"
@@ -783,16 +778,6 @@
    start="Clock_Signals.sys_clk"
    end="Dual_Clock_FIFO.clock_stream_in" />
  <connection
-   kind="clock"
-   version="12.1"
-   start="Clock_Signals.vga_clk"
-   end="Dual_Clock_FIFO.clock_stream_out" />
- <connection
-   kind="clock"
-   version="12.1"
-   start="Clock_Signals.vga_clk"
-   end="VGA_Controller.clock_reset" />
- <connection
    kind="avalon"
    version="12.1"
    start="CPU.data_master"
@@ -904,4 +889,19 @@
    version="12.1"
    start="Pixel_Buffer_DMA.avalon_pixel_source"
    end="Alpha_Blender.avalon_background_sink" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.vga_clk"
+   end="VGA_Controller.clock_reset" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.vga_clk"
+   end="Dual_Clock_FIFO.clock_stream_out" />
+ <connection
+   kind="avalon_streaming"
+   version="12.1"
+   start="Dual_Clock_FIFO.avalon_dc_buffer_source"
+   end="VGA_Controller.avalon_vga_sink" />
 </system>

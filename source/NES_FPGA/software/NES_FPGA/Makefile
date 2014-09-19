@@ -146,6 +146,7 @@ C_SRCS += cpu.c
 C_SRCS += main.c
 C_SRCS += sdcard.c
 C_SRCS += vga.c
+C_SRCS += ppu.c
 CXX_SRCS :=
 ASM_SRCS :=
 

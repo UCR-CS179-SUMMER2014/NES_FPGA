@@ -3,12 +3,22 @@
 
 #include "NES.h"
 
-
+/*
+ * Outputs contents of PRG ROM
+ */
 void prg_test();
 
 /* Function:    cpu_reset
    Description: Initializes CPU */
 inline void cpu_reset();
+
+/* Function:    cpu_reset
+   Description: Sets PC to NMI vector */
+inline void cpu_nmi();
+
+/* Function:    cpu_irq
+   Description: Sets PC to IRQ vector  */
+inline void cpu_irq();
 
 /* Function:    cpu_init
  * Description: Sets up CPU by allocating memory and uses default signals.
@@ -18,6 +28,15 @@ inline void cpu_reset();
 inline void cpu_init();
 
 
+/* Read the contents of PC, then increment it */
+inline byte cpu_read();
+
+/* Read the contents of the address in CPU memory */
+inline byte cpu_mem_read( word addr );
+
+/* Write contents to address in CPU memory */
+inline void cpu_mem_write( byte data, word addr );
+
 /* Function:    execute_instruction
    Description: Takes in opcode and executes instruction.
                 Opcode is taken in from CPU struct. */
@@ -26,8 +45,6 @@ void cpu_exec();
 
 
 /* CPU Setup/Debug Functions */
-inline byte cpu_read(word addr);  // unused
-inline byte cpu_write(word addr, byte data); // unused
 inline void cpu_status();
 
 

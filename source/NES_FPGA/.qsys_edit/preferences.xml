@@ -5,13 +5,15 @@
   <columns>
    <connections preferredWidth="271" />
    <irq preferredWidth="34" />
+   <export preferredWidth="193" />
+   <inputclock preferredWidth="219" />
   </columns>
  </systemtable>
  <clocktable>
   <columns>
-   <clockname preferredWidth="363" />
-   <clocksource preferredWidth="363" />
-   <frequency preferredWidth="344" />
+   <clockname preferredWidth="323" />
+   <clocksource preferredWidth="322" />
+   <frequency preferredWidth="306" />
   </columns>
  </clocktable>
  <library expandedCategories="Library,Project" />

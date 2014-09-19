@@ -184,7 +184,7 @@ assign valid =	foreground_valid & background_valid &
  *                              Internal Modules                             *
  *****************************************************************************/
 
-altera_up_video_alpha_blender_normal alpha_blender (
+altera_up_video_alpha_blender_simple alpha_blender (
 	// Inputs
 	.background_data	(background_data),
 	.foreground_data	(foreground_data),

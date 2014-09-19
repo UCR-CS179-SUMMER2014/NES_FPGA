@@ -2,9 +2,9 @@
  * alt_sys_init.c - HAL initialization source
  *
  * Machine generated for CPU 'CPU' in SOPC Builder design 'nios_system'
- * SOPC Builder design path: C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
+ * SOPC Builder design path: ../../nios_system.sopcinfo
  *
- * Generated: Thu Aug 28 16:34:15 CEST 2014
+ * Generated: Sun Sep 14 12:15:52 PDT 2014
  */
 
 /*

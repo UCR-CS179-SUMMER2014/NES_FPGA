@@ -7,24 +7,29 @@
 int main()
 {
   // Declare appropriate arrays and variables
-  file_name = "SMB.nes";
-  char* en = (char*) malloc(sizeof(char)*2); // Buffer for cpu cycle pauses
+  file_name = "DK.nes";
+  char* en = (char*) malloc(sizeof(char)*2); // Used for stepping into CPU one instruction at a time
+
+  // Initialize CPU
+  cpu_init();
+
+  // Initialize PPU
+  //ppu_init();
+
+  // Load the ROM. CPU and PPU Memory map will be populated here as well
+  // TODO: bootloader();   // Not implemented yet --> Gets filename for ROM
+  load_rom();
 
   // VGA controller test for character and pixel buffer
   vga_test();
 
-  // Initialize CPU
-  cpu_init();
-  load_rom();
-
-  // Execute CPU instructions
+  // Start NES execution
   while(1)
   {
 	// Check for interrupts
-	if(CPU->RES == 1) // Reset
+	if(CPU->RES == 1) // Reset, also the power-on state
 	{
-		// Load NES rom from file
-		// TODO: bootloader();   // Not implemented yet --> Gets filename for ROM
+		// Reset CPU
 		cpu_reset();
 
 		// Display contents of PRG_ROM
@@ -33,16 +38,13 @@ int main()
 		#endif
 
 		printf("RES! Into: %x\n", CPU->PC);
-	} // end RESET
+	}
 	else if(CPU->NMI == 1) // Non-maskable interrupt (PPU)
-	{
-		printf("NMI!\n");
-	}
+		cpu_nmi();
+
+	// Note that IRQ will not work if interrupts are disabled
 	else if((CPU->IRQ == 1) && (CPU->P.I == 0)) // Interrupt Request
-	{
-		// Note that IRQ will not work if interrupts are disabled
-		printf("IRQ!\n");
-	}
+		cpu_irq();
 
 	CPU->IR = CPU->MEM[ CPU->PC ];	// Load next instruction
 	cpu_status(); // Debug CPU

@@ -101,7 +101,7 @@ ACDS_VERSION := 12.1
 # BUILD_NUMBER: 177
 
 SETTINGS_FILE := settings.bsp
-SOPC_FILE := C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo
+SOPC_FILE := ../../nios_system.sopcinfo
 
 #-------------------------------------------------------------------------------
 #                             TOOL & COMMAND DEFINITIONS

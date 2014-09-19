@@ -43,17 +43,41 @@ void load_rom()
 			chr_size = alt_up_sd_card_read(sd_fileh);
 			CHR_ROM = (byte*) malloc(sizeof(byte)*8*1024*chr_size);
 
-			// Skip last 10 bytes of header
-			for(i = 0; i < 10; i++)
+			// Next byte handles mirroring, SRAM presence, trainer, and mapper (lower)
+			data = alt_up_sd_card_read(sd_fileh);
+
+			// 0xx0 = horizontal, 0xx1 = vertical, 1xxx four-screen
+			mirroring = data & 0x0F;
+			cpu_sram_batt = (data & 0x02) ? 1 : 0;
+			trainer = (data & 0x04) ? 1 : 0;
+
+			// Upper nibble of mapper
+			data = alt_up_sd_card_read(sd_fileh);
+			mirroring = mirroring | (data >> 4);
+
+			// Size of PRG RAM (unused)
+			prg_ram_size = alt_up_sd_card_read(sd_fileh);
+
+			// TV System
+			tv_system = alt_up_sd_card_read(sd_fileh);
+
+			// SRAM in CPU
+			cpu_sram = (alt_up_sd_card_read(sd_fileh) & (0x10)) ? 1 : 0;
+
+			// Skip last 5 bytes of header
+			for(i = 0; i < 5; i++)
 			  data = alt_up_sd_card_read(sd_fileh);
 
-			/* TODO: Check for different PRG sizes. If its one, we mirror it to the second bank.
-			         We also need to take into consideration the type of memory mapping, if present. */
 			// Extract the PRG Data
 			for(i = 0; i < (prg_size*16*1024); ++i)
 			{
 			  data = alt_up_sd_card_read(sd_fileh);
-			  CPU->MEM[i+0x8000] = (byte)data;
+			  CPU->MEM[i+PRG] = (byte)data;
+			}
+			if(prg_size == 1)	// Populate second half of PRG ROM with a copy of the first bank if prg_size is only 16kB.
+			{
+				for(i = 0; i < (prg_size*16*1024); ++i)
+				  CPU->MEM[i+PRG+0x4000] = CPU->MEM[i+PRG];
 			}
 
 			// Extract CHR Data

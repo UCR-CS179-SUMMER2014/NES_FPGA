@@ -1,4 +1,4 @@
-PLL_Name	nios_system:u0|nios_system_Clock_Signals:clock_signals|altpll:DE_Clock_Generator_System|pll
+PLL_Name	nios_system:u0|nios_system_Clock_Signals:clock_signals|altpll:DE_Clock_Generator_System|altpll_0vb2:auto_generated|pll1
 PLLJITTER	26
 PLLSPEmax	84
 PLLSPEmin	-53
