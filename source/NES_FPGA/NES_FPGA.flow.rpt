@@ -1,5 +1,5 @@
 Flow report for NES_FPGA
-Sun Sep 14 12:45:23 2014
+Sun Sep 21 10:08:26 2014
 Quartus II 64-Bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
 
 
@@ -38,21 +38,21 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +------------------------------------+------------------------------------------+
-; Flow Status                        ; Successful - Sun Sep 14 12:44:58 2014    ;
+; Flow Status                        ; Successful - Sun Sep 21 10:08:04 2014    ;
 ; Quartus II 64-Bit Version          ; 12.1 Build 177 11/07/2012 SJ Web Edition ;
 ; Revision Name                      ; NES_FPGA                                 ;
 ; Top-level Entity Name              ; NES_FPGA                                 ;
 ; Family                             ; Cyclone IV GX                            ;
 ; Device                             ; EP4CGX150DF31C7                          ;
 ; Timing Models                      ; Final                                    ;
-; Total logic elements               ; 4,556 / 149,760 ( 3 % )                  ;
-;     Total combinational functions  ; 4,078 / 149,760 ( 3 % )                  ;
-;     Dedicated logic registers      ; 2,735 / 149,760 ( 2 % )                  ;
-; Total registers                    ; 2854                                     ;
+; Total logic elements               ; 6,235 / 149,760 ( 4 % )                  ;
+;     Total combinational functions  ; 5,531 / 149,760 ( 4 % )                  ;
+;     Dedicated logic registers      ; 3,879 / 149,760 ( 3 % )                  ;
+; Total registers                    ; 3998                                     ;
 ; Total pins                         ; 327 / 508 ( 64 % )                       ;
 ; Total virtual pins                 ; 0                                        ;
-; Total memory bits                  ; 87,424 / 6,635,520 ( 1 % )               ;
-; Embedded Multiplier 9-bit elements ; 0 / 720 ( 0 % )                          ;
+; Total memory bits                  ; 234,752 / 6,635,520 ( 4 % )              ;
+; Embedded Multiplier 9-bit elements ; 4 / 720 ( < 1 % )                        ;
 ; Total GXB Receiver Channel PCS     ; 0 / 8 ( 0 % )                            ;
 ; Total GXB Receiver Channel PMA     ; 0 / 8 ( 0 % )                            ;
 ; Total GXB Transmitter Channel PCS  ; 0 / 8 ( 0 % )                            ;
@@ -66,7 +66,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 09/14/2014 12:40:38 ;
+; Start date & time ; 09/21/2014 10:04:03 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; NES_FPGA            ;
 +-------------------+---------------------+
@@ -77,14 +77,13 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------------------------------------------+---------------+---------------------------------+------------+
 ; Assignment Name                     ; Value                                                               ; Default Value ; Entity Name                     ; Section Id ;
 +-------------------------------------+---------------------------------------------------------------------+---------------+---------------------------------+------------+
-; COMPILER_SIGNATURE_ID               ; 17727277232746.141072363803152                                      ; --            ; --                              ; --         ;
+; COMPILER_SIGNATURE_ID               ; 17727277232746.141131904305276                                      ; --            ; --                              ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; altera_avalon_sc_fifo           ; --         ;
-; IP_TOOL_ENV                         ; qsys                                                                ; --            ; altera_merlin_burst_adapter     ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; altera_merlin_master_agent      ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; altera_merlin_master_translator ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; altera_merlin_slave_agent       ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; altera_merlin_slave_translator  ; --         ;
-; IP_TOOL_ENV                         ; qsys                                                                ; --            ; altera_merlin_width_adapter     ; --         ;
+; IP_TOOL_ENV                         ; qsys                                                                ; --            ; altera_merlin_traffic_limiter   ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; altera_reset_controller         ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; nios_system                     ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; nios_system_CPU                 ; --         ;
@@ -98,7 +97,6 @@ applicable agreement for further details.
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; nios_system_id_router           ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; nios_system_id_router_004       ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; nios_system_id_router_005       ; --         ;
-; IP_TOOL_ENV                         ; qsys                                                                ; --            ; nios_system_id_router_007       ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; nios_system_irq_mapper          ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; nios_system_jtag_uart           ; --         ;
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; nios_system_rsp_xbar_demux      ; --         ;
@@ -108,12 +106,11 @@ applicable agreement for further details.
 ; IP_TOOL_ENV                         ; qsys                                                                ; --            ; nios_system_sysid               ; --         ;
 ; IP_TOOL_NAME                        ; RAM: 2-PORT                                                         ; --            ; --                              ; --         ;
 ; IP_TOOL_NAME                        ; altera_avalon_sc_fifo                                               ; --            ; altera_avalon_sc_fifo           ; --         ;
-; IP_TOOL_NAME                        ; altera_merlin_burst_adapter                                         ; --            ; altera_merlin_burst_adapter     ; --         ;
 ; IP_TOOL_NAME                        ; altera_merlin_master_agent                                          ; --            ; altera_merlin_master_agent      ; --         ;
 ; IP_TOOL_NAME                        ; altera_merlin_master_translator                                     ; --            ; altera_merlin_master_translator ; --         ;
 ; IP_TOOL_NAME                        ; altera_merlin_slave_agent                                           ; --            ; altera_merlin_slave_agent       ; --         ;
 ; IP_TOOL_NAME                        ; altera_merlin_slave_translator                                      ; --            ; altera_merlin_slave_translator  ; --         ;
-; IP_TOOL_NAME                        ; altera_merlin_width_adapter                                         ; --            ; altera_merlin_width_adapter     ; --         ;
+; IP_TOOL_NAME                        ; altera_merlin_traffic_limiter                                       ; --            ; altera_merlin_traffic_limiter   ; --         ;
 ; IP_TOOL_NAME                        ; altera_reset_controller                                             ; --            ; altera_reset_controller         ; --         ;
 ; IP_TOOL_NAME                        ; qsys                                                                ; --            ; nios_system                     ; --         ;
 ; IP_TOOL_NAME                        ; altera_nios2_qsys                                                   ; --            ; nios_system_CPU                 ; --         ;
@@ -127,7 +124,6 @@ applicable agreement for further details.
 ; IP_TOOL_NAME                        ; altera_merlin_router                                                ; --            ; nios_system_id_router           ; --         ;
 ; IP_TOOL_NAME                        ; altera_merlin_router                                                ; --            ; nios_system_id_router_004       ; --         ;
 ; IP_TOOL_NAME                        ; altera_merlin_router                                                ; --            ; nios_system_id_router_005       ; --         ;
-; IP_TOOL_NAME                        ; altera_merlin_router                                                ; --            ; nios_system_id_router_007       ; --         ;
 ; IP_TOOL_NAME                        ; altera_irq_mapper                                                   ; --            ; nios_system_irq_mapper          ; --         ;
 ; IP_TOOL_NAME                        ; altera_avalon_jtag_uart                                             ; --            ; nios_system_jtag_uart           ; --         ;
 ; IP_TOOL_NAME                        ; altera_merlin_demultiplexer                                         ; --            ; nios_system_rsp_xbar_demux      ; --         ;
@@ -137,12 +133,11 @@ applicable agreement for further details.
 ; IP_TOOL_NAME                        ; altera_avalon_sysid_qsys                                            ; --            ; nios_system_sysid               ; --         ;
 ; IP_TOOL_VERSION                     ; 8.0                                                                 ; --            ; --                              ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; altera_avalon_sc_fifo           ; --         ;
-; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; altera_merlin_burst_adapter     ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; altera_merlin_master_agent      ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; altera_merlin_master_translator ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; altera_merlin_slave_agent       ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; altera_merlin_slave_translator  ; --         ;
-; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; altera_merlin_width_adapter     ; --         ;
+; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; altera_merlin_traffic_limiter   ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; altera_reset_controller         ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; nios_system                     ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; nios_system_CPU                 ; --         ;
@@ -156,7 +151,6 @@ applicable agreement for further details.
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; nios_system_id_router           ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; nios_system_id_router_004       ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; nios_system_id_router_005       ; --         ;
-; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; nios_system_id_router_007       ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; nios_system_irq_mapper          ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; nios_system_jtag_uart           ; --         ;
 ; IP_TOOL_VERSION                     ; 12.1                                                                ; --            ; nios_system_rsp_xbar_demux      ; --         ;
@@ -175,7 +169,7 @@ applicable agreement for further details.
 ; PARTITION_NETLIST_TYPE              ; SOURCE                                                              ; --            ; --                              ; Top        ;
 ; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                                 ; --            ; --                              ; --         ;
 ; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                               ; --            ; --                              ; --         ;
-; SLD_INFO                            ; QSYS_NAME nios_system HAS_SOPCINFO 1 GENERATION_ID 1410722852       ; --            ; nios_system                     ; --         ;
+; SLD_INFO                            ; QSYS_NAME nios_system HAS_SOPCINFO 1 GENERATION_ID 1411317456       ; --            ; nios_system                     ; --         ;
 ; SOPCINFO_FILE                       ; nios_system/synthesis/../../nios_system.sopcinfo                    ; --            ; --                              ; --         ;
 ; SYNTHESIS_ONLY_QIP                  ; On                                                                  ; --            ; --                              ; --         ;
 +-------------------------------------+---------------------------------------------------------------------+---------------+---------------------------------+------------+
@@ -186,11 +180,11 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:01:23     ; 1.0                     ; 691 MB              ; 00:01:22                           ;
-; Fitter                    ; 00:02:20     ; 2.1                     ; 1100 MB             ; 00:02:47                           ;
-; Assembler                 ; 00:00:24     ; 1.0                     ; 521 MB              ; 00:00:23                           ;
-; TimeQuest Timing Analyzer ; 00:00:24     ; 1.8                     ; 683 MB              ; 00:00:25                           ;
-; Total                     ; 00:04:31     ; --                      ; --                  ; 00:04:57                           ;
+; Analysis & Synthesis      ; 00:01:16     ; 1.0                     ; 727 MB              ; 00:01:16                           ;
+; Fitter                    ; 00:02:14     ; 2.3                     ; 1138 MB             ; 00:02:51                           ;
+; Assembler                 ; 00:00:19     ; 1.0                     ; 523 MB              ; 00:00:18                           ;
+; TimeQuest Timing Analyzer ; 00:00:21     ; 2.4                     ; 721 MB              ; 00:00:25                           ;
+; Total                     ; 00:04:10     ; --                      ; --                  ; 00:04:50                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

@@ -5,7 +5,6 @@ obj/default/sdcard.o: sdcard.c sdcard.h NES.h \
   ../NES_FPGA_bsp/linker.h ../NES_FPGA_bsp//HAL/inc/sys/alt_llist.h \
   ../NES_FPGA_bsp//HAL/inc/priv/alt_dev_llist.h \
   ../NES_FPGA_bsp//HAL/inc/sys/alt_llist.h \
-  ../NES_FPGA_bsp//drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h \
   ../NES_FPGA_bsp//drivers/inc/altera_up_avalon_video_pixel_buffer_dma.h \
   ../NES_FPGA_bsp/system.h ../NES_FPGA_bsp//HAL/inc/sys/alt_irq.h \
   ../NES_FPGA_bsp//HAL/inc/nios2.h \
@@ -30,8 +29,6 @@ NES.h:
 ../NES_FPGA_bsp//HAL/inc/priv/alt_dev_llist.h:
 
 ../NES_FPGA_bsp//HAL/inc/sys/alt_llist.h:
-
-../NES_FPGA_bsp//drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h:
 
 ../NES_FPGA_bsp//drivers/inc/altera_up_avalon_video_pixel_buffer_dma.h:
 

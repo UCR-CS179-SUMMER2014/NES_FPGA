@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Sep 20, 2014 7:48:10 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1411267690637</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Sep 21, 2014 9:38:38 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1411317518568</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\Sergio\Desktop\NES_FPGA\source\NES_FPGA\software\NES_FPGA_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\nios_system.sopcinfo</SopcDesignFile>
@@ -869,21 +869,9 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>Char_Buffer_with_DMA_avalon_char_buffer_slave</slaveDescriptor>
-                <addressRange>0x00208000 - 0x00209FFF</addressRange>
-                <addressSpan>8192</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>Pixel_Buffer_DMA</slaveDescriptor>
                 <addressRange>0x0020B000 - 0x0020B00F</addressRange>
                 <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>Char_Buffer_with_DMA_avalon_char_control_slave</slaveDescriptor>
-                <addressRange>0x0020B010 - 0x0020B017</addressRange>
-                <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>

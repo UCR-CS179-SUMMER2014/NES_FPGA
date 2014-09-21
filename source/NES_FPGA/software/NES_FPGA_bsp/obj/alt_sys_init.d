@@ -10,7 +10,6 @@ obj/alt_sys_init.o: alt_sys_init.c system.h linker.h \
   HAL/inc/priv/alt_no_error.h HAL/inc/os/alt_flag.h \
   drivers/inc/altera_avalon_jtag_uart_fd.h \
   drivers/inc/altera_avalon_sysid_qsys.h \
-  drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h \
   drivers/inc/altera_up_avalon_video_pixel_buffer_dma.h
 
 system.h:
@@ -60,7 +59,5 @@ HAL/inc/os/alt_flag.h:
 drivers/inc/altera_avalon_jtag_uart_fd.h:
 
 drivers/inc/altera_avalon_sysid_qsys.h:
-
-drivers/inc/altera_up_avalon_video_character_buffer_with_dma.h:
 
 drivers/inc/altera_up_avalon_video_pixel_buffer_dma.h:

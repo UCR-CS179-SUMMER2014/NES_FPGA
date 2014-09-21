@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <altera_up_sd_card_avalon_interface.h>
-#include <altera_up_avalon_video_character_buffer_with_dma.h>
+//#include <altera_up_avalon_video_character_buffer_with_dma.h>
 #include <altera_up_avalon_video_pixel_buffer_dma.h>
 #include "system.h"
 #include "sys/alt_irq.h"
@@ -79,12 +79,14 @@ typedef struct
 	byte* OAM;	// PPU Object Attribute Memory, AKA Sprite Table
 
 	byte* sprite_buffer;	// Stores data of sprites during rendering.
-
+	byte scanline;			// Scanline counter for screen rendering.
 	/*
 	One byte of the name table holds the address of one tile (8x8 pixel),
 	making up 32x30 (0x3C0 bytes) rows of data. (32*8) = 256 and (30*8)=240,
 	thus making one name table the resolution of the PPU.
 	 */
+
+	short cycles;			// Current cycle count. Note PPU clock is 3x faster than the CPU
 } RP2C02;
 
 
@@ -126,6 +128,11 @@ typedef struct
 /* PPU-CPU I/O Registers */
 #define	PPUCTRL_ADDR 0x2000
 #define PPUCTRL	CPU->MEM[0x2000]			 // Register $2000 in CPU.
+#define BASENTABLE		(CPU->MEM[0x2000] & 0x03)
+#define VRAM_ADDR_INC   (CPU->MEM[0x2000] & 0x04) ? 1: 0
+#define SPRITE_PTABLE   (CPU->MEM[0x2000] & 0x08) ? 1 : 0
+#define BG_PTABLE 	    (CPU->MEM[0x2000] & 0x10) ? 1 : 0
+
 /*
 76543210
 ||||||||
@@ -162,7 +169,10 @@ typedef struct
 +-------- Intensify blues (and darken other colors)
  */
 
-#define PPUSTATUS	CPU->MEM[0x2002]			// Register  $2002
+#define PPUSTATUS	CPU->MEM[0x2002]  // Register  $2002
+#define VBLANK		(CPU->MEM[0x2002] & 0x80) ? 1 : 0
+#define SPRITE0HIT  (CPU->MEM[0x2002] & 0x40) ? 1 : 0
+#define SPRITEVFLOW (CPU->MEM[0x2002] & 0x20) ? 1 : 0
 /*
 	This register returns the status of the PPU. This is read-only.
 	Writing to it does nothing.
@@ -297,17 +307,18 @@ byte mapper;	    // Type of NES cart mapper
  */
 byte mirroring;     // Horizontal, vertical, or four-screen mirroring.
 
-/* Altera library variables */
-alt_up_char_buffer_dev* char_buffer;		// Character Buffer for Altera
-alt_up_pixel_buffer_dma_dev* pix_buffer;    // Color/pixel Buffer for Altera
-
-
 char* file_name;		 // The name of the ROM
 
 RP2A03* CPU;			 // CPU Struct Instance
 RP2C02* PPU;			 // PPU Struct Instance
 
 word t1, t2;			 // Temp values
+
+/* Altera library variables */
+//alt_up_char_buffer_dev* char_buffer;		// Character Buffer for Altera
+alt_up_pixel_buffer_dma_dev* pix_buffer;    // Color/pixel Buffer for Altera
+
+
 //=========================================================
 //					ALTERA CYCLONE CONNECTIONS
 //=========================================================

@@ -1,0 +1,118 @@
+Info: Starting: Create HDL design files for synthesis
+Info: ip-generate --project-directory=C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/ --output-directory=C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system/synthesis/ --file-set=QUARTUS_SYNTH --report-file=sopcinfo:C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.sopcinfo --report-file=html:C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.html --report-file=qip:C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system/synthesis/nios_system.qip --report-file=cmp:C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.cmp --system-info=DEVICE_FAMILY="Cyclone IV GX" --system-info=DEVICE=EP4CGX150DF31C7 --system-info=DEVICE_SPEEDGRADE=7 --component-file=C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system.qsys
+Progress: Loading NES_FPGA/nios_system.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 12.1]
+Progress: Parameterizing module clk_0
+Progress: Adding Dual_Clock_FIFO [altera_up_avalon_video_dual_clock_buffer 12.0]
+Progress: Parameterizing module Dual_Clock_FIFO
+Progress: Adding VGA_Controller [altera_up_avalon_video_vga_controller 12.0]
+Progress: Parameterizing module VGA_Controller
+Progress: Adding Pixel_Buffer [altera_up_avalon_sram 12.0]
+Progress: Parameterizing module Pixel_Buffer
+Progress: Adding Pixel_Buffer_DMA [altera_up_avalon_video_pixel_buffer_dma 12.0]
+Progress: Parameterizing module Pixel_Buffer_DMA
+Progress: Adding CPU [altera_nios2_qsys 12.1]
+Progress: Parameterizing module CPU
+Progress: Adding Clock_Signals [altera_up_clocks 12.0]
+Progress: Parameterizing module Clock_Signals
+Progress: Adding Altera_UP_SD_Card_Avalon_Interface_0 [Altera_UP_SD_Card_Avalon_Interface 1.0]
+Progress: Parameterizing module Altera_UP_SD_Card_Avalon_Interface_0
+Progress: Adding jtag_uart [altera_avalon_jtag_uart 12.1]
+Progress: Parameterizing module jtag_uart
+Progress: Adding sysid [altera_avalon_sysid_qsys 12.1]
+Progress: Parameterizing module sysid
+Progress: Adding sdram_0 [altera_avalon_new_sdram_controller 12.1]
+Progress: Parameterizing module sdram_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: nios_system.VGA_Controller: Video Output Stream: Format: 640 x 480 with Color: 10 (bits) x 3 (planes)
+Info: nios_system.CPU: CPUID control register value is 0. Please manually assign CPUID if creating multiple Nios II system
+Info: nios_system.sysid: System ID is not assigned automatically. Edit the System ID parameter to provide a unique ID
+Info: nios_system.sysid: Time stamp will be automatically updated when this component is generated.
+Info: nios_system: Generating nios_system "nios_system" for QUARTUS_SYNTH
+Info: pipeline_bridge_swap_transform: After transform: 11 modules, 44 connections
+Info: No custom instruction connections, skipping transform 
+Info: merlin_translator_transform: After transform: 21 modules, 80 connections
+Info: merlin_domain_transform: After transform: 39 modules, 188 connections
+Info: merlin_router_transform: After transform: 49 modules, 224 connections
+Info: reset_adaptation_transform: After transform: 53 modules, 201 connections
+Info: merlin_network_to_switch_transform: After transform: 72 modules, 245 connections
+Info: merlin_interrupt_mapper_transform: After transform: 73 modules, 248 connections
+Info: Dual_Clock_FIFO: Starting Generation of the Dual Clock Buffer
+Info: Dual_Clock_FIFO: "nios_system" instantiated altera_up_avalon_video_dual_clock_buffer "Dual_Clock_FIFO"
+Info: VGA_Controller: Starting Generation of VGA Controller
+Info: VGA_Controller: "nios_system" instantiated altera_up_avalon_video_vga_controller "VGA_Controller"
+Info: Pixel_Buffer: Starting Generation of SRAM or SSRAM Controller
+Info: Pixel_Buffer: "nios_system" instantiated altera_up_avalon_sram "Pixel_Buffer"
+Info: Pixel_Buffer_DMA: Starting Generation of VGA Pixel Buffer
+Info: Pixel_Buffer_DMA: "nios_system" instantiated altera_up_avalon_video_pixel_buffer_dma "Pixel_Buffer_DMA"
+Info: CPU: Starting RTL generation for module 'nios_system_CPU'
+Info: CPU:   Generation command is [exec C:/altera/quartus/../ip/altera/nios2_ip/altera_nios2/eperl.exe -I C:/altera/quartus/common/ip/altera/common/perl/5.8.3 -I C:/altera/quartus/sopc_builder/bin/europa -I C:/altera/quartus/sopc_builder/bin/perl_lib -I C:/altera/quartus/sopc_builder/bin -I C:/altera/quartus/../ip/altera/nios2_ip/altera_nios2/cpu_lib -I C:/altera/quartus/../ip/altera/nios2_ip/altera_nios2/nios_lib -I C:/altera/quartus/../ip/altera/nios2_ip/altera_nios2 -I C:/altera/quartus/../ip/altera/nios2_ip/altera_nios2 -- C:/altera/quartus/../ip/altera/nios2_ip/altera_nios2/generate_rtl.epl --name=nios_system_CPU --dir=C:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0007_CPU_gen/ --quartus_dir=C:/altera/quartus --verilog --config=C:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0007_CPU_gen//nios_system_CPU_processor_configuration.pl  --do_build_sim=0    --bogus  ]
+Info: CPU: # 2014.09.21 09:12:04 (*) Starting Nios II generation
+Info: CPU: # 2014.09.21 09:12:04 (*)   Checking for plaintext license.
+Info: CPU: # 2014.09.21 09:12:05 (*)   Couldn't query license setup in Quartus directory C:/altera/quartus
+Info: CPU: # 2014.09.21 09:12:05 (*)   Defaulting to contents of LM_LICENSE_FILE environment variable
+Info: CPU: # 2014.09.21 09:12:05 (*)   LM_LICENSE_FILE environment variable is empty
+Info: CPU: # 2014.09.21 09:12:05 (*)   Plaintext license not found.
+Info: CPU: # 2014.09.21 09:12:05 (*)   No license required to generate encrypted Nios II/e.
+Info: CPU: # 2014.09.21 09:12:05 (*)   Elaborating CPU configuration settings
+Info: CPU: # 2014.09.21 09:12:05 (*)   Creating all objects for CPU
+Info: CPU: # 2014.09.21 09:12:08 (*)   Generating RTL from CPU objects
+Info: CPU: # 2014.09.21 09:12:08 (*)   Creating plain-text RTL
+Info: CPU: # 2014.09.21 09:12:14 (*) Done Nios II generation
+Info: CPU: Done RTL generation for module 'nios_system_CPU'
+Info: CPU: "nios_system" instantiated altera_nios2_qsys "CPU"
+Info: Clock_Signals: Starting Generation of Required Clocks for DE-Series Boards
+Info: Clock_Signals: "nios_system" instantiated altera_up_clocks "Clock_Signals"
+Info: Altera_UP_SD_Card_Avalon_Interface_0: "nios_system" instantiated Altera_UP_SD_Card_Avalon_Interface "Altera_UP_SD_Card_Avalon_Interface_0"
+Info: Starting classic module elaboration.
+"c:/altera/quartus/bin/jre/bin/java.exe" -Xmx512M -classpath "c:/altera/quartus/sopc_builder/bin/sopc_builder.jar;c:/altera/quartus/sopc_builder/bin/PinAssigner.jar;c:/altera/quartus/sopc_builder/bin/sopc_wizard.jar;c:/altera/quartus/sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"c:/altera/quartus/sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpathC:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0009_sopclgen  --no_splash --refresh C:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0009_sopclgen/yysystem.v --quartus_dir="c:/altera/quartus" --sopc_perl="c:/altera/quartus/bin/perl" --sopc_lib_path="++c:/altera/quartus/../ip/altera/sopc_builder_ip+c:/altera/quartus/../ip/altera/nios2_ip"
+Info: Finished elaborating classic module.
+Executing: C:/altera/quartus//sopc_builder/bin/sopc_builder --classic --generate C:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0009_sopclgen/yysystem.ptf
+Info: Running sopc_builder...
+"c:/altera/quartus/bin/jre/bin/java.exe" -Xmx512M -classpath "c:/altera/quartus/sopc_builder/bin/sopc_builder.jar;c:/altera/quartus/sopc_builder/bin/PinAssigner.jar;c:/altera/quartus/sopc_builder/bin/sopc_wizard.jar;c:/altera/quartus/sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"c:/altera/quartus/sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpathC:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0009_sopclgen  --generate C:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0009_sopclgen/yysystem.v --quartus_dir="c:/altera/quartus" --sopc_perl="c:/altera/quartus/bin/perl" --sopc_lib_path="++c:/altera/quartus/../ip/altera/sopc_builder_ip+c:/altera/quartus/../ip/altera/nios2_ip"
+No .sopc_builder configuration file(!)
+.
+# 2014.09.21 09:12:26 (*) Success: sopc_builder finished.
+Info: jtag_uart: "nios_system" instantiated altera_avalon_jtag_uart "jtag_uart"
+Info: sysid: "nios_system" instantiated altera_avalon_sysid_qsys "sysid"
+Info: Starting classic module elaboration.
+"c:/altera/quartus/bin/jre/bin/java.exe" -Xmx512M -classpath "c:/altera/quartus/sopc_builder/bin/sopc_builder.jar;c:/altera/quartus/sopc_builder/bin/PinAssigner.jar;c:/altera/quartus/sopc_builder/bin/sopc_wizard.jar;c:/altera/quartus/sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"c:/altera/quartus/sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpathC:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0011_sopclgen  --no_splash --refresh C:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0011_sopclgen/yysystem.v --quartus_dir="c:/altera/quartus" --sopc_perl="c:/altera/quartus/bin/perl" --sopc_lib_path="++c:/altera/quartus/../ip/altera/sopc_builder_ip+c:/altera/quartus/../ip/altera/nios2_ip"
+Info: Finished elaborating classic module.
+Executing: C:/altera/quartus//sopc_builder/bin/sopc_builder --classic --generate C:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0011_sopclgen/yysystem.ptf
+Info: Running sopc_builder...
+"c:/altera/quartus/bin/jre/bin/java.exe" -Xmx512M -classpath "c:/altera/quartus/sopc_builder/bin/sopc_builder.jar;c:/altera/quartus/sopc_builder/bin/PinAssigner.jar;c:/altera/quartus/sopc_builder/bin/sopc_wizard.jar;c:/altera/quartus/sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"c:/altera/quartus/sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpathC:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0011_sopclgen  --generate C:/Users/Sergio/AppData/Local/Temp/alt6334_8813539200945877170.dir/0011_sopclgen/yysystem.v --quartus_dir="c:/altera/quartus" --sopc_perl="c:/altera/quartus/bin/perl" --sopc_lib_path="++c:/altera/quartus/../ip/altera/sopc_builder_ip+c:/altera/quartus/../ip/altera/nios2_ip"
+No .sopc_builder configuration file(!)
+.
+.
+# 2014.09.21 09:12:36 (*) Running Test Generator Program for nios_system_sdram_0
+# 2014.09.21 09:12:39 (*) Success: sopc_builder finished.
+Info: sdram_0: "nios_system" instantiated altera_avalon_new_sdram_controller "sdram_0"
+Info: CPU_instruction_master_translator: "nios_system" instantiated altera_merlin_master_translator "CPU_instruction_master_translator"
+Info: CPU_jtag_debug_module_translator: "nios_system" instantiated altera_merlin_slave_translator "CPU_jtag_debug_module_translator"
+Info: CPU_instruction_master_translator_avalon_universal_master_0_agent: "nios_system" instantiated altera_merlin_master_agent "CPU_instruction_master_translator_avalon_universal_master_0_agent"
+Info: CPU_jtag_debug_module_translator_avalon_universal_slave_0_agent: "nios_system" instantiated altera_merlin_slave_agent "CPU_jtag_debug_module_translator_avalon_universal_slave_0_agent"
+Info: CPU_jtag_debug_module_translator_avalon_universal_slave_0_agent_rsp_fifo: "nios_system" instantiated altera_avalon_sc_fifo "CPU_jtag_debug_module_translator_avalon_universal_slave_0_agent_rsp_fifo"
+Info: addr_router: "nios_system" instantiated altera_merlin_router "addr_router"
+Info: addr_router_001: "nios_system" instantiated altera_merlin_router "addr_router_001"
+Info: addr_router_002: "nios_system" instantiated altera_merlin_router "addr_router_002"
+Info: id_router: "nios_system" instantiated altera_merlin_router "id_router"
+Info: id_router_004: "nios_system" instantiated altera_merlin_router "id_router_004"
+Info: id_router_005: "nios_system" instantiated altera_merlin_router "id_router_005"
+Info: rst_controller: "nios_system" instantiated altera_reset_controller "rst_controller"
+Info: cmd_xbar_demux: "nios_system" instantiated altera_merlin_demultiplexer "cmd_xbar_demux"
+Info: cmd_xbar_demux_001: "nios_system" instantiated altera_merlin_demultiplexer "cmd_xbar_demux_001"
+Info: cmd_xbar_demux_002: "nios_system" instantiated altera_merlin_demultiplexer "cmd_xbar_demux_002"
+Info: cmd_xbar_mux: "nios_system" instantiated altera_merlin_multiplexer "cmd_xbar_mux"
+Info: rsp_xbar_demux: "nios_system" instantiated altera_merlin_demultiplexer "rsp_xbar_demux"
+Info: rsp_xbar_mux: "nios_system" instantiated altera_merlin_multiplexer "rsp_xbar_mux"
+Info: Reusing file C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_xbar_mux_001: "nios_system" instantiated altera_merlin_multiplexer "rsp_xbar_mux_001"
+Info: Reusing file C:/Users/Sergio/Desktop/NES_FPGA/source/NES_FPGA/nios_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: irq_mapper: "nios_system" instantiated altera_irq_mapper "irq_mapper"
+Info: nios_system: Done nios_system" with 31 modules, 113 files, 1830203 bytes
+Info: ip-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

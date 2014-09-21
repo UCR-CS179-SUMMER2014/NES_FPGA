@@ -12,19 +12,11 @@
    element $${FILENAME}
    {
    }
-   element Alpha_Blender
-   {
-      datum _sortIndex
-      {
-         value = "6";
-         type = "int";
-      }
-   }
    element Altera_UP_SD_Card_Avalon_Interface_0
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "7";
          type = "int";
       }
    }
@@ -33,19 +25,6 @@
       datum _sortIndex
       {
          value = "2";
-         type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
-   }
-   element Char_Buffer_with_DMA
-   {
-      datum _sortIndex
-      {
-         value = "3";
          type = "int";
       }
       datum sopceditor_expanded
@@ -66,7 +45,7 @@
    {
       datum _sortIndex
       {
-         value = "7";
+         value = "5";
          type = "int";
       }
       datum sopceditor_expanded
@@ -79,7 +58,7 @@
    {
       datum _sortIndex
       {
-         value = "4";
+         value = "3";
          type = "int";
       }
       datum sopceditor_expanded
@@ -92,7 +71,7 @@
    {
       datum _sortIndex
       {
-         value = "5";
+         value = "4";
          type = "int";
       }
       datum sopceditor_expanded
@@ -105,39 +84,13 @@
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "6";
          type = "int";
       }
       datum sopceditor_expanded
       {
          value = "1";
          type = "boolean";
-      }
-   }
-   element Char_Buffer_with_DMA.avalon_char_buffer_slave
-   {
-      datum _lockedAddress
-      {
-         value = "1";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "2129920";
-         type = "String";
-      }
-   }
-   element Char_Buffer_with_DMA.avalon_char_control_slave
-   {
-      datum _lockedAddress
-      {
-         value = "1";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "2142224";
-         type = "String";
       }
    }
    element Pixel_Buffer_DMA.avalon_control_slave
@@ -230,7 +183,7 @@
    {
       datum _sortIndex
       {
-         value = "10";
+         value = "8";
          type = "int";
       }
    }
@@ -251,7 +204,7 @@
    {
       datum _sortIndex
       {
-         value = "12";
+         value = "10";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -272,7 +225,7 @@
    {
       datum _sortIndex
       {
-         value = "11";
+         value = "9";
          type = "int";
       }
    }
@@ -299,7 +252,7 @@
  <parameter name="projectName" value="NES_FPGA.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1410721013118" />
+ <parameter name="timeStamp" value="1411315580874" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface
@@ -354,18 +307,6 @@
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
  <module
-   kind="altera_up_avalon_video_character_buffer_with_dma"
-   version="12.0"
-   enabled="1"
-   name="Char_Buffer_with_DMA">
-  <parameter name="vga_device" value="On-board VGA DAC" />
-  <parameter name="enable_transparency" value="true" />
-  <parameter name="color_bits" value="1-bit" />
-  <parameter name="resolution" value="80 x 60" />
-  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
-  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
- </module>
- <module
    kind="altera_up_avalon_video_dual_clock_buffer"
    version="12.0"
    enabled="1"
@@ -411,15 +352,6 @@
   <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
  </module>
- <module
-   kind="altera_up_avalon_video_alpha_blender"
-   version="12.0"
-   enabled="1"
-   name="Alpha_Blender">
-  <parameter name="mode" value="Simple" />
-  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
-  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
- </module>
  <module kind="altera_nios2_qsys" version="12.1" enabled="1" name="CPU">
   <parameter name="setting_showUnpublishedSettings" value="false" />
   <parameter name="setting_showInternalSettings" value="false" />
@@ -450,7 +382,7 @@
   <parameter name="setting_activateModelChecker" value="false" />
   <parameter name="setting_HDLSimCachesCleared" value="true" />
   <parameter name="setting_HBreakTest" value="false" />
-  <parameter name="muldiv_divider" value="false" />
+  <parameter name="muldiv_divider" value="true" />
   <parameter name="mpu_useLimit" value="false" />
   <parameter name="mpu_enabled" value="false" />
   <parameter name="mmu_enabled" value="false" />
@@ -490,15 +422,15 @@
   <parameter name="mmu_tlbPtrSz" value="7" />
   <parameter name="mmu_tlbNumWays" value="16" />
   <parameter name="mmu_processIDNumBits" value="8" />
-  <parameter name="impl" value="Tiny" />
-  <parameter name="icache_size" value="4096" />
+  <parameter name="impl" value="Fast" />
+  <parameter name="icache_size" value="16384" />
   <parameter name="icache_ramBlockType" value="Automatic" />
   <parameter name="icache_numTCIM" value="0" />
   <parameter name="icache_burstType" value="None" />
   <parameter name="dcache_bursts" value="false" />
   <parameter name="debug_level" value="Level1" />
   <parameter name="debug_OCIOnchipTrace" value="_128" />
-  <parameter name="dcache_size" value="2048" />
+  <parameter name="dcache_size" value="8192" />
   <parameter name="dcache_ramBlockType" value="Automatic" />
   <parameter name="dcache_numTCDM" value="0" />
   <parameter name="dcache_lineSize" value="32" />
@@ -513,7 +445,7 @@
   <parameter name="tightlyCoupledInstructionMaster2AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster3AddrWidth" value="1" />
   <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sysid.control_slave' start='0x201010' end='0x201018' /><slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /><slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='Pixel_Buffer.avalon_ssram_slave' start='0x0' end='0x200000' /><slave name='jtag_uart.avalon_jtag_slave' start='0x201008' end='0x201010' /><slave name='sysid.control_slave' start='0x201010' end='0x201018' /><slave name='Char_Buffer_with_DMA.avalon_char_buffer_slave' start='0x208000' end='0x20A000' /><slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /><slave name='Pixel_Buffer_DMA.avalon_control_slave' start='0x20B000' end='0x20B010' /><slave name='Char_Buffer_with_DMA.avalon_char_control_slave' start='0x20B010' end='0x20B018' /><slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='Pixel_Buffer.avalon_ssram_slave' start='0x0' end='0x200000' /><slave name='jtag_uart.avalon_jtag_slave' start='0x201008' end='0x201010' /><slave name='sysid.control_slave' start='0x201010' end='0x201018' /><slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /><slave name='Pixel_Buffer_DMA.avalon_control_slave' start='0x20B000' end='0x20B010' /><slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="deviceFamilyName" value="Cyclone IV GX" />
   <parameter name="internalIrqMaskSystemInfo" value="1" />
@@ -573,7 +505,7 @@
    version="12.1"
    enabled="1"
    name="sysid">
-  <parameter name="id" value="1" />
+  <parameter name="id" value="15" />
   <parameter name="timestamp" value="0" />
   <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
@@ -626,32 +558,6 @@
    kind="avalon"
    version="12.1"
    start="CPU.data_master"
-   end="Char_Buffer_with_DMA.avalon_char_control_slave">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0020b010" />
- </connection>
- <connection
-   kind="avalon"
-   version="12.1"
-   start="CPU.data_master"
-   end="Char_Buffer_with_DMA.avalon_char_buffer_slave">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00208000" />
- </connection>
- <connection
-   kind="avalon_streaming"
-   version="12.1"
-   start="Char_Buffer_with_DMA.avalon_char_source"
-   end="Alpha_Blender.avalon_foreground_sink" />
- <connection
-   kind="avalon_streaming"
-   version="12.1"
-   start="Alpha_Blender.avalon_blended_source"
-   end="Dual_Clock_FIFO.avalon_dc_buffer_sink" />
- <connection
-   kind="avalon"
-   version="12.1"
-   start="CPU.data_master"
    end="Pixel_Buffer_DMA.avalon_control_slave">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0020b000" />
@@ -660,16 +566,6 @@
    kind="reset"
    version="12.1"
    start="clk_0.clk_reset"
-   end="Char_Buffer_with_DMA.clock_reset_reset" />
- <connection
-   kind="reset"
-   version="12.1"
-   start="CPU.jtag_debug_module_reset"
-   end="Char_Buffer_with_DMA.clock_reset_reset" />
- <connection
-   kind="reset"
-   version="12.1"
-   start="clk_0.clk_reset"
    end="Dual_Clock_FIFO.clock_stream_in_reset" />
  <connection
    kind="reset"
@@ -716,16 +612,6 @@
    version="12.1"
    start="CPU.jtag_debug_module_reset"
    end="Pixel_Buffer_DMA.clock_reset_reset" />
- <connection
-   kind="reset"
-   version="12.1"
-   start="clk_0.clk_reset"
-   end="Alpha_Blender.clock_reset_reset" />
- <connection
-   kind="reset"
-   version="12.1"
-   start="CPU.jtag_debug_module_reset"
-   end="Alpha_Blender.clock_reset_reset" />
  <connection kind="reset" version="12.1" start="clk_0.clk_reset" end="CPU.reset_n" />
  <connection
    kind="reset"
@@ -756,22 +642,12 @@
    kind="clock"
    version="12.1"
    start="Clock_Signals.sys_clk"
-   end="Char_Buffer_with_DMA.clock_reset" />
- <connection
-   kind="clock"
-   version="12.1"
-   start="Clock_Signals.sys_clk"
    end="Pixel_Buffer.clock_reset" />
  <connection
    kind="clock"
    version="12.1"
    start="Clock_Signals.sys_clk"
    end="Pixel_Buffer_DMA.clock_reset" />
- <connection
-   kind="clock"
-   version="12.1"
-   start="Clock_Signals.sys_clk"
-   end="Alpha_Blender.clock_reset" />
  <connection
    kind="clock"
    version="12.1"
@@ -885,11 +761,6 @@
   <parameter name="baseAddress" value="0x00201008" />
  </connection>
  <connection
-   kind="avalon_streaming"
-   version="12.1"
-   start="Pixel_Buffer_DMA.avalon_pixel_source"
-   end="Alpha_Blender.avalon_background_sink" />
- <connection
    kind="clock"
    version="12.1"
    start="Clock_Signals.vga_clk"
@@ -904,4 +775,9 @@
    version="12.1"
    start="Dual_Clock_FIFO.avalon_dc_buffer_source"
    end="VGA_Controller.avalon_vga_sink" />
+ <connection
+   kind="avalon_streaming"
+   version="12.1"
+   start="Pixel_Buffer_DMA.avalon_pixel_source"
+   end="Dual_Clock_FIFO.avalon_dc_buffer_sink" />
 </system>

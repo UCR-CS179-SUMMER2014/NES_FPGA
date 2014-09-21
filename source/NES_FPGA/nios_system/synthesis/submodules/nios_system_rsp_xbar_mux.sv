@@ -31,8 +31,8 @@
 //   ARBITRATION_SCHEME   "no-arb"
 //   PIPELINE_ARB:        0
 //   PKT_TRANS_LOCK:      72 (arbitration locking enabled)
-//   ST_DATA_W:           107
-//   ST_CHANNEL_W:        9
+//   ST_DATA_W:           105
+//   ST_CHANNEL_W:        7
 // ------------------------------------------
 
 module nios_system_rsp_xbar_mux
@@ -41,29 +41,29 @@ module nios_system_rsp_xbar_mux
     // Sinks
     // ----------------------
     input                       sink0_valid,
-    input [107-1   : 0]  sink0_data,
-    input [9-1: 0]  sink0_channel,
+    input [105-1   : 0]  sink0_data,
+    input [7-1: 0]  sink0_channel,
     input                       sink0_startofpacket,
     input                       sink0_endofpacket,
     output                      sink0_ready,
 
     input                       sink1_valid,
-    input [107-1   : 0]  sink1_data,
-    input [9-1: 0]  sink1_channel,
+    input [105-1   : 0]  sink1_data,
+    input [7-1: 0]  sink1_channel,
     input                       sink1_startofpacket,
     input                       sink1_endofpacket,
     output                      sink1_ready,
 
     input                       sink2_valid,
-    input [107-1   : 0]  sink2_data,
-    input [9-1: 0]  sink2_channel,
+    input [105-1   : 0]  sink2_data,
+    input [7-1: 0]  sink2_channel,
     input                       sink2_startofpacket,
     input                       sink2_endofpacket,
     output                      sink2_ready,
 
     input                       sink3_valid,
-    input [107-1   : 0]  sink3_data,
-    input [9-1: 0]  sink3_channel,
+    input [105-1   : 0]  sink3_data,
+    input [7-1: 0]  sink3_channel,
     input                       sink3_startofpacket,
     input                       sink3_endofpacket,
     output                      sink3_ready,
@@ -73,8 +73,8 @@ module nios_system_rsp_xbar_mux
     // Source
     // ----------------------
     output                      src_valid,
-    output [107-1    : 0] src_data,
-    output [9-1 : 0] src_channel,
+    output [105-1    : 0] src_data,
+    output [7-1 : 0] src_channel,
     output                      src_startofpacket,
     output                      src_endofpacket,
     input                       src_ready,
@@ -85,12 +85,12 @@ module nios_system_rsp_xbar_mux
     input clk,
     input reset
 );
-    localparam PAYLOAD_W        = 107 + 9 + 2;
+    localparam PAYLOAD_W        = 105 + 7 + 2;
     localparam NUM_INPUTS       = 4;
     localparam SHARE_COUNTER_W  = 1;
     localparam PIPELINE_ARB     = 0;
-    localparam ST_DATA_W        = 107;
-    localparam ST_CHANNEL_W     = 9;
+    localparam ST_DATA_W        = 105;
+    localparam ST_CHANNEL_W     = 7;
     localparam PKT_TRANS_LOCK   = 72;
 
     // ------------------------------------------

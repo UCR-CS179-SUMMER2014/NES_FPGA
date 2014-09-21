@@ -8,18 +8,18 @@
 
 void vga_test()
 {
-	alt_up_char_buffer_init(char_buffer); // Initialize buffer
+	//alt_up_char_buffer_init(char_buffer); // Initialize buffer
 	//alt_up_char_buffer_init(pix_buffer); // Initialize buffer
-	char_buffer = alt_up_char_buffer_open_dev("/dev/Char_Buffer_with_DMA"); // Name must be "/dev/" followed by instance name
+	//char_buffer = alt_up_char_buffer_open_dev("/dev/Char_Buffer_with_DMA"); // Name must be "/dev/" followed by instance name
 	pix_buffer = alt_up_pixel_buffer_dma_open_dev("/dev/Pixel_Buffer_DMA");		// Same with Pixel Buffer
 
-	if(!char_buffer || !pix_buffer)	// Buffer fails to load if its NULL
+	if(/*!char_buffer ||*/ !pix_buffer)	// Buffer fails to load if its NULL
 		printf("Failed to load buffer(s)!\n");
 	else
 		printf("Successfully loaded buffer(s)!\n");
 
 
-	alt_up_char_buffer_clear(char_buffer);	// Clear the screen
+	//alt_up_char_buffer_clear(char_buffer);	// Clear the screen
 	/*alt_up_char_buffer_string(char_buffer, "UCR CS179J - NES FPGA Emulator!", 0,0);
 	alt_up_char_buffer_string(char_buffer, "Select Game:", 20,20);
 	alt_up_char_buffer_string(char_buffer, "1. Mario Bros.", 20,21);
