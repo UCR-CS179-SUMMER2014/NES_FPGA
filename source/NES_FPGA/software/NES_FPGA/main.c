@@ -1,4 +1,5 @@
 #include "cpu.h"
+#include "ppu.h"
 #include "vga.h"
 #include "sdcard.h"
 
@@ -14,7 +15,7 @@ int main()
   cpu_init();
 
   // Initialize PPU
-  //ppu_init();
+  ppu_init();
 
   // Load the ROM. CPU and PPU Memory map will be populated here as well
   // TODO: bootloader();   // Not implemented yet --> Gets filename for ROM

@@ -37,19 +37,6 @@ inline void ppu_init()
   return;
 }
 
-//this system only works with CHR up to 1 bank
-void PATTERN_SETS_INSERT()
-{
-	int i;
-	short int location = 0x0000;
-	//Load CHR lower bank into Memory
-	for(i = 0; i < chr_size; ++i)
-	{
-		if(i > 4096*2) break;
-		PPU->MEM[location] = CHR_ROM[i];
-		location++;
-	}
-}
 
 
 

@@ -31,11 +31,20 @@ inline void cpu_init();
 /* Read the contents of PC, then increment it */
 inline byte cpu_read();
 
-/* Read the contents of the address in CPU memory */
+/* Read the contents of the address in CPU memory.
+   Here, we also take care of handling any mirrored locations.
+ */
 inline byte cpu_mem_read( word addr );
 
 /* Write contents to address in CPU memory */
 inline void cpu_mem_write( byte data, word addr );
+
+
+/* Returns P/Status registers as one byte */
+inline byte cpu_join_flags();
+
+/* Retrieves flags as a byte, splits them, and returns to flag registers. */
+inline void cpu_split_flags( byte operand );
 
 /* Function:    execute_instruction
    Description: Takes in opcode and executes instruction.

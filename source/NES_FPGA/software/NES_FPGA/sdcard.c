@@ -50,10 +50,17 @@ void load_rom()
 			mirroring = data & 0x0F;
 			cpu_sram_batt = (data & 0x02) ? 1 : 0;
 			trainer = (data & 0x04) ? 1 : 0;
+			mapper = (data >> 4);
 
+			if( (mirroring & 0x09) == 1)
+				printf("ROM uses Vertical Mirroring!\n");
+			else if( (mirroring & 0x09) == 0 )
+				printf("ROM uses Horizontal Mirroring!\n");
+			else
+				printf("ROM ues 4-screen VRAM!\n");
 			// Upper nibble of mapper
 			data = alt_up_sd_card_read(sd_fileh);
-			mirroring = mirroring | (data >> 4);
+			mapper = mapper | (data & 0xF0);
 
 			// Size of PRG RAM (unused)
 			prg_ram_size = alt_up_sd_card_read(sd_fileh);
@@ -83,8 +90,8 @@ void load_rom()
 			// Extract CHR Data
 			for(i = 0; i < (chr_size*8*1024); ++i)
 			{
-			  data = alt_up_sd_card_read(sd_fileh);
-			  CHR_ROM[i] = (byte) data;
+			  PPU->MEM[i] = alt_up_sd_card_read(sd_fileh);
+			  //CHR_ROM[i] = (byte) data;
 			}
 
 			printf("Successfully Completed\n");

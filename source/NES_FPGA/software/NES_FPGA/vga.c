@@ -50,7 +50,7 @@ void vga_test()
 			mask = 0x80;
 			for( x = 0; x < 8; ++x)
 			{
-				color = (((CHR_ROM[y+s*16] & mask) ? 1 : 0) | (((CHR_ROM[y+8+s*16] & mask) ? 1 : 0) << 1));
+				color = (((PPU->MEM[y+s*16] & mask) ? 1 : 0) | (((PPU->MEM[y+8+s*16] & mask) ? 1 : 0) << 1));
 				if(color == 0)
 					color = 0xFFFFFFFF;
 				else if(color == 1)

@@ -56,6 +56,21 @@ typedef struct // 6502 Microprocessor Struct
   byte IRQ; // Interrupt Request. Set by program.
 
   byte* MEM;  // CPU Memory
+
+  /* CPU Memory Map Mirroring:
+	RAM: [0, 0x1FFF]
+	The address lines 0x800-0x1FFF is mirrored with 0-0x7FF,
+	thus the RAM is really RAM[index & 0x7FF] when accessing RAM[0-0x1FFF].
+
+	PPU: [0x2000, 0x3FFF] [0x4014]
+	These are memory mapped registers to interact with the PPU, they are
+	used to read the PPU status, and to read/write memory to. They will be
+	covered more in detailed in the PPU section. They are mirrored every
+	8 bytes so assuming the addr[0] is 0x2000 and on, the access operation
+	will be it will be addr[index & 0x07]. The 0x4014 address
+	is used for quick transferring of 256 bytes (DMA) to the sprite memory
+	space covered in the PPU section.
+   */
 } NMOS6502;
 
 typedef struct
@@ -75,6 +90,7 @@ typedef struct
 
 /* CPU Definitions */
 #define PRG     0x8000    // Length: 0x8000 Program Memory
+#define PPUREG  0x2000	  // Length: 0x2000 PPU Registers
 #define SRAM    0x6000    // Length: 0x2000
 #define EROM    0x4020    // Length: 0x1180
 #define STACK   0x0100    // Length: 0x0100 Stack Memory
@@ -108,7 +124,8 @@ typedef struct
 
 
 /* PPU-CPU I/O Registers */
-#define  PPUCTRL	CPU->MEM[0x2000]			 // Register $2000 in CPU.
+#define	PPUCTRL_ADDR 0x2000
+#define PPUCTRL	CPU->MEM[0x2000]			 // Register $2000 in CPU.
 /*
 76543210
 ||||||||
