@@ -98,7 +98,7 @@ void cpu_exec()
   case 0x90: // REL
     if(CPU->P.C == 0)
     {
-      CPU->PC += CPU->MEM[CPU->PC] + 1;
+      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
       CPU->T = 3;
     }
     else
@@ -113,7 +113,7 @@ void cpu_exec()
   case 0xB0: // REL
     if(CPU->P.C == 1)
     {
-      CPU->PC += CPU->MEM[CPU->PC] + 1; // Added 1 because PC increments
+      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1; // Added 1 because PC increments
       CPU->T = 3;
     }
      else
@@ -128,7 +128,7 @@ void cpu_exec()
   case 0xF0: // REL
     if(CPU->P.Z == 1)
     {
-      CPU->PC += CPU->MEM[CPU->PC] + 1;
+      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
       CPU->T = 3;
     }
     else
@@ -143,7 +143,7 @@ void cpu_exec()
   case 0x30: // REL
     if(CPU->P.N == 1)
     {
-      CPU->PC += CPU->MEM[CPU->PC] + 1;
+      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
       CPU->T = 3;
     }
     else
@@ -158,7 +158,7 @@ void cpu_exec()
   case 0xD0: // REL
     if(CPU->P.Z == 0)
     {
-      CPU->PC += CPU->MEM[CPU->PC] + 1;
+      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
       CPU->T = 3;
     }
     else
@@ -209,7 +209,7 @@ void cpu_exec()
   case 0x50: // REL
     if(CPU->P.V == 0)
     {
-      CPU->PC += CPU->MEM[CPU->PC] + 1;
+      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
       CPU->T = 3;
     }
     else
@@ -224,7 +224,7 @@ void cpu_exec()
   case 0x70: // REL
     if(CPU->P.V == 1)
     {
-      CPU->PC += CPU->MEM[CPU->PC] + 1;
+      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
       CPU->T = 3;
     }
     else
@@ -858,7 +858,7 @@ inline void cpu_irq()
 /* Initializes all registers and memory. */
 inline void cpu_init()
 {
-  CPU = (NMOS6502*) malloc(sizeof(NMOS6502));
+  CPU = (RP2A03*) malloc(sizeof(RP2A03));
   CPU->MEM = (byte*) malloc(sizeof(byte)*64*1024); // Allocate memory
   CPU->RES = 1;
 

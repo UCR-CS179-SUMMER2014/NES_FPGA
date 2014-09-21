@@ -71,7 +71,7 @@ typedef struct // 6502 Microprocessor Struct
 	is used for quick transferring of 256 bytes (DMA) to the sprite memory
 	space covered in the PPU section.
    */
-} NMOS6502;
+} RP2A03;
 
 typedef struct
 {
@@ -304,7 +304,7 @@ alt_up_pixel_buffer_dma_dev* pix_buffer;    // Color/pixel Buffer for Altera
 
 char* file_name;		 // The name of the ROM
 
-NMOS6502* CPU;			 // CPU Struct Instance
+RP2A03* CPU;			 // CPU Struct Instance
 RP2C02* PPU;			 // PPU Struct Instance
 
 word t1, t2;			 // Temp values

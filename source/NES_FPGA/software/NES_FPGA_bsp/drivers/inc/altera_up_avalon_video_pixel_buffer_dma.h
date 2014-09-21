@@ -18,8 +18,6 @@ extern "C"
 #define ALT_UP_24BIT_COLOR_MODE 3
 #define ALT_UP_30BIT_COLOR_MODE 4
 
-
-//typedef struct alt_dev_s alt_dev;
 /*
  * Device structure definition. Each instance of the driver uses one
  * of these structures to hold its associated state.
