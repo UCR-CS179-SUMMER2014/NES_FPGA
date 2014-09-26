@@ -1,6 +1,6 @@
 #include "cpu.h"
 #include "sdcard.h"
-
+#include "ppu.h"
 
 
 void prg_test()
@@ -10,16 +10,16 @@ void prg_test()
 	int c = 0;
 	for(i = 0; i < 0x8000; ++i)
 	{
-	printf("%x ", CPU->MEM[PRG + i ]);
+	//printf("%x ", CPU->MEM[PRG + i ]);
 	if(c >= 50)
 	{
-		printf("\n");
+		//printf("\n");
 		c = 0;
 	}
 	else
 		++c;
 	}
-	printf("\n\n");
+	//printf("\n\n");
 
 	return;
 }
@@ -106,7 +106,7 @@ void cpu_exec()
       ++CPU->PC;
       CPU->T = 2;
     }
-     printf("BCC!\n");
+     //printf("BCC!\n");
     break;
 
     // ####################### BCS ########################
@@ -121,7 +121,7 @@ void cpu_exec()
       ++CPU->PC;
       CPU->T = 2;
      }
-    printf("BCS!\n");
+    //printf("BCS!\n");
     break;
 
     // ######################## BEQ #######################
@@ -136,7 +136,7 @@ void cpu_exec()
     	++CPU->PC;
     	CPU->T = 2;
     }
-    printf("BEQ!\n");
+    //printf("BEQ!\n");
     break;
 
     // ########################## BMI #####################
@@ -151,7 +151,7 @@ void cpu_exec()
       ++CPU->PC;
       CPU->T = 2;
     }
-    printf("BMI!\n");
+    //printf("BMI!\n");
     break;
 
     // ######################## BNE #######################
@@ -166,7 +166,7 @@ void cpu_exec()
       ++CPU->PC;
       CPU->T = 2;
     }
-    printf("BNE!\n");
+    //printf("BNE!\n");
     break;
 
     // ####################### BPL ########################
@@ -181,7 +181,7 @@ void cpu_exec()
       ++CPU->PC;
       CPU->T = 2;
     }
-    printf("BPL!\n");
+    //printf("BPL!\n");
     break;
 
     // ######################### BRK ######################
@@ -200,8 +200,8 @@ void cpu_exec()
     --CPU->S;
 
     CPU->PC = (CPU->MEM[0xFFFE]) | (CPU->MEM[0xFFFF] << 8);
-    printf("Breaking into reset vector: %x ", CPU->PC);
-    printf("BRK!\n");
+    //printf("Breaking into reset vector: %x ", CPU->PC);
+    //printf("BRK!\n");
     CPU->T = 7;
     break;
 
@@ -217,7 +217,7 @@ void cpu_exec()
       ++CPU->PC;
       CPU->T = 2;
     }
-    printf("BCV!\n");
+    //printf("BCV!\n");
     break;
 
     // ######################## BVS #######################
@@ -232,14 +232,14 @@ void cpu_exec()
       ++CPU->PC;
       CPU->T = 2;
     }
-    printf("BVS!\n");
+    //printf("BVS!\n");
     break;
 
     // ######################### CLC ######################
   case 0x18: // IMP
     CPU->P.C = 0;
     //++CPU->PC;
-    printf("CLC!\n");
+    //printf("CLC!\n");
     CPU->T = 2;
     break;
 
@@ -247,7 +247,7 @@ void cpu_exec()
   case 0xD8: // IMP
     CPU->P.D = 0;
     //++CPU->PC;
-    printf("CLD!\n");
+    //printf("CLD!\n");
     CPU->T = 2;
     break;
 
@@ -255,7 +255,7 @@ void cpu_exec()
   case 0x58: // IMP
     CPU->P.I = 0;
     //++CPU->PC;
-    printf("CLI!\n");
+    //printf("CLI!\n");
     CPU->T = 2;
     break;
 
@@ -263,19 +263,19 @@ void cpu_exec()
   case 0xB8: // IMP
     CPU->P.V = 0;
     //++CPU->PC;
-    printf("CLV!\n");
+    //printf("CLV!\n");
     CPU->T = 2;
     break;
 
     // ######################### BIT ######################
   case 0x24: // ZP
-    //printf("BIT on %x and %x ", CPU->A, CPU->MEM[ CPU->MEM[ CPU->PC  ] ] );
+    ////printf("BIT on %x and %x ", CPU->A, CPU->MEM[ CPU->MEM[ CPU->PC  ] ] );
 
     temp = CPU->A & cpu_mem_read( cpu_read() );
     CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
     CPU->P.V = ((temp & 0x40) > 0) ? 1 : 0;
     CPU->P.Z = (temp == 0) ? 1 : 0;
-    printf("BIT!\n");
+    //printf("BIT!\n");
     CPU->T = 3;
     break;
   case 0x2C: // ABS
@@ -286,7 +286,7 @@ void cpu_exec()
     CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
     CPU->P.V = ((temp & 0x40) > 0) ? 1 : 0;
     CPU->P.Z = (temp == 0) ? 1 : 0;
-    printf("BIT!\n");
+    //printf("BIT!\n");
     CPU->T = 4;
     break;
 
@@ -344,7 +344,7 @@ void cpu_exec()
     --CPU->X;
     CPU->P.Z = (CPU->X == 0) ? 1 : 0;
     CPU->P.N = ((CPU->X & 0x80) > 0) ? 1 : 0;
-    printf("DEX!\n");
+    //printf("DEX!\n");
     CPU->T = 2;
     break;
 
@@ -353,28 +353,43 @@ void cpu_exec()
     --CPU->Y;
     CPU->P.Z = (CPU->Y == 0) ? 1 : 0;
     CPU->P.N = ((CPU->Y & 0x80) > 0) ? 1 : 0;
-    printf("DEY!\n");
+    //printf("DEY!\n");
     CPU->T = 2;
     break;
 
     // ######################## EOR #######################
   case 0x4D: // ABS
-    CPU->A = CPU->A ^ ABS(); printf("EOR!\n"); CPU->T = 4; break;
+    CPU->A = CPU->A ^ ABS(); //printf("EOR!\n");
+    CPU->T = 4;
+    break;
   case 0x5D: // ABSX
-    CPU->A = CPU->A ^ ABSX(); printf("EOR!\n"); CPU->T = 4; break;
+    CPU->A = CPU->A ^ ABSX(); //printf("EOR!\n");
+    CPU->T = 4;
+    break;
   case 0x59: // ABSY
-    CPU->A = CPU->A ^ ABSY(); printf("EOR!\n"); CPU->T = 4; break;
+    CPU->A = CPU->A ^ ABSY(); //printf("EOR!\n");
+    CPU->T = 4;
+    break;
   case 0x49: // IMM
-    CPU->A = CPU->A ^ IMM(); printf("EOR!\n"); CPU->T = 2; break;
+    CPU->A = CPU->A ^ IMM(); //printf("EOR!\n");
+    CPU->T = 2;
+    break;
   case 0x51: // INDY
-    CPU->A = CPU->A ^ INDY(); printf("EOR!\n"); CPU->T = 5; break;
+    CPU->A = CPU->A ^ INDY(); //printf("EOR!\n");
+    CPU->T = 5;
+    break;
   case 0x41: // XIND
-    CPU->A = CPU->A ^ XIND(); printf("EOR!\n"); CPU->T = 6; break;
+    CPU->A = CPU->A ^ XIND(); //printf("EOR!\n");
+    CPU->T = 6;
+    break;
   case 0x45: // ZP
     temp = ZP();
-    CPU->A = CPU->A ^ temp; printf("EOR with %x and %x = %x, at PC: %x!\n", CPU->A, temp, CPU->A ^ temp, CPU->PC); CPU->T = 3; break;
+    CPU->A = CPU->A ^ temp; //printf("EOR with %x and %x = %x, at PC: %x!\n", CPU->A, temp, CPU->A ^ temp, CPU->PC);
+    CPU->T = 3;
+    break;
   case 0x55: // ZPX
-    CPU->A = CPU->A ^ ZPX(); printf("EOR!\n"); CPU->T = 4; break;
+    CPU->A = CPU->A ^ ZPX(); //printf("EOR!\n"); CPU->T = 4;
+    break;
 
     // ######################## INC #######################
   case 0xEE: // ABS
@@ -395,7 +410,7 @@ void cpu_exec()
     ++CPU->X;
     CPU->P.Z = (CPU->X == 0) ? 1 : 0;
     CPU->P.N = ((CPU->X & 0x80) > 0) ? 1 : 0;
-    printf("INX!\n");
+    //printf("INX!\n");
     CPU->T = 2;
     break;
 
@@ -404,7 +419,7 @@ void cpu_exec()
     ++CPU->Y;
     CPU->P.Z = (CPU->Y == 0) ? 1 : 0;
     CPU->P.N = ((CPU->Y & 0x80) > 0) ? 1 : 0;
-    printf("INY!\n");
+    //printf("INY!\n");
     CPU->T = 2;
     break;
 
@@ -412,10 +427,14 @@ void cpu_exec()
   case 0x4C: // ABS
 	temp = cpu_read();
 	temp2 = (cpu_read()) << 8;
-    CPU->PC = temp | temp2; printf("JMP!\n"); CPU->T = 3; break;
+    CPU->PC = temp | temp2; //printf("JMP!\n");
+    CPU->T = 3;
+    break;
   case 0x6C: // IND
     temp = cpu_read();
-    CPU->PC = CPU->MEM[ temp | ((temp+1) << 8) ]; printf("JMP!\n"); CPU->T = 5; break;
+    CPU->PC = CPU->MEM[ temp | ((temp+1) << 8) ]; //printf("JMP!\n");
+    CPU->T = 5;
+    break;
 
     // ############################## JSR #####################
   case 0x20: // ABS
@@ -433,7 +452,7 @@ void cpu_exec()
 	temp = cpu_read();
 	temp2 = (cpu_read()) << 8;
     CPU->PC = temp | temp2;
-    printf("JSR!\n");
+    //printf("JSR!\n");
     CPU->T = 6;
     break;
 
@@ -500,7 +519,7 @@ void cpu_exec()
 
     // ######################### NOP #######################
   case 0xEA:
-    printf("NOP!\n");
+    //printf("NOP!\n");
     CPU->T = 2;
     break;
 
@@ -527,7 +546,7 @@ void cpu_exec()
 	cpu_mem_write( CPU->A, STACK + CPU->S );
     --CPU->S;
     CPU->T = 3;
-    printf("PHA!\n");
+    //printf("PHA!\n");
     break;
 
     // ########################### PHP #####################
@@ -536,7 +555,7 @@ void cpu_exec()
     CPU->MEM[ STACK + CPU->S ] = cpu_join_flags();
     --CPU->S;
     CPU->T = 3;
-    printf("PHP!\n");
+    //printf("PHP!\n");
     break;
 
     // ########################## PLA ######################
@@ -547,7 +566,7 @@ void cpu_exec()
     CPU->P.N = ((CPU->A & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->A == 0) ? 1 : 0;
     CPU->T = 4;
-    printf("PLA!\n");
+    //printf("PLA!\n");
     break;
 
     // ########################## PLP ########################
@@ -557,7 +576,7 @@ void cpu_exec()
     ++CPU->S;
     cpu_split_flags( cpu_mem_read( STACK + CPU->S ) );
     CPU->T = 4;
-    printf("PLP!\n");
+    //printf("PLP!\n");
     break;
 
     // ######################## ROL #######################
@@ -605,8 +624,8 @@ void cpu_exec()
 
     ++CPU->S;
     CPU->PC = CPU->PC | (cpu_mem_read( STACK + CPU->S ) << 8);
-    printf("Pushed %x to PC! ", CPU->PC);
-    printf("RTI!\n");
+    //printf("Pushed %x to PC! ", CPU->PC);
+    //printf("RTI!\n");
     CPU->T = 6;
     break;
 
@@ -617,7 +636,7 @@ void cpu_exec()
 
     ++CPU->S;
     CPU->PC = (CPU->PC | ( cpu_mem_read( STACK + CPU->S ) << 8 )) + 1;
-    printf("RTS!\n");
+    //printf("RTS!\n");
     CPU->T = 6;
     break;
 
@@ -642,21 +661,21 @@ void cpu_exec()
     // ############################ SEC ########################
   case 0x38: // IMP
     CPU->P.C = 1;
-    printf("SEC!\n");
+    //printf("SEC!\n");
     CPU->T = 2;
     break;
 
     // ############################ SED ########################
   case 0xF8: // IMP
     CPU->P.D = 1;
-    printf("SED!\n");
+    //printf("SED!\n");
     CPU->T = 2;
     break;
 
     // ############################ SEI #########################
   case 0x78:
     CPU->P.I = 1;
-    printf("SEI!\n");
+    //printf("SEI!\n");
     CPU->T = 2;
     break;
 
@@ -665,73 +684,103 @@ void cpu_exec()
 	temp = cpu_read();
 	temp2 = (cpu_read()) << 8;
 	cpu_mem_write( CPU->A, (temp | temp2) );
-    printf("STA! Storing %x into %x%x\n", CPU->MEM[ temp | temp2], temp2, temp); CPU->T = 4; break;
+    //printf("STA! Storing %x into %x%x\n", CPU->MEM[ temp | temp2], temp2, temp);
+	CPU->T = 4;
+	break;
   case 0x9D: // ABSX
 	temp = cpu_read();
 	temp2 = (cpu_read()) << 8;
 	cpu_mem_write( CPU->A, (( temp | temp2) + CPU->X) & 0xFFFF );
-    printf("STA!\n"); CPU->T = 5; break;
+    //printf("STA!\n");
+	CPU->T = 5;
+	break;
   case 0x99: // ABSY
 	temp = cpu_read();
 	temp2 = (cpu_read()) << 8;
 	cpu_mem_write( CPU->A,  (( temp | temp2 ) + CPU->Y) & 0xFFFF );
-    printf("STA!\n"); CPU->T = 5; break;
+    //printf("STA!\n");
+	CPU->T = 5;
+	break;
   case 0x91: // INDY
-    temp_addr = cpu_mem_read( cpu_read() );
-    temp_addr = temp_addr | ((temp_addr+1) << 8);
+    temp_addr = cpu_mem_read( cpu_read() ) & 0xFF;
+    temp_addr = temp_addr | (((temp_addr+1) << 8) & 0xFF);
     cpu_mem_write( CPU->A,  (temp_addr + CPU->Y) & 0xFFFF );
-    printf("STA!\n"); CPU->T = 6; break;
+    //printf("STA!\n");
+    CPU->T = 6;
+    break;
   case 0x81: // XIND
     temp_addr = CPU->MEM[ (cpu_read() + CPU->X) & 0xFF ];
     temp_addr = temp_addr | ((temp_addr+1) << 8);
     cpu_mem_write( CPU->A, temp_addr );
-    printf("STA!\n"); CPU->T = 6; break;
+    //printf("STA!\n");
+    CPU->T = 6;
+    break;
   case 0x85: // ZP
     CPU->MEM[ (CPU->MEM[CPU->PC++]) ] = CPU->A;
-    printf("STA!\n"); CPU->T = 3; break;
+    //printf("STA!\n");
+    CPU->T = 3;
+    break;
   case 0x95: // ZPX
     CPU->MEM[ (CPU->MEM[CPU->PC++] + CPU->X) & 0xFF ] = CPU->A;
-    printf("STA!\n"); CPU->T = 4; break;
+    //printf("STA!\n");
+    CPU->T = 4;
+    break;
 
     // ############################### STX ###########################
   case 0x8E: // ABS
 	temp = cpu_read();
 	temp2 = (cpu_read()) << 8;
     cpu_mem_write( CPU->X, ( temp | temp2 ) );
-    printf("STX!\n"); CPU->T = 4; break;
+    //printf("STX!\n");
+    CPU->T = 4;
+    break;
   case 0x86: // ZP
     CPU->MEM[ cpu_read() ] = CPU->X;
-    printf("STX!\n"); CPU->T = 3; break;
+    //printf("STX!\n");
+    CPU->T = 3;
+    break;
   case 0x96: // ZPY
     CPU->MEM[ (cpu_read() + CPU->Y) & 0xFF ] = CPU->X;
-    printf("STX!\n"); CPU->T = 4; break;
+    //printf("STX!\n");
+    CPU->T = 4;
+    break;
 
     // ############################ STY ################################
   case 0x8C: // ABS
 	temp = cpu_read();
 	temp2 = (cpu_read()) << 8;
 	cpu_mem_write( CPU->Y, ( temp | temp2 ) );
-    printf("STY!\n"); CPU->T = 4; break;
+    //printf("STY!\n");
+	CPU->T = 4;
+	break;
   case 0x84: // ZP
     CPU->MEM[ cpu_read() ] = CPU->Y;
-    printf("STY!\n"); CPU->T = 3; break;
+    //printf("STY!\n");
+    CPU->T = 3;
+    break;
   case 0x94: // ZPX
     CPU->MEM[ (cpu_read() + CPU->X) & 0xFF ] = CPU->Y;
-    printf("STY!\n"); CPU->T = 4; break;
+    //printf("STY!\n");
+    CPU->T = 4;
+    break;
 
     // ########################## TAX #################################
   case 0xAA: // IMP
     CPU->X = CPU->A;
     CPU->P.N = ((CPU->X & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->X == 0) ? 1 : 0;
-    printf("TAX!\n"); CPU->T = 2; break;
+    //printf("TAX!\n");
+    CPU->T = 2;
+    break;
 
     // ########################### TAY ################################
   case 0xA8: // IMP
     CPU->Y = CPU->A;
     CPU->P.N = ((CPU->Y & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->Y == 0) ? 1 : 0;
-    printf("TAY!\n"); CPU->T = 2; break;
+    //printf("TAY!\n");
+    CPU->T = 2;
+    break;
 
 
     // ############################# TSX ##############################
@@ -739,19 +788,25 @@ void cpu_exec()
     CPU->X = CPU->S;
     CPU->P.N = ((CPU->X & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->X == 0) ? 1 : 0;
-    printf("TSX!\n"); CPU->T = 2; break;
+    //printf("TSX!\n");
+    CPU->T = 2;
+    break;
 
     // ########################## TXA ################################
   case 0x8A:
     CPU->A = CPU->X;
     CPU->P.N = ((CPU->A & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->A == 0) ? 1 : 0;
-    printf("TXA!\n"); CPU->T = 2; break;
+    //printf("TXA!\n");
+    CPU->T = 2;
+    break;
 
     // ############################# TXS ################################
   case 0x9A:
     CPU->S = CPU->X;
-    printf("TXS!\n"); CPU->T = 2; break;
+    //printf("TXS!\n");
+    CPU->T = 2;
+    break;
 
     // ############################### TYA ##############################
   case 0x98:
@@ -759,11 +814,13 @@ void cpu_exec()
     CPU->A = CPU->Y;
     CPU->P.N = ((CPU->A & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->A == 0) ? 1 : 0;
-    printf("TYA!\n"); CPU->T = 2; break;
+    //printf("TYA!\n");
+    CPU->T = 2;
+    break;
 
 
   default:
-    printf("Invalid opcode!\n");
+    //printf("Invalid opcode!\n");
     break;
   }
 
@@ -823,7 +880,7 @@ inline void cpu_nmi()
     // Turn off NMI after, as the system is supposed to automatically flip NMI off.
     CPU->NMI = 0;
 
-    printf("NMI!\n");
+    //printf("NMI!\n");
 }
 
 /* CPU Interrupt Request handler */
@@ -851,7 +908,7 @@ inline void cpu_irq()
     CPU->PC = CPU->MEM[ NMIL ];
     CPU->PC = CPU->PC | (CPU->MEM[ NMIH] << 8);
 
-    printf("IRQ!\n");
+    //printf("IRQ!\n");
 }
 
 
@@ -896,22 +953,37 @@ inline byte cpu_read()
 /* Read the contents of the address in CPU memory */
 inline byte cpu_mem_read( word addr )
 {
+	//printf(" $%x => ", addr);
+
 	// Addresses within $0800 - $1FFF are RAM mirrors
 	if( (addr > 0x07FF) && ( addr < 0x2000))
-		return (CPU->MEM[ (addr & 0x07FF) ]);
-
+	{
+		t1 = (CPU->MEM[ (addr & 0x07FF) ]);
+		//printf( "%x ", t1);
+		return t1;
+	}
 	// Addresses within $2008 - $4000 are PPU Register mirrors
 	else if( (addr > 0x2007) && ( addr < 0x4000) )
-		return (CPU->MEM[ PPUREG + (addr & 0x07) ] );
+	{
+		t1 = (CPU->MEM[ PPUREG + (addr & 0x07) ] );
+		//printf("%x ", t1);
+		return t1;
+	}
 
 	// Regular, non-mirrored memory read
 	else
-		return (CPU->MEM[ addr ]);
+	{
+		t1 = (CPU->MEM[ addr ]);
+		//printf("%x ", t1);
+		return t1;
+	}
 }
 
 /* Write contents to address in CPU memory */
 inline void cpu_mem_write( byte data, word addr )
 {
+	//printf(" $%x <= %x ", addr, data);
+
 	// Addresses within $0800 - $1FFF are RAM mirrors
 	if( (addr > 0x07FF) && ( addr < 0x2000) )
 	{
@@ -919,8 +991,13 @@ inline void cpu_mem_write( byte data, word addr )
 	}
 	// Addresses within $2008 - $4000 are PPU Register mirrors
 	else if( (addr > 0x2007) && ( addr < 0x4000) )
-		CPU->MEM[ PPUREG + (addr & 0x07) ] = data;
-
+	{
+		t1 = (PPUREG + (addr & 0x07));
+		if( t1 > 0x2003 )
+			write_ppu_reg( data, t1);
+		else
+			CPU->MEM[ t1 ] = data;
+	}
 	// Regular, non-mirrored memory write
 	else
 		CPU->MEM[ addr ] = data;
@@ -1015,17 +1092,17 @@ void ADC(byte operand) // Add w/ Carry
   CPU->P.N = (((CPU->A & 0x80)) > 0) ? 1 : 0;
   CPU->P.Z = (temp == 0) ? 1 : 0;
   CPU->A = temp & 0xFF;
-  printf("ADC!\n");
+  //printf("ADC!\n");
   return;
 }
 
 void AND(byte operand) // AND
 {
-  //printf(" AND #%x with %x ", operand, CPU->A);
+  ////printf(" AND #%x with %x ", operand, CPU->A);
   CPU->A = CPU->A & operand;
   CPU->P.N = (((CPU->A & 0x80)) > 0) ? 1 : 0;
   CPU->P.Z = (CPU->A == 0) ? 1 : 0;
-  printf("AND!\n");
+  //printf("AND!\n");
   return;
 }
 
@@ -1035,7 +1112,7 @@ void ASL(byte* operand) // Arithmetic Shift Left
   (*operand) = ((*operand) << 1) & 0xFE;
   CPU->P.N = (((*operand) & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = ((*operand) == 0) ? 1 : 0;
-  printf("ASL!\n");
+  //printf("ASL!\n");
   return;
 }
 
@@ -1045,7 +1122,7 @@ void CMP( byte operand ) // Compare bits with A
   CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
   CPU->P.C = (CPU->A >= operand) ? 1 : 0;
   CPU->P.Z = (temp == 0) ? 1 : 0;
-  printf("CMP!\n");
+  //printf("CMP!\n");
   return;
 }
 
@@ -1055,7 +1132,7 @@ void CPX( byte operand ) // Compare X
   CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
   CPU->P.C = (CPU->X >= operand) ? 1 : 0;
   CPU->P.Z = (temp == 0) ? 1 : 0;
-  printf("CPX!\n");
+  //printf("CPX!\n");
   return;
 }
 
@@ -1065,7 +1142,7 @@ void CPY( byte operand ) // Compare Y
   CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
   CPU->P.C = (CPU->Y >= operand) ? 1 : 0;
   CPU->P.Z = (temp == 0) ? 1 : 0;
-  printf("CPY!\n");
+  //printf("CPY!\n");
   return;
 }
 
@@ -1075,7 +1152,7 @@ void DEC( byte* operand ) // Decrement
   (*operand) = ((*operand)-1) & 0xFF;
   CPU->P.N = (*operand) & 0x80;
   CPU->P.Z = ((*operand) == 0) ? 1 : 0;
-  printf("DEC!\n");
+  //printf("DEC!\n");
   return;
 }
 
@@ -1085,7 +1162,7 @@ void INC( byte* operand ) // Increment
   (*operand) = ((*operand)+1) & 0xFF;
   CPU->P.N = (((*operand) & 0x80) > 0) ? 1 :0;
   CPU->P.Z = ((*operand) == 0) ? 1 : 0;
-  printf("INC!\n");
+  //printf("INC!\n");
   return;
 }
 
@@ -1094,7 +1171,7 @@ void LDA( byte operand ) // Load into A
   CPU->A = operand;
   CPU->P.N = ((CPU->A & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = (CPU->A == 0) ? 1 :0;
-  printf("LDA! With %x\n", operand);
+  //printf("LDA! With %x\n", operand);
   return;
 }
 
@@ -1103,7 +1180,7 @@ void LDX( byte operand ) // Load into X
   CPU->X = operand;
   CPU->P.N = ((CPU->X & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = (CPU->X == 0) ? 1 :0;
-  printf("LDX!\n");
+  //printf("LDX!\n");
   return;
 }
 
@@ -1112,7 +1189,7 @@ void LDY( byte operand ) // Load into Y
   CPU->Y = operand;
   CPU->P.N = ((CPU->Y & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = (CPU->Y == 0) ? 1 :0;
-  printf("LDY!\n");
+  //printf("LDY!\n");
   return;
 }
 
@@ -1122,7 +1199,7 @@ void LSR( byte* operand ) // Logical Shift Right
   CPU->P.C = (*operand) & 0x01;
   (*operand) = ((*operand) >> 1) & 0x7F;
   CPU->P.Z = ((*operand) == 0) ? 1 : 0;
-  printf("LSR!\n");
+  //printf("LSR!\n");
   return;
 }
 
@@ -1131,7 +1208,7 @@ void ORA( byte operand ) // OR with A
   CPU->A = CPU->A | (operand);
   CPU->P.N = ((CPU->A & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = (CPU->A == 0 ) ? 1 : 0;
-  printf("ORA!\n");
+  //printf("ORA!\n");
   return;
 }
 
@@ -1144,7 +1221,7 @@ void ROL( byte* operand ) // Rotate on Left
   CPU->P.C = (temp > 0) ? 1 : 0;
   CPU->P.Z = ((*operand) == 0) ? 1 : 0;
   CPU->P.N = (((*operand) & 0x80) > 0) ? 1 : 0;
-  printf("ROL!\n");
+  //printf("ROL!\n");
   return;
 }
 
@@ -1155,7 +1232,7 @@ void ROR( byte* operand ) // Rotate on Right
   (*operand) = (*operand) | ((CPU->P.C) ? 0x80 : 0x00);
   CPU->P.C = temp;
   CPU->P.Z = ((*operand) == 0) ? 1 : 0;
-  CPU->P.N = (((*operand) & 0x80) > 0) ? 1 : 0;  printf("ROR!\n");
+  CPU->P.N = (((*operand) & 0x80) > 0) ? 1 : 0;  //printf("ROR!\n");
   return;
 }
 
@@ -1167,7 +1244,7 @@ void SBC( byte operand ) // Subtract with Carry
   CPU->P.N = (((byte)temp & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = (temp == 0 ) ? 1 : 0;
   CPU->A = (byte)temp & 0xFF;
-  printf("SBC!\n");
+  //printf("SBC!\n");
   return;
 }
 

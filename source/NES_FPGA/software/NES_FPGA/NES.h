@@ -16,12 +16,62 @@
 
 
 //=========================================================
-//				STRUCTS AND DEFINITIONS
+// 		[General] 	Definitions
 //=========================================================
 
 /* Data types */
-typedef unsigned char byte;     // 8-bit
-typedef unsigned short word;    // 16-bit
+typedef unsigned char byte;     // 8-bit type for data and registers
+typedef unsigned short word;    // 16-bit type for addressing
+
+/* Set these the corresponding memory locations */
+#define player1 0x00			// Button input from controller 1
+#define player2 0x10			// Button input from controller 2
+
+
+/* Helper macros. Source: StackOverflow */
+#define BYTETOBINARYPATTERN "%d%d%d%d%d%d%d%d"  // Displays a byte in binary
+#define BYTETOBINARY(byte)  \
+  (byte & 0x80 ? 1 : 0), \
+  (byte & 0x40 ? 1 : 0), \
+  (byte & 0x20 ? 1 : 0), \
+  (byte & 0x10 ? 1 : 0), \
+  (byte & 0x08 ? 1 : 0), \
+  (byte & 0x04 ? 1 : 0), \
+  (byte & 0x02 ? 1 : 0), \
+  (byte & 0x01 ? 1 : 0)
+
+
+
+//=========================================================
+// 		[General] 	Global/Temporary Variables, used by all
+//=========================================================
+
+byte chr_size; 			// The number of PRG banks in ROM
+byte prg_size; 			// The number of CHR banks in ROM
+byte cpu_sram_batt;	    // SRAM in CPU is battery packed
+byte trainer;           // 512-byte trainer at $7000-7FFF
+byte cpu_sram;          // $6000-$7FFF.  0 if present, 1 if not present
+byte prg_ram_size;      // in 8 kB units
+byte tv_system;         // Unused. 0: NTSC, 1: PAL
+byte mapper;	        // Type of NES cart mapper
+byte mirroring;         // Horizontal, vertical, or four-screen mirroring.
+
+char* file_name;		// The name of the ROM
+
+word t1, t2;			// Temp values
+
+//alt_up_char_buffer_dev* char_buffer;		// Character Buffer for Altera
+alt_up_pixel_buffer_dma_dev* pix_buffer;    // Color/pixel Buffer for Altera
+
+
+// --------------------------------------------------------------------------------------//
+// --------------------------------------------------------------------------------------//
+
+
+//=========================================================
+//	[NES CPU - RP2A03]  Structs and Definitions
+//=========================================================
+
 
 /* Structs */
 typedef struct // 6502 Microprocessor Struct
@@ -73,23 +123,6 @@ typedef struct // 6502 Microprocessor Struct
    */
 } RP2A03;
 
-typedef struct
-{
-	byte* MEM;	// PPU Memory Map
-	byte* OAM;	// PPU Object Attribute Memory, AKA Sprite Table
-
-	byte* sprite_buffer;	// Stores data of sprites during rendering.
-	byte scanline;			// Scanline counter for screen rendering.
-	/*
-	One byte of the name table holds the address of one tile (8x8 pixel),
-	making up 32x30 (0x3C0 bytes) rows of data. (32*8) = 256 and (30*8)=240,
-	thus making one name table the resolution of the PPU.
-	 */
-
-	short cycles;			// Current cycle count. Note PPU clock is 3x faster than the CPU
-} RP2C02;
-
-
 /* CPU Definitions */
 #define PRG     0x8000    // Length: 0x8000 Program Memory
 #define PPUREG  0x2000	  // Length: 0x2000 PPU Registers
@@ -103,6 +136,56 @@ typedef struct
 #define RESH     0xFFFD   // Reset Vector High
 #define NMIL     0xFFFE   // Non-maskable Interrupt Low
 #define NMIH     0xFFFF   // Non-maskable Interrupt High
+
+
+//=========================================================
+//	[NES CPU - RP2A03]  Global/Temporary variables
+//=========================================================
+
+RP2A03* CPU;			 // CPU Struct Instance
+
+
+// --------------------------------------------------------------------------------------//
+// --------------------------------------------------------------------------------------//
+
+//=========================================================
+//	[NES Picture Processing Unit]  Structs and Definitions
+//=========================================================
+
+typedef struct	// PPU Attribute Table Information
+{
+	byte TL;
+	byte TR;
+	byte BL;
+	byte BR;
+	byte OFFSET;
+	byte BIT;
+	byte SCANLINE;
+}ATT_TABLE_INFO;
+
+typedef struct
+{
+	byte* MEM;	// PPU Memory Map
+
+	byte* OAM;	// PPU Object Attribute Memory, AKA Sprite Table
+	byte* sprite_buffer;	// Stores data of sprites during rendering.
+
+	short scanline;
+	short cycle;
+
+	short last_cycle;		// Either 340 or 341 based on odd_frame.
+	byte odd_frame; 		// Used for scanline -1. If we're displaying an odd_frame, use 340 cycles instead of 341.
+
+
+	/*
+	One byte of the name table holds the address of one tile (8x8 pixel),
+	making up 32x30 (0x3C0 bytes) rows of data. (32*8) = 256 and (30*8)=240,
+	thus making one name table the resolution of the PPU.
+	 */
+	ATT_TABLE_INFO* ATTRIBUTE_TABLE_INFO;
+
+} RP2C02;
+
 
 /* PPU Definitions */
 #define PATTERN_TABLE_0		0x0000		// Sprite Pattern Table
@@ -263,68 +346,22 @@ typedef struct
 
 #define SPR_DMA  0x4014   // PPU Sprite DMA (256 bytes) to populate OAM (Sprite Table)
 
-#define BYTETOBINARYPATTERN "%d%d%d%d%d%d%d%d"  // Displays a byte in binary
-#define BYTETOBINARY(byte)  \
-  (byte & 0x80 ? 1 : 0), \
-  (byte & 0x40 ? 1 : 0), \
-  (byte & 0x20 ? 1 : 0), \
-  (byte & 0x10 ? 1 : 0), \
-  (byte & 0x08 ? 1 : 0), \
-  (byte & 0x04 ? 1 : 0), \
-  (byte & 0x02 ? 1 : 0), \
-  (byte & 0x01 ? 1 : 0)
-
-
 
 //=========================================================
-//					GLOBAL VARIABLES
+//	[NES Picture Processing Unit]  Global/Temporary variables
 //=========================================================
-byte* CHR_ROM; // Holds CHR data stored in ROM
 
-/* iNES Header Variables */
-byte chr_size; // The number of PRG banks in ROM
-byte prg_size; // The number of CHR banks in ROM
-byte cpu_sram_batt; // SRAM in CPU is battery packed
-byte trainer;       // 512-byte trainer at $7000-7FFF
-byte cpu_sram;      // $6000-$7FFF.  0 if present, 1 if not present
-byte prg_ram_size;  // in 8 kB units
-byte tv_system;     // Unused. 0: NTSC, 1: PAL
-byte mapper;	    // Type of NES cart mapper
-/*
-	Horizontal Mirroring:
-	[0x2000, 0x23FF] mirrors [0x2400, 27FF]
-	[0x2800, 0x2BFF] mirrors [0x2C00, 0x2FFF]
-
-	Vertical Mirroring:
-	[0x2000, 0x23FF] mirrors [0x2800, 0x2BFF]
-	[0x2400, 0x27FF] mirrors [0x2C00, 0x2FFF]
-
-	One Screen Mirroring: All address points to the same data.
-						  Enabled by a mapper usually.
-
-	4 screen Mirroring: Each addresses have their own memory space.
-						Enable by a mapper usually.
- */
-byte mirroring;     // Horizontal, vertical, or four-screen mirroring.
-
-char* file_name;		 // The name of the ROM
-
-RP2A03* CPU;			 // CPU Struct Instance
 RP2C02* PPU;			 // PPU Struct Instance
 
-word t1, t2;			 // Temp values
 
-/* Altera library variables */
-//alt_up_char_buffer_dev* char_buffer;		// Character Buffer for Altera
-alt_up_pixel_buffer_dma_dev* pix_buffer;    // Color/pixel Buffer for Altera
-
+// --------------------------------------------------------------------------------------//
+// --------------------------------------------------------------------------------------//
 
 //=========================================================
-//					ALTERA CYCLONE CONNECTIONS
+//	[NES pseudo Audio Processing Unit] Definitions
 //=========================================================
-/* Set these the corresponding memory locations */
-#define player1 0x00			// Button input from controller 1
-#define player2 0x10			// Button input from controller 2
+
+
 
 
 #endif /* NES_H_ */

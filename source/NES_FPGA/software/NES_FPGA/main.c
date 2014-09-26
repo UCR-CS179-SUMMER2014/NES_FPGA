@@ -9,8 +9,8 @@ int main()
 {
   // Declare appropriate arrays and variables
   file_name = "DK.nes";
-  char* en = (char*) malloc(sizeof(char)*2); // Used for stepping into CPU one instruction at a time
-
+  //char* en = (char*) malloc(sizeof(char)*2); // Used for stepping into CPU one instruction at a time
+  unsigned int instructions = 0;
   // Initialize CPU
   cpu_init();
 
@@ -22,7 +22,7 @@ int main()
   load_rom();
 
   // VGA controller test for character and pixel buffer
-  vga_test();
+  //vga_test();
 
   // Start NES execution
   while(1)
@@ -48,18 +48,28 @@ int main()
 		cpu_irq();
 
 	CPU->IR = CPU->MEM[ CPU->PC ];	// Load next instruction
-	cpu_status(); // Debug CPU
+
+	if(instructions % 150000 == 0)
+	{
+		cpu_status(); // Debug CPU
+		ppu_status(); // Debug PPU
+		printf(" Instruction count: %d \n", instructions);
+	}
+
+	++instructions;
+
 	++CPU->PC;	  // Increment PC
 	cpu_exec();   // Tick CPU (Execute Instruction)
+	ppu_exec();
 
 	// Wait until enter is pressed to step-through
-	fgets(en, 2, stdin);
+	//fgets(en, 2, stdin);
   }
 
   // Free up allocated memory in heap
-  free( CHR_ROM );
   free( CPU->MEM );
   free( CPU );
+  free( PPU->MEM );
   return 0;
 
 }

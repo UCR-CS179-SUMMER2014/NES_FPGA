@@ -41,7 +41,6 @@ void load_rom()
 			// Get PRG and CHR size
 			prg_size = alt_up_sd_card_read(sd_fileh);
 			chr_size = alt_up_sd_card_read(sd_fileh);
-			CHR_ROM = (byte*) malloc(sizeof(byte)*8*1024*chr_size);
 
 			// Next byte handles mirroring, SRAM presence, trainer, and mapper (lower)
 			data = alt_up_sd_card_read(sd_fileh);
@@ -91,7 +90,6 @@ void load_rom()
 			for(i = 0; i < (chr_size*8*1024); ++i)
 			{
 			  PPU->MEM[i] = alt_up_sd_card_read(sd_fileh);
-			  //CHR_ROM[i] = (byte) data;
 			}
 
 			printf("Successfully Completed\n");
