@@ -6,18 +6,26 @@
  */
 #include "vga.h"
 
-void vga_test()
+void vga_init()
 {
-	//alt_up_char_buffer_init(char_buffer); // Initialize buffer
-	//alt_up_char_buffer_init(pix_buffer); // Initialize buffer
-	//char_buffer = alt_up_char_buffer_open_dev("/dev/Char_Buffer_with_DMA"); // Name must be "/dev/" followed by instance name
 	pix_buffer = alt_up_pixel_buffer_dma_open_dev("/dev/Pixel_Buffer_DMA");		// Same with Pixel Buffer
 
-	if(/*!char_buffer ||*/ !pix_buffer)	// Buffer fails to load if its NULL
+	if(!pix_buffer)	// Buffer fails to load if its NULL
 		printf("Failed to load buffer(s)!\n");
 	else
 		printf("Successfully loaded buffer(s)!\n");
 
+	//pix_buffer->color_mode = ALT_UP_24BIT_COLOR_MODE ;
+	//pix_buffer->x_resolution = 300;
+	//pix_buffer->y_resolution = 260;
+	alt_up_pixel_buffer_dma_clear_screen( pix_buffer, 0 );
+	alt_up_pixel_buffer_dma_draw_box ( pix_buffer, 0, 0, 640, 480, 0xFFFFFFFF, 0);
+}
+
+void vga_test()
+{
+	//alt_up_char_buffer_init(char_buffer); // Initialize buffer
+	//char_buffer = alt_up_char_buffer_open_dev("/dev/Char_Buffer_with_DMA"); // Name must be "/dev/" followed by instance name
 
 	//alt_up_char_buffer_clear(char_buffer);	// Clear the screen
 	/*alt_up_char_buffer_string(char_buffer, "UCR CS179J - NES FPGA Emulator!", 0,0);
@@ -66,101 +74,6 @@ void vga_test()
 		}
 	}
 
-	/*	for( y = 0; y < 8; ++y )
-	{
-		mask = 0x80;
-		for( x = 0; x < 8; ++x)
-		{
-			color = (((CHR_ROM[y+16] & mask) ? 1 : 0) | (((CHR_ROM[y+8+16] & mask) ? 1 : 0) << 1));
-			if(color == 0)
-				color = 0xFFFFFFFF;
-			else if(color == 1)
-				color = 0x0000FFFF;
-			else if(color == 2)
-				color = 0xFFFF0000;
-			else
-				color = 0;
-			alt_up_pixel_buffer_dma_draw_box ( pix_buffer, 110+x+8, 75+y, 111+x+8, 75+y, color , 0);
-			mask = mask >> 1;
-		}
 
-	}
-	for( y = 0; y < 8; ++y )
-	{
-		mask = 0x80;
-		for( x = 0; x < 8; ++x)
-		{
-			color = (((CHR_ROM[y+32] & mask) ? 1 : 0) | (((CHR_ROM[y+8+32] & mask) ? 1 : 0) << 1));
-			if(color == 0)
-				color = 0xFFFFFFFF;
-			else if(color == 1)
-				color = 0x0000FFFF;
-			else if(color == 2)
-				color = 0xFFFF0000;
-			else
-				color = 0;
-			alt_up_pixel_buffer_dma_draw_box ( pix_buffer, 110+x, 75+y+8, 111+x, 75+y+8, color , 0);
-			mask = mask >> 1;
-		}
-
-	}
-	for( y = 0; y < 8; ++y )
-	{
-		mask = 0x80;
-		for( x = 0; x < 8; ++x)
-		{
-			color = (((CHR_ROM[y+48] & mask) ? 1 : 0) | (((CHR_ROM[y+8+48] & mask) ? 1 : 0) << 1));
-			if(color == 0)
-				color = 0xFFFFFFFF;
-			else if(color == 1)
-				color = 0x0000FFFF;
-			else if(color == 2)
-				color = 0xFFFF0000;
-			else
-				color = 0;
-			alt_up_pixel_buffer_dma_draw_box ( pix_buffer, 110+x+8, 75+y+8, 111+x+8, 75+y+8, color , 0);
-			mask = mask >> 1;
-		}
-
-	}*/
-/*
-	for( y = 0; y < 8; ++y )
-	{
-		mask = 0x80;
-		for( x = 0; x < 8; ++x)
-		{
-			color = (((CHR_ROM[y+56] & mask) ? 1 : 0) | (((CHR_ROM[y+8+56] & mask) ? 1 : 0) << 1));
-			if(color == 0)
-				color = 0xFFFFFFFF;
-			else if(color == 1)
-				color = 0x0000FFFF;
-			else if(color == 2)
-				color = 0xFFFF0000;
-			else
-				color = 0;
-			alt_up_pixel_buffer_dma_draw_box ( pix_buffer, 110+x, 75+y+16, 111+x, 75+y+16, color , 0);
-			mask = mask >> 1;
-		}
-
-	}
-	for( y = 0; y < 8; ++y )
-	{
-		mask = 0x80;
-		for( x = 0; x < 8; ++x)
-		{
-			color = (((CHR_ROM[y+64] & mask) ? 1 : 0) | (((CHR_ROM[y+8+64] & mask) ? 1 : 0) << 1));
-			if(color == 0)
-				color = 0xFFFFFFFF;
-			else if(color == 1)
-				color = 0x0000FFFF;
-			else if(color == 2)
-				color = 0xFFFF0000;
-			else
-				color = 0;
-			alt_up_pixel_buffer_dma_draw_box ( pix_buffer, 110+x+8, 75+y+16, 111+x+8, 75+y+16, color , 0);
-			mask = mask >> 1;
-		}
-
-	}*/
 	return;
 }

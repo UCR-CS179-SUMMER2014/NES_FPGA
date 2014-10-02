@@ -2,6 +2,7 @@
 #define PPU_H_
 
 #include "NES.h"
+#include "vga.h"
 
 inline void ppu_status();						   // Display PPU Status
 inline void write_ppu_reg( byte data, word addr ); // Used for $2004/$2005
@@ -17,6 +18,13 @@ void PATTERN_SETS_INSERT();
 word pattern_lookout(byte look);
 void render_to_screen();
 void ppu_exec();
+void draw_tile(int x, int y, word ADDR_START );
+
+
+
+
+
+
 
 /* Initializes PPU registers and memory
 inline void ppu_init();

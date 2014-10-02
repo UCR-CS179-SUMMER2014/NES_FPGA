@@ -1,17 +1,104 @@
 #include "ppu.h"
 
 static short i;			// Temp variable for loops
-static byte ppu_write;	// Determines if we're on 1st or 2nd write to $2005/2006
-static word tempa;		// Temp variable for holding 16 bits
-static word ppuaddr;	// Temp variable for 16 bit address in $2006
+
+int RGB[64] = {
+			0x7C7C7CFF,
+			0x0000FCFF,
+			0x0000BCFF,
+			0x4428BCFF,
+			0x940084FF,
+			0xA80020FF,
+			0xA81000FF,
+			0x881400FF,
+
+			0x503000FF,
+			0x007800FF,
+			0x006800FF,
+			0x005800FF,
+			0x004058FF,
+			0x000000FF,
+			0x000000FF,
+			0x000000FF,
+
+			0xBCBCBCFF,
+			0x0078F8FF,
+			0x0058F8FF,
+			0x6844FCFF,
+			0xD800CCFF,
+			0xE40058FF,
+			0xF83800FF,
+			0xE45C10FF,
+
+			0xAC7C00FF,
+			0x00B800FF,
+			0x00A800FF,
+			0x00A8A8FF,
+			0x008888FF,
+			0x000000FF,
+			0x000000FF,
+			0x000000FF,
+
+			0xF8F8F8FF,
+			0x3CBCFCFF,
+			0x6888FCFF,
+			0x9878F8FF,
+			0xF878F8FF,
+			0xF85898FF,
+			0xF87858FF,
+			0xFCA044FF,
+
+			0xF8B800FF,
+			0xFFFFFFFF,
+			0x58D854FF,
+			0x58F898FF,
+			0x00E8D8FF,
+			0x787878FF,
+			0x000000FF,
+			0x000000FF,
+
+			0xFCFCFCFF,
+			0xA4E4FCFF,
+			0xB8B8F8FF,
+			0xD8B8F8FF,
+			0xF8B8F8FF,
+			0xF8A4C0FF,
+			0xF0D0B0FF,
+			0xFCE0A8FF,
+
+			0xF8D878FF,
+			0xD8F878FF,
+			0xB8F8B8FF,
+			0xB8F8D8FF,
+			0x00FCFCFF,
+			0xD8D8D8FF,
+			0x000000FF,
+			0x000000FF};
 
 //static short PPU_CYCLE =  0;
-byte BIT_INDEX = 0;
-int X_RENDER = 0;
-int Y_RENDER = 0;
-int NAMETABLE_COUNTER = 0;
-int PATTERN_TABLE_COUNTER = 0;
+void test_nametable()
+{
+	int i = 0;
+	for(i = 0; i < 960; ++i)
+	{
+		printf("NameTable Byte ");
+		printf("%d : ", i);
+		printf("%x\n", PPU->MEM[NAMETABLE_0 + i]);
+	}
+	for(i = 0; i < 64; ++i)
+		{
+			printf("Attribute Byte ");
+			printf("%d : ", i);
+			printf("%x\n", PPU->MEM[ATTRIBUTE_TABLE_0 + i]);
+		}
+	for(i = 0; i < 8; ++i)
+	{
 
+	}
+}
+
+
+/* Handles reads and writes to special PPU registers. */
 inline void write_ppu_reg( byte data, word addr )
 {
 	if( addr == 0x2004)		// Sprite/OAMDATA
@@ -24,51 +111,61 @@ inline void write_ppu_reg( byte data, word addr )
 	else if( addr == 0x2005) // PPUSCROLL
 	{
 		// We're on the first write
-		if(ppu_write == 0)
+		if(PPU->ppu_scrollwrite == 0)
 		{
-			tempa = data;
-			ppu_write = 1;
+			PPU->ppuscroll = ( (word) data) << 8;
+			PPU->ppu_scrollwrite = 1;
 		}
 		// We're on the second write
 		else
 		{
 			// We now have our 16 bits of data
-			tempa = (tempa << 8) | data;
-			PPUSCROLL = tempa;	// Write to PPU Scroll register now.
-			ppu_write = 0;
+			PPU->ppuscroll |= data;	// Write to PPU Scroll register now.
+			PPU->ppu_scrollwrite = 0;
 		}
 	}
+	// TODO: FIX PPUADDR WRITES OMFG
 	else if( addr == 0x2006 ) // PPUADDR
 	{
+		//printf("\n\nWriting %x to $2006\n\n", data);
+		PPUADDR = data;
+
 		// We're on the first write
-		if(ppu_write == 0)
+		if(PPU->ppu_addwrite == 0)
 		{
-			tempa = data;
-			ppu_write = 1;
+			PPU->ppuaddr = (PPU->ppuaddr & 0x00FF) | ((word) data ) << 8;
+			PPU->ppu_addwrite = 1;
 		}
 		// We're on the second write
 		else
 		{
 			// We now have our 16 bits of data
-			tempa = (tempa << 8) | data;
-			ppuaddr = tempa;	// Write to PPU Scroll register now.
-			ppu_write = 0;
+			PPU->ppuaddr |= data;
+			PPU->ppu_addwrite = 0;
 		}
 	}
 	else if( addr == 0x2007 ) // PPUDATA
 	{
+		//printf("\n\nWriting %x to $2007\n\n", data);
+
 		PPUDATA = data;
-		PPU->MEM[ ppuaddr ] = PPUDATA;
+		PPU->MEM[ PPU->ppuaddr ] = PPUDATA;
+
+		//Auto Incremenent ppuaddr depending on PPUCTRL bit 3
+		if( (VRAM_ADDR_INC) == 0) ++PPU->ppuaddr;
+		else PPU->ppuaddr += 32;
 	}
 	return;
 }
 
+/* Display current scanline and cycle status for PPU. */
 inline void ppu_status()
 {
-
 	printf(" SL: %d CYC: %d ", PPU->scanline, PPU->cycle);
 	return;
 }
+
+/* PPU tick function. Loops through cycles and scanlines at a rate of 3x CPU cycles. */
 void ppu_exec()
 {
 
@@ -137,8 +234,6 @@ void ppu_exec()
 	return;
 }
 
-
-
 inline void ppu_init()
 {
   PPU = (RP2C02*) malloc(sizeof(RP2C02));
@@ -149,11 +244,16 @@ inline void ppu_init()
   PPU->cycle = 0;
   PPU->last_cycle = 340;
   PPU->odd_frame = 1;
+  PPU->ppu_addwrite = 0;
+  PPU->ppu_scrollwrite = 0;
+  PPU->tempa = 0;
+  PPU->ppuaddr = 0;
+  PPU->ppuscroll = 0;
 
   //this initializes the whole memory map to 0x00
   int i;
-  for(i = 0; i < 16384; ++i)
-		PPU->MEM[i] = 0x0000;
+  for(i = 0; i < 65535; ++i)
+		PPU->MEM[i] = 0x00;
 
   //SEPARATE SPRITE_RAM for Rendering memory map
   //Access via SPR_RAM[i][j]
@@ -225,65 +325,154 @@ inline void ppu_init()
   	attribute_offset_set(); //Sets the attribute tile information
   	pallet_init(); //Sets the color palletes
 
+  	//byte temp = 0x00;
+  	/*for(tile = 0x2000; tile < 0x23C0; ++tile)
+  	{
+  		PPU->MEM[tile] = (tile - 0x2000) % 0xFF;
+  	}*/
+
   return;
 }
 void pallet_init()
 {
-	int i;
-	short pallete_addr = BACKGROUND_PALETTE;
-	for(i = 0x00; i < 0x40; ++i)
-	{
-		PPU->MEM[pallete_addr] = i;
-		pallete_addr++;
-	}
+
 }
 
+void draw_tile(int x, int y, word ADDR_START )
+{
+	int x_start = x;
+	int y_start = y;
+	int x_finish = x+8;
+	int y_finish = y+8;
+	//printf("   x_start %d\n", x_start );
+	//printf("   y_start %d\n", y_start );
+	//printf("   x_finsh %d\n", x_finish );
+	//printf("   y_finish %d\n",y_finish );
+
+	byte color_bit1 = 0;
+	byte color_bit2 = 0;
+	byte colors = 0;
+	int PATTERN_TABLE_COUNTER = 0;
+	int bit_location = 7;
+
+	for(;y_start < y_finish; ++y_start)
+	{
+		//printf("   y_start %d\n", y_start );
+		color_bit1 = 0;
+		color_bit2  = 0;
+		bit_location = 7;
+		x_start = x;
+		x_finish = x+8;
+		//printf("   Line----\n");
+		for(;x_start < x_finish; ++x_start)
+		{
+			//printf("	Color bit_location %d\n", bit_location);
+			//Assign the first  bit
+			color_bit1 =   (PPU->MEM[ (ADDR_START + PATTERN_TABLE_COUNTER) ] & mask(bit_location)) >> bit_location;
+			////Assign the second bit
+			//printf("	Color bit0: %x\n", color_bit1);
+			color_bit2=  (PPU->MEM[ (ADDR_START + PATTERN_TABLE_COUNTER) + 8 ] & mask(bit_location)) >> bit_location;
+			//printf("	Color bit1: %x\n", color_bit2);
+
+			//Assign the Third and fourth Bit
+			int temp_tile = tile_retrieval(x_start, y_start);
+			//printf("	temp_tile %d\n", temp_tile);
+
+			byte attribute_byte = PPU->MEM[ATTRIBUTE_TABLE_0 + PPU->ATTRIBUTE_TABLE_INFO[temp_tile].OFFSET];
+			byte tmp_color;
+			//printf("	attribute_byte %x\n", attribute_byte);
+
+
+			if(PPU->ATTRIBUTE_TABLE_INFO[temp_tile].TL == 1)
+				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & attribute_byte << 2;
+			else if(PPU->ATTRIBUTE_TABLE_INFO[temp_tile].TR == 1)
+				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & attribute_byte;
+			else if(PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BL == 1)
+				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & attribute_byte >> 2;
+			else if(PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BR == 1)
+				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & attribute_byte >> 4;
+
+			//printf("	tmp_color %x\n", tmp_color);
+
+			colors = (color_bit1 | ( color_bit2 << 1));
+			//printf("	colors %d\n", colors);
+			//By now Colors should have the 4bit color to be look on the palette
+			colors |= tmp_color;
+			//printf("	colors %x\n", colors);
+
+			//obtain byte from background pallete
+			int VGA_Color = RGB[colors];
+			//int VGA_Color = PPU->MEM[BACKGROUND_PALETTE + colors];
+			//printf("	VGA_Color %x\n", VGA_Color);
+
+			//Output Pixel
+			//pix_buffer->color_mode = ALT_UP_8BIT_COLOR_MODE	;
+			alt_up_pixel_buffer_dma_draw( pix_buffer, VGA_Color, 100+x_start,100+y_start );
+
+			//printf("Pixel: %d\n", x_start*y_start);
+			//char* en;
+			//fgets(en, 2, stdin);
+			//printf("	=========================\n");
+
+			//Update the Bit counter
+			bit_location--;
+		}
+		PATTERN_TABLE_COUNTER++;
+	}
+
+	//printf("Tile completed========\n");
+}
 void render_to_screen()
 {
-	byte NMTA = PPU->MEM[NAMETABLE_0 + NAMETABLE_COUNTER];//get name table address
-	word ADDR_START = pattern_lookout(NMTA); //Gets the the address from pattern table in hex
-	byte cycle = CPU->T; //The number of CPU Cycles to estimate PPU Cycles
-	int colors = 0;
+	//printf("Start Rendering\n");
+	byte NMTA; //get name table address
+	word ADDR_START; //Gets the the address from pattern table in hex
+	//byte cycle = CPU->T; //The number of CPU Cycles to estimate PPU Cycles
 
-	int i = 0;
-	for(i = 0; i < 960; ++i)
+	int X_RENDER = -8;
+	int Y_RENDER = 0;
+
+	int tile = 0;
+	for(tile = 0; tile < 960; ++tile)
 	{
-		if(X_RENDER == 256){X_RENDER = 0; Y_RENDER++;}
-		if(Y_RENDER == 240)
-		{
+		//update XY-coordinates
+		if(tile % 32 == 0 && tile != 0){
 			X_RENDER = 0;
-			Y_RENDER = 0;
-			BIT_INDEX = 0;
-
+			Y_RENDER += 8;
 		}
-		if(BIT_INDEX == 8)BIT_INDEX = 0;
+		else if(tile % 32 != 0 )X_RENDER += 8;
+		else if(tile == 0)X_RENDER += 8;
 
-		//Assign the first  bit
-		colors =   (PPU->MEM[ (ADDR_START + PATTERN_TABLE_COUNTER) + 0 ] & mask(BIT_INDEX)) >> BIT_INDEX;
-		//Assign the second bit
-		colors &=  (((PPU->MEM[ (ADDR_START + PATTERN_TABLE_COUNTER) + 8 ] & mask(BIT_INDEX)) >> BIT_INDEX - 1) );
-		//Assign the Third and fourth Bit
-		int temp = tile_retrieval(X_RENDER, Y_RENDER);
-		byte attribute_byte = PPU->MEM[ATTRIBUTE_TABLE_0 + PPU->ATTRIBUTE_TABLE_INFO[temp].OFFSET];
-		byte tmp_color;
-		if(PPU->ATTRIBUTE_TABLE_INFO[temp].TL == 1)
-			tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp].BIT & attribute_byte << 2;
-		else if(PPU->ATTRIBUTE_TABLE_INFO[temp].TR == 1)
-			tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp].BIT & attribute_byte;
-		else if(PPU->ATTRIBUTE_TABLE_INFO[temp].BL == 1)
-			tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp].BIT & attribute_byte >> 2;
-		else if(PPU->ATTRIBUTE_TABLE_INFO[temp].BR == 1)
-			tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp].BIT & attribute_byte >> 4;
 
-		//By now Colors should have the 4bit color to be look on the palette
-		colors |= tmp_color;
 
-		//obtain byte from background pallete
-		byte VGA_Color = PPU->MEM[BACKGROUND_PALETTE + colors];
+		//printf("Tile: %d\n", tile);
+		//printf("X_RENDER: %d\n", X_RENDER);
+		//printf("Y_RENDER: %d\n", Y_RENDER);
+		//printf("---------\n");
 
-		//Output Pixel
-		alt_up_pixel_buffer_dma_draw( pix_buffer, VGA_Color, X_RENDER,Y_RENDER );
+		//NMTA = PPU->MEM[NAMETABLE_0 + tile];//get name table address
+
+		ADDR_START = 16 * PPU->MEM[NAMETABLE_0 + tile] + 0x1000;
+		NMTA = PPU->MEM[ADDR_START ];
+
+		//ADDR_START = pattern_lookout(NMTA); //Gets the the address from pattern table in hex
+
+		//printf("NMTA: %d\n", NMTA);
+		//printf("ADDR_START: %d\n", ADDR_START);
+
+		draw_tile( X_RENDER, Y_RENDER, ADDR_START);
+		//char* en;
+		//fgets(en, 2, stdin);
+		//printf("finished drawing tile\n");
+
+		//printf("finished Updating\n");
+		//printf("=====================\n");
 	}
+	//printf("Finished Rendering\n");
+	//printf("X_RENDER: %d\n", X_RENDER);
+	//printf("Y_RENDER: %d\n", Y_RENDER);
+
+
 }
 void attribute_offset_set()
 {
@@ -426,9 +615,9 @@ int tile_retrieval(int x, int y)
 	int tmp_x = x / 8;
 	int tmp_y = y / 8;
 
-	int result = (32 * y) + (x + 1);
+	int result = (32 * tmp_y) + (tmp_x + 1);
 
-	return result;
+	return result - 1;
 }
 byte scanline_retireval(int tile)
 {

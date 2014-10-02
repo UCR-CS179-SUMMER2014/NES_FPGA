@@ -59,14 +59,21 @@ inline void cpu_status();
 
 
 /* Instruction functions separated by Adressing Mode and Uniqueness */
-byte ABS();  // Absolute
-byte ABSX(); // Absolute, X
-byte ABSY(); // Absolute, Y
-byte XIND(); // (Indirect, X)
-byte INDY(); // (Indirect), Y
-byte IMM();  // Immediate [ #$50 ]
-byte ZP();   // Zero Page
-byte ZPX();  // Zero Page, X
+inline byte ABS();  // Absolute
+inline byte ABSX(); // Absolute, X
+inline byte ABSY(); // Absolute, Y
+inline byte XIND(); // (Indirect, X)
+inline byte INDY(); // (Indirect), Y
+inline byte IMM();  // Immediate [ #$50 ]
+inline byte ZP();   // Zero Page
+inline byte ZPX();  // Zero Page, X
+
+inline word ABSw();  // Absolute write
+inline word ABSXw(); // Absolute X write
+inline word ABSYw(); // Absolute Y write
+inline word XINDw(); // [ Indirect, x ] write
+inline word INDYw(); // [ Indirect ], Y write
+inline word ZPXw();  // Zeropage, X write. Note: Wrap-around occurs if +X > $00FF
 
 // Addressing Modes not implemented: (Used directly in cases)
 //ACC  - Accumulator
@@ -75,23 +82,22 @@ byte ZPX();  // Zero Page, X
 //REL  - Relative (Comparisons)
 //ZPY  - Zero Page, Y
 
-
-void ADC( byte operand  ); // Add with Carry
-void AND( byte operand  ); // AND
-void ASL( byte* operand ); // Arithmetic Shift Left
-void CMP( byte operand  ); // Compare
-void CPX( byte operand  ); // Copy X
-void CPY( byte operand  ); // Copy Y
-void DEC( byte* operand ); // Decrement
-void INC( byte* operand ); // Increment
-void LDA( byte operand  ); // Load A
-void LDX( byte operand  ); // Load X
-void LDY( byte operand  ); // Load Y
-void LSR( byte* operand ); // Logical Shift Left
-void ORA( byte operand  ); // OR, A
-void ROL( byte* operand ); // Rotate on Left
-void ROR( byte* operand ); // Rotate on Right
-void SBC( byte operand  ); // Subtract with Carry
+inline void ADC( byte operand  ); // Add with Carry
+inline void AND( byte operand  ); // AND
+inline byte ASL( byte operand ); // Arithmetic Shift Left
+inline void CMP( byte operand  ); // Compare
+inline void CPX( byte operand  ); // Copy X
+inline void CPY( byte operand  ); // Copy Y
+inline byte DEC( byte operand ); // Decrement
+inline byte INC( byte operand ); // Increment
+inline void LDA( byte operand  ); // Load A
+inline void LDX( byte operand  ); // Load X
+inline void LDY( byte operand  ); // Load Y
+inline byte LSR( byte operand ); // Logical Shift Left
+inline void ORA( byte operand  ); // OR, A
+inline byte ROL( byte operand ); // Rotate on Left
+inline byte ROR( byte operand ); // Rotate on Right
+inline void SBC( byte operand  ); // Subtract with Carry
 
 
 

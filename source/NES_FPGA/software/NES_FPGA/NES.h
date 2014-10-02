@@ -58,7 +58,7 @@ byte mirroring;         // Horizontal, vertical, or four-screen mirroring.
 
 char* file_name;		// The name of the ROM
 
-word t1, t2;			// Temp values
+word t1, t2, l , h;			// Temp values
 
 //alt_up_char_buffer_dev* char_buffer;		// Character Buffer for Altera
 alt_up_pixel_buffer_dma_dev* pix_buffer;    // Color/pixel Buffer for Altera
@@ -79,6 +79,7 @@ typedef struct // 6502 Microprocessor Struct
   // Special Purpose Registers
   word PC;	// Program Counter [16-bits]
   byte S;	// Stack Pointer
+
   struct	// Status Register
   {
     byte C; // Carry
@@ -99,6 +100,8 @@ typedef struct // 6502 Microprocessor Struct
   byte DB;	// Data Bus.
   byte IR;	// Instruction Register
   byte T;   // The number of clock cycles the last instruction took
+
+  unsigned int instructions; // Total instruction count for the CPU
 
   // Interrupt Signals
   byte NMI; // Non-maskable interrupt. Set by the PPU.
@@ -130,12 +133,12 @@ typedef struct // 6502 Microprocessor Struct
 #define EROM    0x4020    // Length: 0x1180
 #define STACK   0x0100    // Length: 0x0100 Stack Memory
 
-#define IRQL	 0xFFFA   // Interrupt Request Low
-#define IRQH	 0xFFFB   // Interrupt Request High
+#define IRQL	 0xFFFE   // Interrupt Request Low
+#define IRQH	 0xFFFF   // Interrupt Request High
 #define RESL     0xFFFC   // Reset Vector Low
 #define RESH     0xFFFD   // Reset Vector High
-#define NMIL     0xFFFE   // Non-maskable Interrupt Low
-#define NMIH     0xFFFF   // Non-maskable Interrupt High
+#define NMIL     0xFFFA   // Non-maskable Interrupt Low
+#define NMIH     0xFFFB   // Non-maskable Interrupt High
 
 
 //=========================================================
@@ -176,6 +179,12 @@ typedef struct
 	short last_cycle;		// Either 340 or 341 based on odd_frame.
 	byte odd_frame; 		// Used for scanline -1. If we're displaying an odd_frame, use 340 cycles instead of 341.
 
+	byte ppu_addwrite;	// Determines if we're on 1st or 2nd write to $2005/2006
+	byte ppu_scrollwrite; // Same, but for $2005
+
+	word tempa;		// Temp variable for holding 16 bits
+	word ppuaddr;	// Temp variable for 16 bit address in $2006
+	word ppuscroll; // Temp variable for 16 bit address in $2005
 
 	/*
 	One byte of the name table holds the address of one tile (8x8 pixel),
@@ -212,7 +221,7 @@ typedef struct
 #define	PPUCTRL_ADDR 0x2000
 #define PPUCTRL	CPU->MEM[0x2000]			 // Register $2000 in CPU.
 #define BASENTABLE		(CPU->MEM[0x2000] & 0x03)
-#define VRAM_ADDR_INC   (CPU->MEM[0x2000] & 0x04) ? 1: 0
+#define VRAM_ADDR_INC   (CPU->MEM[0x2000] & 0x04) ? 1 : 0
 #define SPRITE_PTABLE   (CPU->MEM[0x2000] & 0x08) ? 1 : 0
 #define BG_PTABLE 	    (CPU->MEM[0x2000] & 0x10) ? 1 : 0
 

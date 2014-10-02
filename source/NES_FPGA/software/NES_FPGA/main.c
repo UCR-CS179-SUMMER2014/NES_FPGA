@@ -10,11 +10,12 @@ int main()
   // Declare appropriate arrays and variables
   file_name = "DK.nes";
   //char* en = (char*) malloc(sizeof(char)*2); // Used for stepping into CPU one instruction at a time
-  unsigned int instructions = 0;
+
   // Initialize CPU
   cpu_init();
 
-  // Initialize PPU
+  // Initialize PPU/Video
+  vga_init();
   ppu_init();
 
   // Load the ROM. CPU and PPU Memory map will be populated here as well
@@ -49,14 +50,26 @@ int main()
 
 	CPU->IR = CPU->MEM[ CPU->PC ];	// Load next instruction
 
-	if(instructions % 150000 == 0)
+	if( CPU->instructions > 34000 )//PPU->scanline > 238)
 	{
-		cpu_status(); // Debug CPU
-		ppu_status(); // Debug PPU
-		printf(" Instruction count: %d \n", instructions);
+		/*int i = 0;
+		for(i = 0x2000; i < 0x23C0; ++i)
+		{
+			if( (i - 0x2000) % 30 == 0 && (i - 0x2000) > 1)
+				printf("\n");
+			printf("%x ", PPU->MEM[i]);
+		}*/
+
+		if( CPU->instructions > 34025 )
+			return 0;
+
+		cpu_status();
+		ppu_status();
+		printf("\n\n");
 	}
 
-	++instructions;
+	// Increment instruction count
+	++CPU->instructions;
 
 	++CPU->PC;	  // Increment PC
 	cpu_exec();   // Tick CPU (Execute Instruction)
@@ -65,6 +78,17 @@ int main()
 	// Wait until enter is pressed to step-through
 	//fgets(en, 2, stdin);
   }
+
+  /*
+  int i = 0;
+	for(i = 0; i < 0x3F; ++i)
+	{
+		PPU->MEM[0x23C0 + i] = i;
+	}
+
+	//vga_test();
+	render_to_screen();
+	printf("Done rendering!\n");*/
 
   // Free up allocated memory in heap
   free( CPU->MEM );
