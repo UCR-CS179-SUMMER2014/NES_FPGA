@@ -188,7 +188,10 @@ typedef struct
 	byte odd_frame; 		// Used for scanline -1. If we're displaying an odd_frame, use 340 cycles instead of 341.
 
 	word ppuaddr;			// Register variable for 16 bit address in $2006
+	word ppuaddr_temp;		// This overwrites ppuaddr once both upper and lower byte of $2006 is written.
+
 	word ppuscroll; 		// Register variable for 16 bit address in $2005
+	word ppuscroll_temp;		// This overwrites ppuaddr once both upper and lower byte of $2006 is written.
 
 	byte ppu_addwrite;		// Determines if we're on 1st or 2nd write to $2005/2006
 	byte ppu_scrollwrite;   // Same, but for $2005

@@ -29,6 +29,8 @@ inline void cpu_irq();
  * 				RES => 1         S => 0xFD */
 inline void cpu_init();
 
+/* Checks for interrupts and runs appropriate subroutine, given priority. */
+inline void cpu_int_check();
 
 /* Read the contents of PC, then increment it */
 inline byte cpu_read();

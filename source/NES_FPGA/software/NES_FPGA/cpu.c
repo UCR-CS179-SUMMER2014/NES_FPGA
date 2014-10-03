@@ -15,11 +15,11 @@ void cpu_exec()
   {
     // ###################### ADC #########################
   case 0x6D: // ABS
-      operand = ABS();  ADC( operand ); CPU->T = 2; break;
+	operand = ABS();  ADC( operand ); CPU->T = 2; break;
   case 0x7D: // ABSX
-      operand = ABSX(); ADC( operand ); CPU->T = 4 + CPU->page_boundary; break;
+	operand = ABSX(); ADC( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0x79: // ABSY
-      operand = ABSY(); ADC( operand ); CPU->T = 4 + CPU->page_boundary; break;
+    operand = ABSY(); ADC( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0x69: // IMM
     operand = IMM();    ADC( operand ); CPU->T = 2; break;
   case 0x71: // INDY
@@ -581,7 +581,7 @@ void cpu_exec()
   case 0x99: // ABSY
 	cpu_mem_write( CPU->A, ABSYw() );  CPU->T = 5; break;
   case 0x91: // INDY
-    cpu_mem_write( CPU->A,  INDYw() ); CPU->T = 6; break;
+    cpu_mem_write( CPU->A, INDYw() );  CPU->T = 6; break;
   case 0x81: // XIND
 	cpu_mem_write( CPU->A, XINDw() );  CPU->T = 6; break;
   case 0x85: // ZP
@@ -961,6 +961,21 @@ void print_opcode()
 	 return;
 }
 
+// Initializes all registers and memory.
+inline void cpu_init()
+{
+  CPU = (RP2A03*) malloc(sizeof(RP2A03));
+  CPU->MEM = (byte*) malloc(sizeof(byte)*64*1024); // Allocate memory
+  CPU->RES = 1;
+
+  // Initialize CPU Memory
+  int i;
+  for(i = 0; i < 0xFFFF+1; ++i)
+	  CPU->MEM[i] = 0;
+
+  return;
+}
+
 // CPU Reset interrupt handler
 inline void cpu_reset()
 {
@@ -999,6 +1014,8 @@ inline void cpu_reset()
 
 	// Finally, push RESET vector to PC to start Reset handler (AKA when you 'turn on' the NES)
 	CPU->PC = CPU->MEM[RESL] | (CPU->MEM[ RESH ] << 8);
+
+	printf("RES! Into: %x\n", CPU->PC);
 	return;
 }
 
@@ -1058,20 +1075,20 @@ inline void cpu_irq()
     printf("IRQ!\n");
 }
 
-
-// Initializes all registers and memory.
-inline void cpu_init()
+// Checks for interrupts and runs appropriate subroutine, given priority.
+inline void cpu_int_check()
 {
-  CPU = (RP2A03*) malloc(sizeof(RP2A03));
-  CPU->MEM = (byte*) malloc(sizeof(byte)*64*1024); // Allocate memory
-  CPU->RES = 1;
+	if(CPU->RES == 1) // Reset, also the power-on state
+		cpu_reset();
 
-  // Initialize CPU Memory
-  int i;
-  for(i = 0; i < 0xFFFF+1; ++i)
-	  CPU->MEM[i] = 0;
+	else if(CPU->NMI == 1) // Non-maskable interrupt (PPU)
+		cpu_nmi();
 
-  return;
+	// Note that IRQ will not work if interrupts are disabled
+	else if((CPU->IRQ == 1) && (CPU->P.I == 0)) // Interrupt Request
+		cpu_irq();
+
+	return;
 }
 
 // Read the contents of PC, then increment it */
@@ -1181,6 +1198,7 @@ inline byte rel_page_boundary( word carry )
     pb = ((CPU->PC & 0xFF) + (signed char) carry); // Check if adding the operand to lower byte of PC causes a carry
     return (( pb < 0 ) || (pb > 0xFF)) ? 1 : 0;
 }
+
 // ======================= Addressing Modes (reading) ===================================
 inline byte ABS()	// Absolute read
 {

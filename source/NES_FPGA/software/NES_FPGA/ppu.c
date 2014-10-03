@@ -133,15 +133,14 @@ inline void write_ppu_reg( byte data, word addr )
 		// We're on the first write
 		if(PPU->ppu_addwrite == 0)
 		{
-			PPU->ppuaddr = (PPU->ppuaddr & 0x00FF) | ((word) data ) << 8;
-			PPU->ppu_addwrite = 1;
+			PPU->ppuaddr_temp = data << 8;				// Don't overwrite ppuaddr until the second (lower) byte is written
+			PPU->ppu_addwrite = 1;						// Signal that we've written the higher byte, now for the lower byte
 		}
 		// We're on the second write
 		else
 		{
-			// We now have our 16 bits of data
-			PPU->ppuaddr |= data;
-			PPU->ppu_addwrite = 0;
+			PPU->ppuaddr = PPU->ppuaddr_temp | data;	// Now that lower byte is given, overwrite ppuaddr.
+			PPU->ppu_addwrite = 0;						// Signal that we're back to writing the higher byte
 		}
 	}
 	else if( addr == 0x2007 ) // PPUDATA
@@ -452,7 +451,7 @@ void render_to_screen()
 
 		//NMTA = PPU->MEM[NAMETABLE_0 + tile];//get name table address
 
-		ADDR_START = 16 * PPU->MEM[NAMETABLE_0 + tile] + /*(PPUCTRL & 0x10) ? 0x1000 :*/ 0x0000;
+		ADDR_START = 16 * PPU->MEM[NAMETABLE_0 + tile] + (PPUCTRL & 0x10) ? 0x1000 : 0x0000;
 		NMTA = PPU->MEM[ADDR_START ];
 
 		//ADDR_START = pattern_lookout(NMTA); //Gets the the address from pattern table in hex
