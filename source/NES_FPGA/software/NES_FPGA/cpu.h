@@ -4,6 +4,12 @@
 #include "NES.h"
 
 
+
+/* Function:    execute_instruction
+   Description: Takes in opcode and executes instruction.
+                Opcode is taken in from CPU struct. */
+void cpu_exec();
+
 /* Function:    cpu_reset
    Description: Initializes CPU */
 inline void cpu_reset();
@@ -42,11 +48,8 @@ inline byte cpu_join_flags();
 /* Retrieves flags as a byte, splits them, and returns to flag registers. */
 inline void cpu_split_flags( byte operand );
 
-/* Function:    execute_instruction
-   Description: Takes in opcode and executes instruction.
-                Opcode is taken in from CPU struct. */
-void cpu_exec();
-
+/* Checks if instruction would cause a page boundary */
+inline byte rel_page_boundary( word carry );
 
 /* CPU Setup/Debug Functions */
 void print_opcode();		// Print opcode name

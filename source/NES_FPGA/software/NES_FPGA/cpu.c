@@ -10,154 +10,146 @@
 */
 void cpu_exec()
 {
-  // Declare variables
-  word temp;
-  word temp2;
-  word temp_addr;
-  byte operand;
-
   // Execute OPCODE. Note: BCD-related actions are ignored.
   switch(CPU->IR)
   {
     // ###################### ADC #########################
   case 0x6D: // ABS
-      operand = ABS(); ADC(operand); CPU->T = 2; break;
+      operand = ABS();  ADC( operand ); CPU->T = 2; break;
   case 0x7D: // ABSX
-      operand = ABSX(); ADC( operand ); CPU->T = 4; break;
+      operand = ABSX(); ADC( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0x79: // ABSY
-      operand = ABSY(); ADC(operand); CPU->T = 4; break;
+      operand = ABSY(); ADC( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0x69: // IMM
-    operand = IMM(); ADC(operand); CPU->T = 2; break;
+    operand = IMM();    ADC( operand ); CPU->T = 2; break;
   case 0x71: // INDY
-    operand = INDY(); ADC(operand);  CPU->T = 5; break;
+    operand = INDY();   ADC( operand ); CPU->T = 5 + CPU->page_boundary; break;
   case 0x61: // XIND
-    operand = XIND(); ADC(operand); CPU->T = 6; break;
+    operand = XIND();   ADC( operand ); CPU->T = 6; break;
   case 0x65: // ZP
-    operand = ZP(); ADC(operand); CPU->T = 3; break;
+    operand = ZP();     ADC( operand ); CPU->T = 3; break;
   case 0x75: // ZPX
-    operand = ZPX(); ADC(operand); CPU->T = 4; break;
+    operand = ZPX();    ADC( operand ); CPU->T = 4; break;
 
     // ###################### AND #########################
   case 0x2D: // ABS
-    operand = ABS(); AND(operand); CPU->T = 4; break;
+    operand = ABS();  AND( operand ); CPU->T = 4; break;
   case 0x3D: // ABSX
-    operand = ABSX(); AND(operand); CPU->T = 4; break;
+    operand = ABSX(); AND( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0x39: // ABSY
-    operand = ABSY(); AND(operand); CPU->T = 4; break;
+    operand = ABSY(); AND( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0x29: // IMM
-    operand = IMM(); AND(operand); CPU->T = 2; break;
+    operand = IMM();  AND( operand ); CPU->T = 2; break;
   case 0x31: // INDY
-    operand = INDY(); AND(operand); CPU->T = 5; break;
+    operand = INDY(); AND( operand ); CPU->T = 5 + CPU->page_boundary; break;
   case 0x21: // XIND
-    operand = XIND(); AND(operand); CPU->T = 6; break;
+    operand = XIND(); AND( operand ); CPU->T = 6; break;
   case 0x25: // ZP
-    operand = ZP(); AND(operand); CPU->T = 2; break;
+    operand = ZP();   AND( operand ); CPU->T = 2; break;
   case 0x35: // ZPX
-    operand = ZPX(); AND(operand); CPU->T = 3; break;
+    operand = ZPX();  AND( operand ); CPU->T = 3; break;
 
     // ###################### ASL #########################
   case 0x0E: // ABS
-	t1 = ABSw(); cpu_mem_write( ASL( cpu_mem_read(t1) ), t1 ); CPU->T = 6; break; // Perform ASL, and update it in memory.
+	t1 = ABSw(); cpu_mem_write( ASL( cpu_mem_read(t1) ), t1 );  CPU->T = 6; break; // Perform ASL, and update it in memory.
   case 0x1E: // ABSX
 	t1 = ABSXw(); cpu_mem_write( ASL( cpu_mem_read(t1) ), t1 ); CPU->T = 7; break;
   case 0x0A: // ACC
     CPU->A = ASL( CPU->A ); CPU->T = 2; break;
   case 0x06: // ZP
-	t1 = cpu_read();
-    CPU->MEM[ t1 ] = ASL( CPU->MEM[ t1 ] ); CPU->T = 5; break;
+	t1 = cpu_read(); CPU->MEM[ t1 ] = ASL( CPU->MEM[ t1 ] ); CPU->T = 5; break;
   case 0x16: // ZPX
-	temp = (cpu_read() + CPU->X) & 0xFF;
-	CPU->MEM[ temp ] = ASL( CPU->MEM[ temp ] ); CPU->T = 6; break;
-    break;
+	temp = (cpu_read() + CPU->X) & 0xFF; CPU->MEM[ temp ] = ASL( CPU->MEM[ temp ] ); CPU->T = 6; break;
+
 
     // ########################## BCC #####################
   case 0x90: // REL
     if(CPU->P.C == 0)
     {
-      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
-      CPU->T = 3;
+      t1 = CPU->MEM[CPU->PC] + 1;
+      CPU->PC += (signed char) t1;
+      CPU->T = 3 + rel_page_boundary( t1 );
     }
     else
     {
       ++CPU->PC;
       CPU->T = 2;
     }
-     //printf("BCC!\n");
     break;
 
     // ####################### BCS ########################
   case 0xB0: // REL
     if(CPU->P.C == 1)
     {
-      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1; // Added 1 because PC increments
-      CPU->T = 3;
+      t1 = CPU->MEM[CPU->PC] + 1;
+      CPU->PC += (signed char) t1; // Added 1 because PC increments
+      CPU->T = 3 + rel_page_boundary( t1 );
     }
      else
      {
       ++CPU->PC;
       CPU->T = 2;
      }
-    //printf("BCS!\n");
     break;
 
     // ######################## BEQ #######################
   case 0xF0: // REL
     if(CPU->P.Z == 1)
     {
-      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
-      CPU->T = 3;
+        t1 = CPU->MEM[CPU->PC] + 1;
+        CPU->PC += (signed char) t1; // Added 1 because PC increments
+        CPU->T = 3 + rel_page_boundary( t1 );
     }
     else
     {
     	++CPU->PC;
     	CPU->T = 2;
     }
-    //printf("BEQ!\n");
     break;
 
     // ########################## BMI #####################
   case 0x30: // REL
     if(CPU->P.N == 1)
     {
-      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
-      CPU->T = 3;
+        t1 = CPU->MEM[CPU->PC] + 1;
+        CPU->PC += (signed char) t1; // Added 1 because PC increments
+        CPU->T = 3 + rel_page_boundary( t1 );
     }
     else
     {
       ++CPU->PC;
       CPU->T = 2;
     }
-    //printf("BMI!\n");
     break;
 
     // ######################## BNE #######################
   case 0xD0: // REL
     if(CPU->P.Z == 0)
     {
-      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
-      CPU->T = 3;
+        t1 = CPU->MEM[CPU->PC] + 1;
+        CPU->PC += (signed char) t1; // Added 1 because PC increments
+        CPU->T = 3 + rel_page_boundary( t1 );
     }
     else
     {
-      ++CPU->PC;
-      CPU->T = 2;
+    	++CPU->PC;
+    	CPU->T = 2;
     }
-    //printf("BNE!\n");
     break;
 
     // ####################### BPL ########################
   case 0x10: // REL
     if(CPU->P.N == 0)
     {
-      CPU->PC += (signed char)CPU->MEM[CPU->PC]+1;
-      CPU->T = 3;
+    	t1 = CPU->MEM[CPU->PC] + 1;
+    	CPU->PC += (signed char) t1; // Added 1 because PC increments
+        CPU->T = 3 + rel_page_boundary( t1 );
     }
     else
     {
-      ++CPU->PC;
-      CPU->T = 2;
+    	++CPU->PC;
+    	CPU->T = 2;
     }
-    //printf("BPL!\n");
     break;
 
     // ######################### BRK ######################
@@ -176,8 +168,6 @@ void cpu_exec()
     --CPU->S;
 
     CPU->PC = (CPU->MEM[0xFFFE]) | (CPU->MEM[0xFFFF] << 8);
-    //printf("Breaking into reset vector: %x ", CPU->PC);
-    //printf("BRK!\n");
     CPU->T = 7;
     break;
 
@@ -193,7 +183,6 @@ void cpu_exec()
       ++CPU->PC;
       CPU->T = 2;
     }
-    //printf("BCV!\n");
     break;
 
     // ######################## BVS #######################
@@ -208,50 +197,30 @@ void cpu_exec()
       ++CPU->PC;
       CPU->T = 2;
     }
-    //printf("BVS!\n");
     break;
 
     // ######################### CLC ######################
   case 0x18: // IMP
-    CPU->P.C = 0;
-    //++CPU->PC;
-    //printf("CLC!\n");
-    CPU->T = 2;
-    break;
+    CPU->P.C = 0; CPU->T = 2; break;
 
     // ######################### CLD ######################
   case 0xD8: // IMP
-    CPU->P.D = 0;
-    //++CPU->PC;
-    //printf("CLD!\n");
-    CPU->T = 2;
-    break;
+    CPU->P.D = 0; CPU->T = 2; break;
 
     // ####################### CLI ########################
   case 0x58: // IMP
-    CPU->P.I = 0;
-    //++CPU->PC;
-    //printf("CLI!\n");
-    CPU->T = 2;
-    break;
+    CPU->P.I = 0; CPU->T = 2; break;
 
     // ######################### CLV ######################
   case 0xB8: // IMP
-    CPU->P.V = 0;
-    //++CPU->PC;
-    //printf("CLV!\n");
-    CPU->T = 2;
-    break;
+    CPU->P.V = 0; CPU->T = 2; break;
 
     // ######################### BIT ######################
   case 0x24: // ZP
-    ////printf("BIT on %x and %x ", CPU->A, CPU->MEM[ CPU->MEM[ CPU->PC  ] ] );
-
     temp = CPU->A & cpu_mem_read( cpu_read() );
     CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
     CPU->P.V = ((temp & 0x40) > 0) ? 1 : 0;
     CPU->P.Z = (temp == 0) ? 1 : 0;
-    //printf("BIT!\n");
     CPU->T = 3;
     break;
   case 0x2C: // ABS
@@ -260,27 +229,26 @@ void cpu_exec()
     CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
     CPU->P.V = ((temp & 0x40) > 0) ? 1 : 0;
     CPU->P.Z = (temp == 0) ? 1 : 0;
-    //printf("BIT!\n");
     CPU->T = 4;
     break;
 
     // ######################### CMP ######################
   case 0xCD: // ABS
-    operand = ABS(); CMP(operand); CPU->T = 4; break;
+    operand = ABS();  CMP(operand); CPU->T = 4; break;
   case 0xDD: // ABSX
-    operand = ABSX(); CMP(operand); CPU->T = 4; break;
+    operand = ABSX(); CMP(operand); CPU->T = 4 + CPU->page_boundary; break;
   case 0xD9: // ABSY
-    operand = ABSY(); CMP(operand); CPU->T = 4; break;
+    operand = ABSY(); CMP(operand); CPU->T = 4 + CPU->page_boundary; break;
   case 0xC9: // IMM
-    operand = IMM(); CMP(operand); CPU->T = 2; break;
+    operand = IMM();  CMP(operand); CPU->T = 2; break;
   case 0xD1: // INDY
-    operand = INDY(); CMP(operand); CPU->T = 5; break;
+    operand = INDY(); CMP(operand); CPU->T = 5 + CPU->page_boundary; break;
   case 0xC1: // XIND
     operand = XIND(); CMP(operand); CPU->T = 6; break;
   case 0xC5: // ZP
-    operand = ZP(); CMP(operand); CPU->T = 3; break;
+    operand = ZP();   CMP(operand); CPU->T = 3; break;
   case 0xD5: // ZPX
-    operand = ZPX(); CMP(operand); CPU->T = 4; break;
+    operand = ZPX();  CMP(operand); CPU->T = 4; break;
 
     // ####################### CPX ########################
   case 0xEC: // ABS
@@ -288,7 +256,7 @@ void cpu_exec()
   case 0xE0: // IMM
     operand = IMM(); CPX(operand); CPU->T = 2; break;
   case 0xE4: // ZP
-    operand = ZP(); CPX(operand); CPU->T = 3; break;
+    operand = ZP();  CPX(operand); CPU->T = 3; break;
 
     // ###################### CPY #########################
   case 0xCC: // ABS
@@ -296,15 +264,13 @@ void cpu_exec()
   case 0xC0: // IMM
     operand = IMM(); CPY(operand); CPU->T = 2; break;
   case 0xC4: // ZP
-    operand = ZP(); CPY(operand); CPU->T = 3; break;
+    operand = ZP();  CPY(operand); CPU->T = 3; break;
 
     // ########################### DEC ####################
   case 0xCE: // ABS
-	t1 = ABSw();
-    cpu_mem_write( DEC( cpu_mem_read(t1) ), t1 ); CPU->T = 6; break;
+	t1 = ABSw();  cpu_mem_write( DEC( cpu_mem_read(t1) ), t1 ); CPU->T = 6; break;
   case 0xDE: // ABSX
-	t1 = ABSXw();
-	cpu_mem_write( DEC( cpu_mem_read(t1) ), t1 ); CPU->T = 7; break;
+	t1 = ABSXw(); cpu_mem_write( DEC( cpu_mem_read(t1) ), t1 ); CPU->T = 7; break;
   case 0xC6: // ZP
 	t1 = cpu_read();
 	CPU->MEM[ t1 ] = DEC( CPU->MEM[ t1 ] ); CPU->T = 5; break;
@@ -317,7 +283,6 @@ void cpu_exec()
     --CPU->X;
     CPU->P.Z = (CPU->X == 0) ? 1 : 0;
     CPU->P.N = ((CPU->X & 0x80) > 0) ? 1 : 0;
-    //printf("DEX!\n");
     CPU->T = 2;
     break;
 
@@ -326,51 +291,32 @@ void cpu_exec()
     --CPU->Y;
     CPU->P.Z = (CPU->Y == 0) ? 1 : 0;
     CPU->P.N = ((CPU->Y & 0x80) > 0) ? 1 : 0;
-    //printf("DEY!\n");
     CPU->T = 2;
     break;
 
     // ######################## EOR #######################
   case 0x4D: // ABS
-    CPU->A = CPU->A ^ ABS(); //printf("EOR!\n");
-    CPU->T = 4;
-    break;
+    CPU->A = CPU->A ^ ABS();  CPU->T = 4; break;
   case 0x5D: // ABSX
-    CPU->A = CPU->A ^ ABSX(); //printf("EOR!\n");
-    CPU->T = 4;
-    break;
+    CPU->A = CPU->A ^ ABSX(); CPU->T = 4 + CPU->page_boundary; break;
   case 0x59: // ABSY
-    CPU->A = CPU->A ^ ABSY(); //printf("EOR!\n");
-    CPU->T = 4;
-    break;
+    CPU->A = CPU->A ^ ABSY(); CPU->T = 4 + CPU->page_boundary; break;
   case 0x49: // IMM
-    CPU->A = CPU->A ^ IMM(); //printf("EOR!\n");
-    CPU->T = 2;
-    break;
+    CPU->A = CPU->A ^ IMM();  CPU->T = 2; break;
   case 0x51: // INDY
-    CPU->A = CPU->A ^ INDY(); //printf("EOR!\n");
-    CPU->T = 5;
-    break;
+    CPU->A = CPU->A ^ INDY(); CPU->T = 5 + CPU->page_boundary; break;
   case 0x41: // XIND
-    CPU->A = CPU->A ^ XIND(); //printf("EOR!\n");
-    CPU->T = 6;
-    break;
+    CPU->A = CPU->A ^ XIND(); CPU->T = 6; break;
   case 0x45: // ZP
-    temp = ZP();
-    CPU->A = CPU->A ^ temp; //printf("EOR with %x and %x = %x, at PC: %x!\n", CPU->A, temp, CPU->A ^ temp, CPU->PC);
-    CPU->T = 3;
-    break;
+    CPU->A = CPU->A ^ ZP(); CPU->T = 3; break;
   case 0x55: // ZPX
-    CPU->A = CPU->A ^ ZPX(); //printf("EOR!\n"); CPU->T = 4;
-    break;
+    CPU->A = CPU->A ^ ZPX(); CPU->T = 4; break;
 
     // ######################## INC #######################
   case 0xEE: // ABS
-	t1 = ABSw();
-    cpu_mem_write( INC( cpu_mem_read(t1) ), t1 ); CPU->T = 6; break;
+	t1 = ABSw();  cpu_mem_write( INC( cpu_mem_read(t1) ), t1 ); CPU->T = 6; break;
   case 0xFE: // ABSX
-	t1 = ABSXw();
-	cpu_mem_write( INC( cpu_mem_read(t1) ), t1 ); CPU->T = 7; break;
+	t1 = ABSXw(); cpu_mem_write( INC( cpu_mem_read(t1) ), t1 ); CPU->T = 7; break;
   case 0xE6: // ZP
 	t1 = cpu_read();
 	CPU->MEM[ t1 ] = INC( CPU->MEM[ t1 ] ); CPU->T = 5; break;
@@ -383,7 +329,6 @@ void cpu_exec()
     ++CPU->X;
     CPU->P.Z = (CPU->X == 0) ? 1 : 0;
     CPU->P.N = ((CPU->X & 0x80) > 0) ? 1 : 0;
-    //printf("INX!\n");
     CPU->T = 2;
     break;
 
@@ -392,20 +337,17 @@ void cpu_exec()
     ++CPU->Y;
     CPU->P.Z = (CPU->Y == 0) ? 1 : 0;
     CPU->P.N = ((CPU->Y & 0x80) > 0) ? 1 : 0;
-    //printf("INY!\n");
     CPU->T = 2;
     break;
 
     // ############################## JMP #####################
   case 0x4C: // ABS
-    CPU->PC = ABSw(); //printf("JMP!\n");
-    CPU->T = 3;
-    break;
+    CPU->PC = ABSw(); CPU->T = 3; break;
   case 0x6C: // IND
     temp = cpu_read();	// Fetch operand byte
     l = cpu_mem_read( temp ); // Fetch lower byte address
-    h = cpu_mem_read( (temp +1) & 0xFF ) << 8;
-    CPU->PC = cpu_mem_read( l | h ); //printf("JMP!\n");
+    h = cpu_mem_read( (temp + 1) & 0xFF ) << 8;
+    CPU->PC = cpu_mem_read( l | h );
     CPU->T = 5;
     break;
 
@@ -424,61 +366,57 @@ void cpu_exec()
     --CPU->S;
     cpu_mem_write( (temp_addr & 0xFF), STACK + CPU->S);      // Push PCl
     --CPU->S;
-
     CPU->PC = l | h;
-    //printf("JSR!\n");
     CPU->T = 6;
     break;
 
     // ########################## LDA #######################
   case 0xAD: // ABS
-    operand = ABS(); LDA( operand ); CPU->T = 4; break;
+    operand = ABS();  LDA( operand ); CPU->T = 4; break;
   case 0xBD: // ABSX
-    operand = ABSX(); LDA( operand ); CPU->T = 4; break;
+    operand = ABSX(); LDA( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0xB9: // ABSY
-    operand = ABSY(); LDA( operand ); CPU->T = 4; break;
+    operand = ABSY(); LDA( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0xA9: // IMM
-    LDA ( CPU->MEM[ CPU->PC++] ); CPU->T = 2; break;
+    LDA ( CPU->MEM[ CPU->PC++] );     CPU->T = 2; break;
   case 0xB1: // INDY
-    operand = INDY(); LDA( operand ); CPU->T = 5; break;
+    operand = INDY(); LDA( operand ); CPU->T = 5 + CPU->page_boundary; break;
   case 0xA1: // XIND
     operand = XIND(); LDA( operand ); CPU->T = 6; break;
   case 0xA5: // ZP
-    operand = ZP(); LDA( operand ); CPU->T = 3; break;
+    operand = ZP();   LDA( operand ); CPU->T = 3; break;
   case 0xB5: // ZPX
-    operand = ZPX(); LDA( operand ); CPU->T = 4; break;
+    operand = ZPX();  LDA( operand ); CPU->T = 4; break;
 
     // ########################## LDX #######################
   case 0xAE: // ABS
     operand = ABS(); LDX( operand ); CPU->T = 4; break;
   case 0xBE: // ABSY
-    operand = ABS(); LDX( operand ); CPU->T = 4; break;
+    operand = ABS(); LDX( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0xA2: // IMM
-    LDX( CPU->MEM[ CPU->PC++ ] ); CPU->T = 2; break;
+    LDX( CPU->MEM[ CPU->PC++ ] );    CPU->T = 2; break;
   case 0xA6: // ZP
-    operand = ZP(); LDX( operand ); CPU->T = 3; break;
+    operand = ZP();  LDX( operand ); CPU->T = 3; break;
   case 0xB6: // ZPY
     operand = CPU->MEM[ ( cpu_read() + CPU->Y) & 0xFF ]; LDX( operand ); CPU->T = 4; break;
 
     // ########################## LDY ######################
   case 0xAC: // ABS
-    operand = ABS(); LDY( operand ); CPU->T = 4; break;
+    operand = ABS();  LDY( operand ); CPU->T = 4; break;
   case 0xBC: // ABSX
-    operand = ABSX(); LDY( operand ); CPU->T = 4; break;
+    operand = ABSX(); LDY( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0xA0: // IMM
-    LDY( cpu_read() ); CPU->T = 2; break;
+    LDY( cpu_read() );                CPU->T = 2; break;
   case 0xA4: // ZP
-    operand = ZP(); LDY( operand ); CPU->T = 3; break;
+    operand = ZP();   LDY( operand ); CPU->T = 3; break;
   case 0xB4: // ZPX
-    operand = ZPX(); LDY( operand ); CPU->T = 4; break;
+    operand = ZPX();  LDY( operand ); CPU->T = 4; break;
 
     // ####################### LSR #########################
   case 0x4E: // ABS
-	t1 = ABSw();
-    cpu_mem_write( LSR( cpu_mem_read(t1) ), t1 ); CPU->T = 6; break;
+	t1 = ABSw();  cpu_mem_write( LSR( cpu_mem_read(t1) ), t1 ); CPU->T = 6; break;
   case 0x5E: // ABSX
-	t1 = ABSXw();
-	cpu_mem_write( LSR( cpu_mem_read(t1) ), t1 ); CPU->T = 7;
+	t1 = ABSXw(); cpu_mem_write( LSR( cpu_mem_read(t1) ), t1 ); CPU->T = 7;
     break;
   case 0x4A: // ACC
     CPU->A = LSR( CPU->A ); CPU->T = 2; break;
@@ -491,34 +429,31 @@ void cpu_exec()
 
     // ######################### NOP #######################
   case 0xEA:
-    //printf("NOP!\n");
-    CPU->T = 2;
-    break;
+    CPU->T = 2; break;
 
     // ########################## ORA ######################
   case 0x0D: // ABS
-    operand = ABS(); ORA( operand ); CPU->T = 4; break;
+    operand = ABS();  ORA( operand ); CPU->T = 4; break;
   case 0x1D: // ABSX
-    operand = ABSX(); ORA( operand ); CPU->T = 4; break;
+    operand = ABSX(); ORA( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0x19: // ABSY
-    operand = ABSY(); ORA( operand ); CPU->T = 4; break;
+    operand = ABSY(); ORA( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0x09: // IMM
-   ORA( cpu_read() ); CPU->T = 2; break;
+   ORA( cpu_read() );                 CPU->T = 2; break;
   case 0x11: // INDY
-    operand = INDY(); ORA( operand ); CPU->T = 5; break;
+    operand = INDY(); ORA( operand ); CPU->T = 5 + CPU->page_boundary; break;
   case 0x01: // XIND
     operand = XIND(); ORA( operand ); CPU->T = 6; break;
   case 0x05: // ZP
-    operand = ZP(); ORA( operand ); CPU->T = 2; break;
+    operand = ZP();   ORA( operand ); CPU->T = 2; break;
   case 0x15: // ZPX
-    operand = ZPX(); ORA( operand ); CPU->T = 3; break;
+    operand = ZPX();  ORA( operand ); CPU->T = 3; break;
 
     // ######################### PHA #######################
   case 0x48: // IMP
 	cpu_mem_write( CPU->A, STACK + CPU->S );
     --CPU->S;
     CPU->T = 3;
-    //printf("PHA!\n");
     break;
 
     // ########################### PHP #####################
@@ -527,7 +462,6 @@ void cpu_exec()
     CPU->MEM[ STACK + CPU->S ] = cpu_join_flags();
     --CPU->S;
     CPU->T = 3;
-    //printf("PHP!\n");
     break;
 
     // ########################## PLA ######################
@@ -538,7 +472,6 @@ void cpu_exec()
     CPU->P.N = ((CPU->A & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->A == 0) ? 1 : 0;
     CPU->T = 4;
-    //printf("PLA!\n");
     break;
 
     // ########################## PLP ########################
@@ -548,16 +481,13 @@ void cpu_exec()
     ++CPU->S;
     cpu_split_flags( cpu_mem_read( STACK + CPU->S ) );
     CPU->T = 4;
-    //printf("PLP!\n");
     break;
 
     // ######################## ROL #######################
   case 0x2E: // ABS
-	t1 = ABSw();
-	cpu_mem_write( ROL( cpu_mem_read(t1) ), t1); CPU->T = 6; break;
+	t1 = ABSw();  cpu_mem_write( ROL( cpu_mem_read(t1) ), t1); CPU->T = 6; break;
   case 0x3E: // ABSX
-	t1 = ABSXw();
-	cpu_mem_write( ROL( cpu_mem_read(t1) ), t1);  CPU->T = 7; break;
+	t1 = ABSXw(); cpu_mem_write( ROL( cpu_mem_read(t1) ), t1);  CPU->T = 7; break;
   case 0x2A: // ACC
     CPU->A = ROL( CPU->A ); CPU->T = 2; break;
   case 0x26: // ZP
@@ -594,8 +524,6 @@ void cpu_exec()
 
     ++CPU->S;
     CPU->PC = CPU->PC | (cpu_mem_read( STACK + CPU->S ) << 8);
-    //printf("Pushed %x to PC! ", CPU->PC);
-    //printf("RTI!\n");
     CPU->T = 6;
     break;
 
@@ -606,126 +534,82 @@ void cpu_exec()
 
     ++CPU->S;
     CPU->PC = (CPU->PC | ( cpu_mem_read( STACK + CPU->S ) << 8 )) + 1;
-    //printf("RTS!\n");
     CPU->T = 6;
     break;
 
     // ####################### SBC ############################
   case 0xED: // ABS
-    operand = ABS(); SBC( operand ); CPU->T = 4; break;
+    operand = ABS();  SBC( operand ); CPU->T = 4; break;
   case 0xFD: // ABSX
-    operand = ABSX(); SBC( operand ); CPU->T = 4; break;
+    operand = ABSX(); SBC( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0xF9: // ABSY
-    operand = ABSY(); SBC( operand ); CPU->T = 4; break;
+    operand = ABSY(); SBC( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0xE9: // IMM
-    SBC( CPU->MEM[ CPU->PC++ ] ); CPU->T = 2; break;
+    SBC( CPU->MEM[ CPU->PC++ ] );     CPU->T = 2; break;
   case 0xF1: // INDY
-    operand = INDY(); SBC( operand ); CPU->T = 5; break;
+    operand = INDY(); SBC( operand ); CPU->T = 5 + CPU->page_boundary; break;
   case 0xE1: // XIND
     operand = XIND(); SBC( operand ); CPU->T = 6; break;
   case 0xE5: // ZP
-    operand = ZP(); SBC( operand ); CPU->T = 3; break;
+    operand = ZP();   SBC( operand ); CPU->T = 3; break;
   case 0xF5: // ZPX
-    operand = ZPX(); SBC( operand ); CPU->T = 4; break;
+    operand = ZPX();  SBC( operand ); CPU->T = 4; break;
 
     // ############################ SEC ########################
   case 0x38: // IMP
     CPU->P.C = 1;
-    //printf("SEC!\n");
     CPU->T = 2;
     break;
 
     // ############################ SED ########################
   case 0xF8: // IMP
     CPU->P.D = 1;
-    //printf("SED!\n");
     CPU->T = 2;
     break;
 
     // ############################ SEI #########################
   case 0x78:
     CPU->P.I = 1;
-    //printf("SEI!\n");
     CPU->T = 2;
     break;
 
     // ############################## STA ########################
   case 0x8D: // ABS
-	cpu_mem_write( CPU->A, ABSw() );
-    //printf("STA!");
-	CPU->T = 4;
-	break;
+	cpu_mem_write( CPU->A, ABSw() );   CPU->T = 4; break;
   case 0x9D: // ABSX
-	cpu_mem_write( CPU->A, ABSXw());
-    //printf("STA!\n");
-	CPU->T = 5;
-	break;
+	cpu_mem_write( CPU->A, ABSXw());   CPU->T = 5; break;
   case 0x99: // ABSY
-	cpu_mem_write( CPU->A, ABSYw() );
-    //printf("STA!\n");
-	CPU->T = 5;
-	break;
+	cpu_mem_write( CPU->A, ABSYw() );  CPU->T = 5; break;
   case 0x91: // INDY
-    cpu_mem_write( CPU->A,  INDYw() );
-    //printf("STA!\n");
-    CPU->T = 6;
-    break;
+    cpu_mem_write( CPU->A,  INDYw() ); CPU->T = 6; break;
   case 0x81: // XIND
-	cpu_mem_write( CPU->A, XINDw() );
-    //printf("STA!\n");
-    CPU->T = 6;
-    break;
+	cpu_mem_write( CPU->A, XINDw() );  CPU->T = 6; break;
   case 0x85: // ZP
-    CPU->MEM[ cpu_read() ] = CPU->A;
-    //printf("STA!\n");
-    CPU->T = 3;
-    break;
+    CPU->MEM[ cpu_read() ] = CPU->A;   CPU->T = 3; break;
   case 0x95: // ZPX
-    CPU->MEM[ ( cpu_read() + CPU->X) & 0xFF ] = CPU->A;
-    //printf("STA!\n");
-    CPU->T = 4;
-    break;
+    CPU->MEM[ ( cpu_read() + CPU->X) & 0xFF ] = CPU->A; CPU->T = 4; break;
 
     // ############################### STX ###########################
   case 0x8E: // ABS
-    cpu_mem_write( CPU->X, ABSw() );
-    //printf("STX!\n");
-    CPU->T = 4;
-    break;
+    cpu_mem_write( CPU->X, ABSw() ); CPU->T = 4; break;
   case 0x86: // ZP
-    CPU->MEM[ cpu_read() ] = CPU->X;
-    //printf("STX!\n");
-    CPU->T = 3;
-    break;
+    CPU->MEM[ cpu_read() ] = CPU->X; CPU->T = 3; break;
   case 0x96: // ZPY
-    CPU->MEM[ (cpu_read() + CPU->Y) & 0xFF ] = CPU->X;
-    //printf("STX!\n");
-    CPU->T = 4;
-    break;
+    CPU->MEM[ (cpu_read() + CPU->Y) & 0xFF ] = CPU->X; CPU->T = 4; break;
 
     // ############################ STY ################################
   case 0x8C: // ABS
-	cpu_mem_write( CPU->Y, ABSw() );
-    //printf("STY!\n");
-	CPU->T = 4;
-	break;
+	cpu_mem_write( CPU->Y, ABSw() ); CPU->T = 4; break;
   case 0x84: // ZP
-    CPU->MEM[ cpu_read() ] = CPU->Y;
-    //printf("STY!\n");
-    CPU->T = 3;
-    break;
+    CPU->MEM[ cpu_read() ] = CPU->Y; CPU->T = 3; break;
   case 0x94: // ZPX
-    CPU->MEM[ (cpu_read() + CPU->X) & 0xFF ] = CPU->Y;
-    //printf("STY!\n");
-    CPU->T = 4;
-    break;
+    CPU->MEM[ (cpu_read() + CPU->X) & 0xFF ] = CPU->Y; CPU->T = 4; break;
 
     // ########################## TAX #################################
   case 0xAA: // IMP
     CPU->X = CPU->A;
     CPU->P.N = ((CPU->X & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->X == 0) ? 1 : 0;
-    //printf("TAX!\n");
     CPU->T = 2;
     break;
 
@@ -734,7 +618,6 @@ void cpu_exec()
     CPU->Y = CPU->A;
     CPU->P.N = ((CPU->Y & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->Y == 0) ? 1 : 0;
-    //printf("TAY!\n");
     CPU->T = 2;
     break;
 
@@ -744,7 +627,6 @@ void cpu_exec()
     CPU->X = CPU->S;
     CPU->P.N = ((CPU->X & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->X == 0) ? 1 : 0;
-    //printf("TSX!\n");
     CPU->T = 2;
     break;
 
@@ -753,14 +635,12 @@ void cpu_exec()
     CPU->A = CPU->X;
     CPU->P.N = ((CPU->A & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->A == 0) ? 1 : 0;
-    //printf("TXA!\n");
     CPU->T = 2;
     break;
 
     // ############################# TXS ################################
   case 0x9A:
     CPU->S = CPU->X;
-    //printf("TXS!\n");
     CPU->T = 2;
     break;
 
@@ -770,7 +650,6 @@ void cpu_exec()
     CPU->A = CPU->Y;
     CPU->P.N = ((CPU->A & 0x80) > 0) ? 1 : 0;
     CPU->P.Z = (CPU->A == 0) ? 1 : 0;
-    //printf("TYA!\n");
     CPU->T = 2;
     break;
 
@@ -830,53 +709,41 @@ void print_opcode()
 	   printf("BCS!\n"); break;
 
 	 case 0xF0: // REL
-	   printf("BEQ!\n");
-	   break;
+	   printf("BEQ!\n"); break;
 
 	 case 0x30: // REL
-	   printf("BMI!\n");
-	   break;
+	   printf("BMI!\n"); break;
 
 	 case 0xD0: // REL
-	   printf("BNE!\n");
-	   break;
+	   printf("BNE!\n"); break;
 
 	 case 0x10: // REL
-	   printf("BPL!\n");
-	   break;
+	   printf("BPL!\n"); break;
 
 	 case 0x00: // IMP
-	   printf("BRK!\n");
-	   break;
+	   printf("BRK!\n"); break;
 
 	 case 0x50: // REL
-	   printf("BCV!\n");
-	   break;
+	   printf("BCV!\n"); break;
 
 	 case 0x70: // REL
-	   printf("BVS!\n");
-	   break;
+	   printf("BVS!\n"); break;
 
 	 case 0x18: // IMP
-	   printf("CLC!\n");
-	   break;
+	   printf("CLC!\n"); break;
 
 	 case 0xD8: // IMP
-	   printf("CLD!\n");
-	   break;
+	   printf("CLD!\n"); break;
 
 	 case 0x58: // IMP
-	   printf("CLI!\n");
-	   break;
+	   printf("CLI!\n"); break;
 
 	 case 0xB8: // IMP
-	   printf("CLV!\n");
-	   break;
+	   printf("CLV!\n"); break;
 
 	 case 0x24: // ZP
 	 case 0x2C: // ABS
-	   printf("BIT!\n");
-	   break;
+	   printf("BIT!\n"); break;
 
 	 case 0xCD: // ABS
 	 case 0xDD: // ABSX
@@ -926,20 +793,17 @@ void print_opcode()
 		 printf("INC!\n"); break;
 
 	 case 0xE8:
-	   printf("INX!\n");
-	   break;
+	   printf("INX!\n"); break;
 
 	 case 0xC8:
-	   printf("INY!\n");
-	   break;
+	   printf("INY!\n"); break;
 
 	 case 0x4C: // ABS
 	 case 0x6C: // IND
 		 printf("JMP!\n"); break;
 
 	 case 0x20: // ABS
-	   printf("JSR!\n");
-	   break;
+	   printf("JSR!\n"); break;
 
 	 case 0xAD: // ABS
 	 case 0xBD: // ABSX
@@ -973,8 +837,7 @@ void print_opcode()
 		 printf("LSR!\n"); break;
 
 	 case 0xEA:
-	   printf("NOP!\n");
-		 break;
+	   printf("NOP!\n"); break;
 
 	 case 0x0D: // ABS
 	 case 0x1D: // ABSX
@@ -987,20 +850,16 @@ void print_opcode()
 		 printf("ORA!\n"); break;
 
 	 case 0x48: // IMP
-	   printf("PHA!\n");
-	   break;
+	   printf("PHA!\n"); break;
 
 	 case 0x08: // IMP
-	   printf("PHP!\n");
-	   break;
+	   printf("PHP!\n"); break;
 
 	 case 0x68: // IMP
-	   printf("PLA!\n");
-	   break;
+	   printf("PLA!\n"); break;
 
 	 case 0x28:
-	   printf("PLP!\n");
-	   break;
+	   printf("PLP!\n"); break;
 
 	 case 0x2E: // ABS
 	 case 0x3E: // ABSX
@@ -1125,7 +984,18 @@ inline void cpu_reset()
 	CPU->IRQ = 0;
 	CPU->T = 0;
 	CPU->instructions = 0;
+	CPU->page_boundary = 0;
 	CPU->exit = 0;
+
+	// Initialize temp variables
+	t1 = 0;
+	t2 = 0;
+	l = 0;
+	h = 0;
+	temp = 0;
+	temp2 = 0;
+	temp_addr = 0;
+	pb = 0;
 
 	// Finally, push RESET vector to PC to start Reset handler (AKA when you 'turn on' the NES)
 	CPU->PC = CPU->MEM[RESL] | (CPU->MEM[ RESH ] << 8);
@@ -1305,6 +1175,12 @@ inline void cpu_split_flags( byte operand )
     return;
 }
 
+// Checks if instruction would cause a page boundary
+inline byte rel_page_boundary( word carry )
+{
+    pb = ((CPU->PC & 0xFF) + (signed char) carry); // Check if adding the operand to lower byte of PC causes a carry
+    return (( pb < 0 ) || (pb > 0xFF)) ? 1 : 0;
+}
 // ======================= Addressing Modes (reading) ===================================
 inline byte ABS()	// Absolute read
 {
@@ -1319,6 +1195,10 @@ inline byte ABSX() // Absolute X read
   t1 = (cpu_read());
   t2 = (cpu_read()) << 8;
   word temp_addr = t1 | t2;  // Grab lower and upper byte
+
+  if( ((temp_addr & 0xFF) + CPU->X) > 0xFF ) CPU->page_boundary = 1; // Only used for some opcodes!! Adds extra clock cycles
+  else CPU->page_boundary = 0;
+
   return cpu_mem_read( (temp_addr + CPU->X) & 0xFFFF ); // Wrap occurs if base + X > 0xFFFF
 }
 
@@ -1327,6 +1207,10 @@ inline byte ABSY() // Absolute Y read
   l = (cpu_read());
   h = (cpu_read()) << 8;
   t1 = l | h;  // Grab lower and upper byte
+
+  if( ((temp_addr & 0xFF) + CPU->X) > 0xFF ) CPU->page_boundary = 1; // Only used for some opcodes!! Adds extra clock cycles
+  else CPU->page_boundary = 0;
+
   return cpu_mem_read( ( t1 + CPU->Y) & 0xFFFF );
 }
 
@@ -1345,6 +1229,9 @@ inline byte INDY() // [ Indirect ], Y read
   l = cpu_mem_read( t1 ); 					 // Fetch lower byte of address
   h = cpu_mem_read( (t1 + 1) && 0xFF ) << 8; // Fetch higher byte of address
   t2 = ((l | h) + CPU->Y) & 0xFFFF;			 // Calculate address with Y register, taking into account adress wrapping.
+
+  if( ((temp_addr & 0xFF) + CPU->X) > 0xFF ) CPU->page_boundary = 1; // Only used for some opcodes!! Adds extra clock cycles
+  else CPU->page_boundary = 0;
 
   return cpu_mem_read( t2 );  				 // Get contents of address
 }

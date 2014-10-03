@@ -58,8 +58,6 @@ byte mirroring;         // Horizontal, vertical, or four-screen mirroring.
 
 char* file_name;		// The name of the ROM
 
-word t1, t2, l , h;			// Temp values
-
 //alt_up_char_buffer_dev* char_buffer;		// Character Buffer for Altera
 alt_up_pixel_buffer_dma_dev* pix_buffer;    // Color/pixel Buffer for Altera
 
@@ -96,10 +94,12 @@ typedef struct // 6502 Microprocessor Struct
   byte X;	// Index X
   byte Y;	// Index Y
 
-  word AB;	// Address Bus.
-  byte DB;	// Data Bus.
+  word AB;	// Address Bus. [UNUSED]
+  byte DB;	// Data Bus.    [UNUSED]
   byte IR;	// Instruction Register
   byte T;   // The number of clock cycles the last instruction took
+
+  byte* MEM;  // CPU Memory
 
   unsigned int instructions; // Total instruction count for the CPU
 
@@ -108,10 +108,11 @@ typedef struct // 6502 Microprocessor Struct
   byte RES; // Reset interrupt. Set on emulator shut on / reset.
   byte IRQ; // Interrupt Request. Set by program.
 
-  byte* MEM;  // CPU Memory
+  byte page_boundary;	// Used in calculating cycle count. This is when CPU takes an extra
+  	  	  	  	  	  	// cycle to do a carry when adding an address.
 
+  byte exit;	// Debug variable used for throwing an error at invalid opcodes.
 
-  byte exit;	// Debug variable
   /* CPU Memory Map Mirroring:
 	RAM: [0, 0x1FFF]
 	The address lines 0x800-0x1FFF is mirrored with 0-0x7FF,
@@ -149,6 +150,12 @@ typedef struct // 6502 Microprocessor Struct
 
 RP2A03* CPU;			 // CPU Struct Instance
 
+word t1, t2, l , h;		 // Temp values:
+word temp;				 // Used in cpu_exec()
+word temp2;				 // "
+word temp_addr;			 // "
+byte operand;			 // "
+signed short pb;		 // "
 
 // --------------------------------------------------------------------------------------//
 // --------------------------------------------------------------------------------------//
@@ -172,21 +179,20 @@ typedef struct
 {
 	byte* MEM;	// PPU Memory Map
 
-	byte* OAM;	// PPU Object Attribute Memory, AKA Sprite Table
+	byte* OAM;				// PPU Object Attribute Memory, AKA Sprite Table
 	byte* sprite_buffer;	// Stores data of sprites during rendering.
 
-	short scanline;
-	short cycle;
-
+	short scanline;			// The current scanline of the PPU, for rendering.
+	short cycle;			// The current cycle of the PPU for a certain scanline.
 	short last_cycle;		// Either 340 or 341 based on odd_frame.
 	byte odd_frame; 		// Used for scanline -1. If we're displaying an odd_frame, use 340 cycles instead of 341.
 
-	byte ppu_addwrite;	// Determines if we're on 1st or 2nd write to $2005/2006
-	byte ppu_scrollwrite; // Same, but for $2005
+	word ppuaddr;			// Register variable for 16 bit address in $2006
+	word ppuscroll; 		// Register variable for 16 bit address in $2005
 
-	word tempa;		// Temp variable for holding 16 bits
-	word ppuaddr;	// Temp variable for 16 bit address in $2006
-	word ppuscroll; // Temp variable for 16 bit address in $2005
+	byte ppu_addwrite;		// Determines if we're on 1st or 2nd write to $2005/2006
+	byte ppu_scrollwrite;   // Same, but for $2005
+	word tempa;				// Temp variable for holding 16 bits
 
 	/*
 	One byte of the name table holds the address of one tile (8x8 pixel),
