@@ -3,27 +3,6 @@
 #include "ppu.h"
 
 
-void prg_test()
-{
-	cpu_status();
-	int i = 0;
-	int c = 0;
-	for(i = 0; i < 0x8000; ++i)
-	{
-	//printf("%x ", CPU->MEM[PRG + i ]);
-	if(c >= 50)
-	{
-		//printf("\n");
-		c = 0;
-	}
-	else
-		++c;
-	}
-	//printf("\n\n");
-
-	return;
-}
-
 /*
    Function: decode_instruction( byte )
    Description: Reads in byte to decode into corresponding
@@ -798,6 +777,7 @@ void cpu_exec()
 
   default:
     printf("Invalid opcode!\n");
+    CPU->exit = 1;
     cpu_status();
     ppu_status();
     printf("Disassembly: \n");
@@ -810,6 +790,316 @@ void cpu_exec()
   }
 
   return;
+}
+
+
+void print_opcode()
+{
+	 switch(CPU->IR)
+	 {
+	 case 0x6D: // ABS
+	 case 0x7D: // ABSX
+	 case 0x79: // ABSY
+	 case 0x69: // IMM
+	 case 0x71: // INDY
+	 case 0x61: // XIND
+	 case 0x65: // ZP
+	 case 0x75: // ZPX
+		 printf("ADC!\n"); break;
+
+	 case 0x2D: // ABS
+	 case 0x3D: // ABSX
+	 case 0x39: // ABSY
+	 case 0x29: // IMM
+	 case 0x31: // INDY
+	 case 0x21: // XIND
+	 case 0x25: // ZP
+	 case 0x35: // ZPX
+		 printf("AND!\n"); break;
+	 case 0x0E: // ABS
+	 case 0x1E: // ABSX
+	 case 0x0A: // ACC
+	 case 0x06: // ZP
+	 case 0x16: // ZPX
+		 printf("ASL!\n"); break;
+
+	 case 0x90: // REL
+		printf("BCC!\n"); break;
+
+	 case 0xB0: // REL
+	   printf("BCS!\n"); break;
+
+	 case 0xF0: // REL
+	   printf("BEQ!\n");
+	   break;
+
+	 case 0x30: // REL
+	   printf("BMI!\n");
+	   break;
+
+	 case 0xD0: // REL
+	   printf("BNE!\n");
+	   break;
+
+	 case 0x10: // REL
+	   printf("BPL!\n");
+	   break;
+
+	 case 0x00: // IMP
+	   printf("BRK!\n");
+	   break;
+
+	 case 0x50: // REL
+	   printf("BCV!\n");
+	   break;
+
+	 case 0x70: // REL
+	   printf("BVS!\n");
+	   break;
+
+	 case 0x18: // IMP
+	   printf("CLC!\n");
+	   break;
+
+	 case 0xD8: // IMP
+	   printf("CLD!\n");
+	   break;
+
+	 case 0x58: // IMP
+	   printf("CLI!\n");
+	   break;
+
+	 case 0xB8: // IMP
+	   printf("CLV!\n");
+	   break;
+
+	 case 0x24: // ZP
+	 case 0x2C: // ABS
+	   printf("BIT!\n");
+	   break;
+
+	 case 0xCD: // ABS
+	 case 0xDD: // ABSX
+	 case 0xD9: // ABSY
+	 case 0xC9: // IMM
+	 case 0xD1: // INDY
+	 case 0xC1: // XIND
+	 case 0xC5: // ZP
+	 case 0xD5: // ZPX
+		printf("CMP!\n"); break;
+	 case 0xEC: // ABS
+	 case 0xE0: // IMM
+	 case 0xE4: // ZP
+		 printf("CPX!\n"); break;
+	 case 0xCC: // ABS
+	 case 0xC0: // IMM
+	 case 0xC4: // ZP
+		 printf("CPY!\n"); break;
+	 case 0xCE: // ABS
+	 case 0xDE: // ABSX
+	 case 0xC6: // ZP
+	 case 0xD6: // ZPX
+		 printf("DEC!\n"); break;
+
+	 case 0xCA: // IMP
+	   printf("DEX!\n");
+	   break;
+
+	 case 0x88:
+	   printf("DEY!\n");
+	   break;
+
+	 case 0x4D: // ABS
+	 case 0x5D: // ABSX
+	 case 0x59: // ABSY
+	 case 0x49: // IMM
+	 case 0x51: // INDY
+	 case 0x41: // XIND
+	 case 0x45: // ZP
+	 case 0x55: // ZPX
+		 printf("EOR!\n"); break;
+
+	 case 0xEE: // ABS
+	 case 0xFE: // ABSX
+	 case 0xE6: // ZP
+	 case 0xF6: // ZPX
+		 printf("INC!\n"); break;
+
+	 case 0xE8:
+	   printf("INX!\n");
+	   break;
+
+	 case 0xC8:
+	   printf("INY!\n");
+	   break;
+
+	 case 0x4C: // ABS
+	 case 0x6C: // IND
+		 printf("JMP!\n"); break;
+
+	 case 0x20: // ABS
+	   printf("JSR!\n");
+	   break;
+
+	 case 0xAD: // ABS
+	 case 0xBD: // ABSX
+	 case 0xB9: // ABSY
+	 case 0xA9: // IMM
+	 case 0xB1: // INDY
+	 case 0xA1: // XIND
+	 case 0xA5: // ZP
+	 case 0xB5: // ZPX
+		 printf("LDA!\n"); break;
+
+	 case 0xAE: // ABS
+	 case 0xBE: // ABSY
+	 case 0xA2: // IMM
+	 case 0xA6: // ZP
+	 case 0xB6: // ZPY
+		 printf("LDX!\n"); break;
+
+	 case 0xAC: // ABS
+	 case 0xBC: // ABSX
+	 case 0xA0: // IMM
+	 case 0xA4: // ZP
+	 case 0xB4: // ZPX
+		 printf("LDY!\n"); break;
+
+	 case 0x4E: // ABS
+	 case 0x5E: // ABSX
+	 case 0x4A: // ACC
+	 case 0x46: // ZP
+	 case 0x56: // ZPX
+		 printf("LSR!\n"); break;
+
+	 case 0xEA:
+	   printf("NOP!\n");
+		 break;
+
+	 case 0x0D: // ABS
+	 case 0x1D: // ABSX
+	 case 0x19: // ABSY
+	 case 0x09: // IMM
+	 case 0x11: // INDY
+	 case 0x01: // XIND
+	 case 0x05: // ZP
+	 case 0x15: // ZPX
+		 printf("ORA!\n"); break;
+
+	 case 0x48: // IMP
+	   printf("PHA!\n");
+	   break;
+
+	 case 0x08: // IMP
+	   printf("PHP!\n");
+	   break;
+
+	 case 0x68: // IMP
+	   printf("PLA!\n");
+	   break;
+
+	 case 0x28:
+	   printf("PLP!\n");
+	   break;
+
+	 case 0x2E: // ABS
+	 case 0x3E: // ABSX
+	 case 0x2A: // ACC
+	 case 0x26: // ZP
+	 case 0x36: // ZPX
+		 printf("ROL!\n"); break;
+
+	 case 0x6E: // ABS
+	 case 0x7E: // ABSX
+	 case 0x6A: // ACC
+	 case 0x66: // ZP
+	 case 0x76: // ZPX
+		 printf("ROR!\n"); break;
+
+	 case 0x40:
+	   printf("RTI!\n");
+	   break;
+
+	 case 0x60:
+	   printf("RTS!\n");
+	   break;
+
+	 case 0xED: // ABS
+	 case 0xFD: // ABSX
+	 case 0xF9: // ABSY
+	 case 0xE9: // IMM
+	 case 0xF1: // INDY
+	 case 0xE1: // XIND
+	 case 0xE5: // ZP
+	 case 0xF5: // ZPX
+		 printf("SBC!\n"); break;
+
+	 case 0x38: // IMP
+	   printf("SEC!\n");
+	   break;
+
+	 case 0xF8: // IMP
+	   printf("SED!\n");
+	   break;
+
+	 case 0x78:
+		printf("SEI!\n");
+		 break;
+
+	 case 0x8D: // ABS
+	 case 0x9D: // ABSX
+	 case 0x99: // ABSY
+	 case 0x91: // INDY
+	 case 0x81: // XIND
+	 case 0x85: // ZP
+	 case 0x95: // ZPX
+	   printf("STA!\n");
+	   break;
+
+	 case 0x8E: // ABS
+	 case 0x86: // ZP
+	 case 0x96: // ZPY
+	   printf("STX!\n");
+	   break;
+
+	 case 0x8C: // ABS
+	 case 0x84: // ZP
+	 case 0x94: // ZPX
+	   printf("STY!\n");
+	   break;
+
+	 case 0xAA: // IMP
+	   printf("TAX!\n");
+	   break;
+
+	 case 0xA8: // IMP
+	   printf("TAY!\n");
+	   break;
+
+
+	 case 0xBA:
+	   printf("TSX!\n");
+	   break;
+
+	 case 0x8A:
+	   printf("TXA!\n");
+	   break;
+
+	 case 0x9A:
+	   printf("TXS!\n");
+	   break;
+
+	 case 0x98:
+	   printf("TYA!\n");
+	   break;
+
+
+	 default:
+	   printf("-");
+	   break;
+	 }
+
+	 return;
 }
 
 // CPU Reset interrupt handler
@@ -835,6 +1125,7 @@ inline void cpu_reset()
 	CPU->IRQ = 0;
 	CPU->T = 0;
 	CPU->instructions = 0;
+	CPU->exit = 0;
 
 	// Finally, push RESET vector to PC to start Reset handler (AKA when you 'turn on' the NES)
 	CPU->PC = CPU->MEM[RESL] | (CPU->MEM[ RESH ] << 8);
@@ -913,22 +1204,6 @@ inline void cpu_init()
   return;
 }
 
-// Prints out the following: (left-right)
-// 	   Accumulator, X, Y, Processor Flags, Stack Pointer, T/Cycle Count, Instruction Register,
-//	   and PPU Registers. Note IR is for the instruction to be execute for the next CPU tick.
-inline void cpu_status()
-{
-  printf("A: %x X: %x Y: %x P: %x%x1%x %x%x%x%x SP: %x PC: %x T: %x IR: %x ",
-	 CPU->A, CPU->X, CPU->Y, CPU->P.N, CPU->P.V, CPU->P.B, CPU->P.D, CPU->P.I,
-	 CPU->P.Z, CPU->P.C, CPU->S, CPU->PC, CPU->T, CPU->IR);
-
-  printf("\n$2000: %x $2001: %x  $2002: %x $2003: %x $2004: %x  $2005: %x  $2006: %x  $2007: %x PPUADDR: %x INS: %d",
-  	  CPU->MEM[0x2000], CPU->MEM[0x2001], CPU->MEM[0x2002], CPU->MEM[0x2003], CPU->MEM[0x2004],
-  	  CPU->MEM[0x2005], CPU->MEM[0x2006], CPU->MEM[0x2007], PPU->ppuaddr, CPU->instructions );
-  return;
-}
-
-
 // Read the contents of PC, then increment it */
 inline byte cpu_read()
 {
@@ -938,7 +1213,7 @@ inline byte cpu_read()
 // Read the contents of the address in CPU memory */
 inline byte cpu_mem_read( word addr )
 {
-	//printf(" $%x => ", addr);
+	//printf("\n$%x => ", addr);
 
 	// Addresses within $0800 - $1FFF are RAM mirrors
 	if( (addr > 0x07FF) && ( addr < 0x2000))
@@ -950,14 +1225,25 @@ inline byte cpu_mem_read( word addr )
 	// Addresses within $2008 - $4000 are PPU Register mirrors
 	else if( (addr > 0x2007) && ( addr < 0x4000) )
 	{
-		t1 = (CPU->MEM[ PPUREG + (addr & 0x07) ] );
-		//printf("%x ", t1);
-		return t1;
+		t1 = PPUREG + (addr & 0x07);
+
+		// TODO Make sure VBlank flag staying on will not affect anything
+		// Reads to $2002 clears the VBlank flag. THIS IS WRONG
+		//if( t1 == 0x2002 )
+			//PPUSTATUS &= 0x7F;
+
+		t2 = (CPU->MEM[ t1 ] );
+		//printf("%x ", t2);
+		return t2;
 	}
 
 	// Regular, non-mirrored memory read
 	else
 	{
+		// Reads to $2002 clears the VBlank flag. THIS IS WRONG
+		//if( addr == 0x2002 )
+			//PPUSTATUS &= 0x7F;
+
 		t1 = (CPU->MEM[ addr ]);
 		//printf("%x ", t1);
 		return t1;
@@ -967,7 +1253,7 @@ inline byte cpu_mem_read( word addr )
 // Write contents to address in CPU memory */
 inline void cpu_mem_write( byte data, word addr )
 {
-	//printf(" $%x <= %x ", addr, data);
+	//printf("\n$%x <= %x ", addr, data);
 
 	// Addresses within $0800 - $1FFF are RAM mirrors
 	if( (addr > 0x07FF) && ( addr < 0x2000) )
@@ -1135,7 +1421,6 @@ inline void ADC(byte operand) // Add w/ Carry
   CPU->P.N = (((CPU->A & 0x80)) > 0) ? 1 : 0;
   CPU->P.Z = (temp == 0) ? 1 : 0;
   CPU->A = temp & 0xFF;
-  //printf("ADC!\n");
   return;
 }
 
@@ -1145,7 +1430,6 @@ inline void AND(byte operand) // AND
   CPU->A = CPU->A & operand;
   CPU->P.N = (((CPU->A & 0x80)) > 0) ? 1 : 0;
   CPU->P.Z = (CPU->A == 0) ? 1 : 0;
-  //printf("AND!\n");
   return;
 }
 
@@ -1155,7 +1439,6 @@ inline byte ASL(byte operand) // Arithmetic Shift Left
   (operand) = ((operand) << 1) & 0xFE;
   CPU->P.N = (((operand) & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = ((operand) == 0) ? 1 : 0;
-  //printf("ASL!\n");
   return operand;
 }
 
@@ -1165,7 +1448,6 @@ inline void CMP( byte operand ) // Compare bits with A
   CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
   CPU->P.C = (CPU->A >= operand) ? 1 : 0;
   CPU->P.Z = (temp == 0) ? 1 : 0;
-  //printf("CMP!\n");
   return;
 }
 
@@ -1175,7 +1457,6 @@ inline void CPX( byte operand ) // Compare X
   CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
   CPU->P.C = (CPU->X >= operand) ? 1 : 0;
   CPU->P.Z = (temp == 0) ? 1 : 0;
-  //printf("CPX!\n");
   return;
 }
 
@@ -1185,7 +1466,6 @@ inline void CPY( byte operand ) // Compare Y
   CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
   CPU->P.C = (CPU->Y >= operand) ? 1 : 0;
   CPU->P.Z = (temp == 0) ? 1 : 0;
-  //printf("CPY!\n");
   return;
 }
 
@@ -1195,7 +1475,6 @@ inline byte DEC( byte operand ) // Decrement
   (operand) = ((operand)-1) & 0xFF;
   CPU->P.N = (operand) & 0x80;
   CPU->P.Z = ((operand) == 0) ? 1 : 0;
-  //printf("DEC!\n");
   return operand;
 }
 
@@ -1205,7 +1484,6 @@ inline byte INC( byte operand ) // Increment
   (operand) = ((operand)+1) & 0xFF;
   CPU->P.N = (((operand) & 0x80) > 0) ? 1 :0;
   CPU->P.Z = ((operand) == 0) ? 1 : 0;
-  //printf("INC!\n");
   return operand;
 }
 
@@ -1214,7 +1492,6 @@ inline void LDA( byte operand ) // Load into A
   CPU->A = operand;
   CPU->P.N = ((CPU->A & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = (CPU->A == 0) ? 1 :0;
-  //printf("LDA! With %x\n", operand);
   return;
 }
 
@@ -1223,7 +1500,6 @@ inline void LDX( byte operand ) // Load into X
   CPU->X = operand;
   CPU->P.N = ((CPU->X & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = (CPU->X == 0) ? 1 :0;
-  //printf("LDX!\n");
   return;
 }
 
@@ -1232,7 +1508,6 @@ inline void LDY( byte operand ) // Load into Y
   CPU->Y = operand;
   CPU->P.N = ((CPU->Y & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = (CPU->Y == 0) ? 1 :0;
-  //printf("LDY!\n");
   return;
 }
 
@@ -1242,7 +1517,6 @@ inline byte LSR( byte operand ) // Logical Shift Right
   CPU->P.C = (operand) & 0x01;
   (operand) = ((operand) >> 1) & 0x7F;
   CPU->P.Z = ((operand) == 0) ? 1 : 0;
-  //printf("LSR!\n");
   return operand;
 }
 
@@ -1251,7 +1525,6 @@ inline void ORA( byte operand ) // OR with A
   CPU->A = CPU->A | (operand);
   CPU->P.N = ((CPU->A & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = (CPU->A == 0 ) ? 1 : 0;
-  //printf("ORA!\n");
   return;
 }
 
@@ -1264,7 +1537,6 @@ inline byte ROL( byte operand ) // Rotate on Left
   CPU->P.C = (temp > 0) ? 1 : 0;
   CPU->P.Z = ((operand) == 0) ? 1 : 0;
   CPU->P.N = (((operand) & 0x80) > 0) ? 1 : 0;
-  //printf("ROL!\n");
   return operand;
 }
 
@@ -1275,7 +1547,7 @@ inline byte ROR( byte operand ) // Rotate on Right
   (operand) = (operand) | ((CPU->P.C) ? 0x80 : 0x00);
   CPU->P.C = temp;
   CPU->P.Z = ((operand) == 0) ? 1 : 0;
-  CPU->P.N = (((operand) & 0x80) > 0) ? 1 : 0;  //printf("ROR!\n");
+  CPU->P.N = (((operand) & 0x80) > 0) ? 1 : 0;
   return operand;
 }
 
@@ -1287,7 +1559,48 @@ inline void SBC( byte operand ) // Subtract with Carry
   CPU->P.N = (((byte)temp & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = (temp == 0 ) ? 1 : 0;
   CPU->A = (byte)temp & 0xFF;
-  //printf("SBC!\n");
   return;
+}
+
+
+// Prints out the following: (left-right)
+// 	   Accumulator, X, Y, Processor Flags, Stack Pointer, T/Cycle Count, Instruction Register,
+//	   and PPU Registers. Note IR is for the instruction to be execute for the next CPU tick.
+inline void cpu_status()
+{
+  printf("A: %x X: %x Y: %x P: %x%x1%x %x%x%x%x SP: %x PC: %x T: %x IR: %x ",
+	 CPU->A, CPU->X, CPU->Y, CPU->P.N, CPU->P.V, CPU->P.B, CPU->P.D, CPU->P.I,
+	 CPU->P.Z, CPU->P.C, CPU->S, CPU->PC, CPU->T, CPU->IR);
+
+  print_opcode();
+
+  printf("$2000: %x $2001: %x  $2002: %x $2003: %x $2004: %x  $2005: %x  $2006: %x  $2007: %x PPUADDR: %x INS: %d",
+  	  CPU->MEM[0x2000], CPU->MEM[0x2001], CPU->MEM[0x2002], CPU->MEM[0x2003], CPU->MEM[0x2004],
+  	  CPU->MEM[0x2005], CPU->MEM[0x2006], CPU->MEM[0x2007], PPU->ppuaddr, CPU->instructions );
+  return;
+}
+
+/*
+ * Outputs contents of PRG ROM
+ */
+void prg_test()
+{
+	cpu_status();
+	int i = 0;
+	int c = 0;
+	for(i = 0; i < 0x8000; ++i)
+	{
+	//printf("%x ", CPU->MEM[PRG + i ]);
+	if(c >= 50)
+	{
+		//printf("\n");
+		c = 0;
+	}
+	else
+		++c;
+	}
+	//printf("\n\n");
+
+	return;
 }
 

@@ -110,6 +110,8 @@ typedef struct // 6502 Microprocessor Struct
 
   byte* MEM;  // CPU Memory
 
+
+  byte exit;	// Debug variable
   /* CPU Memory Map Mirroring:
 	RAM: [0, 0x1FFF]
 	The address lines 0x800-0x1FFF is mirrored with 0-0x7FF,

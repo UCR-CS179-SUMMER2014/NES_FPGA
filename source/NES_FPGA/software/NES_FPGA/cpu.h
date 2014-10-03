@@ -3,10 +3,6 @@
 
 #include "NES.h"
 
-/*
- * Outputs contents of PRG ROM
- */
-void prg_test();
 
 /* Function:    cpu_reset
    Description: Initializes CPU */
@@ -52,10 +48,11 @@ inline void cpu_split_flags( byte operand );
 void cpu_exec();
 
 
-
 /* CPU Setup/Debug Functions */
-inline void cpu_status();
-
+void print_opcode();		// Print opcode name
+inline void cpu_status();	// Outputs CPU registers
+inline void cpu_stack();	// Outputs contents of CPU stack
+void prg_test();			// Outputs contents of PRG rom
 
 
 /* Instruction functions separated by Adressing Mode and Uniqueness */

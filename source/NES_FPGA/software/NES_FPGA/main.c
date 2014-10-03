@@ -3,13 +3,13 @@
 #include "vga.h"
 #include "sdcard.h"
 
-//#define DEBUG        // Enables methods for debugging functions
+#define DEBUG        // Enables methods for debugging functions
 
 int main()
 {
   // Declare appropriate arrays and variables
-  file_name = "DK.nes";
-  //char* en = (char*) malloc(sizeof(char)*2); // Used for stepping into CPU one instruction at a time
+  file_name = "pinball.nes";
+  char* en = (char*) malloc(sizeof(char)*2); // Used for stepping into CPU one instruction at a time
 
   // Initialize CPU
   cpu_init();
@@ -36,7 +36,7 @@ int main()
 
 		// Display contents of PRG_ROM
 		#ifdef DEBUG
-			prg_test();
+			//prg_test();
 		#endif
 
 		printf("RES! Into: %x\n", CPU->PC);
@@ -48,47 +48,46 @@ int main()
 	else if((CPU->IRQ == 1) && (CPU->P.I == 0)) // Interrupt Request
 		cpu_irq();
 
-	CPU->IR = CPU->MEM[ CPU->PC ];	// Load next instruction
+	// CPU exits only if we run into an invalid opcode
+	if(CPU->exit)
+		return 0;
 
-	if( CPU->instructions > 34000 )//PPU->scanline > 238)
+	// Fetch next instruction
+	CPU->IR = CPU->MEM[ CPU->PC++ ]; // Note PC is incremented for the next byte
+
+	// Run NES for 500,000 instructions
+	/*if(CPU->instructions > 500000)
 	{
-		/*int i = 0;
+		printf("\n\n");
+
+		// Print out Name Table tiles
+		int i = 0;
 		for(i = 0x2000; i < 0x23C0; ++i)
 		{
 			if( (i - 0x2000) % 30 == 0 && (i - 0x2000) > 1)
 				printf("\n");
 			printf("%x ", PPU->MEM[i]);
-		}*/
+		}
 
-		if( CPU->instructions > 34025 )
-			return 0;
+		return 0;
+	}*/
 
+	++CPU->instructions; 	// Increment instruction count
+
+	/*if(PPU->scanline > 500 && PPU->cycle < 30)
+	{
 		cpu_status();
 		ppu_status();
-		printf("\n\n");
-	}
 
-	// Increment instruction count
-	++CPU->instructions;
+		// Wait until enter is pressed to step-through
+		fgets(en, 2, stdin);
+	}*/
 
-	++CPU->PC;	  // Increment PC
 	cpu_exec();   // Tick CPU (Execute Instruction)
-	ppu_exec();
+	ppu_exec();	  // Tick PPU
 
-	// Wait until enter is pressed to step-through
-	//fgets(en, 2, stdin);
+
   }
-
-  /*
-  int i = 0;
-	for(i = 0; i < 0x3F; ++i)
-	{
-		PPU->MEM[0x23C0 + i] = i;
-	}
-
-	//vga_test();
-	render_to_screen();
-	printf("Done rendering!\n");*/
 
   // Free up allocated memory in heap
   free( CPU->MEM );
