@@ -8,7 +8,7 @@
 int main()
 {
   // Declare appropriate arrays and variables
-  file_name = "Pinball.nes";
+  file_name = "DK.nes";
   char* en = (char*) malloc(sizeof(char)*2); // Used for stepping into CPU one instruction at a time
 
   // Initialize CPU
@@ -49,6 +49,12 @@ int main()
 		}
 	 */
 
+	/*if( PPU->ppuaddr >= 0x2300 && PPU->ppuaddr <= 0x23C0)
+	{
+		cpu_status();
+		ppu_status();
+		printf("\n\n");
+	}*/
 
 	/*if(PPU->scanline > 240)
 	{
@@ -59,10 +65,27 @@ int main()
 		fgets(en, 2, stdin);
 	}*/
 
+	if( CPU->IR == 0x40 /*CPU->instructions > 94560 && CPU->instructions < 94570*/)
+	{
+		cpu_status();
+		ppu_status();
+
+		// Output stack
+		printf("\nSTACK: ");
+		int i = 0;
+		for(i = 0xFF - CPU->S; i > 0; --i)
+		{
+			printf("%x ", CPU->MEM[ STACK + CPU->S + i ]);
+		}
+
+		printf("\n\n");
+	}
+
 	cpu_exec();   			// Tick CPU (Execute Instruction)
 	ppu_exec();	  			// Tick PPU (Fetch tile data and render pixels)
 	++CPU->instructions; 	// Increment instruction count
   }
+
 
   // Free up allocated memory in heap
   free( CPU->MEM );

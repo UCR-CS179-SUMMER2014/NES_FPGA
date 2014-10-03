@@ -110,6 +110,7 @@ inline void write_ppu_reg( byte data, word addr )
 	}
 	else if( addr == 0x2005) // PPUSCROLL
 	{
+		// TODO Fix PPUSCROLL writes
 		// We're on the first write
 		if(PPU->ppu_scrollwrite == 0)
 		{
@@ -124,7 +125,6 @@ inline void write_ppu_reg( byte data, word addr )
 			PPU->ppu_scrollwrite = 0;
 		}
 	}
-	// TODO: FIX PPUADDR WRITES OMFG
 	else if( addr == 0x2006 ) // PPUADDR
 	{
 		//printf("\n\nWriting %x to $2006\n\n", data);
@@ -217,7 +217,7 @@ void ppu_exec()
 				// NMI gets generated if bit 7 of $2000 is set.
 				CPU->NMI = (PPUCTRL & 0x80) ? 1 : 0;
 			}
-			else if( PPU->scanline == 260 )
+			else if( PPU->scanline >= 261)
 			{
 				PPU->scanline = -1;
 			}
@@ -383,20 +383,20 @@ void draw_tile(int x, int y, word ADDR_START )
 
 
 			if(PPU->ATTRIBUTE_TABLE_INFO[temp_tile].TL == 1)
-				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & attribute_byte << 2;
+				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & ( attribute_byte << 2 );
 			else if(PPU->ATTRIBUTE_TABLE_INFO[temp_tile].TR == 1)
-				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & attribute_byte;
+				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & ( attribute_byte );
 			else if(PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BL == 1)
-				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & attribute_byte >> 2;
+				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & ( attribute_byte >> 2 );
 			else if(PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BR == 1)
-				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & attribute_byte >> 4;
+				tmp_color = PPU->ATTRIBUTE_TABLE_INFO[temp_tile].BIT & ( attribute_byte >> 4 );
 
 			//printf("	tmp_color %x\n", tmp_color);
 
 			colors = (color_bit1 | ( color_bit2 << 1));
 			//printf("	colors %d\n", colors);
 			//By now Colors should have the 4bit color to be look on the palette
-			colors |= tmp_color;
+			//colors |= tmp_color;
 			//printf("	colors %x\n", colors);
 
 			//obtain byte from background pallete
@@ -451,7 +451,7 @@ void render_to_screen()
 
 		//NMTA = PPU->MEM[NAMETABLE_0 + tile];//get name table address
 
-		ADDR_START = 16 * PPU->MEM[NAMETABLE_0 + tile] + (PPUCTRL & 0x10) ? 0x1000 : 0x0000;
+		ADDR_START = 16 * PPU->MEM[NAMETABLE_0 + tile] + 0x1000;
 		NMTA = PPU->MEM[ADDR_START ];
 
 		//ADDR_START = pattern_lookout(NMTA); //Gets the the address from pattern table in hex
