@@ -157,7 +157,8 @@ void cpu_exec()
   case 0x00: // IMP
     /* Simulate Interrupt ReQuest (IRQ)
        Note: Do we increment PC at first? */
-    ++CPU->PC; // This matters because we're saving PC in Stack
+    ++CPU->PC; // Apparently BRK has a padding byte, so skip it.
+    		   // This matters because we're saving PC in Stack
     cpu_mem_write( CPU->PC & 0xFF, STACK + CPU->S );
     --CPU->S;
 
@@ -167,7 +168,7 @@ void cpu_exec()
     cpu_mem_write( cpu_join_flags(), STACK + CPU->S );
     --CPU->S;
 
-    CPU->PC = (CPU->MEM[0xFFFE]) | (CPU->MEM[0xFFFF] << 8);
+    CPU->PC = (CPU->MEM[ IRQL ]) | (CPU->MEM[ IRQH ] << 8);
     CPU->T = 7;
     break;
 
@@ -1022,8 +1023,10 @@ inline void cpu_reset()
 // CPU Non-maskable Interrupt handler
 inline void cpu_nmi()
 {
-	// Throw away next opcodes
-	++CPU->PC; ++CPU->PC;
+	// TODO: Confirm we throw away 2 bytes
+	// Throw away next 2 bytes. 1 has already been read during opcode fetch.
+	//++CPU->PC; ++CPU->PC; NO! PC incrementing is suppressed for IRQ/NMI!
+
 	CPU->P.B = 0;
 
 	// Push PC onto Stack
@@ -1054,7 +1057,8 @@ inline void cpu_irq()
 	//		 game to disable IRQ themselves. Else, IRQ will continue
 	//		 to be called.
 	// Throw away next opcodes
-	++CPU->PC; ++CPU->PC;
+	// TODO: Confirm we throw away 2 bytes
+	//++CPU->PC;
 	CPU->P.B = 0;
 
 	// Push PC onto Stack

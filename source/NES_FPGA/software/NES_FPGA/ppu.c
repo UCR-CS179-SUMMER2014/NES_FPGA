@@ -451,7 +451,7 @@ void render_to_screen()
 
 		//NMTA = PPU->MEM[NAMETABLE_0 + tile];//get name table address
 
-		ADDR_START = 16 * PPU->MEM[NAMETABLE_0 + tile] + 0x1000;
+		ADDR_START = 16 * PPU->MEM[NAMETABLE_0 + tile];// + 0x1000;
 		NMTA = PPU->MEM[ADDR_START ];
 
 		//ADDR_START = pattern_lookout(NMTA); //Gets the the address from pattern table in hex
