@@ -57,10 +57,12 @@ byte mapper;	        // Type of NES cart mapper
 byte mirroring;         // Horizontal, vertical, or four-screen mirroring.
 
 char* file_name;		// The name of the ROM
+char *data;
+short int file_handle;
 
 //alt_up_char_buffer_dev* char_buffer;		// Character Buffer for Altera
 alt_up_pixel_buffer_dma_dev* pix_buffer;    // Color/pixel Buffer for Altera
-
+alt_up_sd_card_dev *sd_card_dev;			// SD Card file handle
 
 // --------------------------------------------------------------------------------------//
 // --------------------------------------------------------------------------------------//
@@ -179,6 +181,8 @@ typedef struct
 {
 	byte* MEM;	// PPU Memory Map
 
+	int* BUFFER;
+
 	byte* OAM;				// PPU Object Attribute Memory, AKA Sprite Table
 	byte* sprite_buffer;	// Stores data of sprites during rendering.
 
@@ -188,13 +192,13 @@ typedef struct
 	byte odd_frame; 		// Used for scanline -1. If we're displaying an odd_frame, use 340 cycles instead of 341.
 
 	word ppuaddr;			// Register variable for 16 bit address in $2006
-	word ppuaddr_temp;		// This overwrites ppuaddr once both upper and lower byte of $2006 is written.
-
 	word ppuscroll; 		// Register variable for 16 bit address in $2005
-	word ppuscroll_temp;		// This overwrites ppuaddr once both upper and lower byte of $2006 is written.
 
-	byte ppu_addwrite;		// Determines if we're on 1st or 2nd write to $2005/2006
-	byte ppu_scrollwrite;   // Same, but for $2005
+	word ppuaddr_temp;		// This overwrites ppuaddr once both upper and lower byte of $2006 is written.
+	word ppuscroll_temp;	// This overwrites ppuaddr once both upper and lower byte of $2006 is written.
+
+	byte read_buffer;		// Read buffer used for reading in $2002. Note: Only gets updated AFTER the read.
+	byte ppu_latch;			// Determines if we're on 1st or 2nd write to $2005 and 2006 (it's shared)
 	word tempa;				// Temp variable for holding 16 bits
 
 	/*

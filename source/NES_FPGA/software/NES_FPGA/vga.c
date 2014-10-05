@@ -6,6 +6,17 @@
  */
 #include "vga.h"
 
+int toVGA(int in)
+{
+	int color;
+	int R = (in & 0xFF0000) >> 14;
+	int G = (in & 0x00FF00) >> 6;
+	int B = (in & 0x0000FF) << 2;
+	color = (R << 20) | (G << 10) | (B);
+
+	return color;
+}
+
 void vga_init()
 {
 	pix_buffer = alt_up_pixel_buffer_dma_open_dev("/dev/Pixel_Buffer_DMA");		// Same with Pixel Buffer
@@ -19,7 +30,7 @@ void vga_init()
 	//pix_buffer->x_resolution = 300;
 	//pix_buffer->y_resolution = 260;
 	alt_up_pixel_buffer_dma_clear_screen( pix_buffer, 0 );
-	alt_up_pixel_buffer_dma_draw_box ( pix_buffer, 0, 0, 640, 480, 0xFFFFFFFF, 0);
+	alt_up_pixel_buffer_dma_draw_box ( pix_buffer, 0, 0, 640, 480, toVGA(0xFFFFFF), 1);
 }
 
 void vga_test()

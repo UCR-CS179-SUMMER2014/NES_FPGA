@@ -5,6 +5,7 @@
 #include "vga.h"
 
 inline void ppu_status();						   // Display PPU Status
+inline byte read_ppu_reg( word addr ); // Used for $2004/$2005
 inline void write_ppu_reg( byte data, word addr ); // Used for $2004/$2005
 
 inline void ppu_init();
@@ -21,8 +22,9 @@ void ppu_exec();
 void draw_tile(int x, int y, word ADDR_START );
 
 
-
-
+void draw_tile2(int x, int y, word ADDR_START, word attribute, byte number );
+void nametable_display(byte number);
+void nametable_viewer();
 
 
 

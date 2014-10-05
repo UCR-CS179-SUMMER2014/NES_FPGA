@@ -685,7 +685,7 @@ void print_opcode()
 	 case 0x61: // XIND
 	 case 0x65: // ZP
 	 case 0x75: // ZPX
-		 printf("ADC!\n"); break;
+		 printf( "ADC!\n"); break;
 
 	 case 0x2D: // ABS
 	 case 0x3D: // ABSX
@@ -1023,7 +1023,6 @@ inline void cpu_reset()
 // CPU Non-maskable Interrupt handler
 inline void cpu_nmi()
 {
-	// TODO: Confirm we throw away 2 bytes
 	// Throw away next 2 bytes. 1 has already been read during opcode fetch.
 	//++CPU->PC; ++CPU->PC; NO! PC incrementing is suppressed for IRQ/NMI!
 
@@ -1056,9 +1055,6 @@ inline void cpu_irq()
 	// Note: Similar process to NMI, except that it's up to the
 	//		 game to disable IRQ themselves. Else, IRQ will continue
 	//		 to be called.
-	// Throw away next opcodes
-	// TODO: Confirm we throw away 2 bytes
-	//++CPU->PC;
 	CPU->P.B = 0;
 
 	// Push PC onto Stack
@@ -1116,14 +1112,13 @@ inline byte cpu_mem_read( word addr )
 	// Addresses within $2008 - $4000 are PPU Register mirrors
 	else if( (addr > 0x2007) && ( addr < 0x4000) )
 	{
-		t1 = PPUREG + (addr & 0x07);
+		t1 = PPUREG + (addr & 0x07); // Get base address
 
-		// TODO Make sure VBlank flag staying on will not affect anything
-		// Reads to $2002 clears the VBlank flag. THIS IS WRONG
-		//if( t1 == 0x2002 )
-			//PPUSTATUS &= 0x7F;
+		if( t1 == 0x2002 || t1 == 0x2004 || t1 == 0x2007) // PPU Register reads
+			t1 = read_ppu_reg( addr );
+		else
+			t2 = (CPU->MEM[ t1 ]);
 
-		t2 = (CPU->MEM[ t1 ] );
 		//printf("%x ", t2);
 		return t2;
 	}
@@ -1131,11 +1126,11 @@ inline byte cpu_mem_read( word addr )
 	// Regular, non-mirrored memory read
 	else
 	{
-		// Reads to $2002 clears the VBlank flag. THIS IS WRONG
-		//if( addr == 0x2002 )
-			//PPUSTATUS &= 0x7F;
+		if( addr == 0x2002 || addr == 0x2004 || addr == 0x2007) // PPU Register reads
+			t1 = read_ppu_reg( addr );
+		else
+			t1 = (CPU->MEM[ addr ]);
 
-		t1 = (CPU->MEM[ addr ]);
 		//printf("%x ", t1);
 		return t1;
 	}
@@ -1144,7 +1139,9 @@ inline byte cpu_mem_read( word addr )
 // Write contents to address in CPU memory */
 inline void cpu_mem_write( byte data, word addr )
 {
-	//printf("\n$%x <= %x ", addr, data);
+	// Check to see if palette table is being populated
+	//if( PPU->MEM[ 0x3F00] > 0 )
+		//printf("$%x <= %x \n\n", addr, data);
 
 	// Addresses within $0800 - $1FFF are RAM mirrors
 	if( (addr > 0x07FF) && ( addr < 0x2000) )
@@ -1344,7 +1341,7 @@ inline void AND(byte operand) // AND
 
 inline byte ASL(byte operand) // Arithmetic Shift Left
 {
-  CPU->P.C = (operand) & 0x80;
+  CPU->P.C = (((operand) & 0x80) > 0 ) ? 1 : 0;
   (operand) = ((operand) << 1) & 0xFE;
   CPU->P.N = (((operand) & 0x80) > 0) ? 1 : 0;
   CPU->P.Z = ((operand) == 0) ? 1 : 0;
@@ -1382,7 +1379,7 @@ inline void CPY( byte operand ) // Compare Y
 inline byte DEC( byte operand ) // Decrement
 {
   (operand) = ((operand)-1) & 0xFF;
-  CPU->P.N = (operand) & 0x80;
+  CPU->P.N = ((operand) & 0x80) ? 1 : 0;
   CPU->P.Z = ((operand) == 0) ? 1 : 0;
   return operand;
 }
@@ -1483,7 +1480,7 @@ inline void cpu_status()
 
   print_opcode();
 
-  printf("$2000: %x $2001: %x  $2002: %x $2003: %x $2004: %x  $2005: %x  $2006: %x  $2007: %x PPUADDR: %x INS: %d",
+  printf("$2000: %x $2001: %x  $2002: %x $2003: %x $2004: %x  $2005: %x  $2006: %x  $2007: %x PPUADDR: %x INS: %d ",
   	  CPU->MEM[0x2000], CPU->MEM[0x2001], CPU->MEM[0x2002], CPU->MEM[0x2003], CPU->MEM[0x2004],
   	  CPU->MEM[0x2005], CPU->MEM[0x2006], CPU->MEM[0x2007], PPU->ppuaddr, CPU->instructions );
   return;

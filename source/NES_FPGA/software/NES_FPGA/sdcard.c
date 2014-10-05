@@ -5,7 +5,7 @@ void load_rom()
 	int sd_fileh;
 
 	// This functions links the verilog modules with C
-	alt_up_sd_card_dev *sd_card_dev = alt_up_sd_card_open_dev(ALTERA_UP_SD_CARD_AVALON_INTERFACE_0_NAME);
+	sd_card_dev = alt_up_sd_card_open_dev(ALTERA_UP_SD_CARD_AVALON_INTERFACE_0_NAME);
 
 	// Checks if it was able to obtain the address of the SD Card Socket
 	if(sd_card_dev == 0)

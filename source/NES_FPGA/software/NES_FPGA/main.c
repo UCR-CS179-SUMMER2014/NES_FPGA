@@ -5,10 +5,12 @@
 
 #define DEBUG        // Enables methods for debugging functions
 
+inline void write_card();	// Writes debug info to SD card
+
 int main()
 {
   // Declare appropriate arrays and variables
-  file_name = "Pinball.nes";
+  file_name = "DK.nes";
   //char* en = (char*) malloc(sizeof(char)*2); // Used for stepping into CPU one instruction at a time
 
   // Initialize CPU
@@ -23,7 +25,8 @@ int main()
   load_rom();
 
   // VGA controller test for character and pixel buffer
-  //vga_test();
+  vga_test();
+
 
   // Start NES execution
   while(1)
@@ -38,22 +41,18 @@ int main()
 	// Fetch next instruction
 	CPU->IR = CPU->MEM[ CPU->PC ]; // Note PC is incremented for the next byte
 
-	/*if( CPU->PC == 0xF4F3 )
+	// Test to see if palette table is being populated
+	/*if( PPU->MEM[ 0x3F00] > 0 )
 	{
 		cpu_status();
 		ppu_status();
-
-		// Output stack
-		printf("\nSTACK: ");
-		int i = 0;
-		for(i = 0xFF - CPU->S; i > 0; --i)
-		{
-			printf("%x ", CPU->MEM[ STACK + CPU->S + i ]);
-		}
-
-		printf("\n\n");
+		printf("$3F00: %x\n\n", PPU->MEM[ 0x3F00 ]  );
 	}*/
 
+	// Display debug info
+	//cpu_status();
+	//ppu_status();
+	//printf("\n\n");
 
 	++CPU->PC;				// Increment PC after fetching opcode byte.
 	cpu_exec();   			// Tick CPU (Execute Instruction)
@@ -71,15 +70,43 @@ int main()
 }
 
 
-/*
-	// Print out Name Table tiles
-	int i = 0;
-	for(i = 0x2000; i < 0x23C0; ++i)
-	{
-		if( (i - 0x2000) % 30 == 0 && (i - 0x2000) > 1)
-			printf("\n");
-		printf("%x ", PPU->MEM[i]);
-	}
- */
+char* i;
+inline void write_card()
+{
+  sprintf(data, "A: %x X: %x Y: %x P: %x%x1%x %x%x%x%x SP: %x PC: %x T: %x IR: %x ",
+	 CPU->A, CPU->X, CPU->Y, CPU->P.N, CPU->P.V, CPU->P.B, CPU->P.D, CPU->P.I,
+	 CPU->P.Z, CPU->P.C, CPU->S, CPU->PC, CPU->T, CPU->IR);
+
+  for(i = data; *i != '\0'; ++i)
+	  alt_up_sd_card_write( file_handle, *i );
+
+  print_opcode();
+
+  for(i = data; *i != '\0'; ++i)
+	  alt_up_sd_card_write( file_handle, *i );
+
+  sprintf(data, "$2000: %x $2001: %x  $2002: %x $2003: %x $2004: %x  $2005: %x  $2006: %x  $2007: %x PPUADDR: %x INS: %d \n\n ",
+  	  CPU->MEM[0x2000], CPU->MEM[0x2001], CPU->MEM[0x2002], CPU->MEM[0x2003], CPU->MEM[0x2004],
+  	  CPU->MEM[0x2005], CPU->MEM[0x2006], CPU->MEM[0x2007], PPU->ppuaddr, CPU->instructions );
+
+  for(i = data; *i != '\0'; ++i)
+	  alt_up_sd_card_write( file_handle, *i );
+
+  return;
+}
+
+/*// Debug
+//file_handle = alt_up_sd_card_fopen( "log1.txt", 1 );
+
+
+
+
+if( CPU->instructions > 50000 )
+{
+	  alt_up_sd_card_fclose( file_handle );
+	  printf("Done writing to SD card...! Exiting...\n");
+	  return 0;
+}
+write_card();*/
 
 
