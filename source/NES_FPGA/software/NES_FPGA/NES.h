@@ -152,13 +152,6 @@ typedef struct // 6502 Microprocessor Struct
 
 RP2A03* CPU;			 // CPU Struct Instance
 
-word t1, t2, l , h;		 // Temp values:
-word temp;				 // Used in cpu_exec()
-word temp2;				 // "
-word temp_addr;			 // "
-byte operand;			 // "
-signed short pb;		 // "
-
 // --------------------------------------------------------------------------------------//
 // --------------------------------------------------------------------------------------//
 

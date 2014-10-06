@@ -73,6 +73,7 @@ int RGB[64] = {
 // Handles reads from special PPU registers.
 inline byte read_ppu_reg( word addr )
 {
+	byte t1;
 
 	// Reads to $2002 clears the VBlank flag, and the $2005/$2006 write latch.
 	if( addr == 0x2002 )
@@ -83,10 +84,24 @@ inline byte read_ppu_reg( word addr )
 
 		return t1;
 	}
+
+	// Reads to $2004 returns the contents of whatever address oamaddr has.
+	else if( addr == 0x2004)
+	{
+		// TODO: Confirm 2004 is correctly handled for reads
+		OAMDATA = PPU->OAM[ OAMADDR ];
+		return OAMDATA;
+	}
+
+	// Reads to $2007 returns the contents of whatever address ppuaddr has.
 	else if( addr == 0x2007 )
 	{
+		if( PPU->ppuaddr > 0x3FFF )
+			PPU->ppuaddr &= 0x3FFF; // $4000+ are mirrors of the whole memory map
+
 		// Caution: Reading from VRAM 0000h-3EFFh loads the desired value into a latch, and
-		// returns the OLD content of the latch to the CPU. After changing the address one should thus always issue a dummy read to flush the old content
+		// returns the OLD content of the latch to the CPU. After changing the address one should
+		// thus always issue a dummy read to flush the old content
 		if( PPU->ppuaddr < 0x3F00 )
 		{
 			t1 = PPU->read_buffer;	// Get the old content.
@@ -96,11 +111,33 @@ inline byte read_ppu_reg( word addr )
 			else
 				PPU->read_buffer = PPU->MEM[ PPU->ppuaddr ];	// Normal read
 
+			// Auto Increment ppuaddr depending on PPUCTRL bit 3
+			if( (VRAM_ADDR_INC) == 0) 
+				++PPU->ppuaddr;
+			else 
+				PPU->ppuaddr += 32;
+			
+			PPUDATA = t1;
+
 			return t1;
 		}
+		// Palette reads
 		else
 		{
-			t1 = PPU->MEM[ PPU->ppuaddr ];	// Normal read for palettes.
+			// What is copied to the delayed buffer is addr[ppu.reg[6] - 0x1000]
+			PPU->read_buffer = PPU->ppuaddr - 0x1000;
+			
+			// Actual palette data is returned
+			t1 = PPU->MEM[ PPU->ppuaddr & 0x3F1F ];	// Normal read for palettes.
+
+			// Auto Increment ppuaddr depending on PPUCTRL bit 3
+			if( (VRAM_ADDR_INC) == 0) 
+				++PPU->ppuaddr;
+			else 
+				PPU->ppuaddr += 32;
+			
+			PPUDATA = t1;
+
 			return t1;
 
 		}
@@ -122,6 +159,8 @@ inline void write_ppu_reg( byte data, word addr )
 	else if( addr == 0x2005) // PPUSCROLL
 	{
 		// TODO Fix PPUSCROLL writes
+		PPUSCROLL = data;
+
 		// We're on the first write
 		if(PPU->ppu_latch == 0)
 		{
@@ -160,19 +199,21 @@ inline void write_ppu_reg( byte data, word addr )
 		//printf("\n\nWriting %x to $2007\n\n", data);
 		PPUDATA = data;
 
+		if( PPU->ppuaddr > 0x3FFF )
+			PPU->ppuaddr &= 0x3FFF; // $4000+ are mirrors of the whole memory map
+
 		// Mirror handling
 		if( (PPU->ppuaddr >= 0x3000) && (PPU->ppuaddr <= 0x3EFF) )
 			PPU->MEM[ PPU->ppuaddr & 0x2FFF] = PPUDATA; // $3000-$3EFF are mirrors of $2000-$2EFF
 
 		else if( PPU->ppuaddr >= 0x3F20 && PPU->ppuaddr < 0x4000)
 			PPU->MEM[ PPU->ppuaddr & 0x3F1F] = PPUDATA; // $3F20-$3FFF are mirrors of $3F00-$3F1F
-
-		else if( PPU->ppuaddr > 0x3FFF )
-			PPU->MEM[ PPU->ppuaddr & 0x3FFF] = PPUDATA; // $4000+ are mirrors of the whole memory map
-
-		else
+			
+		// Regular addresses, name tables and pallete tables. Note $0000-$1FFF is static CHR rom for now, so we cannot modify it.
+		else if( PPU->ppuaddr > 0x1FFF && PPU->ppuaddr < 0x3F20 )
 			PPU->MEM[ PPU->ppuaddr ] = PPUDATA;
-		//Auto Incremenent ppuaddr depending on PPUCTRL bit 3
+			
+		// Auto Increment ppuaddr depending on PPUCTRL bit 3
 		if( (VRAM_ADDR_INC) == 0) ++PPU->ppuaddr;
 		else PPU->ppuaddr += 32;
 	}
@@ -233,9 +274,13 @@ void ppu_exec()
 				// PPU "finished" rendering.
 				//render_to_screen();
 				nametable_viewer();
+				//nametable_display(0);
 
 				// Now we're in Vblank time.
 				PPUSTATUS |= 0x80;
+
+				// PPPU "PC" gets reinitialized
+				PPU->ppuaddr = 0x2000;
 
 				// NMI gets generated if bit 7 of $2000 is set.
 				CPU->NMI = (PPUCTRL & 0x80) ? 1 : 0;
@@ -282,6 +327,7 @@ inline void ppu_init()
   PPU->tempa = 0;
   PPU->ppuaddr = 0;
   PPU->ppuscroll = 0;
+  PPU->read_buffer = 0;
 
   //this initializes the whole memory map to 0x00
   int i;
@@ -470,7 +516,7 @@ void render_to_screen()
 
 		//NMTA = PPU->MEM[NAMETABLE_0 + tile];//get name table address
 
-		ADDR_START = 16 * PPU->MEM[0x2000 + tile] + ((PPUCTRL & 0X10) ? 0x1000 : 0x0000);
+		ADDR_START = 16 * PPU->MEM[0x2000 + tile];// + ((PPUCTRL & 0X10) ? 0x1000 : 0x0000);
 		//NMTA = PPU->MEM[ADDR_START ];
 
 		//ADDR_START = pattern_lookout(NMTA); //Gets the the address from pattern table in hex
@@ -764,7 +810,7 @@ void draw_tile2(int x, int y, word ADDR_START, word attribute, byte number )
 			//tmp_color = 0x0000;
 
 			colors = (color_bit1 | ( color_bit2 << 1));
-			colors = (colors & 0x03) | tmp_color;
+			colors = (colors & 0x03); //| tmp_color;
 
 			//obtain byte from background pallete
 			byte sys_offset = PPU->MEM[BACKGROUND_PALETTE + colors];
@@ -812,7 +858,7 @@ void nametable_display(byte number)
 			if(number == 2 ) {nametable = NAMETABLE_2; attribute = ATTRIBUTE_TABLE_2;}
 			if(number == 3 ) {nametable = NAMETABLE_3; attribute = ATTRIBUTE_TABLE_3;}
 
-			ADDR_START = 16 * PPU->MEM[nametable + tile] + ((PPUCTRL & 0X10) ? 0X1000 : 0X0000);
+			ADDR_START = 16 * PPU->MEM[nametable + tile] + ((PPUCTRL & 0x10) ? 0x1000 : 0x0000);
 
 			draw_tile2( X_RENDER, Y_RENDER, ADDR_START, attribute, number);
 		}

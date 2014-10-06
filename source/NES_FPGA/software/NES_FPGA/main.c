@@ -10,7 +10,7 @@ inline void write_card();	// Writes debug info to SD card
 int main()
 {
   // Declare appropriate arrays and variables
-  file_name = "DK.nes";
+  file_name = "Pinball.nes";
   //char* en = (char*) malloc(sizeof(char)*2); // Used for stepping into CPU one instruction at a time
 
   // Initialize CPU
@@ -25,7 +25,7 @@ int main()
   load_rom();
 
   // VGA controller test for character and pixel buffer
-  vga_test();
+  //vga_test();
 
 
   // Start NES execution
@@ -42,12 +42,12 @@ int main()
 	CPU->IR = CPU->MEM[ CPU->PC ]; // Note PC is incremented for the next byte
 
 	// Test to see if palette table is being populated
-	/*if( PPU->MEM[ 0x3F00] > 0 )
+	if( CPU->PC == 0xE29D )
 	{
 		cpu_status();
 		ppu_status();
 		printf("$3F00: %x\n\n", PPU->MEM[ 0x3F00 ]  );
-	}*/
+	}
 
 	// Display debug info
 	//cpu_status();

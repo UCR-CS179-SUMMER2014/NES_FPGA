@@ -10,7 +10,13 @@
 */
 void cpu_exec()
 {
-  // Execute OPCODE. Note: BCD-related actions are ignored.
+	// temp variables
+	byte operand;
+	word l, h, t1;
+
+  // Basic flow is: - Fetch operand based on Addressing Mode,
+  //				- Execute instruction
+  //				- Load/Store Memory. Cycle counts are updated as well.
   switch(CPU->IR)
   {
     // ###################### ADC #########################
@@ -21,15 +27,15 @@ void cpu_exec()
   case 0x79: // ABSY
     operand = ABSY(); ADC( operand ); CPU->T = 4 + CPU->page_boundary; break;
   case 0x69: // IMM
-    operand = IMM();    ADC( operand ); CPU->T = 2; break;
+    operand = IMM();  ADC( operand ); CPU->T = 2; break;
   case 0x71: // INDY
-    operand = INDY();   ADC( operand ); CPU->T = 5 + CPU->page_boundary; break;
+    operand = INDY(); ADC( operand ); CPU->T = 5 + CPU->page_boundary; break;
   case 0x61: // XIND
-    operand = XIND();   ADC( operand ); CPU->T = 6; break;
+    operand = XIND(); ADC( operand ); CPU->T = 6; break;
   case 0x65: // ZP
-    operand = ZP();     ADC( operand ); CPU->T = 3; break;
+    operand = ZP();   ADC( operand ); CPU->T = 3; break;
   case 0x75: // ZPX
-    operand = ZPX();    ADC( operand ); CPU->T = 4; break;
+    operand = ZPX();  ADC( operand ); CPU->T = 4; break;
 
     // ###################### AND #########################
   case 0x2D: // ABS
@@ -51,7 +57,7 @@ void cpu_exec()
 
     // ###################### ASL #########################
   case 0x0E: // ABS
-	t1 = ABSw(); cpu_mem_write( ASL( cpu_mem_read(t1) ), t1 );  CPU->T = 6; break; // Perform ASL, and update it in memory.
+	t1 = ABSw();  cpu_mem_write( ASL( cpu_mem_read(t1) ), t1 );  CPU->T = 6; break; // Perform ASL, and update it in memory.
   case 0x1E: // ABSX
 	t1 = ABSXw(); cpu_mem_write( ASL( cpu_mem_read(t1) ), t1 ); CPU->T = 7; break;
   case 0x0A: // ACC
@@ -59,21 +65,20 @@ void cpu_exec()
   case 0x06: // ZP
 	t1 = cpu_read(); CPU->MEM[ t1 ] = ASL( CPU->MEM[ t1 ] ); CPU->T = 5; break;
   case 0x16: // ZPX
-	temp = (cpu_read() + CPU->X) & 0xFF; CPU->MEM[ temp ] = ASL( CPU->MEM[ temp ] ); CPU->T = 6; break;
+	t1 = (cpu_read() + CPU->X) & 0xFF; CPU->MEM[ t1 ] = ASL( CPU->MEM[ t1 ] ); CPU->T = 6; break;
 
 
     // ########################## BCC #####################
   case 0x90: // REL
     if(CPU->P.C == 0)
     {
-      t1 = CPU->MEM[CPU->PC] + 1;
-      CPU->PC += (signed char) t1;
-      CPU->T = 3 + rel_page_boundary( t1 );
+    	t1 = CPU->MEM[CPU->PC] + 1;
+    	CPU->PC += (signed char) t1;
+    	CPU->T = 3 + rel_page_boundary( t1 );
     }
     else
     {
-      ++CPU->PC;
-      CPU->T = 2;
+    	++CPU->PC; CPU->T = 2;
     }
     break;
 
@@ -81,15 +86,14 @@ void cpu_exec()
   case 0xB0: // REL
     if(CPU->P.C == 1)
     {
-      t1 = CPU->MEM[CPU->PC] + 1;
-      CPU->PC += (signed char) t1; // Added 1 because PC increments
-      CPU->T = 3 + rel_page_boundary( t1 );
+    	t1 = CPU->MEM[CPU->PC] + 1;
+    	CPU->PC += (signed char) t1; // Added 1 because PC increments
+    	CPU->T = 3 + rel_page_boundary( t1 );
     }
-     else
-     {
-      ++CPU->PC;
-      CPU->T = 2;
-     }
+    else
+    {
+    	++CPU->PC; CPU->T = 2;
+    }
     break;
 
     // ######################## BEQ #######################
@@ -102,8 +106,7 @@ void cpu_exec()
     }
     else
     {
-    	++CPU->PC;
-    	CPU->T = 2;
+    	++CPU->PC; CPU->T = 2;
     }
     break;
 
@@ -117,8 +120,7 @@ void cpu_exec()
     }
     else
     {
-      ++CPU->PC;
-      CPU->T = 2;
+    	++CPU->PC; CPU->T = 2;
     }
     break;
 
@@ -132,8 +134,7 @@ void cpu_exec()
     }
     else
     {
-    	++CPU->PC;
-    	CPU->T = 2;
+    	++CPU->PC; CPU->T = 2;
     }
     break;
 
@@ -147,16 +148,13 @@ void cpu_exec()
     }
     else
     {
-    	++CPU->PC;
-    	CPU->T = 2;
+    	++CPU->PC; CPU->T = 2;
     }
     break;
 
     // ######################### BRK ######################
-    // TODO: Confirm that we are storing the right value of PC onto Stack
   case 0x00: // IMP
-    /* Simulate Interrupt ReQuest (IRQ)
-       Note: Do we increment PC at first? */
+    /* Simulate Interrupt ReQuest (IRQ) */
     ++CPU->PC; // Apparently BRK has a padding byte, so skip it.
     		   // This matters because we're saving PC in Stack
     cpu_mem_write( CPU->PC & 0xFF, STACK + CPU->S );
@@ -176,13 +174,13 @@ void cpu_exec()
   case 0x50: // REL
     if(CPU->P.V == 0)
     {
-      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
-      CPU->T = 3;
+        t1 = CPU->MEM[CPU->PC] + 1;
+    	CPU->PC += (signed char) t1;
+    	CPU->T = 3 + rel_page_boundary( t1 );
     }
     else
     {
-      ++CPU->PC;
-      CPU->T = 2;
+    	++CPU->PC; CPU->T = 2;
     }
     break;
 
@@ -190,13 +188,13 @@ void cpu_exec()
   case 0x70: // REL
     if(CPU->P.V == 1)
     {
-      CPU->PC += (signed char)CPU->MEM[CPU->PC] + 1;
-      CPU->T = 3;
+        t1 = CPU->MEM[CPU->PC] + 1;
+    	CPU->PC += (signed char) t1;
+    	CPU->T = 3 + rel_page_boundary( t1 );
     }
     else
     {
-      ++CPU->PC;
-      CPU->T = 2;
+    	++CPU->PC; CPU->T = 2;
     }
     break;
 
@@ -218,18 +216,18 @@ void cpu_exec()
 
     // ######################### BIT ######################
   case 0x24: // ZP
-    temp = CPU->A & cpu_mem_read( cpu_read() );
-    CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
-    CPU->P.V = ((temp & 0x40) > 0) ? 1 : 0;
-    CPU->P.Z = (temp == 0) ? 1 : 0;
+    t1 = CPU->A & cpu_mem_read( cpu_read() );
+    CPU->P.N = ((t1 & 0x80) > 0) ? 1 : 0;
+    CPU->P.V = ((t1 & 0x40) > 0) ? 1 : 0;
+    CPU->P.Z = (t1 == 0) ? 1 : 0;
     CPU->T = 3;
     break;
   case 0x2C: // ABS
-	temp2 = ABS();
-    temp = CPU->A & temp2;
-    CPU->P.N = ((temp & 0x80) > 0) ? 1 : 0;
-    CPU->P.V = ((temp & 0x40) > 0) ? 1 : 0;
-    CPU->P.Z = (temp == 0) ? 1 : 0;
+	operand = ABS();
+    t1 = CPU->A & operand;
+    CPU->P.N = ((t1 & 0x80) > 0) ? 1 : 0;
+    CPU->P.V = ((t1 & 0x40) > 0) ? 1 : 0;
+    CPU->P.Z = (t1 == 0) ? 1 : 0;
     CPU->T = 4;
     break;
 
@@ -276,8 +274,8 @@ void cpu_exec()
 	t1 = cpu_read();
 	CPU->MEM[ t1 ] = DEC( CPU->MEM[ t1 ] ); CPU->T = 5; break;
   case 0xD6: // ZPX
-    temp = (cpu_read() + CPU->X) & 0xFF;
-    CPU->MEM[ temp ] = DEC( CPU->MEM[ temp] ); CPU->T = 6; break;
+    t1 = (cpu_read() + CPU->X) & 0xFF;
+    CPU->MEM[ t1 ] = DEC( CPU->MEM[ t1] ); CPU->T = 6; break;
 
     // ############################ DEX ###################
   case 0xCA: // IMP
@@ -309,9 +307,9 @@ void cpu_exec()
   case 0x41: // XIND
     CPU->A = CPU->A ^ XIND(); CPU->T = 6; break;
   case 0x45: // ZP
-    CPU->A = CPU->A ^ ZP(); CPU->T = 3; break;
+    CPU->A = CPU->A ^ ZP();   CPU->T = 3; break;
   case 0x55: // ZPX
-    CPU->A = CPU->A ^ ZPX(); CPU->T = 4; break;
+    CPU->A = CPU->A ^ ZPX();  CPU->T = 4; break;
 
     // ######################## INC #######################
   case 0xEE: // ABS
@@ -345,9 +343,9 @@ void cpu_exec()
   case 0x4C: // ABS
     CPU->PC = ABSw(); CPU->T = 3; break;
   case 0x6C: // IND
-    temp = cpu_read();	// Fetch operand byte
-    l = cpu_mem_read( temp ); // Fetch lower byte address
-    h = cpu_mem_read( (temp + 1) & 0xFF ) << 8;
+    t1 = cpu_read();	// Fetch operand byte
+    l = cpu_mem_read( t1 ); // Fetch lower byte address
+    h = cpu_mem_read( (t1 + 1) & 0xFF ) << 8;
     CPU->PC = cpu_mem_read( l | h );
     CPU->T = 5;
     break;
@@ -362,10 +360,10 @@ void cpu_exec()
 	l = cpu_read();				// Fetch lower byte address
 	h = (cpu_read()) << 8;		// Fetch higher byte address
 
-    temp_addr = CPU->PC - 1;  // The address to be pushed to Stack
-    cpu_mem_write( (temp_addr >> 8) & 0xFF, STACK + CPU->S); // Push PCh
+    t1 = CPU->PC - 1;  // The address to be pushed to Stack
+    cpu_mem_write( (t1 >> 8) & 0xFF, STACK + CPU->S); // Push PCh
     --CPU->S;
-    cpu_mem_write( (temp_addr & 0xFF), STACK + CPU->S);      // Push PCl
+    cpu_mem_write( (t1 & 0xFF), STACK + CPU->S);      // Push PCl
     --CPU->S;
     CPU->PC = l | h;
     CPU->T = 6;
@@ -1003,16 +1001,6 @@ inline void cpu_reset()
 	CPU->page_boundary = 0;
 	CPU->exit = 0;
 
-	// Initialize temp variables
-	t1 = 0;
-	t2 = 0;
-	l = 0;
-	h = 0;
-	temp = 0;
-	temp2 = 0;
-	temp_addr = 0;
-	pb = 0;
-
 	// Finally, push RESET vector to PC to start Reset handler (AKA when you 'turn on' the NES)
 	CPU->PC = CPU->MEM[RESL] | (CPU->MEM[ RESH ] << 8);
 
@@ -1100,45 +1088,50 @@ inline byte cpu_read()
 // Read the contents of the address in CPU memory */
 inline byte cpu_mem_read( word addr )
 {
+	byte data;
+	word temp;
+
 	//printf("\n$%x => ", addr);
 
 	// Addresses within $0800 - $1FFF are RAM mirrors
 	if( (addr > 0x07FF) && ( addr < 0x2000))
 	{
-		t1 = (CPU->MEM[ (addr & 0x07FF) ]);
-		//printf( "%x ", t1);
-		return t1;
+		data = (CPU->MEM[ (addr & 0x07FF) ]);
+		//printf( "%x ", data);
+		return data;
 	}
 	// Addresses within $2008 - $4000 are PPU Register mirrors
 	else if( (addr > 0x2007) && ( addr < 0x4000) )
 	{
-		t1 = PPUREG + (addr & 0x07); // Get base address
+		temp = PPUREG + (addr & 0x07); // Get base address
 
-		if( t1 == 0x2002 || t1 == 0x2004 || t1 == 0x2007) // PPU Register reads
-			t1 = read_ppu_reg( addr );
+		if( temp == 0x2002 || temp == 0x2004 || temp == 0x2007) // PPU Register reads
+			data = read_ppu_reg( addr );
 		else
-			t2 = (CPU->MEM[ t1 ]);
+			data = (CPU->MEM[ temp ]);
 
 		//printf("%x ", t2);
-		return t2;
+		return data;
 	}
 
 	// Regular, non-mirrored memory read
 	else
 	{
 		if( addr == 0x2002 || addr == 0x2004 || addr == 0x2007) // PPU Register reads
-			t1 = read_ppu_reg( addr );
+			data = read_ppu_reg( addr );
 		else
-			t1 = (CPU->MEM[ addr ]);
+			data = (CPU->MEM[ addr ]);
 
 		//printf("%x ", t1);
-		return t1;
+		return data;
 	}
 }
 
 // Write contents to address in CPU memory */
 inline void cpu_mem_write( byte data, word addr )
 {
+	word t1;
+
 	// Check to see if palette table is being populated
 	//if( PPU->MEM[ 0x3F00] > 0 )
 		//printf("$%x <= %x \n\n", addr, data);
@@ -1196,23 +1189,23 @@ inline void cpu_split_flags( byte operand )
 // Checks if instruction would cause a page boundary
 inline byte rel_page_boundary( word carry )
 {
-    pb = ((CPU->PC & 0xFF) + (signed char) carry); // Check if adding the operand to lower byte of PC causes a carry
+    byte pb = ((CPU->PC & 0xFF) + (signed char) carry); // Check if adding the operand to lower byte of PC causes a carry
     return (( pb < 0 ) || (pb > 0xFF)) ? 1 : 0;
 }
 
 // ======================= Addressing Modes (reading) ===================================
 inline byte ABS()	// Absolute read
 {
-  t1 = (cpu_read());
-  t2 = (cpu_read()) << 8;
+  word t1 = (cpu_read());
+  word t2 = (cpu_read()) << 8;
   word temp_addr = t1 | t2;  // Grab lower and upper byte
   return cpu_mem_read( temp_addr );
 }
 
 inline byte ABSX() // Absolute X read
 {
-  t1 = (cpu_read());
-  t2 = (cpu_read()) << 8;
+  word t1 = (cpu_read());
+  word t2 = (cpu_read()) << 8;
   word temp_addr = t1 | t2;  // Grab lower and upper byte
 
   if( ((temp_addr & 0xFF) + CPU->X) > 0xFF ) CPU->page_boundary = 1; // Only used for some opcodes!! Adds extra clock cycles
@@ -1223,11 +1216,11 @@ inline byte ABSX() // Absolute X read
 
 inline byte ABSY() // Absolute Y read
 {
-  l = (cpu_read());
-  h = (cpu_read()) << 8;
-  t1 = l | h;  // Grab lower and upper byte
+  word l = (cpu_read());
+  word h = (cpu_read()) << 8;
+  word t1 = l | h;  // Grab lower and upper byte
 
-  if( ((temp_addr & 0xFF) + CPU->X) > 0xFF ) CPU->page_boundary = 1; // Only used for some opcodes!! Adds extra clock cycles
+  if( ((t1 & 0xFF) + CPU->Y) > 0xFF ) CPU->page_boundary = 1; // Only used for some opcodes!! Adds extra clock cycles
   else CPU->page_boundary = 0;
 
   return cpu_mem_read( ( t1 + CPU->Y) & 0xFFFF );
@@ -1235,21 +1228,23 @@ inline byte ABSY() // Absolute Y read
 
 inline byte XIND() // [ Indirect, x ] read
 {
-  t1 = cpu_read();			// Fetch operand byte
-  l = cpu_mem_read( (t1 + CPU->X) & 0xFF );				// Fetch lower byte of address
-  h = cpu_mem_read( (t1 + 1 + CPU->X) & 0xFF ) << 8; 	// Fetch higher byte of address
+  word t1 = cpu_read();			// Fetch operand byte
+  word l = cpu_mem_read( (t1 + CPU->X) & 0xFF );				// Fetch lower byte of address
+  word h = cpu_mem_read( (t1 + 1 + CPU->X) & 0xFF ) << 8; 	// Fetch higher byte of address
 
   return cpu_mem_read( l | h );							// Get contents of address
 }
 
 inline byte INDY() // [ Indirect ], Y read
 {
-  t1 = cpu_read(); 		  					 // Fetch operand byte
-  l = cpu_mem_read( t1 ); 					 // Fetch lower byte of address
-  h = cpu_mem_read( (t1 + 1) && 0xFF ) << 8; // Fetch higher byte of address
-  t2 = ((l | h) + CPU->Y) & 0xFFFF;			 // Calculate address with Y register, taking into account adress wrapping.
+  word t1 = cpu_read(); 		  					 // Fetch operand byte
+  word l =  cpu_mem_read( t1 ); 					 // Fetch lower byte of address
+  word h =  cpu_mem_read( (t1 + 1) & 0xFF ) << 8;    // Fetch higher byte of address
+  word t2 = ((l | h) + CPU->Y) & 0xFFFF;			 // Calculate address with Y register, taking into account adress wrapping.
 
-  if( ((temp_addr & 0xFF) + CPU->X) > 0xFF ) CPU->page_boundary = 1; // Only used for some opcodes!! Adds extra clock cycles
+  printf("Contents of %x: %x", t2, cpu_mem_read( t2 ) );
+
+  if( (( (l | h) & 0xFF) + CPU->Y) > 0xFF ) CPU->page_boundary = 1; // Only used for some opcodes!! Adds extra clock cycles
   else CPU->page_boundary = 0;
 
   return cpu_mem_read( t2 );  				 // Get contents of address
@@ -1273,43 +1268,43 @@ inline byte ZPX() // Zeropage, X read. Note: Wrap-around occurs if +X > $00FF
 // ======================= Addressing Modes (writing) ===================================
 inline word ABSw() // Absolute write
 {
-  l = cpu_read();
-  h = cpu_read() << 8;
+  word l = cpu_read();
+  word h = cpu_read() << 8;
   return l | h;
 }
 
 inline word ABSXw() // Absolute X write
 {
-  t1 = (cpu_read());
-  t2 = (cpu_read()) << 8;
+  word t1 = (cpu_read());
+  word t2 = (cpu_read()) << 8;
   word temp_addr = t1 | t2;  // Grab lower and upper byte
   return (temp_addr + CPU->X) & 0xFFFF; // Wrap occurs if base + X > 0xFFFF
 }
 
 inline word ABSYw() // Absolute Y write
 {
-  l = (cpu_read());
-  h = (cpu_read()) << 8;
-  t1 = l | h;  // Grab lower and upper byte
+  word l = (cpu_read());
+  word h = (cpu_read()) << 8;
+  word t1 = l | h;  // Grab lower and upper byte
 
   return ( t1 + CPU->Y) & 0xFFFF;
 }
 
 inline word XINDw() // [ Indirect, x ] write
 {
-  t1 = cpu_read();			// Fetch operand byte
-  l = cpu_mem_read( (t1 + CPU->X) & 0xFF );				// Fetch lower byte of address
-  h = cpu_mem_read( (t1 + 1 + CPU->X) & 0xFF ) << 8; 	// Fetch higher byte of address
+  word t1 = cpu_read();			// Fetch operand byte
+  word l = cpu_mem_read( (t1 + CPU->X) & 0xFF );				// Fetch lower byte of address
+  word h = cpu_mem_read( (t1 + 1 + CPU->X) & 0xFF ) << 8; 	// Fetch higher byte of address
 
   return l | h ;
 }
 
 inline word INDYw() // [ Indirect ], Y write
 {
-  t1 = cpu_read(); 		  					 // Fetch operand byte
-  l = cpu_mem_read( t1 ); 					 // Fetch lower byte of address
-  h = cpu_mem_read( (t1 + 1) && 0xFF ) << 8; // Fetch higher byte of address
-  t2 = ((l | h) + CPU->Y) & 0xFFFF;			 // Calculate address with Y register, taking into account adress wrapping.
+  word t1 = cpu_read(); 		  					 // Fetch operand byte
+  word l = cpu_mem_read( t1 ); 					 // Fetch lower byte of address
+  word h = cpu_mem_read( (t1 + 1) && 0xFF ) << 8; // Fetch higher byte of address
+  word t2 = ((l | h) + CPU->Y) & 0xFFFF;			 // Calculate address with Y register, taking into account adress wrapping.
 
   return t2;
 }
