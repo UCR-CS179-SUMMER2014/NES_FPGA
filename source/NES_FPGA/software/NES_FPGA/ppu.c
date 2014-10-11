@@ -197,22 +197,51 @@ inline void write_ppu_reg( byte data, word addr )
 	else if( addr == 0x2007 ) // PPUDATA
 	{
 		//printf("\n\nWriting %x to $2007\n\n", data);
-		PPUDATA = data;
+		PPUDATA = 0x00; //data;  Noticed that in the emulator, $2007 stays 0x00;
 
 		if( PPU->ppuaddr > 0x3FFF )
+		{
+			printf(" entire ppu mirroring!\n ");
 			PPU->ppuaddr &= 0x3FFF; // $4000+ are mirrors of the whole memory map
+		}
 
-		// Mirror handling
-		if( (PPU->ppuaddr >= 0x3000) && (PPU->ppuaddr <= 0x3EFF) )
-			PPU->MEM[ PPU->ppuaddr & 0x2FFF] = PPUDATA; // $3000-$3EFF are mirrors of $2000-$2EFF
+		// Nametables.
+		else if( (PPU->ppuaddr > 0x1FFF) &&  (PPU->ppuaddr < 0x3F00) )
+		{
+			// Now we handle name table scroll mirroring
+			if( (mirroring & 0x09) == 1) // Vertical
+			{
+				if( PPU->ppuaddr < 0x2400 || ((PPU->ppuaddr >= 0x2400) && (PPU->ppuaddr <= 0x27FF)) )
+				{
+					PPU->MEM[ PPU->ppuaddr ] = data;
+					PPU->MEM[ PPU->ppuaddr + 0x800 ] = data;
+				}
+				else
+				{
+					PPU->MEM[ PPU->ppuaddr ] = data;
+					PPU->MEM[ PPU->ppuaddr - 0x800 ] = data;
+				}
 
-		else if( PPU->ppuaddr >= 0x3F20 && PPU->ppuaddr < 0x4000)
-			PPU->MEM[ PPU->ppuaddr & 0x3F1F] = PPUDATA; // $3F20-$3FFF are mirrors of $3F00-$3F1F
-			
-		// Regular addresses, name tables and pallete tables. Note $0000-$1FFF is static CHR rom for now, so we cannot modify it.
-		else if( PPU->ppuaddr > 0x1FFF && PPU->ppuaddr < 0x3F20 )
-			PPU->MEM[ PPU->ppuaddr ] = PPUDATA;
-			
+			}
+			else // Horizontal. $2000 = $2400
+			{
+				if( PPU->ppuaddr < 0x2400 || ((PPU->ppuaddr >= 0x2800) && (PPU->ppuaddr <= 0x2BFF)) )
+				{
+					PPU->MEM[ PPU->ppuaddr ] = data;
+					PPU->MEM[ PPU->ppuaddr + 0x400 ] = data;
+				}
+				else
+				{
+					PPU->MEM[ PPU->ppuaddr ] = data;
+					PPU->MEM[ PPU->ppuaddr - 0x400 ] = data;
+				}
+			}
+		}
+
+		// Palette tables
+		else if( PPU->ppuaddr >= 0x3F00 && PPU->ppuaddr < 0x4000 )
+			PPU->MEM[ PPU->ppuaddr & 0x3F1F ] = data; // Includes mirroring
+
 		// Auto Increment ppuaddr depending on PPUCTRL bit 3
 		if( (VRAM_ADDR_INC) == 0) ++PPU->ppuaddr;
 		else PPU->ppuaddr += 32;
@@ -273,8 +302,8 @@ void ppu_exec()
 			{
 				// PPU "finished" rendering.
 				//render_to_screen();
-				nametable_viewer();
-				//nametable_display(0);
+				//nametable_viewer();
+				nametable_display(0);
 
 				// Now we're in Vblank time.
 				PPUSTATUS |= 0x80;

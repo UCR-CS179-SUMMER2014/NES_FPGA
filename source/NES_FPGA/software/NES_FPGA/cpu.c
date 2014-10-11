@@ -990,8 +990,8 @@ inline void cpu_reset()
 	CPU->A = 0x00;
 	CPU->X = 0x00;
 	CPU->Y = 0x00;
-	CPU->AB = 0x0000;
-	CPU->DB = 0x00;
+	//CPU->AB = 0x0000;
+	//CPU->DB = 0x00;
 	CPU->IR = 0x00;
 	CPU->RES = 0;
 	CPU->NMI = 0;
@@ -1189,7 +1189,7 @@ inline void cpu_split_flags( byte operand )
 // Checks if instruction would cause a page boundary
 inline byte rel_page_boundary( word carry )
 {
-    byte pb = ((CPU->PC & 0xFF) + (signed char) carry); // Check if adding the operand to lower byte of PC causes a carry
+    signed short pb = ((CPU->PC & 0xFF) + (signed char) carry); // Check if adding the operand to lower byte of PC causes a carry
     return (( pb < 0 ) || (pb > 0xFF)) ? 1 : 0;
 }
 
@@ -1242,7 +1242,7 @@ inline byte INDY() // [ Indirect ], Y read
   word h =  cpu_mem_read( (t1 + 1) & 0xFF ) << 8;    // Fetch higher byte of address
   word t2 = ((l | h) + CPU->Y) & 0xFFFF;			 // Calculate address with Y register, taking into account adress wrapping.
 
-  printf("Contents of %x: %x", t2, cpu_mem_read( t2 ) );
+  //printf("Contents of %x: %x", t2, cpu_mem_read( t2 ) );
 
   if( (( (l | h) & 0xFF) + CPU->Y) > 0xFF ) CPU->page_boundary = 1; // Only used for some opcodes!! Adds extra clock cycles
   else CPU->page_boundary = 0;
@@ -1303,7 +1303,7 @@ inline word INDYw() // [ Indirect ], Y write
 {
   word t1 = cpu_read(); 		  					 // Fetch operand byte
   word l = cpu_mem_read( t1 ); 					 // Fetch lower byte of address
-  word h = cpu_mem_read( (t1 + 1) && 0xFF ) << 8; // Fetch higher byte of address
+  word h = cpu_mem_read( (t1 + 1) & 0xFF ) << 8; // Fetch higher byte of address
   word t2 = ((l | h) + CPU->Y) & 0xFFFF;			 // Calculate address with Y register, taking into account adress wrapping.
 
   return t2;

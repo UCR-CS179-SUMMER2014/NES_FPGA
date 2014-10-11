@@ -58,7 +58,6 @@ byte mirroring;         // Horizontal, vertical, or four-screen mirroring.
 
 char* file_name;		// The name of the ROM
 char *data;
-short int file_handle;
 
 //alt_up_char_buffer_dev* char_buffer;		// Character Buffer for Altera
 alt_up_pixel_buffer_dma_dev* pix_buffer;    // Color/pixel Buffer for Altera
@@ -96,8 +95,6 @@ typedef struct // 6502 Microprocessor Struct
   byte X;	// Index X
   byte Y;	// Index Y
 
-  word AB;	// Address Bus. [UNUSED]
-  byte DB;	// Data Bus.    [UNUSED]
   byte IR;	// Instruction Register
   byte T;   // The number of clock cycles the last instruction took
 

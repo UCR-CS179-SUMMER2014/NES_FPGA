@@ -30,7 +30,7 @@ void vga_init()
 	//pix_buffer->x_resolution = 300;
 	//pix_buffer->y_resolution = 260;
 	alt_up_pixel_buffer_dma_clear_screen( pix_buffer, 0 );
-	alt_up_pixel_buffer_dma_draw_box ( pix_buffer, 0, 0, 640, 480, toVGA(0xFFFFFF), 1);
+	alt_up_pixel_buffer_dma_draw_box ( pix_buffer, 0, 0, 640, 480, toVGA(0xFFFFFF), 0);
 }
 
 void vga_test()
