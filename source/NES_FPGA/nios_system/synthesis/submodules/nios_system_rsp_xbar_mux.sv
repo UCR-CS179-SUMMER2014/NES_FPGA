@@ -26,13 +26,13 @@
 // ------------------------------------------
 // Generation parameters:
 //   output_name:         nios_system_rsp_xbar_mux
-//   NUM_INPUTS:          4
-//   ARBITRATION_SHARES:  1 1 1 1
+//   NUM_INPUTS:          5
+//   ARBITRATION_SHARES:  1 1 1 1 1
 //   ARBITRATION_SCHEME   "no-arb"
 //   PIPELINE_ARB:        0
 //   PKT_TRANS_LOCK:      72 (arbitration locking enabled)
 //   ST_DATA_W:           105
-//   ST_CHANNEL_W:        7
+//   ST_CHANNEL_W:        8
 // ------------------------------------------
 
 module nios_system_rsp_xbar_mux
@@ -42,31 +42,38 @@ module nios_system_rsp_xbar_mux
     // ----------------------
     input                       sink0_valid,
     input [105-1   : 0]  sink0_data,
-    input [7-1: 0]  sink0_channel,
+    input [8-1: 0]  sink0_channel,
     input                       sink0_startofpacket,
     input                       sink0_endofpacket,
     output                      sink0_ready,
 
     input                       sink1_valid,
     input [105-1   : 0]  sink1_data,
-    input [7-1: 0]  sink1_channel,
+    input [8-1: 0]  sink1_channel,
     input                       sink1_startofpacket,
     input                       sink1_endofpacket,
     output                      sink1_ready,
 
     input                       sink2_valid,
     input [105-1   : 0]  sink2_data,
-    input [7-1: 0]  sink2_channel,
+    input [8-1: 0]  sink2_channel,
     input                       sink2_startofpacket,
     input                       sink2_endofpacket,
     output                      sink2_ready,
 
     input                       sink3_valid,
     input [105-1   : 0]  sink3_data,
-    input [7-1: 0]  sink3_channel,
+    input [8-1: 0]  sink3_channel,
     input                       sink3_startofpacket,
     input                       sink3_endofpacket,
     output                      sink3_ready,
+
+    input                       sink4_valid,
+    input [105-1   : 0]  sink4_data,
+    input [8-1: 0]  sink4_channel,
+    input                       sink4_startofpacket,
+    input                       sink4_endofpacket,
+    output                      sink4_ready,
 
 
     // ----------------------
@@ -74,7 +81,7 @@ module nios_system_rsp_xbar_mux
     // ----------------------
     output                      src_valid,
     output [105-1    : 0] src_data,
-    output [7-1 : 0] src_channel,
+    output [8-1 : 0] src_channel,
     output                      src_startofpacket,
     output                      src_endofpacket,
     input                       src_ready,
@@ -85,12 +92,12 @@ module nios_system_rsp_xbar_mux
     input clk,
     input reset
 );
-    localparam PAYLOAD_W        = 105 + 7 + 2;
-    localparam NUM_INPUTS       = 4;
+    localparam PAYLOAD_W        = 105 + 8 + 2;
+    localparam NUM_INPUTS       = 5;
     localparam SHARE_COUNTER_W  = 1;
     localparam PIPELINE_ARB     = 0;
     localparam ST_DATA_W        = 105;
-    localparam ST_CHANNEL_W     = 7;
+    localparam ST_CHANNEL_W     = 8;
     localparam PKT_TRANS_LOCK   = 72;
 
     // ------------------------------------------
@@ -110,11 +117,13 @@ module nios_system_rsp_xbar_mux
     wire [PAYLOAD_W - 1 : 0]  sink1_payload;
     wire [PAYLOAD_W - 1 : 0]  sink2_payload;
     wire [PAYLOAD_W - 1 : 0]  sink3_payload;
+    wire [PAYLOAD_W - 1 : 0]  sink4_payload;
 
     assign valid[0] = sink0_valid;
     assign valid[1] = sink1_valid;
     assign valid[2] = sink2_valid;
     assign valid[3] = sink3_valid;
+    assign valid[4] = sink4_valid;
 
 
     // ------------------------------------------
@@ -128,6 +137,7 @@ module nios_system_rsp_xbar_mux
       lock[1] = sink1_data[72];
       lock[2] = sink2_data[72];
       lock[3] = sink3_data[72];
+      lock[4] = sink4_data[72];
     end
 
     assign last_cycle = src_valid & src_ready & src_endofpacket & ~(|(lock & grant));
@@ -162,10 +172,12 @@ module nios_system_rsp_xbar_mux
     // 1      |      1       |  0
     // 2      |      1       |  0
     // 3      |      1       |  0
+    // 4      |      1       |  0
     wire [SHARE_COUNTER_W - 1 : 0] share_0 = 1'd0;
     wire [SHARE_COUNTER_W - 1 : 0] share_1 = 1'd0;
     wire [SHARE_COUNTER_W - 1 : 0] share_2 = 1'd0;
     wire [SHARE_COUNTER_W - 1 : 0] share_3 = 1'd0;
+    wire [SHARE_COUNTER_W - 1 : 0] share_4 = 1'd0;
 
     // ------------------------------------------
     // Choose the share value corresponding to the grant.
@@ -176,7 +188,8 @@ module nios_system_rsp_xbar_mux
             share_0 & { SHARE_COUNTER_W {next_grant[0]} } |
             share_1 & { SHARE_COUNTER_W {next_grant[1]} } |
             share_2 & { SHARE_COUNTER_W {next_grant[2]} } |
-            share_3 & { SHARE_COUNTER_W {next_grant[3]} };
+            share_3 & { SHARE_COUNTER_W {next_grant[3]} } |
+            share_4 & { SHARE_COUNTER_W {next_grant[4]} };
     end
 
     // ------------------------------------------
@@ -246,11 +259,14 @@ module nios_system_rsp_xbar_mux
 
     wire final_packet_3 = 1'b1;
 
+    wire final_packet_4 = 1'b1;
+
 
     // ------------------------------------------
     // Concatenate all final_packet signals (wire or reg) into a handy vector.
     // ------------------------------------------
     wire [NUM_INPUTS - 1 : 0] final_packet = {
+        final_packet_4,
         final_packet_3,
         final_packet_2,
         final_packet_1,
@@ -339,6 +355,7 @@ module nios_system_rsp_xbar_mux
     assign sink1_ready = src_ready && grant[1];
     assign sink2_ready = src_ready && grant[2];
     assign sink3_ready = src_ready && grant[3];
+    assign sink4_ready = src_ready && grant[4];
 
     assign src_valid = |(grant & valid);
 
@@ -347,7 +364,8 @@ module nios_system_rsp_xbar_mux
             sink0_payload & {PAYLOAD_W {grant[0]} } |
             sink1_payload & {PAYLOAD_W {grant[1]} } |
             sink2_payload & {PAYLOAD_W {grant[2]} } |
-            sink3_payload & {PAYLOAD_W {grant[3]} };
+            sink3_payload & {PAYLOAD_W {grant[3]} } |
+            sink4_payload & {PAYLOAD_W {grant[4]} };
     end
 
     // ------------------------------------------
@@ -362,6 +380,8 @@ module nios_system_rsp_xbar_mux
         sink2_startofpacket,sink2_endofpacket};
     assign sink3_payload = {sink3_channel,sink3_data,
         sink3_startofpacket,sink3_endofpacket};
+    assign sink4_payload = {sink4_channel,sink4_data,
+        sink4_startofpacket,sink4_endofpacket};
 
     assign {src_channel,src_data,src_startofpacket,src_endofpacket} = src_payload;
 

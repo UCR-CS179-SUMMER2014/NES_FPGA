@@ -200,6 +200,7 @@ snes_controller  CONTROLLER1(
 	  .altera_up_sd_card_avalon_interface_0_conduit_end_b_SD_dat   (SD_DAT[0]),   //                                                 .b_SD_dat
 	  .altera_up_sd_card_avalon_interface_0_conduit_end_b_SD_dat3  (SD_DAT[3]),  //                                                 .b_SD_dat3
 	  .altera_up_sd_card_avalon_interface_0_conduit_end_o_SD_clock (SD_CLK), //                                                 .o_SD_clock
-     .clock_signals_sdram_clk_clk                                 (DRAM_CLK)
+     .clock_signals_sdram_clk_clk                                 (DRAM_CLK),
+     .controller1_external_connection_export                      (controller1_w)
 	  );
 endmodule

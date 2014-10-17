@@ -146,9 +146,9 @@ SOPC_NAME := nios_system
 ELF_PATCH_FLAG  += --simulation_enabled false
 
 # The SOPC System ID 
-# setting SOPC_SYSID is 15
-SOPC_SYSID_FLAG += --id=15
-ELF_PATCH_FLAG  += --id 15
+# setting SOPC_SYSID is -252645136
+SOPC_SYSID_FLAG += --id=-252645136
+ELF_PATCH_FLAG  += --id -252645136
 
 # The SOPC System ID Base Address 
 # setting SOPC_SYSID_BASE_ADDRESS is 0x201010
@@ -156,9 +156,9 @@ SOPC_SYSID_FLAG += --sidp=0x201010
 ELF_PATCH_FLAG  += --sidp 0x201010
 
 # The SOPC Timestamp 
-# setting SOPC_TIMESTAMP is 1411317456
-SOPC_SYSID_FLAG += --timestamp=1411317456
-ELF_PATCH_FLAG  += --timestamp 1411317456
+# setting SOPC_TIMESTAMP is 1413429550
+SOPC_SYSID_FLAG += --timestamp=1413429550
+ELF_PATCH_FLAG  += --timestamp 1413429550
 
 # Small-footprint (polled mode) driver none 
 # setting altera_avalon_jtag_uart_driver.enable_small_driver is false

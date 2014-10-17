@@ -77,7 +77,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  29 .jdi          00004cc6  00000000  00000000  00084071  2**0
                   CONTENTS, READONLY
- 30 .sopcinfo     00047750  00000000  00000000  00088d37  2**0
+ 30 .sopcinfo     0004d228  00000000  00000000  00088d37  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 08000000 l    d  .entry	00000000 .entry
@@ -615,13 +615,15 @@ SYMBOL TABLE:
 Disassembly of section .entry:
 
 08000000 <__reset>:
+ */
+
 #if NIOS2_ICACHE_SIZE > 0 && defined(ALT_ALLOW_CODE_AT_RESET) && !defined(ALT_SIM_OPTIMIZE)
     /* Assume the instruction cache size is always a power of two. */
 #if NIOS2_ICACHE_SIZE > 0x8000
     movhi r2, %hi(NIOS2_ICACHE_SIZE)
+ 8000000:	00800074 	movhi	r2,1
 #else
     movui r2, NIOS2_ICACHE_SIZE
- 8000000:	00900014 	movui	r2,16384
 #endif
 
 0:
@@ -642,7 +644,7 @@ Disassembly of section .entry:
  8000014:	08406d14 	ori	at,at,436
     jmp r1
  8000018:	0800683a 	jmp	at
- 800001c:	00000000 	call	0 <__alt_mem_sdram_0-0x8000000>
+ 800001c:	00000000 	call	0 <__reset-0x8000000>
 
 Disassembly of section .exceptions:
 
@@ -938,12 +940,14 @@ Disassembly of section .text:
 
 080001b4 <_start>:
 
+#if NIOS2_DCACHE_SIZE > 0 && !defined(ALT_SIM_OPTIMIZE)
+
     /* Assume the data cache size is always a power of two. */
 #if NIOS2_DCACHE_SIZE > 0x8000
     movhi r2, %hi(NIOS2_DCACHE_SIZE)
+ 80001b4:	00800074 	movhi	r2,1
 #else
     movui r2, NIOS2_DCACHE_SIZE
- 80001b4:	00880014 	movui	r2,8192
 #endif
 
 0:
@@ -1055,7 +1059,7 @@ void cpu_exec()
  8000260:	080028bc 	xorhi	zero,at,162
  8000264:	080028bc 	xorhi	zero,at,162
  8000268:	080028bc 	xorhi	zero,at,162
- 800026c:	08001d80 	call	8001d8 <__alt_mem_sdram_0-0x77ffe28>
+ 800026c:	08001d80 	call	8001d8 <__reset-0x77ffe28>
  8000270:	08000914 	ori	zero,at,36
  8000274:	080028bc 	xorhi	zero,at,162
  8000278:	08001e04 	addi	zero,at,120
@@ -1074,7 +1078,7 @@ void cpu_exec()
  80002ac:	08001da0 	cmpeqi	zero,at,118
  80002b0:	08000960 	cmpeqi	zero,at,37
  80002b4:	080028bc 	xorhi	zero,at,162
- 80002b8:	08000f80 	call	8000f8 <__alt_mem_sdram_0-0x77fff08>
+ 80002b8:	08000f80 	call	8000f8 <__reset-0x77fff08>
  80002bc:	08001cf4 	orhi	zero,at,115
  80002c0:	080028bc 	xorhi	zero,at,162
  80002c4:	080028bc 	xorhi	zero,at,162
@@ -1122,7 +1126,7 @@ void cpu_exec()
  800036c:	0800154c 	andi	zero,at,85
  8000370:	08001bf0 	cmpltui	zero,at,111
  8000374:	080028bc 	xorhi	zero,at,162
- 8000378:	08001dc0 	call	8001dc <__alt_mem_sdram_0-0x77ffe24>
+ 8000378:	08001dc0 	call	8001dc <__reset-0x77ffe24>
  800037c:	080014cc 	andi	zero,at,83
  8000380:	08001bc8 	cmpgei	zero,at,111
  8000384:	080028bc 	xorhi	zero,at,162
@@ -1194,7 +1198,7 @@ void cpu_exec()
  800048c:	08002468 	cmpgeui	zero,at,145
  8000490:	080025b8 	rdprs	zero,at,150
  8000494:	080028bc 	xorhi	zero,at,162
- 8000498:	080009c0 	call	80009c <__alt_mem_sdram_0-0x77fff64>
+ 8000498:	080009c0 	call	80009c <__reset-0x77fff64>
  800049c:	080024ec 	andhi	zero,at,147
  80004a0:	080028bc 	xorhi	zero,at,162
  80004a4:	080028bc 	xorhi	zero,at,162
@@ -1203,7 +1207,7 @@ void cpu_exec()
  80004b0:	08002614 	ori	zero,at,152
  80004b4:	080028bc 	xorhi	zero,at,162
  80004b8:	08002868 	cmpgeui	zero,at,161
- 80004bc:	080024c0 	call	80024c <__alt_mem_sdram_0-0x77ffdb4>
+ 80004bc:	080024c0 	call	80024c <__reset-0x77ffdb4>
  80004c0:	08002848 	cmpgei	zero,at,161
  80004c4:	080028bc 	xorhi	zero,at,162
  80004c8:	080028bc 	xorhi	zero,at,162
@@ -1230,7 +1234,7 @@ void cpu_exec()
  800051c:	08001944 	addi	zero,at,101
  8000520:	080028bc 	xorhi	zero,at,162
  8000524:	080028bc 	xorhi	zero,at,162
- 8000528:	08001b40 	call	8001b4 <__alt_mem_sdram_0-0x77ffe4c>
+ 8000528:	08001b40 	call	8001b4 <__reset-0x77ffe4c>
  800052c:	080019ac 	andhi	zero,at,102
  8000530:	08001a74 	orhi	zero,at,105
  8000534:	080028bc 	xorhi	zero,at,162
@@ -1259,7 +1263,7 @@ void cpu_exec()
  8000590:	08001288 	cmpgei	zero,at,74
  8000594:	080028bc 	xorhi	zero,at,162
  8000598:	08000c20 	cmpeqi	zero,at,48
- 800059c:	08001140 	call	800114 <__alt_mem_sdram_0-0x77ffeec>
+ 800059c:	08001140 	call	800114 <__reset-0x77ffeec>
  80005a0:	080028bc 	xorhi	zero,at,162
  80005a4:	080028bc 	xorhi	zero,at,162
  80005a8:	080028bc 	xorhi	zero,at,162
@@ -8250,13 +8254,13 @@ void ppu_exec()
  8005484:	18800605 	stb	r2,24(r3)
  8005488:	00000a06 	br	80054b4 <ppu_exec+0x1d4>
 			}
-			else if( PPU->scanline >= 261)
+			else if( PPU->scanline > 261)
  800548c:	d0a70d17 	ldw	r2,-25548(gp)
  8005490:	1080040b 	ldhu	r2,16(r2)
  8005494:	10bfffcc 	andi	r2,r2,65535
  8005498:	10a0001c 	xori	r2,r2,32768
  800549c:	10a00004 	addi	r2,r2,-32768
- 80054a0:	10804150 	cmplti	r2,r2,261
+ 80054a0:	10804190 	cmplti	r2,r2,262
  80054a4:	1000031e 	bne	r2,zero,80054b4 <ppu_exec+0x1d4>
 			{
 				PPU->scanline = -1;
@@ -12212,7 +12216,7 @@ void vga_test()
  8008300:	080091dc 	xori	zero,at,583
  8008304:	080083b4 	orhi	zero,at,526
  8008308:	080083b4 	orhi	zero,at,526
- 800830c:	08008ac0 	call	8008ac <__alt_mem_sdram_0-0x77ff754>
+ 800830c:	08008ac0 	call	8008ac <__reset-0x77ff754>
  8008310:	080083b4 	orhi	zero,at,526
  8008314:	080083b4 	orhi	zero,at,526
  8008318:	080083b4 	orhi	zero,at,526
@@ -12232,7 +12236,7 @@ void vga_test()
  8008350:	080083b4 	orhi	zero,at,526
  8008354:	080083b4 	orhi	zero,at,526
  8008358:	080083b4 	orhi	zero,at,526
- 800835c:	08009100 	call	800910 <__alt_mem_sdram_0-0x77ff6f0>
+ 800835c:	08009100 	call	800910 <__reset-0x77ff6f0>
  8008360:	08008a18 	cmpnei	zero,at,552
  8008364:	08009078 	rdprs	zero,at,577
  8008368:	08009078 	rdprs	zero,at,577
@@ -14395,7 +14399,7 @@ void vga_test()
  800a4fc:	0800a5e4 	muli	zero,at,663
  800a500:	0800afe4 	muli	zero,at,703
  800a504:	0800afbc 	xorhi	zero,at,702
- 800a508:	0800b000 	call	800b00 <__alt_mem_sdram_0-0x77ff500>
+ 800a508:	0800b000 	call	800b00 <__reset-0x77ff500>
  800a50c:	0800b00c 	andi	zero,at,704
  800a510:	d9002717 	ldw	r4,156(sp)
  800a514:	0089c3c4 	movi	r2,9999
@@ -32861,9 +32865,9 @@ void alt_dcache_flush_all (void)
  8018434:	e0bfff17 	ldw	r2,-4(fp)
  8018438:	10800804 	addi	r2,r2,32
  801843c:	e0bfff15 	stw	r2,-4(fp)
- 8018440:	e0bfff17 	ldw	r2,-4(fp)
- 8018444:	10880030 	cmpltui	r2,r2,8192
- 8018448:	103ff81e 	bne	r2,zero,801842c <alt_dcache_flush_all+0x14>
+ 8018440:	e0ffff17 	ldw	r3,-4(fp)
+ 8018444:	00bfffd4 	movui	r2,65535
+ 8018448:	10fff82e 	bgeu	r2,r3,801842c <alt_dcache_flush_all+0x14>
   { 
     __asm__ volatile ("flushd (%0)" :: "r" (i));
   }
@@ -33172,7 +33176,7 @@ void alt_icache_flush_all (void)
 #if NIOS2_ICACHE_SIZE > 0
   alt_icache_flush (0, NIOS2_ICACHE_SIZE);
  80186dc:	0009883a 	mov	r4,zero
- 80186e0:	01500004 	movi	r5,16384
+ 80186e0:	01400074 	movhi	r5,1
  80186e4:	80191640 	call	8019164 <alt_icache_flush>
 #endif
 }
@@ -34375,12 +34379,12 @@ void alt_icache_flush (void* start, alt_u32 len)
    */
  
   if (len > NIOS2_ICACHE_SIZE)
- 8019178:	e0bfff17 	ldw	r2,-4(fp)
- 801917c:	10900070 	cmpltui	r2,r2,16385
- 8019180:	1000021e 	bne	r2,zero,801918c <alt_icache_flush+0x28>
+ 8019178:	e0ffff17 	ldw	r3,-4(fp)
+ 801917c:	00800074 	movhi	r2,1
+ 8019180:	10c0022e 	bgeu	r2,r3,801918c <alt_icache_flush+0x28>
   {
     len = NIOS2_ICACHE_SIZE;
- 8019184:	00900004 	movi	r2,16384
+ 8019184:	00800074 	movhi	r2,1
  8019188:	e0bfff15 	stw	r2,-4(fp)
   }
 

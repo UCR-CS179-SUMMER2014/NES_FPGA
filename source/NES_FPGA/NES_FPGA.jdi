@@ -1,9 +1,9 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="fe77f45572689cf6b6c2"/>
+    <hash md5_digest_80b="4a69b55b00f23bc8c153"/>
   </project>
   <file_info>
-    <file checksum="0x00BB9E02" device="EP4CGX150DF31C7" path="NES_FPGA_time_limited.sof" usercode="0xFFFFFFFF"/>
+    <file checksum="0x00D3C2CA" device="EP4CGX150DF31C7" path="NES_FPGA_time_limited.sof" usercode="0xFFFFFFFF"/>
   </file_info>
   <hub_info ir_width="2" node_count="3"/>
   <node_info>
@@ -145,7 +145,7 @@
   <sld_infos>
     <sld_info hpath="nios_system:u0" name="u0">
       <assignment_values>
-        <assignment_value text="QSYS_NAME nios_system HAS_SOPCINFO 1 GENERATION_ID 1411317456"/>
+        <assignment_value text="QSYS_NAME nios_system HAS_SOPCINFO 1 GENERATION_ID 1413429550"/>
       </assignment_values>
       <parameters/>
     </sld_info>

@@ -314,7 +314,7 @@ void ppu_exec()
 				// NMI gets generated if bit 7 of $2000 is set.
 				CPU->NMI = (PPUCTRL & 0x80) ? 1 : 0;
 			}
-			else if( PPU->scanline >= 261)
+			else if( PPU->scanline > 261)
 			{
 				PPU->scanline = -1;
 			}

@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Oct 8, 2014 1:12:28 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1412755948110</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Oct 15, 2014 8:45:57 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1413431157505</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\Sergio\Desktop\NES_FPGA\source\NES_FPGA\software\NES_FPGA_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\nios_system.sopcinfo</SopcDesignFile>
@@ -854,6 +854,12 @@
                 <slaveDescriptor>Pixel_Buffer</slaveDescriptor>
                 <addressRange>0x00000000 - 0x001FFFFF</addressRange>
                 <addressSpan>2097152</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>controller1</slaveDescriptor>
+                <addressRange>0x00200010 - 0x0020001F</addressRange>
+                <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>

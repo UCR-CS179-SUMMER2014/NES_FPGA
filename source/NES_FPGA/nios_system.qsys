@@ -110,7 +110,7 @@
    {
       datum _lockedAddress
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
       datum _tags
@@ -160,10 +160,23 @@
    }
    element sysid.control_slave
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "2101264";
          type = "String";
+      }
+   }
+   element controller1
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
       }
    }
    element CPU.jtag_debug_module
@@ -185,6 +198,19 @@
       {
          value = "8";
          type = "int";
+      }
+   }
+   element controller1.s1
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "2097168";
+         type = "String";
       }
    }
    element sdram_0.s1
@@ -252,7 +278,7 @@
  <parameter name="projectName" value="NES_FPGA.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1411315580874" />
+ <parameter name="timeStamp" value="1413429438590" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface
@@ -300,6 +326,11 @@
    internal="Clock_Signals.sdram_clk"
    type="clock"
    dir="start" />
+ <interface
+   name="controller1_external_connection"
+   internal="controller1.external_connection"
+   type="conduit"
+   dir="end" />
  <module kind="clock_source" version="12.1" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -398,7 +429,7 @@
   <parameter name="setting_shadowRegisterSets" value="0" />
   <parameter name="mpu_numOfInstRegion" value="8" />
   <parameter name="mpu_numOfDataRegion" value="8" />
-  <parameter name="mmu_TLBMissExcOffset" value="0" />
+  <parameter name="mmu_TLBMissExcOffset" value="64" />
   <parameter name="debug_jtagInstanceID" value="0" />
   <parameter name="resetOffset" value="0" />
   <parameter name="exceptionOffset" value="32" />
@@ -407,7 +438,7 @@
   <parameter name="breakOffset" value="32" />
   <parameter name="userDefinedSettings" value="" />
   <parameter name="resetSlave" value="sdram_0.s1" />
-  <parameter name="mmu_TLBMissExcSlave" value="" />
+  <parameter name="mmu_TLBMissExcSlave" value="sdram_0.s1" />
   <parameter name="exceptionSlave" value="sdram_0.s1" />
   <parameter name="breakSlave">CPU.jtag_debug_module</parameter>
   <parameter name="setting_perfCounterWidth" value="32" />
@@ -423,14 +454,14 @@
   <parameter name="mmu_tlbNumWays" value="16" />
   <parameter name="mmu_processIDNumBits" value="8" />
   <parameter name="impl" value="Fast" />
-  <parameter name="icache_size" value="16384" />
+  <parameter name="icache_size" value="65536" />
   <parameter name="icache_ramBlockType" value="Automatic" />
   <parameter name="icache_numTCIM" value="0" />
   <parameter name="icache_burstType" value="None" />
   <parameter name="dcache_bursts" value="false" />
   <parameter name="debug_level" value="Level1" />
   <parameter name="debug_OCIOnchipTrace" value="_128" />
-  <parameter name="dcache_size" value="8192" />
+  <parameter name="dcache_size" value="65536" />
   <parameter name="dcache_ramBlockType" value="Automatic" />
   <parameter name="dcache_numTCDM" value="0" />
   <parameter name="dcache_lineSize" value="32" />
@@ -444,8 +475,8 @@
   <parameter name="tightlyCoupledInstructionMaster1AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster2AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster3AddrWidth" value="1" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sysid.control_slave' start='0x201010' end='0x201018' /><slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /><slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='Pixel_Buffer.avalon_ssram_slave' start='0x0' end='0x200000' /><slave name='jtag_uart.avalon_jtag_slave' start='0x201008' end='0x201010' /><slave name='sysid.control_slave' start='0x201010' end='0x201018' /><slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /><slave name='Pixel_Buffer_DMA.avalon_control_slave' start='0x20B000' end='0x20B010' /><slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='controller1.s1' start='0x200010' end='0x200020' /><slave name='sysid.control_slave' start='0x201010' end='0x201018' /><slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /><slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='Pixel_Buffer.avalon_ssram_slave' start='0x0' end='0x200000' /><slave name='controller1.s1' start='0x200010' end='0x200020' /><slave name='jtag_uart.avalon_jtag_slave' start='0x201008' end='0x201010' /><slave name='sysid.control_slave' start='0x201010' end='0x201018' /><slave name='CPU.jtag_debug_module' start='0x20A800' end='0x20B000' /><slave name='Pixel_Buffer_DMA.avalon_control_slave' start='0x20B000' end='0x20B010' /><slave name='Altera_UP_SD_Card_Avalon_Interface_0.avalon_sdcard_slave' start='0x210000' end='0x210400' /><slave name='sdram_0.s1' start='0x8000000' end='0x10000000' /></address-map>]]></parameter>
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="deviceFamilyName" value="Cyclone IV GX" />
   <parameter name="internalIrqMaskSystemInfo" value="1" />
@@ -505,7 +536,7 @@
    version="12.1"
    enabled="1"
    name="sysid">
-  <parameter name="id" value="15" />
+  <parameter name="id" value="-252645136" />
   <parameter name="timestamp" value="0" />
   <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV GX" />
@@ -537,6 +568,24 @@
   <parameter name="refreshPeriod" value="7.8125" />
   <parameter name="registerDataIn" value="true" />
   <parameter name="rowWidth" value="13" />
+ </module>
+ <module
+   kind="altera_avalon_pio"
+   version="12.1"
+   enabled="1"
+   name="controller1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
  </module>
  <connection
    kind="avalon"
@@ -780,4 +829,30 @@
    version="12.1"
    start="Pixel_Buffer_DMA.avalon_pixel_source"
    end="Dual_Clock_FIFO.avalon_dc_buffer_sink" />
+ <connection
+   kind="clock"
+   version="12.1"
+   start="Clock_Signals.sys_clk"
+   end="controller1.clk" />
+ <connection
+   kind="reset"
+   version="12.1"
+   start="clk_0.clk_reset"
+   end="controller1.reset" />
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.data_master"
+   end="controller1.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00200010" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="12.1"
+   start="CPU.instruction_master"
+   end="controller1.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00200010" />
+ </connection>
 </system>

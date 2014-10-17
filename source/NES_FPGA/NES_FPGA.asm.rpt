@@ -1,5 +1,5 @@
 Assembler report for NES_FPGA
-Sun Sep 21 10:08:04 2014
+Wed Oct 15 20:26:36 2014
 Quartus II 64-Bit Version 12.1 Build 177 11/07/2012 SJ Web Edition
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sun Sep 21 10:08:04 2014 ;
+; Assembler Status      ; Successful - Wed Oct 15 20:26:36 2014 ;
 ; Revision Name         ; NES_FPGA                              ;
 ; Top-level Entity Name ; NES_FPGA                              ;
 ; Family                ; Cyclone IV GX                         ;
@@ -105,7 +105,7 @@ applicable agreement for further details.
 +----------------+-------------------------------------------------------------------------------------+
 ; Device         ; EP4CGX150DF31C7                                                                     ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                                          ;
-; Checksum       ; 0x00BB9E02                                                                          ;
+; Checksum       ; 0x00D3C2CA                                                                          ;
 +----------------+-------------------------------------------------------------------------------------+
 
 
@@ -115,16 +115,16 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 12.1 Build 177 11/07/2012 SJ Web Edition
-    Info: Processing started: Sun Sep 21 10:07:45 2014
+    Info: Processing started: Wed Oct 15 20:26:11 2014
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off NES_FPGA -c NES_FPGA
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info (115017): Design contains a time-limited core -- only a single, time-limited programming file can be generated
 Warning (210042): Can't convert time-limited SOF into POF, HEX File, TTF, or RBF
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 523 megabytes
-    Info: Processing ended: Sun Sep 21 10:08:04 2014
-    Info: Elapsed time: 00:00:19
-    Info: Total CPU time (on all processors): 00:00:18
+    Info: Peak virtual memory: 527 megabytes
+    Info: Processing ended: Wed Oct 15 20:26:36 2014
+    Info: Elapsed time: 00:00:25
+    Info: Total CPU time (on all processors): 00:00:24
 
 

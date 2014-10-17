@@ -16,7 +16,8 @@
    <frequency preferredWidth="346" />
   </columns>
  </clocktable>
- <library expandedCategories="Project,Library" />
+ <library
+   expandedCategories="Project,Library,Library/Peripherals,Library/Peripherals/Microcontroller Peripherals" />
  <window width="1382" height="744" x="-8" y="-8" />
  <hdlexample language="VERILOG" />
  <generation block_symbol_file="0" />
